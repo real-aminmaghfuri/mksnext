@@ -1,3 +1,4 @@
+"use client";
 import React, { ReactNode, HTMLAttributes } from 'react';
 
 interface GlassCardProps extends HTMLAttributes<HTMLDivElement> {
