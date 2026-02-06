@@ -14,8 +14,7 @@
     "next": "latest",
     "lucide-react": "^0.563.0",
     "shared": "*",
-    "ui": "*",
-    "data": "*"
+    "ui": "*"
   },
   "devDependencies": {
     "typescript": "^5.0.0",
