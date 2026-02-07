@@ -21,7 +21,7 @@ export const DICTIONARY: Record<Language, Translation> = {
     navAbout: "TENTANG",
     navAboutProfile: "Profil Perusahaan",
     navAboutTeam: "Pasukan Elite",
-    navAboutVision: "Manifesto Perang",
+    navAboutVision: "Visi & Misi", // Updated Label
     
     navSolutions: "SOLUSI BISNIS",
     navSolHardware: "Hardware Tempur",
@@ -77,6 +77,20 @@ export const DICTIONARY: Record<Language, Translation> = {
     aboutPhil2Desc: "Fitur sampah gue buang. Gue cuma kasih apa yang beneran lo butuhin buat nyari duit.",
     aboutPhil3Title: "Survival Instinct",
     aboutPhil3Desc: "Gue pernah bangkrut. Gue tau persis cara jagain aset lo biar gak bernasib sama kayak gue dulu.",
+
+    // Vision Mission
+    visionHeading: "Blueprint Kekuasaan.",
+    visionSub: "Kita gak main-main soal arah. Ini bukan sekadar jualan alat, ini soal mendominasi ekosistem ritel di Solo Raya.",
+    visionStatement: "Menjadi infrastruktur tulang punggung paling brutal dan andal bagi bisnis di Solo Raya yang menolak untuk bangkrut.",
+    missionTitle: "Misi Taktis",
+    mission1Title: "Persenjatai UKM",
+    mission1Desc: "Menyediakan hardware kelas militer dan software level enterprise dengan harga yang masuk akal bagi pejuang lapangan.",
+    mission2Title: "Edukasi Jalanan",
+    mission2Desc: "Membuka mata pengusaha soal pentingnya data, sistem, dan kontrol. Bukan cuma cuan hari ini, tapi sustainability tahun depan.",
+    mission3Title: "Support Tanpa Basa-basi",
+    mission3Desc: "Layanan purna jual yang responsif. Kalo alat lo mati, bisnis lo mati. Kita gak biarin itu kejadian.",
+    manifestoTitle: "Manifesto MKS",
+    manifestoText: "Kami percaya bisnis adalah perang. Di perang, lo butuh sekutu yang pegang senjata, bukan yang cuma bisa sorak-sorai. MKS ada buat lo yang berani ambil resiko, yang berani capek, dan yang berani kaya.",
 
     // Legality Section
     legalTitle: "Gue Main Bersih",
@@ -135,7 +149,7 @@ export const DICTIONARY: Record<Language, Translation> = {
     navAbout: "ABOUT",
     navAboutProfile: "Company Profile",
     navAboutTeam: "Elite Squad",
-    navAboutVision: "War Manifesto",
+    navAboutVision: "Vision & Mission", // Updated Label
 
     navSolutions: "BIZ SOLUTIONS",
     navSolHardware: "Combat Hardware",
@@ -192,6 +206,20 @@ export const DICTIONARY: Record<Language, Translation> = {
     aboutPhil3Title: "Survival Instinct",
     aboutPhil3Desc: "I went bankrupt once. I know exactly how to guard your assets so you don't end up like I did.",
 
+    // Vision Mission
+    visionHeading: "Blueprint of Power.",
+    visionSub: "We don't play around with direction. This isn't just selling tools, it's about dominating the retail ecosystem in Solo Raya.",
+    visionStatement: "To be the most brutal and reliable backbone infrastructure for Solo Raya businesses that refuse to go bankrupt.",
+    missionTitle: "Tactical Missions",
+    mission1Title: "Arm the SMEs",
+    mission1Desc: "Providing military-grade hardware and enterprise-level software at a sensible price for field fighters.",
+    mission2Title: "Street Education",
+    mission2Desc: "Opening entrepreneurs' eyes to the importance of data, systems, and control. Not just profit today, but sustainability next year.",
+    mission3Title: "No Bullsh*t Support",
+    mission3Desc: "Responsive after-sales service. If your tool dies, your business dies. We won't let that happen.",
+    manifestoTitle: "MKS Manifesto",
+    manifestoText: "We believe business is war. In war, you need allies who hold weapons, not just cheerleaders. MKS exists for those who dare to take risks, dare to get tired, and dare to get rich.",
+
     // Legality Section
     legalTitle: "I Play Clean",
     legalDesc: "Business is trust. I won't ruin the name I rebuilt from zero. Here is the proof I am legal.",
@@ -214,7 +242,7 @@ export const DICTIONARY: Record<Language, Translation> = {
     hist2021Title: "2021: Birth of SIBOS",
     hist2021Desc: "Sick of weak market apps. I engineered SIBOS. Combat-ready POS for brutal field conditions.",
     hist2022Title: "2022: The Mini Apocalypse",
-    hist2022Desc: "Pandemic hit hard. Team dissolved. Funds dried up. Domains stolen. Google Business suspended. Total darkness, Boss.",
+    hist2022Desc: "Pandemi hit hard. Team dissolved. Funds dried up. Domains stolen. Google Business suspended. Total darkness, Boss.",
     hist2025Title: "2025: The Vengeance",
     hist2025Desc: "Rising from the grave. Rebuilt from scratch using Enterprise Monorepo. Smarter, meaner, readier for war.",
 

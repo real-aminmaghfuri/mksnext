@@ -94,6 +94,20 @@ export interface Translation {
   aboutPhil3Title: string;
   aboutPhil3Desc: string;
 
+  // Vision & Mission Section
+  visionHeading: string;
+  visionSub: string;
+  visionStatement: string;
+  missionTitle: string;
+  mission1Title: string;
+  mission1Desc: string;
+  mission2Title: string;
+  mission2Desc: string;
+  mission3Title: string;
+  mission3Desc: string;
+  manifestoTitle: string;
+  manifestoText: string;
+
   // Legality Section
   legalTitle: string;
   legalDesc: string;

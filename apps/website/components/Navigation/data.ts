@@ -16,7 +16,7 @@ export const getMenuStructure = (text: Translation): MenuItem[] => [
     items: [
       { label: text.navAboutProfile, path: '/about', icon: User, desc: "Sejarah, Visi & Legitimasi PT MKS" },
       { label: text.navAboutTeam, path: '#', icon: Layers, desc: "Struktur Komando & Tim Lapangan" },
-      { label: text.navAboutVision, path: '#', icon: BookOpen, desc: "Blueprint Masa Depan" },
+      { label: text.navAboutVision, path: '/vision', icon: BookOpen, desc: "Blueprint Masa Depan" },
     ]
   },
   { 
