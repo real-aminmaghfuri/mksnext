@@ -29,8 +29,8 @@ export const About: React.FC = () => {
 
   return (
     <section className="min-h-screen bg-zinc-50 dark:bg-black transition-colors duration-500 pb-24 overflow-x-hidden">
-      {/* 1. Header Section (Hero of About Page) */}
-      <div className="relative pt-24 pb-32 md:pb-52 px-4 md:px-8 border-b border-zinc-200/10 dark:border-white/5">
+      {/* 1. Header Section (Hero of About Page) - Reduced spacing from pb-52 to pb-16/20 */}
+      <div className="relative pt-24 pb-16 md:pb-20 px-4 md:px-8 border-b border-zinc-200/10 dark:border-white/5">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-brand-600/10 to-transparent rounded-full blur-[150px] pointer-events-none" />
         <div className="container mx-auto max-w-5xl text-center relative z-10">
           <h1 className="text-5xl md:text-8xl font-black text-zinc-900 dark:text-white mb-8 tracking-tighter uppercase leading-[0.85]">
@@ -45,8 +45,8 @@ export const About: React.FC = () => {
       </div>
 
       <div className="container mx-auto px-4 md:px-8 max-w-6xl">
-        {/* 2. The Founder Section - Significant top margin for 'proportional distance' */}
-        <div className="mt-24 md:mt-44 mb-32 relative">
+        {/* 2. The Founder Section - Reduced top margin from mt-44 to mt-12/16 */}
+        <div className="mt-12 md:mt-16 mb-32 relative">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 items-start">
             
             {/* Portrait Column */}
