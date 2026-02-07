@@ -40,11 +40,11 @@ export const About: React.FC = () => {
 
       <div className="container mx-auto px-4 md:px-8 max-w-6xl">
         {/* 2. The Founder Section */}
-        <div className="mb-20 relative">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
+        <div className="mb-16 relative">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-16 items-start">
             
-            {/* Portrait Column */}
-            <div className="md:col-span-5 lg:col-span-4 md:sticky md:top-24">
+            {/* Portrait Column - Enlarged slightly by grid ratio */}
+            <div className="md:col-span-5 lg:col-span-5 md:sticky md:top-24">
               <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border-2 border-zinc-800 dark:border-zinc-700 shadow-2xl bg-zinc-900 group">
                 <img 
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop" 
@@ -56,24 +56,24 @@ export const About: React.FC = () => {
             </div>
 
             {/* Info Column */}
-            <div className="md:col-span-7 lg:col-span-8">
-               {/* Name Block - Resized to be more proportional */}
-               <div className="mb-6">
-                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-zinc-900 text-brand-500 border border-brand-500/30 text-[10px] font-black tracking-widest uppercase mb-4">
+            <div className="md:col-span-7 lg:col-span-7">
+               {/* Name Block - Resized to be more proportional (smaller) */}
+               <div className="mb-4">
+                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-zinc-900 text-brand-500 border border-brand-500/30 text-[10px] font-black tracking-widest uppercase mb-3">
                     <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse" />
                     Commanding Officer
                  </div>
                  
-                 <h2 className="text-5xl md:text-7xl font-black text-zinc-900 dark:text-white mb-2 tracking-tighter leading-none">
+                 <h2 className="text-4xl md:text-6xl font-black text-zinc-900 dark:text-white mb-1 tracking-tighter leading-none">
                   AMIN MAGHFURI
                  </h2>
                  
-                 <p className="text-lg md:text-xl text-zinc-500 dark:text-zinc-400 font-bold">
+                 <p className="text-base md:text-lg text-zinc-500 dark:text-zinc-400 font-bold mb-6">
                   The Architect of Chaos & Cuan
                  </p>
                </div>
 
-               {/* Area Nomor 2: Quote Block - Raised closer to name */}
+               {/* Quote Block */}
                <div className="relative">
                   <GlassCard variant="solid" className="p-6 md:p-8 bg-zinc-900/40 border-brand-500/20 relative overflow-hidden">
                     <Quote className="absolute -top-4 -left-4 w-20 h-20 text-brand-500/5 rotate-12" />
@@ -92,16 +92,17 @@ export const About: React.FC = () => {
                     </div>
                   </GlassCard>
                   
-                  <div className="flex items-center gap-4 mt-8">
+                  {/* Battle-Tested Text - Enlarged */}
+                  <div className="flex items-center gap-4 mt-10">
                     <div className="h-[2px] w-12 bg-brand-500" />
-                    <span className="font-mono text-[10px] font-black text-zinc-400 uppercase tracking-[0.2em]">Battle-Tested Since 2015</span>
+                    <span className="font-mono text-xs md:text-sm font-black text-zinc-400 uppercase tracking-[0.25em]">Battle-Tested Since 2015</span>
                   </div>
                </div>
             </div>
           </div>
         </div>
 
-        {/* 3. Philosophy Section - Now Horizontal & Full Width */}
+        {/* 3. Philosophy Section - Horizontal & Full Width */}
         <div className="mb-32">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
