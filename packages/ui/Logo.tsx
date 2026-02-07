@@ -13,9 +13,9 @@ export const Logo: React.FC<LogoProps> = ({
   color = 'brand'
 }) => {
   
-  // High contrast bold stroke colors
-  const strokeColor = color === 'brand' ? '#dc2626' : // Red-600 for that bold brand look
-                      color === 'white' ? '#ffffff' : '#18181b'; // Zinc-950
+  // Updated to Orange-500 (#f97316) as requested
+  const strokeColor = color === 'brand' ? '#f97316' : 
+                      color === 'white' ? '#ffffff' : '#18181b'; 
 
   return (
     <svg 
@@ -27,53 +27,48 @@ export const Logo: React.FC<LogoProps> = ({
       strokeLinecap="round" 
       strokeLinejoin="round"
     >
-      {/* 1. THE SHIELD CONTAINER */}
-      {/* A wide, protective shield outline */}
+      {/* 1. THE SHIELD */}
+      {/* Convex top, straight upper sides, curved point */}
       <path 
-        d="M 15 25 
-           C 15 25, 15 45, 15 45
-           C 15 75, 40 88, 50 95 
-           C 60 88, 85 75, 85 45
-           C 85 45, 85 25, 85 25
-           L 50 15 
-           L 15 25 Z" 
+        d="M 18 25 
+           Q 50 12 82 25 
+           L 82 48 
+           Q 82 75 50 92 
+           Q 18 75 18 48 
+           Z" 
         strokeWidth="6"
       />
 
-      {/* 2. THE SCANNER GUN */}
+      {/* 2. THE SCANNER */}
       <g transform="translate(0, 2)">
-        {/* Main Body & Handle */}
+        {/* Main Body */}
         <path 
-          d="M 35 45 
-             L 35 35 
-             C 35 30, 38 28, 42 28 
-             L 70 28 
-             L 75 45 
-             L 60 45 
-             L 55 55 
-             L 50 80 
-             L 38 75 
-             L 45 55 
-             L 35 45 Z" 
+          d="M 35 35 
+             L 62 35 
+             L 68 50 
+             L 55 50 
+             L 50 55 
+             L 44 75 
+             L 34 72 
+             L 40 55 
+             L 32 55 
+             C 25 55, 25 35, 35 35 Z" 
           strokeWidth="6"
         />
 
-        {/* Inner Detail: The Window/Display on the side */}
+        {/* Inner Window/Detail */}
         <path 
-          d="M 42 35 L 62 35 L 60 40 L 42 40 Z" 
-          strokeWidth="4" 
+          d="M 35 42 L 55 42 L 52 47 L 35 47 Z" 
+          strokeWidth="3" 
         />
 
-        {/* Trigger */}
-        <path 
-          d="M 52 55 L 55 60" 
-          strokeWidth="4" 
-        />
+        {/* Rear Vents/Stripes (The angled lines on the back) */}
+        <path d="M 64 38 L 68 47" strokeWidth="3" />
+        <path d="M 70 38 L 74 47" strokeWidth="3" />
         
-        {/* Laser Emitter Lines (Optional Accent) */}
-        <path d="M 72 32 L 72 40" strokeWidth="3" />
+        {/* Trigger */}
+        <path d="M 46 58 L 48 62" strokeWidth="3" />
       </g>
-
     </svg>
   );
 };
