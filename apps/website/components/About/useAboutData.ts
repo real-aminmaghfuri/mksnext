@@ -23,6 +23,19 @@ export const useAboutData = () => {
     };
   };
 
+  // Logic: Turning Point Parsing
+  const turningPoint = {
+    title: text.aboutTurnTitle,
+    p1: text.aboutTurnP1,
+    p1Bold: text.aboutTurnP1Bold,
+    p2Pre: text.aboutTurnP2Pre,
+    p2Bold: text.aboutTurnP2Bold,
+    p2Mid: text.aboutTurnP2Mid,
+    p2Italic1: text.aboutTurnP2Italic1,
+    p2Mid2: text.aboutTurnP2Mid2,
+    p2Italic2: text.aboutTurnP2Italic2,
+  };
+
   // Logic: Timeline Mapping
   const timeline = [
     { year: '2015', title: text.hist2015Title, desc: text.hist2015Desc, icon: Footprints, color: 'text-zinc-500 bg-zinc-100 dark:bg-zinc-800' },
@@ -42,6 +55,7 @@ export const useAboutData = () => {
   return {
     text,
     quote: parseQuote(),
+    turningPoint,
     timeline,
     philosophies
   };

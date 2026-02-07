@@ -1,3 +1,4 @@
+
 export enum AppMode {
   WEBSITE = 'WEBSITE',
   SYSTEM = 'SYSTEM'
@@ -60,6 +61,18 @@ export interface Translation {
   aboutHeading: string;
   aboutTagline: string;
   aboutFounderQuote: string;
+  
+  // New Turning Point Section
+  aboutTurnTitle: string;
+  aboutTurnP1: string;
+  aboutTurnP1Bold: string;
+  aboutTurnP2Pre: string;
+  aboutTurnP2Bold: string;
+  aboutTurnP2Mid: string;
+  aboutTurnP2Italic1: string;
+  aboutTurnP2Mid2: string;
+  aboutTurnP2Italic2: string;
+
   aboutPhil1Title: string;
   aboutPhil1Desc: string;
   aboutPhil2Title: string;

@@ -41,10 +41,22 @@ export const DICTIONARY: Record<Language, Translation> = {
     shopBtnOrder: "Angkut Via WA",
     shopUnit: "Unit",
 
-    // About - Updated with "Jujur-jujuran" quote
+    // About
     aboutHeading: "Dibangun Dari Luka & Aspal Panas.",
     aboutTagline: "Story gue bukan dongeng motivasi basi. Ini kronik berdarah-darah, jalan kaki nawarin alat, dan penolakan yang bikin mental gue sekeras baja.",
     aboutFounderQuote: "Jujur-jujuran aja... Tahun 2022, gue pernah 'mati suri'. Aset digital ilang, domain diambil orang, profil google bisnis disuspend. Pernah juga dikadalin sama karyawan. Sistem berantakan gara-gara gue terlalu percaya sama 'manusia' tanpa sistem kontrol. Saat itu gue belajar satu hal mahal: Bisnis tanpa sistem yang kuat cuma nunggu waktu buat meledak.",
+    
+    // Turning Point Section
+    aboutTurnTitle: "Titik Balik (The Turn)",
+    aboutTurnP1: "Dari kehancuran itu, gue bangun ulang semuanya sendirian. Bukan buat bales dendam, tapi buat mastiin ",
+    aboutTurnP1Bold: "lo gak perlu ngerasain sakit yang gue rasain.",
+    aboutTurnP2Pre: "SIBOS dan Mesin Kasir yang gue rakit sekarang lahir dari trauma itu. Ini bukan sekadar alat jualan, ini adalah ",
+    aboutTurnP2Bold: "asuransi",
+    aboutTurnP2Mid: " buat bisnis lo. Gue desain fitur-fiturnya berdasarkan apa yang ",
+    aboutTurnP2Italic1: "nyelametin duit",
+    aboutTurnP2Mid2: ", bukan cuma apa yang ",
+    aboutTurnP2Italic2: "keliatan canggih.",
+
     aboutPhil1Title: "Street Tested",
     aboutPhil1Desc: "Sistem gue lahir di jalanan, bukan di lab ber-AC. Udah kebal sama error lapangan.",
     aboutPhil2Title: "No Bullsh*t",
@@ -120,6 +132,18 @@ export const DICTIONARY: Record<Language, Translation> = {
     aboutHeading: "Built on Asphalt & Wounds.",
     aboutTagline: "My story isn't some cheesy motivational quote. It's a chronicle of bleeding out, walking miles to sell tools, and rejections that turned my mind into steel.",
     aboutFounderQuote: "To be honest... In 2022, I almost 'died'. Digital assets gone, domain stolen, Google Business suspended. Even got played by employees. The system was a mess because I trusted 'humans' too much without a control system. That's when I learned a costly lesson: Business without a strong system is just waiting to explode.",
+    
+    // Turning Point Section
+    aboutTurnTitle: "Titik Balik (The Turn)",
+    aboutTurnP1: "From that destruction, I rebuilt everything alone. Not for revenge, but to ensure ",
+    aboutTurnP1Bold: "you don't have to feel the pain I felt.",
+    aboutTurnP2Pre: "SIBOS and the Cash Registers I build now were born from that trauma. These aren't just sales tools, they are ",
+    aboutTurnP2Bold: "insurance",
+    aboutTurnP2Mid: " for your business. I designed the features based on what ",
+    aboutTurnP2Italic1: "saves money",
+    aboutTurnP2Mid2: ", not just what ",
+    aboutTurnP2Italic2: "looks high-tech.",
+
     aboutPhil1Title: "Street Tested",
     aboutPhil1Desc: "My system was born on the streets, not in an AC lab. It's immune to field errors.",
     aboutPhil2Title: "No Bullsh*t",
