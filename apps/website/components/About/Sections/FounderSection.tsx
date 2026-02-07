@@ -33,37 +33,40 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ quote }) => {
         {/* Info Column - 7/12 Grid - Stretching to match Image Bottom */}
         <div className="md:col-span-7 lg:col-span-7 flex flex-col self-stretch pt-2">
           {/* Name Block */}
-          <div className="mb-8">
+          <div className="mb-6 md:mb-8">
             <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-brand-600 dark:text-brand-500 border border-brand-500/20 text-[10px] font-bold tracking-widest uppercase mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-50 animate-pulse" />
               Commanding Officer
             </div>
-            {/* Reduced font size here (text-3xl md:text-4xl lg:text-6xl) */}
-            <h2 className="text-3xl md:text-4xl lg:text-6xl font-black text-zinc-900 dark:text-white mb-2 tracking-tighter leading-none uppercase">
+            
+            {/* UPDATED: Significantly smaller font sizes */}
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-zinc-900 dark:text-white mb-2 tracking-tighter leading-none uppercase">
               AMIN MAGHFURI
             </h2>
-            <p className="text-lg md:text-2xl text-zinc-500 dark:text-zinc-400 font-bold italic opacity-70">
+            
+            <p className="text-base md:text-xl text-zinc-500 dark:text-zinc-400 font-bold italic opacity-70">
               The Architect of Chaos & Cuan
             </p>
           </div>
 
           {/* Quote Block - Optimized with flex-1 to fill vertical gap */}
           <div className="flex-1 flex flex-col mb-10">
-            <GlassCard variant="solid" className="flex-1 p-8 md:p-12 bg-white/50 dark:bg-zinc-900/40 border-brand-500/10 relative overflow-hidden shadow-xl w-full flex flex-col justify-center">
-              <Quote className="absolute -top-10 -left-10 w-32 h-32 text-brand-500/5 rotate-12" />
+            <GlassCard variant="solid" className="flex-1 p-8 md:p-10 bg-white/50 dark:bg-zinc-900/40 border-brand-500/10 relative overflow-hidden shadow-xl w-full flex flex-col justify-center">
+              <Quote className="absolute -top-8 -left-8 w-24 h-24 text-brand-500/5 rotate-12" />
               
-              <h3 className="text-xl md:text-2xl font-bold text-brand-600 dark:text-brand-500 mb-6 italic tracking-tight">
+              <h3 className="text-lg md:text-xl font-bold text-brand-600 dark:text-brand-500 mb-4 italic tracking-tight">
                 "{quote.heading}"
               </h3>
               
-              <div className="space-y-6">
-                <p className="text-base md:text-lg lg:text-xl text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium tracking-tight">
+              <div className="space-y-5">
+                {/* UPDATED: Smaller body text */}
+                <p className="text-sm md:text-base text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium tracking-tight">
                   {quote.bodyPrefix}
                 </p>
                 
-                <div className="p-6 md:px-10 md:py-8 rounded-3xl bg-brand-600/5 dark:bg-brand-600/10 border-l-[8px] border-brand-600 shadow-sm">
-                  {/* Reduced font size here (text-base md:text-xl lg:text-2xl) */}
-                  <p className="text-base md:text-xl lg:text-2xl text-zinc-900 dark:text-white font-black italic tracking-tight leading-snug">
+                <div className="p-5 md:px-8 md:py-6 rounded-2xl bg-brand-600/5 dark:bg-brand-600/10 border-l-[6px] border-brand-600 shadow-sm">
+                  {/* UPDATED: Smaller emphasis text */}
+                  <p className="text-base md:text-lg lg:text-xl text-zinc-900 dark:text-white font-black italic tracking-tight leading-snug">
                     {quote.emphasis} {quote.bodySuffix}
                   </p>
                 </div>
