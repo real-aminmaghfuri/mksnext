@@ -13,62 +13,66 @@ export const Logo: React.FC<LogoProps> = ({
   color = 'brand'
 }) => {
   
-  // Stroke Colors
-  const mainStroke = color === 'brand' ? 'stroke-zinc-900 dark:stroke-white' : 
-                     color === 'white' ? 'stroke-white' : 'stroke-zinc-900';
-                     
-  const accentStroke = color === 'brand' ? '#f97316' : // Orange-500
-                       color === 'white' ? '#ffffff' : '#f97316';
+  // High contrast bold stroke colors
+  const strokeColor = color === 'brand' ? '#dc2626' : // Red-600 for that bold brand look
+                      color === 'white' ? '#ffffff' : '#18181b'; // Zinc-950
 
   return (
-    <svg viewBox="0 0 100 100" className={className} xmlns="http://www.w3.org/2000/svg" fill="none" strokeLinecap="round" strokeLinejoin="round">
-      <defs>
-        <linearGradient id="laserFade" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor={accentStroke} stopOpacity="1" />
-          <stop offset="100%" stopColor={accentStroke} stopOpacity="0" />
-        </linearGradient>
-      </defs>
-
-      {/* 1. THE CABLE SHIELD (Kabel membentuk Perisai) */}
-      {/* Starts from handle bottom (45, 75), loops down to shield tip (50, 95), then up to form shield body */}
+    <svg 
+      viewBox="0 0 100 100" 
+      className={className} 
+      xmlns="http://www.w3.org/2000/svg" 
+      fill="none" 
+      stroke={strokeColor}
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    >
+      {/* 1. THE SHIELD CONTAINER */}
+      {/* A wide, protective shield outline */}
       <path 
-        d="M 45 75 
-           C 45 85, 50 95, 50 95 
-           C 50 95, 88 80, 88 35 
-           C 88 15, 65 10, 50 10 
-           C 35 10, 12 15, 12 35 
-           C 12 60, 35 70, 38 72" 
-        stroke={accentStroke}
-        strokeWidth="2.5"
+        d="M 15 25 
+           C 15 25, 15 45, 15 45
+           C 15 75, 40 88, 50 95 
+           C 60 88, 85 75, 85 45
+           C 85 45, 85 25, 85 25
+           L 50 15 
+           L 15 25 Z" 
+        strokeWidth="6"
       />
 
-      {/* 2. THE SCANNER (Short Snout, Long Handle) */}
-      <g transform="translate(-2, 0)">
-        {/* Main Body Outline */}
+      {/* 2. THE SCANNER GUN */}
+      <g transform="translate(0, 2)">
+        {/* Main Body & Handle */}
         <path 
-          d="M40 75 L40 40 L35 40 L35 28 L62 28 L62 42 L48 42 L48 75 Z" 
-          className={mainStroke}
-          strokeWidth="3"
+          d="M 35 45 
+             L 35 35 
+             C 35 30, 38 28, 42 28 
+             L 70 28 
+             L 75 45 
+             L 60 45 
+             L 55 55 
+             L 50 80 
+             L 38 75 
+             L 45 55 
+             L 35 45 Z" 
+          strokeWidth="6"
+        />
+
+        {/* Inner Detail: The Window/Display on the side */}
+        <path 
+          d="M 42 35 L 62 35 L 60 40 L 42 40 Z" 
+          strokeWidth="4" 
+        />
+
+        {/* Trigger */}
+        <path 
+          d="M 52 55 L 55 60" 
+          strokeWidth="4" 
         />
         
-        {/* Trigger Detail */}
-        <path d="M48 48 L52 52" className={mainStroke} strokeWidth="2" />
-        
-        {/* Grip Details (Lines on handle) */}
-        <path d="M43 65 L45 65" className={mainStroke} strokeWidth="2" opacity="0.5" />
-        <path d="M43 60 L45 60" className={mainStroke} strokeWidth="2" opacity="0.5" />
+        {/* Laser Emitter Lines (Optional Accent) */}
+        <path d="M 72 32 L 72 40" strokeWidth="3" />
       </g>
-
-      {/* 3. CONNECTION NODE (Cable meets Handle) */}
-      <circle cx="45" cy="75" r="2.5" fill={accentStroke} stroke="none" />
-
-      {/* 4. THE LASER BEAM (Scanning the Shield Wall) */}
-      {/* Shooting from the short snout (60, 35) to the shield wall (88, 35) */}
-      <path d="M62 35 L85 35" stroke="url(#laserFade)" strokeWidth="3" strokeDasharray="3 1" />
-      
-      {/* 5. IMPACT DATA (Barcode effect on the shield wire) */}
-      <path d="M83 28 L83 42" stroke={accentStroke} strokeWidth="2" opacity="0.8" />
-      <path d="M87 30 L87 40" stroke={accentStroke} strokeWidth="1.5" opacity="0.6" />
 
     </svg>
   );
