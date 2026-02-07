@@ -40,11 +40,11 @@ export const About: React.FC = () => {
 
       <div className="container mx-auto px-4 md:px-8 max-w-6xl">
         {/* 2. The Founder Section */}
-        <div className="mb-32 relative">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+        <div className="mb-20 relative">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
             
-            {/* Portrait Column - Clean without overlay */}
-            <div className="md:col-span-5 lg:col-span-4 sticky top-24">
+            {/* Portrait Column */}
+            <div className="md:col-span-5 lg:col-span-4 md:sticky md:top-24">
               <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border-2 border-zinc-800 dark:border-zinc-700 shadow-2xl bg-zinc-900 group">
                 <img 
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop" 
@@ -55,73 +55,75 @@ export const About: React.FC = () => {
               </div>
             </div>
 
-            {/* Info Column - Quote is now here, below the name */}
-            <div className="md:col-span-7 lg:col-span-8 md:pt-4">
-               {/* Name Block */}
-               <div className="mb-10">
+            {/* Info Column */}
+            <div className="md:col-span-7 lg:col-span-8">
+               {/* Name Block - Resized to be more proportional */}
+               <div className="mb-6">
                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-zinc-900 text-brand-500 border border-brand-500/30 text-[10px] font-black tracking-widest uppercase mb-4">
                     <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse" />
                     Commanding Officer
                  </div>
                  
-                 <h2 className="text-6xl md:text-9xl font-black text-zinc-900 dark:text-white mb-2 tracking-tighter leading-none">
+                 <h2 className="text-5xl md:text-7xl font-black text-zinc-900 dark:text-white mb-2 tracking-tighter leading-none">
                   AMIN MAGHFURI
                  </h2>
                  
-                 <p className="text-xl md:text-2xl text-zinc-500 dark:text-zinc-400 font-bold">
+                 <p className="text-lg md:text-xl text-zinc-500 dark:text-zinc-400 font-bold">
                   The Architect of Chaos & Cuan
                  </p>
                </div>
 
-               {/* Area Nomor 2: Quote Block (Next to photo, below name) */}
-               <div className="mb-12 relative">
-                  <GlassCard variant="solid" className="p-8 md:p-10 bg-zinc-900/40 border-brand-500/20 relative overflow-hidden">
-                    <Quote className="absolute -top-6 -left-6 w-24 h-24 text-brand-500/5 rotate-12" />
-                    <h3 className="text-2xl md:text-3xl font-black text-brand-500 mb-6 italic tracking-tight">
+               {/* Area Nomor 2: Quote Block - Raised closer to name */}
+               <div className="relative">
+                  <GlassCard variant="solid" className="p-6 md:p-8 bg-zinc-900/40 border-brand-500/20 relative overflow-hidden">
+                    <Quote className="absolute -top-4 -left-4 w-20 h-20 text-brand-500/5 rotate-12" />
+                    <h3 className="text-xl md:text-2xl font-black text-brand-500 mb-4 italic tracking-tight">
                       "{quoteHeading}"
                     </h3>
                     <div className="space-y-4">
-                      <p className="text-lg md:text-xl text-zinc-300 leading-relaxed font-medium">
+                      <p className="text-sm md:text-base text-zinc-300 leading-relaxed font-medium">
                         {quoteBody.split('Bisnis tanpa sistem')[0]}
                       </p>
                       <div className="p-4 rounded-xl bg-brand-600/10 border-l-4 border-brand-600">
-                        <p className="text-lg md:text-xl text-white font-black italic tracking-tight">
+                        <p className="text-base md:text-lg text-white font-black italic tracking-tight leading-snug">
                           Bisnis tanpa sistem {quoteBody.split('Bisnis tanpa sistem')[1]}
                         </p>
                       </div>
                     </div>
                   </GlassCard>
-               </div>
-
-               <div className="flex items-center gap-4 mb-12">
-                  <div className="h-[2px] w-12 bg-brand-500" />
-                  <span className="font-mono text-sm font-black text-zinc-400 uppercase tracking-[0.2em]">Battle-Tested Since 2015</span>
-               </div>
-
-               {/* Philosophy Pill Grid */}
-               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {[
-                    { t: text.aboutPhil1Title, d: text.aboutPhil1Desc, i: Target },
-                    { t: text.aboutPhil2Title, d: text.aboutPhil2Desc, i: ShieldAlert },
-                    { t: text.aboutPhil3Title, d: text.aboutPhil3Desc, i: HeartCrack },
-                  ].map((p, idx) => (
-                    <GlassCard key={idx} variant="solid" className="p-6 border-zinc-200 dark:border-zinc-800 hover:border-brand-500/30 transition-colors">
-                      <div className="flex items-center gap-3 mb-3 text-brand-500">
-                        <div className="p-2 rounded-lg bg-brand-500/10">
-                          <p.i size={20} strokeWidth={2.5} />
-                        </div>
-                        <h5 className="font-black text-sm uppercase tracking-wider">{p.t}</h5>
-                      </div>
-                      <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed font-medium">{p.d}</p>
-                    </GlassCard>
-                  ))}
+                  
+                  <div className="flex items-center gap-4 mt-8">
+                    <div className="h-[2px] w-12 bg-brand-500" />
+                    <span className="font-mono text-[10px] font-black text-zinc-400 uppercase tracking-[0.2em]">Battle-Tested Since 2015</span>
+                  </div>
                </div>
             </div>
           </div>
         </div>
 
-        {/* 3. Timeline Section */}
-        <div className="max-w-4xl mx-auto pt-12">
+        {/* 3. Philosophy Section - Now Horizontal & Full Width */}
+        <div className="mb-32">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { t: text.aboutPhil1Title, d: text.aboutPhil1Desc, i: Target },
+              { t: text.aboutPhil2Title, d: text.aboutPhil2Desc, i: ShieldAlert },
+              { t: text.aboutPhil3Title, d: text.aboutPhil3Desc, i: HeartCrack },
+            ].map((p, idx) => (
+              <GlassCard key={idx} variant="solid" className="p-8 border-zinc-200 dark:border-zinc-800 hover:border-brand-500/30 transition-all hover:-translate-y-1">
+                <div className="flex items-center gap-4 mb-4 text-brand-500">
+                  <div className="p-3 rounded-xl bg-brand-500/10">
+                    <p.i size={24} strokeWidth={2.5} />
+                  </div>
+                  <h5 className="font-black text-sm md:text-base uppercase tracking-wider">{p.t}</h5>
+                </div>
+                <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed font-medium">{p.d}</p>
+              </GlassCard>
+            ))}
+          </div>
+        </div>
+
+        {/* 4. Timeline Section */}
+        <div className="max-w-4xl mx-auto">
           <div className="flex items-center gap-4 mb-16">
             <h3 className="text-3xl font-black text-zinc-900 dark:text-white uppercase tracking-tighter">
               War Log & Chronicle
