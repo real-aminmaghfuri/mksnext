@@ -2,7 +2,7 @@
 
 import { useConfig } from 'ui';
 import { DICTIONARY, Language } from 'shared';
-import { Footprints, Users, Code, Skull, Zap, Target, ShieldAlert, HeartCrack } from 'lucide-react';
+import { Footprints, Users, Code, Skull, Zap } from 'lucide-react';
 
 export const useAboutData = () => {
   const { language } = useConfig();
@@ -45,18 +45,10 @@ export const useAboutData = () => {
     { year: '2025', title: text.hist2025Title, desc: text.hist2025Desc, icon: Zap, color: 'text-yellow-500 bg-yellow-100 dark:bg-yellow-900/20' },
   ];
 
-  // Logic: Philosophy Mapping
-  const philosophies = [
-    { title: text.aboutPhil1Title, desc: text.aboutPhil1Desc, icon: Target },
-    { title: text.aboutPhil2Title, desc: text.aboutPhil2Desc, icon: ShieldAlert },
-    { title: text.aboutPhil3Title, desc: text.aboutPhil3Desc, icon: HeartCrack },
-  ];
-
   return {
     text,
     quote: parseQuote(),
     turningPoint,
-    timeline,
-    philosophies
+    timeline
   };
 };
