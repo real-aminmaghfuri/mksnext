@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { MapPin, Phone, Mail } from 'lucide-react';
-import { useConfig } from 'ui';
+import { useConfig, Logo } from 'ui';
 import { DICTIONARY } from 'shared';
 
 export const Footer: React.FC = () => {
@@ -15,7 +15,7 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2">
              <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 bg-gradient-to-tr from-brand-500 to-red-600 rounded-lg" />
+              <Logo className="w-8 h-8" />
               <span className="font-extrabold text-xl tracking-tighter text-zinc-900 dark:text-white">
                 MKS<span className="text-brand-500">.SOLO</span>
               </span>

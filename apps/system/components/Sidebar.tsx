@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { useConfig } from 'ui';
+import { useConfig, Logo } from 'ui';
 import { DICTIONARY } from 'shared';
 import { LayoutDashboard, Package, Settings, LogOut, ChevronRight, ShieldCheck } from 'lucide-react';
 
@@ -20,8 +20,8 @@ export const Sidebar: React.FC<{ collapsed?: boolean }> = ({ collapsed = false }
       {/* Sidebar Logo */}
       <div className="h-20 flex items-center px-8 border-b border-zinc-100 dark:border-zinc-900">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 bg-gradient-to-tr from-brand-600 to-red-600 rounded-xl shadow-lg shadow-brand-500/20 flex items-center justify-center text-white">
-            <ShieldCheck size={20} />
+          <div className="w-9 h-9 flex items-center justify-center">
+             <Logo className="w-full h-full" />
           </div>
           {!collapsed && (
             <span className="font-black text-xl tracking-tighter">

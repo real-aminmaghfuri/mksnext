@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useConfig, Button } from 'ui';
+import { useConfig, Button, Logo } from 'ui';
 import { Moon, Sun, Languages, ExternalLink } from 'lucide-react';
 import { Language, DICTIONARY } from 'shared';
 
@@ -31,7 +31,9 @@ export const Navbar: React.FC = () => {
     <nav className="fixed top-0 w-full z-50 py-3 md:py-4 transition-all duration-300 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-zinc-200/50 dark:border-white/5">
       <div className="w-full px-6 md:px-10 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 cursor-pointer group">
-          <div className="w-8 h-8 bg-gradient-to-tr from-brand-500 to-red-600 rounded-lg group-hover:scale-110 transition-transform duration-300" />
+          <div className="group-hover:scale-110 transition-transform duration-300 drop-shadow-lg shadow-brand-500/50">
+             <Logo className="w-10 h-10" />
+          </div>
           <span className="font-extrabold text-xl tracking-tighter text-zinc-900 dark:text-white">
             MKS<span className="text-brand-500">.SOLO</span>
           </span>
