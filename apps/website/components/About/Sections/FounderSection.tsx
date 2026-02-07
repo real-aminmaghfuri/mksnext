@@ -48,24 +48,25 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ quote }) => {
           </div>
 
           {/* Text Content */}
-          <div className="mb-10 relative">
+          <div className="mb-6 relative">
             <Quote className="absolute -top-6 -left-6 w-24 h-24 text-brand-500/5 rotate-12 z-0" />
             
             <div className="relative z-10">
-              {/* Heading increased */}
+              {/* Heading */}
               <h3 className="text-xl md:text-2xl font-bold text-brand-600 dark:text-brand-500 mb-6 italic tracking-tight">
                 "{quote.heading}"
               </h3>
               
               <div className="space-y-8">
-                {/* Body text increased */}
+                {/* Body text */}
                 <p className="text-base md:text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium tracking-tight">
                   {quote.bodyPrefix}
                 </p>
                 
-                {/* EMPHASIS CONTAINER - Quote text increased significantly */}
+                {/* EMPHASIS CONTAINER */}
                 <div className="p-6 md:px-10 md:py-8 rounded-2xl bg-brand-600/5 dark:bg-brand-600/10 border-l-[6px] border-brand-600 shadow-sm">
-                  <p className="text-lg md:text-xl lg:text-2xl text-zinc-900 dark:text-white font-black italic tracking-tight leading-snug">
+                  {/* Reduced text size slightly per request (was lg:text-2xl) */}
+                  <p className="text-lg md:text-xl font-black text-zinc-900 dark:text-white italic tracking-tight leading-snug">
                     {quote.emphasis} {quote.bodySuffix}
                   </p>
                 </div>
@@ -73,8 +74,8 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ quote }) => {
             </div>
           </div>
 
-          {/* Battle-Tested Bar */}
-          <div className="flex items-center gap-6 mt-2">
+          {/* Battle-Tested Bar - Calibrated gap (increased top margin slightly for balance) */}
+          <div className="flex items-center gap-6 mt-4">
             <div className="h-[2px] w-12 md:w-32 bg-brand-500" />
             <span className="font-mono text-[10px] md:text-xs font-black text-zinc-500 dark:text-zinc-400 uppercase tracking-[0.5em]">Battle-Tested Since 2015</span>
           </div>
