@@ -61,38 +61,41 @@ export const About: React.FC = () => {
               </div>
             </div>
 
-            {/* Info Column - Ratio 8/12 (Compact Layout) */}
+            {/* Info Column - Ratio 8/12 (Compact Layout but Filling Height) */}
             <div className="md:col-span-8 flex flex-col pt-2">
-               {/* Name Block - Compact */}
-               <div className="mb-2">
+               {/* Name Block */}
+               <div className="mb-4">
                  <div className="inline-flex items-center gap-2 px-2 py-1 rounded-lg bg-zinc-900 text-brand-500 border border-brand-500/30 text-[8px] font-black tracking-widest uppercase mb-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse" />
                     Commanding Officer
                  </div>
                  
-                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-zinc-900 dark:text-white mb-0.5 tracking-tighter leading-none uppercase">
+                 <h2 className="text-3xl md:text-5xl font-black text-zinc-900 dark:text-white mb-0.5 tracking-tighter leading-none uppercase">
                   AMIN MAGHFURI
                  </h2>
                  
-                 <p className="text-sm md:text-base text-zinc-500 dark:text-zinc-400 font-bold mb-4 italic opacity-70">
+                 <p className="text-sm md:text-lg text-zinc-500 dark:text-zinc-400 font-bold mb-6 italic opacity-70">
                   The Architect of Chaos & Cuan
                  </p>
                </div>
 
-               {/* Quote Block - Compact Padding */}
-               <div className="relative w-full mb-6">
-                  <GlassCard variant="solid" className="p-6 md:p-8 bg-zinc-900/40 border-brand-500/20 relative overflow-hidden shadow-2xl w-full">
-                    <Quote className="absolute -top-4 -left-4 w-16 h-16 text-brand-500/5 rotate-12" />
-                    <h3 className="text-base md:text-lg font-black text-brand-500 mb-3 italic tracking-tight">
+               {/* Quote Block - Enlarged to fill space */}
+               <div className="relative w-full mb-8 flex-1">
+                  <GlassCard variant="solid" className="h-full p-8 md:p-12 bg-zinc-900/40 border-brand-500/20 relative overflow-hidden shadow-2xl w-full flex flex-col justify-center">
+                    <Quote className="absolute -top-6 -left-6 w-24 h-24 text-brand-500/5 rotate-12" />
+                    
+                    <h3 className="text-xl md:text-2xl font-black text-brand-500 mb-6 italic tracking-tight">
                       "{quoteHeading}"
                     </h3>
-                    <div className="space-y-3">
-                      <p className="text-xs md:text-sm text-zinc-300 leading-relaxed font-medium">
+                    
+                    <div className="space-y-6">
+                      <p className="text-sm md:text-base lg:text-lg text-zinc-300 leading-relaxed font-medium">
                         {beforeEmphasis}
                       </p>
-                      {/* Forced Single Line Bold Quote */}
-                      <div className="p-3 md:px-5 md:py-3.5 rounded-xl bg-brand-600/10 border-l-4 border-brand-600 shadow-inner">
-                        <p className="text-sm md:text-base lg:text-lg text-white font-black italic tracking-tighter leading-tight whitespace-normal md:whitespace-nowrap overflow-hidden text-ellipsis">
+                      
+                      {/* Forced Single Line Bold Quote - Larger Font */}
+                      <div className="p-4 md:px-8 md:py-6 rounded-2xl bg-brand-600/10 border-l-8 border-brand-600 shadow-inner">
+                        <p className="text-base md:text-xl lg:text-2xl text-white font-black italic tracking-tighter leading-tight whitespace-normal md:whitespace-nowrap overflow-hidden text-ellipsis">
                           {emphasisTrigger} {afterEmphasis}
                         </p>
                       </div>
