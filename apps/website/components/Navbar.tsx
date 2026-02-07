@@ -1,14 +1,14 @@
+"use client";
+
 import React from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useConfig, Button } from 'ui';
 import { Moon, Sun, Languages, ExternalLink } from 'lucide-react';
-import { Language, WebsitePage, DICTIONARY } from 'shared';
+import { Language, DICTIONARY } from 'shared';
 
-interface NavbarProps {
-  activePage: WebsitePage;
-  onNavigate: (page: WebsitePage) => void;
-}
-
-export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate }) => {
+export const Navbar: React.FC = () => {
+  const pathname = usePathname();
   const { theme, toggleTheme, language, setLanguage } = useConfig();
   const isDark = theme === 'dark';
   const text = DICTIONARY[language];
@@ -17,9 +17,9 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate }) => {
     setLanguage(language === Language.ID ? Language.EN : Language.ID);
   };
 
-  const navLinkClass = (page: WebsitePage) => 
+  const navLinkClass = (path: string) => 
     `text-sm font-semibold transition-colors hover:text-brand-500 ${
-      activePage === page 
+      pathname === path 
         ? 'text-brand-600 dark:text-brand-500' 
         : 'text-zinc-600 dark:text-zinc-400'
     }`;
@@ -30,29 +30,26 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate }) => {
   return (
     <nav className="fixed top-0 w-full z-50 px-4 md:px-6 py-3 md:py-4 transition-all duration-300 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-zinc-200/50 dark:border-white/5">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <div 
-          className="flex items-center gap-2 cursor-pointer group" 
-          onClick={() => onNavigate(WebsitePage.HOME)}
-        >
+        <Link href="/" className="flex items-center gap-2 cursor-pointer group">
           <div className="w-8 h-8 bg-gradient-to-tr from-brand-500 to-red-600 rounded-lg group-hover:scale-110 transition-transform duration-300" />
           <span className="font-extrabold text-xl tracking-tighter text-zinc-900 dark:text-white">
             MKS<span className="text-brand-500">.SOLO</span>
           </span>
-        </div>
+        </Link>
 
         <div className="hidden md:flex items-center gap-8">
-          <button onClick={() => onNavigate(WebsitePage.HOME)} className={navLinkClass(WebsitePage.HOME)}>
+          <Link href="/" className={navLinkClass('/')}>
             {text.navHome}
-          </button>
-          <button onClick={() => onNavigate(WebsitePage.SERVICES)} className={navLinkClass(WebsitePage.SERVICES)}>
+          </Link>
+          <Link href="/services" className={navLinkClass('/services')}>
             {text.navServices}
-          </button>
-           <button onClick={() => onNavigate(WebsitePage.SHOP)} className={navLinkClass(WebsitePage.SHOP)}>
+          </Link>
+          <Link href="/shop" className={navLinkClass('/shop')}>
             {text.navShop}
-          </button>
-          <button onClick={() => onNavigate(WebsitePage.ABOUT)} className={navLinkClass(WebsitePage.ABOUT)}>
+          </Link>
+          <Link href="/about" className={navLinkClass('/about')}>
             {text.navAbout}
-          </button>
+          </Link>
         </div>
 
         <div className="flex items-center gap-2 md:gap-3">
