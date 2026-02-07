@@ -29,29 +29,29 @@ export const About: React.FC = () => {
 
   return (
     <section className="min-h-screen bg-zinc-50 dark:bg-black transition-colors duration-500 pb-24 overflow-x-hidden">
-      {/* 1. Header Section - Tightened spacing to pb-12/14 */}
-      <div className="relative pt-24 pb-12 md:pb-14 px-4 md:px-8 border-b border-zinc-200/10 dark:border-white/5">
+      {/* 1. Header Section - Tightened */}
+      <div className="relative pt-24 pb-8 md:pb-12 px-4 md:px-8 border-b border-zinc-200/10 dark:border-white/5">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-brand-600/10 to-transparent rounded-full blur-[150px] pointer-events-none" />
-        <div className="container mx-auto max-w-5xl text-center relative z-10">
-          <h1 className="text-5xl md:text-8xl font-black text-zinc-900 dark:text-white mb-8 tracking-tighter uppercase leading-[0.85]">
+        <div className="container mx-auto max-w-7xl text-center relative z-10">
+          <h1 className="text-5xl md:text-8xl font-black text-zinc-900 dark:text-white mb-6 tracking-tighter uppercase leading-[0.85]">
             {text.aboutHeading.split(' ').map((word, i) => (
               <span key={i} className={i % 2 !== 0 ? "text-brand-600" : ""}>{word} </span>
             ))}
           </h1>
-          <p className="text-lg md:text-2xl text-zinc-600 dark:text-zinc-400 font-medium max-w-3xl mx-auto leading-relaxed opacity-90">
+          <p className="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 font-medium max-w-3xl mx-auto leading-relaxed opacity-80">
             {text.aboutTagline}
           </p>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 md:px-8 max-w-6xl">
-        {/* 2. The Founder Section - Grid changed to 5:7 for smaller photo and wider info */}
-        <div className="mt-4 md:mt-8 mb-32 relative">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-16 items-start">
+      <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+        {/* 2. The Founder Section - Grid changed to 4:8 for maximum width on the right */}
+        <div className="mt-8 md:mt-12 mb-32 relative">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
             
-            {/* Portrait Column - md:col-span-5 and max-w-md to keep image small */}
-            <div className="md:col-span-5 lg:col-span-5 md:sticky md:top-32">
-              <div className="relative mx-auto md:ml-0 max-w-sm md:max-w-md aspect-[4/5] rounded-2xl overflow-hidden border-2 border-zinc-800 dark:border-zinc-700 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.6)] bg-zinc-900 group">
+            {/* Portrait Column - md:col-span-4 to keep image compact */}
+            <div className="md:col-span-4 md:sticky md:top-32 flex justify-center md:justify-start">
+              <div className="relative w-full max-w-xs md:max-w-sm aspect-[4/5] rounded-2xl overflow-hidden border-2 border-zinc-800 dark:border-zinc-700 shadow-2xl bg-zinc-900 group">
                 <img 
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop" 
                   alt="Amin Maghfuri - Founder" 
@@ -61,47 +61,47 @@ export const About: React.FC = () => {
               </div>
             </div>
 
-            {/* Info Column - md:col-span-7 to take more space */}
-            <div className="md:col-span-7 lg:col-span-7 flex flex-col justify-center">
+            {/* Info Column - md:col-span-8 to widen the quote and content */}
+            <div className="md:col-span-8 flex flex-col justify-start pt-4">
                {/* Name Block */}
-               <div className="mb-6">
-                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 text-brand-500 border border-brand-500/30 text-[10px] font-black tracking-widest uppercase mb-4">
+               <div className="mb-4">
+                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 text-brand-500 border border-brand-500/30 text-[10px] font-black tracking-widest uppercase mb-3">
                     <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse" />
                     Commanding Officer
                  </div>
                  
-                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-zinc-900 dark:text-white mb-2 tracking-tighter leading-none uppercase">
+                 <h2 className="text-4xl md:text-6xl font-black text-zinc-900 dark:text-white mb-1 tracking-tighter leading-none uppercase">
                   AMIN MAGHFURI
                  </h2>
                  
-                 <p className="text-base md:text-xl text-zinc-500 dark:text-zinc-400 font-bold mb-8 italic opacity-70">
+                 <p className="text-lg md:text-xl text-zinc-500 dark:text-zinc-400 font-bold mb-6 italic opacity-70">
                   The Architect of Chaos & Cuan
                  </p>
                </div>
 
-               {/* Quote Block */}
-               <div className="relative">
-                  <GlassCard variant="solid" className="p-8 md:p-10 bg-zinc-900/40 border-brand-500/20 relative overflow-hidden shadow-2xl">
-                    <Quote className="absolute -top-4 -left-4 w-24 h-24 text-brand-500/5 rotate-12" />
-                    <h3 className="text-xl md:text-3xl font-black text-brand-500 mb-6 italic tracking-tight">
+               {/* Quote Block - Now wider, taking full 8-column space */}
+               <div className="relative w-full">
+                  <GlassCard variant="solid" className="p-8 md:p-10 bg-zinc-900/40 border-brand-500/20 relative overflow-hidden shadow-2xl w-full">
+                    <Quote className="absolute -top-4 -left-4 w-20 h-20 text-brand-500/5 rotate-12" />
+                    <h3 className="text-xl md:text-2xl font-black text-brand-500 mb-4 italic tracking-tight">
                       "{quoteHeading}"
                     </h3>
-                    <div className="space-y-6">
+                    <div className="space-y-4">
                       <p className="text-sm md:text-lg text-zinc-300 leading-relaxed font-medium">
                         {beforeEmphasis}
                       </p>
-                      <div className="p-5 rounded-2xl bg-brand-600/10 border-l-4 border-brand-600 shadow-inner">
-                        <p className="text-base md:text-xl text-white font-black italic tracking-tight leading-snug">
+                      <div className="p-4 md:p-6 rounded-2xl bg-brand-600/10 border-l-4 border-brand-600 shadow-inner">
+                        <p className="text-base md:text-2xl text-white font-black italic tracking-tight leading-tight">
                           {emphasisTrigger} {afterEmphasis}
                         </p>
                       </div>
                     </div>
                   </GlassCard>
                   
-                  {/* Battle-Tested Text */}
-                  <div className="flex items-center gap-6 mt-16">
-                    <div className="h-[3px] w-16 bg-brand-500" />
-                    <span className="font-mono text-xs md:text-lg font-black text-zinc-400 uppercase tracking-[0.4em]">Battle-Tested Since 2015</span>
+                  {/* Battle-Tested Text - Moved UP because quote is now wider/shorter */}
+                  <div className="flex items-center gap-6 mt-10 md:mt-12">
+                    <div className="h-[2px] w-12 md:w-20 bg-brand-500" />
+                    <span className="font-mono text-[10px] md:text-base font-black text-zinc-400 uppercase tracking-[0.4em]">Battle-Tested Since 2015</span>
                   </div>
                </div>
             </div>
@@ -110,7 +110,7 @@ export const About: React.FC = () => {
 
         {/* 3. Philosophy Section */}
         <div className="mb-40">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {[
               { t: text.aboutPhil1Title, d: text.aboutPhil1Desc, i: Target },
               { t: text.aboutPhil2Title, d: text.aboutPhil2Desc, i: ShieldAlert },
@@ -118,14 +118,14 @@ export const About: React.FC = () => {
             ].map((p, idx) => {
               const Icon = p.i;
               return (
-                <GlassCard key={idx} variant="solid" className="p-10 border-zinc-200 dark:border-zinc-800 hover:border-brand-500/30 transition-all hover:-translate-y-2">
-                  <div className="flex items-center gap-5 mb-6 text-brand-500">
-                    <div className="p-4 rounded-2xl bg-brand-500/10">
-                      <Icon size={28} strokeWidth={2.5} />
+                <GlassCard key={idx} variant="solid" className="p-8 md:p-10 border-zinc-200 dark:border-zinc-800 hover:border-brand-500/30 transition-all hover:-translate-y-2">
+                  <div className="flex items-center gap-4 mb-6 text-brand-500">
+                    <div className="p-3 rounded-xl bg-brand-500/10">
+                      <Icon size={24} strokeWidth={2.5} />
                     </div>
-                    <h5 className="font-black text-base md:text-lg uppercase tracking-wider">{p.t}</h5>
+                    <h5 className="font-black text-sm md:text-base uppercase tracking-wider">{p.t}</h5>
                   </div>
-                  <p className="text-base text-zinc-500 dark:text-zinc-400 leading-relaxed font-medium">{p.d}</p>
+                  <p className="text-sm md:text-base text-zinc-500 dark:text-zinc-400 leading-relaxed font-medium">{p.d}</p>
                 </GlassCard>
               );
             })}
@@ -133,34 +133,34 @@ export const About: React.FC = () => {
         </div>
 
         {/* 4. Timeline Section */}
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center gap-6 mb-20">
-            <h3 className="text-4xl font-black text-zinc-900 dark:text-white uppercase tracking-tighter">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex items-center gap-6 mb-16">
+            <h3 className="text-3xl md:text-4xl font-black text-zinc-900 dark:text-white uppercase tracking-tighter">
               War Log & Chronicle
             </h3>
             <div className="flex-1 h-[2px] bg-gradient-to-r from-brand-600/30 via-zinc-800 to-transparent" />
           </div>
 
           <div className="relative">
-            <div className="absolute left-10 top-0 bottom-0 w-px bg-zinc-200 dark:bg-zinc-800" />
+            <div className="absolute left-8 md:left-10 top-0 bottom-0 w-px bg-zinc-200 dark:bg-zinc-800" />
             
-            <div className="space-y-24">
+            <div className="space-y-16 md:space-y-24">
               {timeline.map((item, idx) => {
                 const Icon = item.icon;
                 return (
-                  <div key={idx} className="relative pl-28 group">
-                    <div className={`absolute left-0 w-20 h-20 rounded-3xl flex items-center justify-center border-4 border-white dark:border-black shadow-2xl z-10 transition-all group-hover:scale-110 group-hover:rotate-6 ${item.color}`}>
-                      <Icon size={32} strokeWidth={2.5} />
+                  <div key={idx} className="relative pl-20 md:pl-28 group">
+                    <div className={`absolute left-0 w-16 h-16 md:w-20 md:h-20 rounded-2xl md:rounded-3xl flex items-center justify-center border-4 border-white dark:border-black shadow-2xl z-10 transition-all group-hover:scale-110 group-hover:rotate-6 ${item.color}`}>
+                      <Icon size={28} strokeWidth={2.5} className="md:size-32" />
                     </div>
                     
-                    <div className="space-y-4">
-                      <span className="inline-block px-4 py-1.5 rounded-lg bg-zinc-900 text-[11px] font-black text-brand-500 uppercase tracking-[0.2em] border border-brand-500/20">
+                    <div className="space-y-2">
+                      <span className="inline-block px-3 py-1 rounded-lg bg-zinc-900 text-[10px] font-black text-brand-500 uppercase tracking-[0.2em] border border-brand-500/20">
                         {item.year}
                       </span>
-                      <h4 className="text-3xl md:text-4xl font-black text-zinc-900 dark:text-white tracking-tight">
+                      <h4 className="text-2xl md:text-4xl font-black text-zinc-900 dark:text-white tracking-tight">
                         {item.title}
                       </h4>
-                      <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-xl max-w-2xl font-medium">
+                      <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-base md:text-xl max-w-3xl font-medium">
                         {item.desc}
                       </p>
                     </div>
