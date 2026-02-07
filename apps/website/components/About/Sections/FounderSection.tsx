@@ -38,7 +38,8 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ quote }) => {
               <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse" />
               Commanding Officer
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-zinc-900 dark:text-white mb-2 tracking-tighter leading-none uppercase">
+            {/* Reduced font size here (text-3xl md:text-4xl lg:text-6xl) */}
+            <h2 className="text-3xl md:text-4xl lg:text-6xl font-black text-zinc-900 dark:text-white mb-2 tracking-tighter leading-none uppercase">
               AMIN MAGHFURI
             </h2>
             <p className="text-lg md:text-2xl text-zinc-500 dark:text-zinc-400 font-bold italic opacity-70">
@@ -61,7 +62,8 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ quote }) => {
                 </p>
                 
                 <div className="p-6 md:px-10 md:py-8 rounded-3xl bg-brand-600/5 dark:bg-brand-600/10 border-l-[8px] border-brand-600 shadow-sm">
-                  <p className="text-lg md:text-2xl lg:text-3xl text-zinc-900 dark:text-white font-black italic tracking-tight leading-snug">
+                  {/* Reduced font size here (text-base md:text-xl lg:text-2xl) */}
+                  <p className="text-base md:text-xl lg:text-2xl text-zinc-900 dark:text-white font-black italic tracking-tight leading-snug">
                     {quote.emphasis} {quote.bodySuffix}
                   </p>
                 </div>
