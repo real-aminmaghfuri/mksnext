@@ -29,8 +29,8 @@ export const About: React.FC = () => {
 
   return (
     <section className="min-h-screen bg-zinc-50 dark:bg-black transition-colors duration-500 pb-24 overflow-x-hidden">
-      {/* 1. Header Section (Hero of About Page) - Reduced spacing from pb-52 to pb-16/20 */}
-      <div className="relative pt-24 pb-16 md:pb-20 px-4 md:px-8 border-b border-zinc-200/10 dark:border-white/5">
+      {/* 1. Header Section - Tightened spacing to pb-12/14 */}
+      <div className="relative pt-24 pb-12 md:pb-14 px-4 md:px-8 border-b border-zinc-200/10 dark:border-white/5">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-brand-600/10 to-transparent rounded-full blur-[150px] pointer-events-none" />
         <div className="container mx-auto max-w-5xl text-center relative z-10">
           <h1 className="text-5xl md:text-8xl font-black text-zinc-900 dark:text-white mb-8 tracking-tighter uppercase leading-[0.85]">
@@ -45,13 +45,13 @@ export const About: React.FC = () => {
       </div>
 
       <div className="container mx-auto px-4 md:px-8 max-w-6xl">
-        {/* 2. The Founder Section - Reduced top margin from mt-44 to mt-12/16 */}
-        <div className="mt-12 md:mt-16 mb-32 relative">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 items-start">
+        {/* 2. The Founder Section - Grid changed to 5:7 for smaller photo and wider info */}
+        <div className="mt-4 md:mt-8 mb-32 relative">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-16 items-start">
             
-            {/* Portrait Column */}
-            <div className="md:col-span-6 lg:col-span-6 md:sticky md:top-28">
-              <div className="relative aspect-[4/5] md:aspect-[3/4] rounded-2xl overflow-hidden border-2 border-zinc-800 dark:border-zinc-700 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.6)] bg-zinc-900 group">
+            {/* Portrait Column - md:col-span-5 and max-w-md to keep image small */}
+            <div className="md:col-span-5 lg:col-span-5 md:sticky md:top-32">
+              <div className="relative mx-auto md:ml-0 max-w-sm md:max-w-md aspect-[4/5] rounded-2xl overflow-hidden border-2 border-zinc-800 dark:border-zinc-700 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.6)] bg-zinc-900 group">
                 <img 
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop" 
                   alt="Amin Maghfuri - Founder" 
@@ -61,8 +61,8 @@ export const About: React.FC = () => {
               </div>
             </div>
 
-            {/* Info Column */}
-            <div className="md:col-span-6 lg:col-span-6 flex flex-col justify-center">
+            {/* Info Column - md:col-span-7 to take more space */}
+            <div className="md:col-span-7 lg:col-span-7 flex flex-col justify-center">
                {/* Name Block */}
                <div className="mb-6">
                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 text-brand-500 border border-brand-500/30 text-[10px] font-black tracking-widest uppercase mb-4">
