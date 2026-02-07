@@ -41,10 +41,10 @@ export const DICTIONARY: Record<Language, Translation> = {
     shopBtnOrder: "Angkut Via WA",
     shopUnit: "Unit",
 
-    // About - Street Smart & Personal
+    // About - Updated with "Jujur-jujuran" quote
     aboutHeading: "Dibangun Dari Luka & Aspal Panas.",
     aboutTagline: "Story gue bukan dongeng motivasi basi. Ini kronik berdarah-darah, jalan kaki nawarin alat, dan penolakan yang bikin mental gue sekeras baja.",
-    aboutFounderQuote: "Bisnis itu bukan soal siapa yang paling pinter coding, tapi siapa yang paling tahan dipukulin realita dan tetep berdiri. Gue Amin Maghfuri, dan gue menolak nyerah, Bos.",
+    aboutFounderQuote: "Jujur-jujuran aja... Tahun 2022, gue pernah 'mati suri'. Aset digital ilang, domain diambil orang, profil google bisnis disuspend. Pernah juga dikadalin sama karyawan. Sistem berantakan gara-gara gue terlalu percaya sama 'manusia' tanpa sistem kontrol. Saat itu gue belajar satu hal mahal: Bisnis tanpa sistem yang kuat cuma nunggu waktu buat meledak.",
     aboutPhil1Title: "Street Tested",
     aboutPhil1Desc: "Sistem gue lahir di jalanan, bukan di lab ber-AC. Udah kebal sama error lapangan.",
     aboutPhil2Title: "No Bullsh*t",
@@ -116,10 +116,10 @@ export const DICTIONARY: Record<Language, Translation> = {
     shopBtnOrder: "Grab via WA",
     shopUnit: "Unit",
 
-    // About - Dramatic & Sharp
+    // About
     aboutHeading: "Built on Asphalt & Wounds.",
     aboutTagline: "My story isn't some cheesy motivational quote. It's a chronicle of bleeding out, walking miles to sell tools, and rejections that turned my mind into steel.",
-    aboutFounderQuote: "Business isn't about who codes the best, it's about who takes the hardest beating from reality and keeps standing. I am Amin Maghfuri, and I refuse to fold, Boss.",
+    aboutFounderQuote: "To be honest... In 2022, I almost 'died'. Digital assets gone, domain stolen, Google Business suspended. Even got played by employees. The system was a mess because I trusted 'humans' too much without a control system. That's when I learned a costly lesson: Business without a strong system is just waiting to explode.",
     aboutPhil1Title: "Street Tested",
     aboutPhil1Desc: "My system was born on the streets, not in an AC lab. It's immune to field errors.",
     aboutPhil2Title: "No Bullsh*t",
