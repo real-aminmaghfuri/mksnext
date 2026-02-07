@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { MapPin, Phone, Mail } from 'lucide-react';
-import { useConfig, Logo } from 'ui';
+import { useConfig } from 'ui';
 import { DICTIONARY } from 'shared';
 
 export const Footer: React.FC = () => {
@@ -14,18 +14,16 @@ export const Footer: React.FC = () => {
       <div className="w-full px-6 md:px-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2">
-             <div className="flex items-center gap-3 mb-6">
-              <Logo className="w-10 h-10" />
-              <div className="flex flex-col justify-center">
-                <span className="font-black text-xl tracking-tighter leading-none text-zinc-900 dark:text-white">
-                  MESIN KASIR <span className="text-brand-500">SOLO</span>
-                </span>
-                <span className="text-[9px] font-bold text-zinc-500 tracking-[0.2em] uppercase leading-tight mt-0.5">
-                  Digital Solutions Partner
-                </span>
-              </div>
+            {/* Typographic Logo based on reference image */}
+            <div className="mb-6">
+              <h2 className="font-black text-3xl tracking-tighter text-zinc-900 dark:text-white uppercase leading-none">
+                PT MESIN KASIR SOLO
+              </h2>
+              {/* Orange Underline Bar */}
+              <div className="mt-3 w-24 h-1.5 bg-brand-500 rounded-full" />
             </div>
-            <p className="text-zinc-500 dark:text-zinc-400 max-w-sm mb-6">
+            
+            <p className="text-zinc-500 dark:text-zinc-400 max-w-sm mb-6 mt-6">
               {text.footerDesc}
             </p>
           </div>
