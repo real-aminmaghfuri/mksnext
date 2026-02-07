@@ -12,55 +12,72 @@ export const Logo: React.FC<LogoProps> = ({
   variant = 'icon',
   color = 'brand'
 }) => {
-  // Color logic
-  const fillClass = color === 'brand' ? 'fill-brand-600 dark:fill-brand-500' : 
-                    color === 'white' ? 'fill-white' : 'fill-zinc-900 dark:fill-white';
+  // Logic: "The Shield" requires high contrast.
+  // If brand mode: Shield is Dark, Scanner is White, Laser is Orange/Red.
   
-  const beamClass = color === 'brand' ? 'fill-red-600' : 'fill-red-500';
+  const shieldClass = color === 'brand' ? 'fill-zinc-900 dark:fill-white' : 
+                      color === 'white' ? 'fill-white' : 'fill-zinc-900';
+                      
+  const scannerClass = color === 'brand' ? 'fill-white dark:fill-zinc-900' : 
+                       color === 'white' ? 'fill-zinc-900' : 'fill-white';
+
+  const accentClass = color === 'brand' ? 'fill-brand-500' : 
+                      color === 'white' ? 'fill-brand-600' : 'fill-brand-500';
 
   return (
     <svg viewBox="0 0 100 100" className={className} xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="beamGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#f97316" stopOpacity="0.8" />
-          <stop offset="100%" stopColor="#dc2626" stopOpacity="0.1" />
-        </linearGradient>
+        <clipPath id="shieldClip">
+           <path d="M50 95 L15 80 L15 15 L85 15 L85 80 Z" />
+        </clipPath>
       </defs>
 
-      {/* THE DIGITAL BLASTER (Scanner Body) - Sharp, Tactical, Geometric */}
-      <g transform="translate(5, 10)">
-        {/* Handle (Grip) */}
-        <path 
-          d="M25 55 L35 55 L40 85 L25 90 Z" 
-          className={fillClass} 
-          opacity="0.9"
-        />
-        
-        {/* Main Body (Head) - Gun-like shape */}
-        <path 
-          d="M20 25 L75 25 L80 35 L75 55 L25 55 L15 45 Z" 
-          className={fillClass}
-        />
-        
-        {/* Trigger Area / Negative Space Accent */}
-        <path d="M35 55 L40 65 L45 55" fill="none" stroke="currentColor" strokeWidth="2" className="text-zinc-500" />
-        
-        {/* Tactical Detail - Top Rail */}
-        <rect x="25" y="20" width="40" height="3" className={fillClass} opacity="0.6" />
+      {/* 1. THE SHIELD CONTAINER (Tactical Hexagon/Shield Hybrid) */}
+      <path 
+        d="M50 95 L15 80 L15 15 L85 15 L85 80 Z" 
+        className={shieldClass}
+      />
+
+      {/* 2. THE SCANNER (Silhouette inside the shield) */}
+      <g transform="translate(24, 28) scale(0.55)">
+         {/* Handle */}
+         <path 
+           d="M25 55 L35 55 L40 85 L20 85 Z" 
+           className={scannerClass} 
+         />
+         {/* Head/Body */}
+         <path 
+           d="M15 25 L75 25 L80 35 L75 55 L25 55 L10 45 Z" 
+           className={scannerClass} 
+         />
+         {/* Trigger Detail */}
+         <path d="M35 55 L40 65" stroke={color === 'brand' ? '#f97316' : 'currentColor'} strokeWidth="4" strokeLinecap="round" />
       </g>
 
-      {/* THE BEAM (Profit Chart) - Laser turning into Bar Chart */}
-      <g transform="translate(5, 10)">
-        {/* Bar 1 */}
-        <rect x="85" y="40" width="4" height="15" className={beamClass} rx="1" />
-        {/* Bar 2 - Higher */}
-        <rect x="92" y="32" width="4" height="23" className={beamClass} rx="1" />
-        {/* Bar 3 - Highest (The Strike) */}
-        <path d="M99 20 L103 20 L103 55 L99 55 Z" className={beamClass} />
+      {/* 3. THE BEAM & BARCODE REFLECTION */}
+      {/* The laser hits the inner right wall of the shield and turns into data bars */}
+      <g>
+        {/* The Beam Line */}
+        <path 
+          d="M 65 47 L 82 47" 
+          stroke={color === 'brand' ? '#f97316' : '#ea580c'} 
+          strokeWidth="3" 
+          strokeDasharray="4 2"
+        />
         
-        {/* Speed Lines / Laser effect */}
-        <path d="M82 35 L120 35" stroke="url(#beamGradient)" strokeWidth="2" strokeDasharray="4 2" opacity="0.6" />
+        {/* The Barcode Wall (Integrated into the shield edge) */}
+        <rect x="85" y="30" width="3" height="35" className={accentClass} />
+        <rect x="80" y="35" width="2" height="25" className={accentClass} opacity="0.7" />
+        <rect x="76" y="40" width="1.5" height="15" className={accentClass} opacity="0.5" />
       </g>
+      
+      {/* 4. Gloss/Reflection Effect on Shield (Luxury touch) */}
+      <path 
+        d="M15 15 L50 15 L15 50 Z" 
+        fill="white" 
+        opacity="0.1" 
+        style={{ mixBlendMode: 'overlay' }} 
+      />
     </svg>
   );
 };

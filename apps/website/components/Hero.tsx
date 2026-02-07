@@ -3,7 +3,7 @@
 import React from 'react';
 import { useConfig, Button, Logo } from 'ui';
 import { DICTIONARY } from 'shared';
-import { Rocket, MonitorPlay, Zap } from 'lucide-react';
+import { Rocket, MonitorPlay, Zap, ShieldCheck } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const { language } = useConfig();
@@ -15,17 +15,18 @@ export const Hero: React.FC = () => {
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-[128px] animate-pulse delay-1000" />
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:48px_48px] mask-image-gradient" />
 
-      {/* CONCEPT 1 VISUAL: Giant Watermark of the Blaster Logo */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-[0.03] dark:opacity-[0.05] pointer-events-none z-0">
+      {/* CONCEPT 3 VISUAL: The Shield Watermark */}
+      {/* Positioned slightly lower to anchor the design visually as a foundation */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] opacity-[0.04] dark:opacity-[0.06] pointer-events-none z-0">
         <Logo className="w-full h-full" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-10 relative z-10 w-full">
         <div className="flex flex-col items-center justify-center">
           <div className="text-center space-y-8 max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 dark:bg-brand-900/20 border border-brand-200 dark:border-brand-800 text-brand-700 dark:text-brand-300 text-sm font-bold animate-fade-in-up mx-auto">
-              <Zap size={16} className="fill-brand-500 text-brand-500" />
-              <span>System v2.0: SIAP TEMPUR</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 text-sm font-bold animate-fade-in-up mx-auto shadow-sm">
+              <ShieldCheck size={16} className="text-brand-500" />
+              <span>System v2.0: SECURE & READY</span>
             </div>
             
             <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight leading-tight text-zinc-900 dark:text-white drop-shadow-sm">
