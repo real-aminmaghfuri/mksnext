@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { Sidebar } from './components/Sidebar';
 import { MobileNav } from './components/MobileNav';
