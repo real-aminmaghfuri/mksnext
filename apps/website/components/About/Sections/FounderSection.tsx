@@ -13,6 +13,7 @@ interface FounderSectionProps {
 export const FounderSection: React.FC<FounderSectionProps> = ({ quote }) => {
   return (
     <div className="mt-8 md:mt-16 mb-32 relative">
+      {/* Grid items-start is CRITICAL here to prevent the image from stretching (becoming thin) when the text is long */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-16 items-start">
         
         {/* Portrait Column - 5/12 Grid */}
@@ -29,7 +30,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ quote }) => {
           </div>
         </div>
 
-        {/* Info Column - 7/12 Grid - Removed self-stretch to respect image aspect ratio */}
+        {/* Info Column - 7/12 Grid */}
         <div className="md:col-span-7 lg:col-span-7 flex flex-col pt-2">
           {/* Name Block */}
           <div className="mb-6 md:mb-8">
@@ -47,7 +48,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ quote }) => {
             </p>
           </div>
 
-          {/* Text Content - Removed Outer GlassCard Container */}
+          {/* Text Content - ABSOLUTELY NO CONTAINER/GLASSCARD HERE */}
           <div className="mb-10 relative">
             {/* Decorative Quote Icon floating behind text */}
             <Quote className="absolute -top-6 -left-6 w-20 h-20 text-brand-500/5 rotate-12 z-0" />
@@ -62,7 +63,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ quote }) => {
                   {quote.bodyPrefix}
                 </p>
                 
-                {/* The "Container" - Only for the emphasized quote part */}
+                {/* The "Container" - ONLY for the emphasized quote part, as requested */}
                 <div className="p-5 md:px-8 md:py-6 rounded-2xl bg-brand-600/5 dark:bg-brand-600/10 border-l-[6px] border-brand-600 shadow-sm">
                   <p className="text-base md:text-lg lg:text-xl text-zinc-900 dark:text-white font-black italic tracking-tight leading-snug">
                     {quote.emphasis} {quote.bodySuffix}
