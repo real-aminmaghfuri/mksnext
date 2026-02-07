@@ -79,7 +79,8 @@ export const Navbar: React.FC = () => {
              <Logo className="w-10 h-10" />
           </div>
           <div className="flex flex-col justify-center">
-            <span className="font-black text-xl md:text-2xl tracking-tighter leading-none text-zinc-900 dark:text-white">
+            {/* Reduced text size as requested: text-lg md:text-xl */}
+            <span className="font-black text-lg md:text-xl tracking-tighter leading-none text-zinc-900 dark:text-white">
               MESIN KASIR <span className="text-brand-500">SOLO</span>
             </span>
             <span className="text-[8px] md:text-[10px] font-bold text-zinc-500 tracking-[0.2em] uppercase leading-tight mt-0.5">
@@ -145,7 +146,8 @@ export const Navbar: React.FC = () => {
         </div>
 
         {/* RIGHT: UTILS & CTA */}
-        <div className="flex items-center gap-2 md:gap-4 shrink-0">
+        {/* Tightened gap here from md:gap-4 to gap-2 */}
+        <div className="flex items-center gap-2 shrink-0">
           <button 
             onClick={toggleTheme}
             className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors text-zinc-600 dark:text-zinc-400 hidden sm:flex"
@@ -161,8 +163,9 @@ export const Navbar: React.FC = () => {
           </button>
 
           <a href="https://wa.me/62812XXXXXXXX" target="_blank" rel="noopener noreferrer" className="hidden md:block">
-            <Button size="sm" variant="primary" className="font-bold shadow-brand-500/20 hover:shadow-brand-500/50">
-              HUBUNGI GUE <MessageCircle size={16} className="ml-2" />
+            {/* Increased size to 'md' for thicker look */}
+            <Button size="md" variant="primary" className="font-bold shadow-brand-500/20 hover:shadow-brand-500/50">
+              HUBUNGI GUE <MessageCircle size={18} className="ml-2" />
             </Button>
           </a>
         </div>
