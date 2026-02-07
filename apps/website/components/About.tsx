@@ -45,13 +45,13 @@ export const About: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        {/* 2. The Founder Section */}
+        {/* 2. The Founder Section - items-stretch to force equal height */}
         <div className="mt-8 md:mt-12 mb-32 relative">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-stretch">
             
-            {/* Portrait Column */}
-            <div className="md:col-span-4 md:sticky md:top-32 flex justify-center md:justify-start">
-              <div className="relative w-full max-w-xs md:max-w-sm aspect-[4/5] rounded-2xl overflow-hidden border-2 border-zinc-800 dark:border-zinc-700 shadow-2xl bg-zinc-900 group">
+            {/* Portrait Column - h-full to match right side */}
+            <div className="md:col-span-4 flex flex-col h-full">
+              <div className="relative w-full h-full min-h-[400px] md:min-h-0 rounded-2xl overflow-hidden border-2 border-zinc-800 dark:border-zinc-700 shadow-2xl bg-zinc-900 group">
                 <img 
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop" 
                   alt="Amin Maghfuri - Founder" 
@@ -61,8 +61,8 @@ export const About: React.FC = () => {
               </div>
             </div>
 
-            {/* Info Column */}
-            <div className="md:col-span-8 flex flex-col justify-start pt-4">
+            {/* Info Column - flex-col with mt-auto to align bottom text */}
+            <div className="md:col-span-8 flex flex-col pt-2">
                {/* Name Block */}
                <div className="mb-4">
                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 text-brand-500 border border-brand-500/30 text-[10px] font-black tracking-widest uppercase mb-3">
@@ -74,13 +74,13 @@ export const About: React.FC = () => {
                   AMIN MAGHFURI
                  </h2>
                  
-                 <p className="text-lg md:text-xl text-zinc-500 dark:text-zinc-400 font-bold mb-6 italic opacity-70">
+                 <p className="text-lg md:text-xl text-zinc-500 dark:text-zinc-400 font-bold mb-4 italic opacity-70">
                   The Architect of Chaos & Cuan
                  </p>
                </div>
 
                {/* Quote Block */}
-               <div className="relative w-full">
+               <div className="relative w-full mb-6">
                   <GlassCard variant="solid" className="p-8 md:p-10 bg-zinc-900/40 border-brand-500/20 relative overflow-hidden shadow-2xl w-full">
                     <Quote className="absolute -top-4 -left-4 w-20 h-20 text-brand-500/5 rotate-12" />
                     <h3 className="text-xl md:text-2xl font-black text-brand-500 mb-4 italic tracking-tight">
@@ -97,12 +97,12 @@ export const About: React.FC = () => {
                       </div>
                     </div>
                   </GlassCard>
-                  
-                  {/* Battle-Tested Text */}
-                  <div className="flex items-center gap-6 mt-10 md:mt-12">
-                    <div className="h-[2px] w-12 md:w-20 bg-brand-500" />
-                    <span className="font-mono text-[10px] md:text-base font-black text-zinc-400 uppercase tracking-[0.4em]">Battle-Tested Since 2015</span>
-                  </div>
+               </div>
+
+               {/* Battle-Tested Text - pushed to bottom with mt-auto */}
+               <div className="mt-auto flex items-center gap-6 pb-2">
+                  <div className="h-[2px] w-12 md:w-20 bg-brand-500" />
+                  <span className="font-mono text-[10px] md:text-base font-black text-zinc-400 uppercase tracking-[0.4em]">Battle-Tested Since 2015</span>
                </div>
             </div>
           </div>
