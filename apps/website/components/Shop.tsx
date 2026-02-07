@@ -1,7 +1,9 @@
+"use client";
+
 import React from 'react';
 import { useConfig, GlassCard, Button } from 'ui';
 import { DICTIONARY } from 'shared';
-import { MOCK_PRODUCTS } from 'shared'; // Assuming MOCK_PRODUCTS is exported from shared/constants
+import { MOCK_PRODUCTS } from 'shared'; 
 import { ShoppingCart, Tag } from 'lucide-react';
 
 export const Shop: React.FC = () => {

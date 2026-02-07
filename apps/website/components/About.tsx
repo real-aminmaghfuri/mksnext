@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { useConfig, GlassCard } from 'ui';
 import { DICTIONARY } from 'shared';
