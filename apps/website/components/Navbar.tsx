@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useConfig, Button, Logo } from 'ui';
-import { Moon, Sun, Languages, ExternalLink, ChevronDown, User, Layers, Cpu, HelpCircle, BookOpen, ShoppingBag, Laptop } from 'lucide-react';
+import { Moon, Sun, ChevronDown, User, Layers, Cpu, HelpCircle, BookOpen, ShoppingBag, Laptop, MessageCircle } from 'lucide-react';
 import { Language, DICTIONARY } from 'shared';
 
 export const Navbar: React.FC = () => {
@@ -68,9 +68,6 @@ export const Navbar: React.FC = () => {
       hasDropdown: false 
     },
   ];
-
-  // In production, this would be an ENV variable
-  const SYSTEM_URL = "http://localhost:3001";
 
   return (
     <nav className="fixed top-0 w-full z-50 transition-all duration-300 bg-white/95 dark:bg-black/90 backdrop-blur-xl border-b border-zinc-200/50 dark:border-white/10 shadow-sm">
@@ -147,26 +144,25 @@ export const Navbar: React.FC = () => {
           ))}
         </div>
 
-        {/* RIGHT: UTILS & LOGIN */}
+        {/* RIGHT: UTILS & CTA */}
         <div className="flex items-center gap-2 md:gap-4 shrink-0">
           <button 
             onClick={toggleTheme}
-            className="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors text-zinc-600 dark:text-zinc-400 hidden sm:block"
+            className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors text-zinc-600 dark:text-zinc-400 hidden sm:flex"
           >
             {isDark ? <Sun size={20} /> : <Moon size={20} />}
           </button>
           
           <button 
             onClick={toggleLang}
-            className="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors text-zinc-600 dark:text-zinc-400 flex items-center gap-1 font-mono text-xs hidden sm:block"
+            className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors text-zinc-900 dark:text-white font-black text-xs border border-zinc-200 dark:border-zinc-800 hidden sm:flex"
           >
-            <Languages size={20} />
             {language}
           </button>
 
-          <a href={SYSTEM_URL} target="_blank" rel="noopener noreferrer" className="hidden md:block">
-            <Button size="sm" variant="outline" className="font-bold border-2">
-              System Login <ExternalLink size={14} className="ml-2" />
+          <a href="https://wa.me/62812XXXXXXXX" target="_blank" rel="noopener noreferrer" className="hidden md:block">
+            <Button size="sm" variant="primary" className="font-bold shadow-brand-500/20 hover:shadow-brand-500/50">
+              HUBUNGI GUE <MessageCircle size={16} className="ml-2" />
             </Button>
           </a>
         </div>
