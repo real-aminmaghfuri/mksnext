@@ -15,7 +15,7 @@ export const Hero: React.FC = () => {
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-[128px] animate-pulse delay-1000" />
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:48px_48px] mask-image-gradient" />
 
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 relative z-10 w-full">
         <div className="flex flex-col lg:flex-row items-center gap-16">
           <div className="flex-1 text-center lg:text-left space-y-8">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 dark:bg-brand-900/20 border border-brand-200 dark:border-brand-800 text-brand-700 dark:text-brand-300 text-sm font-bold animate-fade-in-up">

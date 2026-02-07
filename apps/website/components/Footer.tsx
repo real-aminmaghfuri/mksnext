@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="bg-zinc-50 dark:bg-black border-t border-zinc-200 dark:border-zinc-800 pt-20 pb-24 md:pb-10">
-      <div className="container mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2">
              <div className="flex items-center gap-2 mb-6">

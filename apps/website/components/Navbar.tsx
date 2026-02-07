@@ -28,8 +28,8 @@ export const Navbar: React.FC = () => {
   const SYSTEM_URL = "http://localhost:3001";
 
   return (
-    <nav className="fixed top-0 w-full z-50 px-4 md:px-6 py-3 md:py-4 transition-all duration-300 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-zinc-200/50 dark:border-white/5">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+    <nav className="fixed top-0 w-full z-50 py-3 md:py-4 transition-all duration-300 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-zinc-200/50 dark:border-white/5">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 cursor-pointer group">
           <div className="w-8 h-8 bg-gradient-to-tr from-brand-500 to-red-600 rounded-lg group-hover:scale-110 transition-transform duration-300" />
           <span className="font-extrabold text-xl tracking-tighter text-zinc-900 dark:text-white">

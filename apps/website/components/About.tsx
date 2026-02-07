@@ -29,10 +29,10 @@ export const About: React.FC = () => {
 
   return (
     <section className="min-h-screen bg-zinc-50 dark:bg-black transition-colors duration-500 pb-24 overflow-x-hidden">
-      {/* 1. Header Section - Tightened */}
-      <div className="relative pt-24 pb-8 md:pb-12 px-4 md:px-8 border-b border-zinc-200/10 dark:border-white/5">
+      {/* 1. Header Section */}
+      <div className="relative pt-24 pb-8 md:pb-12 border-b border-zinc-200/10 dark:border-white/5">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-brand-600/10 to-transparent rounded-full blur-[150px] pointer-events-none" />
-        <div className="container mx-auto max-w-7xl text-center relative z-10">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 text-center relative z-10">
           <h1 className="text-5xl md:text-8xl font-black text-zinc-900 dark:text-white mb-6 tracking-tighter uppercase leading-[0.85]">
             {text.aboutHeading.split(' ').map((word, i) => (
               <span key={i} className={i % 2 !== 0 ? "text-brand-600" : ""}>{word} </span>
@@ -44,12 +44,12 @@ export const About: React.FC = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-        {/* 2. The Founder Section - Grid changed to 4:8 for maximum width on the right */}
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
+        {/* 2. The Founder Section */}
         <div className="mt-8 md:mt-12 mb-32 relative">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
             
-            {/* Portrait Column - md:col-span-4 to keep image compact */}
+            {/* Portrait Column */}
             <div className="md:col-span-4 md:sticky md:top-32 flex justify-center md:justify-start">
               <div className="relative w-full max-w-xs md:max-w-sm aspect-[4/5] rounded-2xl overflow-hidden border-2 border-zinc-800 dark:border-zinc-700 shadow-2xl bg-zinc-900 group">
                 <img 
@@ -61,7 +61,7 @@ export const About: React.FC = () => {
               </div>
             </div>
 
-            {/* Info Column - md:col-span-8 to widen the quote and content */}
+            {/* Info Column */}
             <div className="md:col-span-8 flex flex-col justify-start pt-4">
                {/* Name Block */}
                <div className="mb-4">
@@ -79,7 +79,7 @@ export const About: React.FC = () => {
                  </p>
                </div>
 
-               {/* Quote Block - Now wider, taking full 8-column space */}
+               {/* Quote Block */}
                <div className="relative w-full">
                   <GlassCard variant="solid" className="p-8 md:p-10 bg-zinc-900/40 border-brand-500/20 relative overflow-hidden shadow-2xl w-full">
                     <Quote className="absolute -top-4 -left-4 w-20 h-20 text-brand-500/5 rotate-12" />
@@ -98,7 +98,7 @@ export const About: React.FC = () => {
                     </div>
                   </GlassCard>
                   
-                  {/* Battle-Tested Text - Moved UP because quote is now wider/shorter */}
+                  {/* Battle-Tested Text */}
                   <div className="flex items-center gap-6 mt-10 md:mt-12">
                     <div className="h-[2px] w-12 md:w-20 bg-brand-500" />
                     <span className="font-mono text-[10px] md:text-base font-black text-zinc-400 uppercase tracking-[0.4em]">Battle-Tested Since 2015</span>
