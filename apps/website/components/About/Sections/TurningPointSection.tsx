@@ -18,7 +18,7 @@ interface TurningPointSectionProps {
 
 export const TurningPointSection: React.FC<TurningPointSectionProps> = ({ content }) => {
   return (
-    <div className="mb-40 md:mb-56 relative max-w-4xl">
+    <div className="mb-20 md:mb-28 relative max-w-4xl">
       <div className="flex flex-col gap-6 md:gap-8">
         
         {/* Title Block with Red Bar */}
