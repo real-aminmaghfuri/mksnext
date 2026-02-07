@@ -45,10 +45,34 @@ export const useAboutData = () => {
     { year: '2025', title: text.hist2025Title, desc: text.hist2025Desc, icon: Zap, color: 'text-yellow-500 bg-yellow-100 dark:bg-yellow-900/20' },
   ];
 
+  // Logic: Legality Data
+  const legality = {
+    title: text.legalTitle,
+    desc: text.legalDesc,
+    labelEntity: text.legalLabelEntity,
+    valueEntity: text.legalValueEntity,
+    labelNIB: text.legalLabelNIB,
+    labelSK: text.legalLabelSK,
+    labelNPWP: text.legalLabelNPWP,
+    labelBank: text.legalLabelBank,
+    ctaTitle: text.legalCtaTitle,
+    ctaDesc: text.legalCtaDesc,
+    ctaBtn: text.legalCtaBtn,
+    footerNote: text.legalFooterNote,
+    values: {
+      nib: "1226000711085",
+      sk: "AHU-006097.AH.01.30.Tahun 2021",
+      npwp: "53.494.885.6-532.000",
+      bank: "5859459406740414",
+      bankName: "A.N PT MESIN KASIR SOLO"
+    }
+  };
+
   return {
     text,
     quote: parseQuote(),
     turningPoint,
-    timeline
+    timeline,
+    legality
   };
 };

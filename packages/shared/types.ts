@@ -80,6 +80,20 @@ export interface Translation {
   aboutPhil3Title: string;
   aboutPhil3Desc: string;
 
+  // Legality Section
+  legalTitle: string;
+  legalDesc: string;
+  legalLabelEntity: string;
+  legalValueEntity: string;
+  legalLabelNIB: string;
+  legalLabelSK: string;
+  legalLabelNPWP: string;
+  legalLabelBank: string;
+  legalCtaTitle: string;
+  legalCtaDesc: string;
+  legalCtaBtn: string;
+  legalFooterNote: string;
+
   hist2015Title: string;
   hist2015Desc: string;
   hist2018Title: string;

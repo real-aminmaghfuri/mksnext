@@ -64,6 +64,20 @@ export const DICTIONARY: Record<Language, Translation> = {
     aboutPhil3Title: "Survival Instinct",
     aboutPhil3Desc: "Gue pernah bangkrut. Gue tau persis cara jagain aset lo biar gak bernasib sama kayak gue dulu.",
 
+    // Legality Section
+    legalTitle: "Gue Main Bersih",
+    legalDesc: "Bisnis itu soal kepercayaan. Gue gak mau ngerusak nama yang udah gue bangun lagi dari nol. Ini buktinya gue legal.",
+    legalLabelEntity: "Badan Hukum",
+    legalValueEntity: "PT MESIN KASIR SOLO",
+    legalLabelNIB: "NIB (Izin Usaha)",
+    legalLabelSK: "SK Kemenkumham",
+    legalLabelNPWP: "NPWP Perusahaan",
+    legalLabelBank: "Rekening Sah (BNC)",
+    legalCtaTitle: "CEK VALIDITAS",
+    legalCtaDesc: "Lo bisa cek sendiri data perusahaan gue di web pemerintah biar yakin.",
+    legalCtaBtn: "Buka OSS.GO.ID",
+    legalFooterNote: "*Buat lo yang butuh dokumen asli buat vendor list atau tender, chat admin gue. Kita transparan.",
+
     // History Timeline
     hist2015Title: "2015: Modaldengkul.com",
     hist2015Desc: "Gue jalan kaki, Bos. Door-to-door di panasnya Solo nawarin mesin kasir. Ditolak ratusan kali, kaki lecet, tapi mental gue jadi bulletproof.",
@@ -150,6 +164,20 @@ export const DICTIONARY: Record<Language, Translation> = {
     aboutPhil2Desc: "I cut the garbage features. I only give you what you actually need to make bank.",
     aboutPhil3Title: "Survival Instinct",
     aboutPhil3Desc: "I went bankrupt once. I know exactly how to guard your assets so you don't end up like I did.",
+
+    // Legality Section
+    legalTitle: "I Play Clean",
+    legalDesc: "Business is trust. I won't ruin the name I rebuilt from zero. Here is the proof I am legal.",
+    legalLabelEntity: "Legal Entity",
+    legalValueEntity: "PT MESIN KASIR SOLO",
+    legalLabelNIB: "NIB (Business License)",
+    legalLabelSK: "Ministry Decree (SK)",
+    legalLabelNPWP: "Company Tax ID",
+    legalLabelBank: "Official Bank Acc (BNC)",
+    legalCtaTitle: "CHECK VALIDITY",
+    legalCtaDesc: "You can check my company data yourself on the government website.",
+    legalCtaBtn: "Open OSS.GO.ID",
+    legalFooterNote: "*Need original docs for vendor list or tender? Chat my admin. We are transparent.",
 
     // History Timeline
     hist2015Title: "2015: The Grind",
