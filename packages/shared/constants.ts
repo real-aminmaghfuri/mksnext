@@ -1,3 +1,4 @@
+
 import { Language, Translation, ProductItem } from './types';
 
 export const DICTIONARY: Record<Language, Translation> = {
@@ -15,9 +16,22 @@ export const DICTIONARY: Record<Language, Translation> = {
     loginHeading: "Login Komandan",
     loginSub: "Masuk ke akses level dewa.",
     
-    // Website Nav
-    navHome: "Markas",
-    navAbout: "Jejak Gue",
+    // Website Nav - Updated for Mega Menu
+    navHome: "BERANDA",
+    navAbout: "TENTANG",
+    navAboutProfile: "Profil Perusahaan",
+    navAboutTeam: "Pasukan Elite",
+    navAboutVision: "Manifesto Perang",
+    
+    navSolutions: "SOLUSI BISNIS",
+    navSolHardware: "Hardware Tempur",
+    navSolSoftware: "Software Command",
+    navSolConsulting: "Strategi Lapangan",
+
+    navInnovation: "INOVASI",
+    navHelp: "PUSAT BANTUAN",
+    navInsights: "WAWASAN",
+    
     navServices: "Senjata",
     navShop: "Supply",
     navMenu: "Menu",
@@ -116,9 +130,22 @@ export const DICTIONARY: Record<Language, Translation> = {
     loginHeading: "Commander Login",
     loginSub: "Access god-mode privileges.",
 
-    // Website Nav
-    navHome: "HQ",
-    navAbout: "My Scars",
+    // Website Nav - Mega Menu
+    navHome: "HOME",
+    navAbout: "ABOUT",
+    navAboutProfile: "Company Profile",
+    navAboutTeam: "Elite Squad",
+    navAboutVision: "War Manifesto",
+
+    navSolutions: "BIZ SOLUTIONS",
+    navSolHardware: "Combat Hardware",
+    navSolSoftware: "Command Software",
+    navSolConsulting: "Field Strategy",
+
+    navInnovation: "INNOVATION",
+    navHelp: "HELP CENTER",
+    navInsights: "INSIGHTS",
+
     navServices: "Weapons",
     navShop: "Supply",
     navMenu: "Intel",

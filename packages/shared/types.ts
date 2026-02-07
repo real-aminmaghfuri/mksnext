@@ -35,8 +35,22 @@ export interface Translation {
   loginHeading: string;
   loginSub: string;
   
+  // Updated Nav Structure
   navHome: string;
-  navAbout: string;
+  navAbout: string; // TENTANG
+  navAboutProfile: string;
+  navAboutTeam: string;
+  navAboutVision: string;
+  
+  navSolutions: string; // SOLUSI BISNIS
+  navSolHardware: string;
+  navSolSoftware: string;
+  navSolConsulting: string;
+
+  navInnovation: string; // INOVASI
+  navHelp: string; // PUSAT BANTUAN
+  navInsights: string; // WAWASAN
+
   navServices: string;
   navShop: string;
   navMenu: string;
