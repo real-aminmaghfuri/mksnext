@@ -30,13 +30,18 @@ export const Navbar: React.FC = () => {
   return (
     <nav className="fixed top-0 w-full z-50 py-3 md:py-4 transition-all duration-300 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-zinc-200/50 dark:border-white/5">
       <div className="w-full px-6 md:px-10 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 cursor-pointer group">
+        <Link href="/" className="flex items-center gap-3 cursor-pointer group">
           <div className="group-hover:scale-110 transition-transform duration-300 drop-shadow-lg shadow-brand-500/50">
              <Logo className="w-10 h-10" />
           </div>
-          <span className="font-extrabold text-xl tracking-tighter text-zinc-900 dark:text-white">
-            MKS<span className="text-brand-500">.SOLO</span>
-          </span>
+          <div className="flex flex-col justify-center">
+            <span className="font-black text-xl md:text-2xl tracking-tighter leading-none text-zinc-900 dark:text-white">
+              MESIN KASIR <span className="text-brand-500">SOLO</span>
+            </span>
+            <span className="text-[8px] md:text-[10px] font-bold text-zinc-500 tracking-[0.2em] uppercase leading-tight mt-0.5">
+              Digital Solutions Partner
+            </span>
+          </div>
         </Link>
 
         <div className="hidden md:flex items-center gap-8">

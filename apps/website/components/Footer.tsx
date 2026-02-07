@@ -14,11 +14,16 @@ export const Footer: React.FC = () => {
       <div className="w-full px-6 md:px-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2">
-             <div className="flex items-center gap-2 mb-6">
-              <Logo className="w-8 h-8" />
-              <span className="font-extrabold text-xl tracking-tighter text-zinc-900 dark:text-white">
-                MKS<span className="text-brand-500">.SOLO</span>
-              </span>
+             <div className="flex items-center gap-3 mb-6">
+              <Logo className="w-10 h-10" />
+              <div className="flex flex-col justify-center">
+                <span className="font-black text-xl tracking-tighter leading-none text-zinc-900 dark:text-white">
+                  MESIN KASIR <span className="text-brand-500">SOLO</span>
+                </span>
+                <span className="text-[9px] font-bold text-zinc-500 tracking-[0.2em] uppercase leading-tight mt-0.5">
+                  Digital Solutions Partner
+                </span>
+              </div>
             </div>
             <p className="text-zinc-500 dark:text-zinc-400 max-w-sm mb-6">
               {text.footerDesc}
