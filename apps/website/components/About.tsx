@@ -49,8 +49,8 @@ export const About: React.FC = () => {
         <div className="mt-8 md:mt-12 mb-32 relative">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-stretch">
             
-            {/* Portrait Column - h-full to match right side */}
-            <div className="md:col-span-4 flex flex-col h-full">
+            {/* Portrait Column - Widened to col-span-5 */}
+            <div className="md:col-span-5 flex flex-col h-full">
               <div className="relative w-full h-full min-h-[400px] md:min-h-0 rounded-2xl overflow-hidden border-2 border-zinc-800 dark:border-zinc-700 shadow-2xl bg-zinc-900 group">
                 <img 
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop" 
@@ -61,20 +61,20 @@ export const About: React.FC = () => {
               </div>
             </div>
 
-            {/* Info Column - flex-col with mt-auto to align bottom text */}
-            <div className="md:col-span-8 flex flex-col pt-2">
-               {/* Name Block */}
+            {/* Info Column - col-span-7 */}
+            <div className="md:col-span-7 flex flex-col pt-2">
+               {/* Name Block - Resized (Smaller) */}
                <div className="mb-4">
-                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 text-brand-500 border border-brand-500/30 text-[10px] font-black tracking-widest uppercase mb-3">
-                    <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse" />
+                 <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-lg bg-zinc-900 text-brand-500 border border-brand-500/30 text-[9px] font-black tracking-widest uppercase mb-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse" />
                     Commanding Officer
                  </div>
                  
-                 <h2 className="text-4xl md:text-6xl font-black text-zinc-900 dark:text-white mb-1 tracking-tighter leading-none uppercase">
+                 <h2 className="text-3xl md:text-5xl font-black text-zinc-900 dark:text-white mb-1 tracking-tighter leading-none uppercase">
                   AMIN MAGHFURI
                  </h2>
                  
-                 <p className="text-lg md:text-xl text-zinc-500 dark:text-zinc-400 font-bold mb-4 italic opacity-70">
+                 <p className="text-base md:text-lg text-zinc-500 dark:text-zinc-400 font-bold mb-4 italic opacity-70">
                   The Architect of Chaos & Cuan
                  </p>
                </div>
@@ -83,15 +83,16 @@ export const About: React.FC = () => {
                <div className="relative w-full mb-6">
                   <GlassCard variant="solid" className="p-8 md:p-10 bg-zinc-900/40 border-brand-500/20 relative overflow-hidden shadow-2xl w-full">
                     <Quote className="absolute -top-4 -left-4 w-20 h-20 text-brand-500/5 rotate-12" />
-                    <h3 className="text-xl md:text-2xl font-black text-brand-500 mb-4 italic tracking-tight">
+                    <h3 className="text-lg md:text-xl font-black text-brand-500 mb-3 italic tracking-tight">
                       "{quoteHeading}"
                     </h3>
                     <div className="space-y-4">
-                      <p className="text-sm md:text-lg text-zinc-300 leading-relaxed font-medium">
+                      <p className="text-sm md:text-base text-zinc-300 leading-relaxed font-medium">
                         {beforeEmphasis}
                       </p>
-                      <div className="p-4 md:p-6 rounded-2xl bg-brand-600/10 border-l-4 border-brand-600 shadow-inner">
-                        <p className="text-base md:text-2xl text-white font-black italic tracking-tight leading-tight">
+                      {/* Emphasized Text - Forced Single Line on Desktop */}
+                      <div className="p-4 md:px-6 md:py-4 rounded-xl bg-brand-600/10 border-l-4 border-brand-600 shadow-inner">
+                        <p className="text-sm md:text-xl text-white font-black italic tracking-tighter leading-tight whitespace-normal md:whitespace-nowrap">
                           {emphasisTrigger} {afterEmphasis}
                         </p>
                       </div>
@@ -102,7 +103,7 @@ export const About: React.FC = () => {
                {/* Battle-Tested Text - pushed to bottom with mt-auto */}
                <div className="mt-auto flex items-center gap-6 pb-2">
                   <div className="h-[2px] w-12 md:w-20 bg-brand-500" />
-                  <span className="font-mono text-[10px] md:text-base font-black text-zinc-400 uppercase tracking-[0.4em]">Battle-Tested Since 2015</span>
+                  <span className="font-mono text-[10px] md:text-sm font-black text-zinc-400 uppercase tracking-[0.4em]">Battle-Tested Since 2015</span>
                </div>
             </div>
           </div>
