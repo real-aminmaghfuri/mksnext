@@ -47,73 +47,75 @@ export const LegalitySection: React.FC<LegalitySectionProps> = ({ content }) => 
         </p>
       </div>
 
-      {/* Main Card - Border matches the internal solid orange */}
-      <div className="relative rounded-3xl border border-orange-300 overflow-hidden shadow-lg dark:shadow-none">
+      {/* Main Card */}
+      <div className="relative rounded-3xl border border-zinc-200 dark:border-zinc-800 overflow-hidden shadow-lg dark:shadow-none">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-0">
-            {/* Left Side: Data List with Solid Orange 200 */}
-            <div className="lg:col-span-8 p-6 md:p-10 space-y-6 md:space-y-0 bg-orange-200">
+            {/* Left Side: Data List with Solid Orange 300 */}
+            <div className="lg:col-span-8 p-6 md:p-10 space-y-6 md:space-y-0 bg-orange-300">
                 
                 {/* Entity Row */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-orange-300 border-dashed">
-                    <span className="text-zinc-700 font-medium">{content.labelEntity}</span>
+                <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-black/10 border-dashed">
+                    <span className="text-zinc-800 font-bold">{content.labelEntity}</span>
                     <div className="flex items-center gap-2 mt-2 md:mt-0">
-                        <CheckCircle2 size={16} className="text-blue-600" />
-                        <span className="text-zinc-900 font-bold tracking-tight text-lg">{content.valueEntity}</span>
+                        <CheckCircle2 size={16} className="text-blue-700" />
+                        <span className="text-zinc-900 font-black tracking-tight text-lg">{content.valueEntity}</span>
                     </div>
                 </div>
 
                  {/* NIB Row */}
-                 <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-orange-300 border-dashed">
-                    <span className="text-zinc-700 font-medium">{content.labelNIB}</span>
-                    <span className="text-zinc-900 font-mono font-bold mt-2 md:mt-0">{content.values.nib}</span>
+                 <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-black/10 border-dashed">
+                    <span className="text-zinc-800 font-bold">{content.labelNIB}</span>
+                    <span className="text-zinc-900 font-mono font-black mt-2 md:mt-0">{content.values.nib}</span>
                 </div>
 
                 {/* SK Row */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-orange-300 border-dashed">
-                    <span className="text-zinc-700 font-medium">{content.labelSK}</span>
-                    <span className="text-zinc-900 font-mono font-bold mt-2 md:mt-0">{content.values.sk}</span>
+                <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-black/10 border-dashed">
+                    <span className="text-zinc-800 font-bold">{content.labelSK}</span>
+                    <span className="text-zinc-900 font-mono font-black mt-2 md:mt-0">{content.values.sk}</span>
                 </div>
 
                 {/* NPWP Row */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-orange-300 border-dashed">
-                    <span className="text-zinc-700 font-medium">{content.labelNPWP}</span>
-                    <span className="text-zinc-900 font-mono font-bold mt-2 md:mt-0">{content.values.npwp}</span>
+                <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-black/10 border-dashed">
+                    <span className="text-zinc-800 font-bold">{content.labelNPWP}</span>
+                    <span className="text-zinc-900 font-mono font-black mt-2 md:mt-0">{content.values.npwp}</span>
                 </div>
 
                 {/* Bank Row */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between py-4">
-                    <span className="text-zinc-700 font-medium">{content.labelBank}</span>
+                    <span className="text-zinc-800 font-bold">{content.labelBank}</span>
                     <div className="text-right mt-2 md:mt-0">
-                        <p className="text-zinc-900 font-mono font-bold text-lg">{content.values.bank}</p>
-                        <p className="text-[10px] text-zinc-600 font-bold uppercase">{content.values.bankName}</p>
+                        <p className="text-zinc-900 font-mono font-black text-lg">{content.values.bank}</p>
+                        <p className="text-[10px] text-zinc-700 font-bold uppercase">{content.values.bankName}</p>
                     </div>
                 </div>
 
                 <div className="pt-4">
-                     <p className="text-xs text-zinc-600 italic">{content.footerNote}</p>
+                     <p className="text-xs text-zinc-700 italic font-medium">{content.footerNote}</p>
                 </div>
             </div>
 
-            {/* Right Side: CTA with Solid Orange 300 */}
-            <div className="lg:col-span-4 p-6 md:p-10 bg-orange-300 flex flex-col justify-center relative overflow-hidden">
-                {/* Decorative Pattern - Darkened slightly for texture */}
-                <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(0,0,0,0.05)_25%,transparent_25%,transparent_75%,rgba(0,0,0,0.05)_75%,rgba(0,0,0,0.05))] bg-[size:20px_20px]" />
+            {/* Right Side: CTA with Gradient (Like Vision Card) */}
+            <div className="lg:col-span-4 p-6 md:p-10 bg-gradient-to-br from-brand-600 to-red-600 flex flex-col justify-center relative overflow-hidden">
+                {/* Decorative Pattern */}
+                <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(255,255,255,0.1)_25%,transparent_25%,transparent_75%,rgba(255,255,255,0.1)_75%,rgba(255,255,255,0.1))] bg-[size:20px_20px] opacity-20" />
                 
+                {/* Decorative Glow */}
+                <div className="absolute top-0 right-0 w-40 h-40 bg-white/20 blur-[50px] rounded-full pointer-events-none" />
+
                 <div className="relative z-10 text-center lg:text-left">
-                    {/* Blue Title Text - Bold and Clear */}
-                    <h4 className="font-black tracking-widest text-sm mb-3 text-blue-700 drop-shadow-sm uppercase">
+                    {/* Blue Title Text - Light Blue 200 for contrast on dark red background */}
+                    <h4 className="font-black tracking-widest text-sm mb-3 text-blue-200 drop-shadow-md uppercase">
                         {content.ctaTitle}
                     </h4>
                     
-                    {/* Dark text for description since bg is orange-300 */}
-                    <p className="text-zinc-900 text-sm leading-relaxed mb-8 font-bold">
+                    <p className="text-white/95 text-sm leading-relaxed mb-8 font-bold">
                         {content.ctaDesc}
                     </p>
                     
                     <a href="https://oss.go.id" target="_blank" rel="noopener noreferrer" className="block w-full">
-                        {/* Blue Button - Forced Blue Background */}
-                        <Button fullWidth className="!bg-blue-600 !bg-none hover:!bg-blue-700 text-white shadow-xl shadow-blue-900/20 border-none">
+                        {/* Blue Button */}
+                        <Button fullWidth className="!bg-blue-600 !bg-none hover:!bg-blue-700 text-white shadow-xl shadow-blue-900/30 border-none">
                             {content.ctaBtn}
                         </Button>
                     </a>
