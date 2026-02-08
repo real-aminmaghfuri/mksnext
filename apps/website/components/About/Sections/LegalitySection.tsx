@@ -51,8 +51,8 @@ export const LegalitySection: React.FC<LegalitySectionProps> = ({ content }) => 
       <div className="relative rounded-3xl border border-zinc-200 dark:border-zinc-800 overflow-hidden shadow-lg dark:shadow-none">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-0">
-            {/* Left Side: Data List with Orange 500 at 20% Opacity + Readable Text */}
-            <div className="lg:col-span-8 p-6 md:p-10 space-y-6 md:space-y-0 bg-orange-500/20 backdrop-blur-md">
+            {/* Left Side: Data List with Orange 500 at 10% Opacity + Readable Text */}
+            <div className="lg:col-span-8 p-6 md:p-10 space-y-6 md:space-y-0 bg-orange-500/10 backdrop-blur-md">
                 
                 {/* Entity Row */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-black/10 dark:border-white/10 border-dashed">
@@ -95,8 +95,8 @@ export const LegalitySection: React.FC<LegalitySectionProps> = ({ content }) => 
                 </div>
             </div>
 
-            {/* Right Side: CTA with Gradient (80% opacity) */}
-            <div className="lg:col-span-4 p-6 md:p-10 bg-gradient-to-br from-brand-600/80 to-red-600/80 flex flex-col justify-center relative overflow-hidden">
+            {/* Right Side: CTA with Gradient (60% opacity) */}
+            <div className="lg:col-span-4 p-6 md:p-10 bg-gradient-to-br from-brand-600/60 to-red-600/60 flex flex-col justify-center relative overflow-hidden">
                 {/* Decorative Pattern */}
                 <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(255,255,255,0.1)_25%,transparent_25%,transparent_75%,rgba(255,255,255,0.1)_75%,rgba(255,255,255,0.1))] bg-[size:20px_20px] opacity-20" />
                 
