@@ -28,7 +28,7 @@ export const Contact: React.FC = () => {
       />
 
       {/* 3. Full Width Maps */}
-      <ContactMapsAtom />
+      <ContactMapsAtom data={content.maps} />
     </section>
   );
 };

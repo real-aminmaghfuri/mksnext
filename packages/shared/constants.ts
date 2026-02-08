@@ -189,6 +189,9 @@ export const DICTIONARY: Record<Language, Translation> = {
     contactTopic2: "Lapor Error",
     contactTopic3: "Ajak Kerjasama",
     contactTopic4: "Sekadar Sapa",
+    
+    contactMapsTitle: "Lokasi Strategis",
+    contactMapsDesc: "Temukan markas kami di peta. Silakan mampir kalau mau konsultasi tatap muka.",
 
     // Legality
     legalTitle: "Gue Main Bersih",
@@ -411,6 +414,9 @@ export const DICTIONARY: Record<Language, Translation> = {
     contactTopic2: "Report Error",
     contactTopic3: "Partnership",
     contactTopic4: "Just Saying Hi",
+    
+    contactMapsTitle: "Strategic Locations",
+    contactMapsDesc: "Find our HQs on the map. Feel free to visit if you want face-to-face consultation.",
 
     legalTitle: "I Play Clean",
     legalDesc: "Business is trust. I won't ruin the name I rebuilt from zero. Here is the proof I am legal.",

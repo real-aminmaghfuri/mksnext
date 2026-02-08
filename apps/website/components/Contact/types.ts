@@ -30,10 +30,16 @@ export interface FormData {
   topics: string[];
 }
 
+export interface ContactMapsData {
+  title: string;
+  desc: string;
+}
+
 export interface ContactContent {
   heading: string;
   sub: string;
   qna: QnaItem[];
   info: ContactInfoData;
   form: FormData;
+  maps: ContactMapsData;
 }

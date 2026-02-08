@@ -203,6 +203,10 @@ export interface Translation {
   contactTopic3: string;
   contactTopic4: string;
 
+  // Maps
+  contactMapsTitle: string;
+  contactMapsDesc: string;
+
   legalTitle: string;
   legalDesc: string;
   legalLabelEntity: string;

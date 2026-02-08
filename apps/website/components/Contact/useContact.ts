@@ -34,6 +34,10 @@ export const useContact = (): ContactContent => {
           text.contactTopic3, 
           text.contactTopic4
       ]
+    },
+    maps: {
+      title: text.contactMapsTitle,
+      desc: text.contactMapsDesc
     }
   };
 };

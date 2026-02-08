@@ -15,10 +15,10 @@ export const ContactFormLayoutAtom: React.FC<ContactFormLayoutProps> = ({ info, 
 
   return (
     <div className="container mx-auto px-6 mb-24 relative z-10 max-w-6xl">
-       <div className="grid grid-cols-1 lg:grid-cols-10 overflow-hidden rounded-[32px] border border-zinc-200 dark:border-zinc-800 shadow-2xl">
+       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* LEFT COLUMN (30%) - INFO */}
-          <div className="lg:col-span-3 bg-zinc-100 dark:bg-zinc-900/50 p-8 md:p-10 border-b lg:border-b-0 lg:border-r border-zinc-200 dark:border-zinc-800 flex flex-col justify-between">
+          {/* LEFT COLUMN (INFO) - SEPARATE CONTAINER */}
+          <div className="lg:col-span-4 bg-white dark:bg-zinc-900 p-8 rounded-[32px] border border-zinc-200 dark:border-zinc-800 shadow-xl dark:shadow-none h-full">
               <div className="space-y-8">
                   {/* Legal Office */}
                   <div>
@@ -42,64 +42,64 @@ export const ContactFormLayoutAtom: React.FC<ContactFormLayoutProps> = ({ info, 
                       </p>
                   </div>
 
-                  <div className="h-px bg-zinc-300 dark:bg-zinc-800 w-full" />
+                  <div className="h-px bg-zinc-100 dark:bg-zinc-800 w-full" />
 
                   {/* Contact Details */}
-                  <div className="space-y-4">
+                  <div className="space-y-6">
                       <div>
                          <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1">{info.labelWa}</p>
-                         <p className="font-mono text-brand-600 dark:text-brand-500 font-bold flex items-center gap-2">
-                            <Phone size={14} /> 0881-6566-935
+                         <p className="font-mono text-base text-brand-600 dark:text-brand-500 font-bold flex items-center gap-2">
+                            <Phone size={16} /> 0881-6566-935
                          </p>
                       </div>
                       <div>
                          <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1">{info.labelEmail}</p>
-                         <p className="font-mono text-zinc-800 dark:text-zinc-300 font-bold flex items-center gap-2">
-                            <Mail size={14} /> admin@mesinkasirsolo.com
+                         <p className="font-mono text-sm text-zinc-800 dark:text-zinc-300 font-bold flex items-center gap-2">
+                            <Mail size={16} /> admin@mesinkasirsolo.com
                          </p>
                       </div>
                       <div>
                          <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1">{info.labelHours}</p>
-                         <p className="font-mono text-zinc-800 dark:text-zinc-300 font-bold flex items-center gap-2">
-                            <Clock size={14} /> 09:00 - 17:00 WIB
+                         <p className="font-mono text-sm text-zinc-800 dark:text-zinc-300 font-bold flex items-center gap-2">
+                            <Clock size={16} /> 09:00 - 17:00 WIB
                          </p>
                       </div>
                   </div>
               </div>
           </div>
 
-          {/* RIGHT COLUMN (70%) - FORM */}
-          <div className="lg:col-span-7 bg-white dark:bg-black p-8 md:p-12 relative">
-              <div className="mb-8">
-                  <h3 className="text-2xl font-black text-zinc-900 dark:text-white mb-6">{form.title}</h3>
+          {/* RIGHT COLUMN (FORM) - SEPARATE CONTAINER */}
+          <div className="lg:col-span-8 bg-white dark:bg-black p-8 md:p-12 rounded-[32px] border border-zinc-200 dark:border-zinc-800 shadow-2xl dark:shadow-brand-900/10 relative">
+              <div className="mb-2">
+                  <h3 className="text-3xl font-black text-zinc-900 dark:text-white mb-8">{form.title}</h3>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                       <div className="space-y-2">
-                          <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider ml-1">NAMA PANGGILAN</label>
+                          <label className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider ml-1">NAMA PANGGILAN</label>
                           <input 
                               type="text" 
                               placeholder={form.namePlaceholder}
-                              className="w-full bg-transparent border border-zinc-300 dark:border-zinc-800 rounded-xl px-4 py-3 font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-600"
+                              className="w-full bg-transparent border border-zinc-300 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-600"
                           />
                       </div>
                       <div className="space-y-2">
-                          <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider ml-1">NOMOR WHATSAPP</label>
+                          <label className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider ml-1">NOMOR WHATSAPP</label>
                           <input 
                               type="tel" 
                               placeholder={form.waPlaceholder}
-                              className="w-full bg-transparent border border-zinc-300 dark:border-zinc-800 rounded-xl px-4 py-3 font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-600"
+                              className="w-full bg-transparent border border-zinc-300 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-600"
                           />
                       </div>
                   </div>
 
                   <div className="space-y-3 mb-6">
-                       <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider ml-1">{form.topicLabel}</label>
+                       <label className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider ml-1">{form.topicLabel}</label>
                        <div className="flex flex-wrap gap-3">
                            {form.topics.map(topic => (
                                <button
                                   key={topic}
                                   onClick={() => setSelectedTopic(topic)}
-                                  className={`px-4 py-2 rounded-lg text-xs font-bold border transition-all duration-200
+                                  className={`px-4 py-2.5 rounded-lg text-[11px] font-bold border transition-all duration-200 uppercase tracking-wide
                                     ${selectedTopic === topic 
                                         ? 'bg-brand-600 border-brand-600 text-white shadow-lg shadow-brand-500/20' 
                                         : 'bg-transparent border-zinc-300 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:border-zinc-400 dark:hover:border-zinc-600'
@@ -112,19 +112,19 @@ export const ContactFormLayoutAtom: React.FC<ContactFormLayoutProps> = ({ info, 
                   </div>
 
                   <div className="space-y-2 mb-8">
-                       <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider ml-1">DETAIL PESAN</label>
+                       <label className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider ml-1">DETAIL PESAN</label>
                        <textarea 
-                          rows={4}
+                          rows={5}
                           placeholder={form.msgPlaceholder}
-                          className="w-full bg-transparent border border-zinc-300 dark:border-zinc-800 rounded-xl px-4 py-3 font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-600 resize-none"
+                          className="w-full bg-transparent border border-zinc-300 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-600 resize-none"
                        />
                   </div>
 
-                  <Button fullWidth size="lg" className="bg-gradient-to-r from-brand-600 to-red-600 hover:to-red-500 font-black tracking-widest shadow-xl shadow-brand-500/20">
+                  <Button fullWidth size="lg" className="bg-gradient-to-r from-brand-600 to-red-600 hover:to-red-500 font-black tracking-widest shadow-xl shadow-brand-500/20 py-4">
                      <Send size={18} className="mr-2" /> {form.btn}
                   </Button>
                   
-                  <p className="text-[10px] text-zinc-500 text-center mt-4 italic">
+                  <p className="text-[10px] text-zinc-500 text-center mt-6 italic">
                       {form.note}
                   </p>
 
