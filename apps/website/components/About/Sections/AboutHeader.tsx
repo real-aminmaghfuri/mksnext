@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 interface AboutHeaderProps {
@@ -7,7 +8,7 @@ interface AboutHeaderProps {
 
 export const AboutHeader: React.FC<AboutHeaderProps> = ({ heading, tagline }) => {
   return (
-    <div className="relative pt-24 pb-8 md:pb-12 border-b border-zinc-200/10 dark:border-white/5">
+    <div className="relative pt-24 pb-8 md:pb-12 border-b border-zinc-200 dark:border-zinc-800">
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-b from-brand-600/10 to-transparent rounded-full blur-[150px] pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6 md:px-10 text-center relative z-10">
         <h1 className="text-5xl md:text-8xl font-black text-zinc-900 dark:text-white mb-6 tracking-tighter uppercase leading-[0.85]">

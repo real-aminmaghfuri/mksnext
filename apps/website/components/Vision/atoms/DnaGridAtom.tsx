@@ -12,21 +12,21 @@ interface DnaGridProps {
 
 export const DnaGridAtom: React.FC<DnaGridProps> = ({ title, subtitle, items }) => {
   return (
-    <div className="bg-zinc-950 py-24 relative border-t border-zinc-900">
+    <div className="bg-white dark:bg-zinc-950 py-24 relative border-t border-zinc-200 dark:border-zinc-900">
       {/* Background Texture */}
-      <div className="absolute inset-0 bg-[linear-gradient(45deg,#09090b_25%,transparent_25%,transparent_75%,#09090b_75%,#09090b),linear-gradient(45deg,#09090b_25%,transparent_25%,transparent_75%,#09090b_75%,#09090b)] bg-[size:60px_60px] bg-[position:0_0,30px_30px] opacity-20" />
+      <div className="absolute inset-0 bg-[linear-gradient(45deg,#f4f4f5_25%,transparent_25%,transparent_75%,#f4f4f5_75%,#f4f4f5),linear-gradient(45deg,#f4f4f5_25%,transparent_25%,transparent_75%,#f4f4f5_75%,#f4f4f5)] dark:bg-[linear-gradient(45deg,#09090b_25%,transparent_25%,transparent_75%,#09090b_75%,#09090b),linear-gradient(45deg,#09090b_25%,transparent_25%,transparent_75%,#09090b_75%,#09090b)] bg-[size:60px_60px] bg-[position:0_0,30px_30px] opacity-40 dark:opacity-20" />
 
       <div className="container mx-auto px-6 relative z-10">
         
         {/* Header Centered */}
         <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded border border-brand-900/50 bg-brand-950/30 text-brand-500 text-[10px] font-black uppercase tracking-widest mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded border border-brand-200 dark:border-brand-900/50 bg-brand-50 dark:bg-brand-950/30 text-brand-600 dark:text-brand-500 text-[10px] font-black uppercase tracking-widest mb-4">
                 <Fingerprint size={12} /> PREMIUM ARSENAL
             </div>
-            <h2 className="text-5xl md:text-6xl font-black text-white uppercase tracking-tighter mb-4">
-                {title.split(' ')[0]} <span className="text-brand-500">{title.split(' ')[1]}</span>
+            <h2 className="text-5xl md:text-6xl font-black text-zinc-900 dark:text-white uppercase tracking-tighter mb-4">
+                {title.split(' ')[0]} <span className="text-brand-600 dark:text-brand-500">{title.split(' ')[1]}</span>
             </h2>
-            <p className="text-zinc-500 font-medium italic">
+            <p className="text-zinc-500 dark:text-zinc-500 font-medium italic">
                 {subtitle}
             </p>
         </div>
@@ -36,14 +36,14 @@ export const DnaGridAtom: React.FC<DnaGridProps> = ({ title, subtitle, items }) 
             {items.map((item, idx) => {
                 const Icon = item.icon;
                 return (
-                    <div key={idx} className="group bg-zinc-900/80 backdrop-blur-sm border border-zinc-800 p-8 rounded-3xl hover:border-zinc-600 transition-all duration-300 hover:-translate-y-1">
-                        <div className="w-12 h-12 rounded-xl bg-zinc-800 flex items-center justify-center text-zinc-400 mb-6 group-hover:text-white group-hover:bg-zinc-700 transition-colors">
+                    <div key={idx} className="group bg-zinc-50 dark:bg-zinc-900/80 backdrop-blur-sm border border-zinc-200 dark:border-zinc-800 p-8 rounded-3xl hover:border-zinc-300 dark:hover:border-zinc-600 transition-all duration-300 hover:-translate-y-1">
+                        <div className="w-12 h-12 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-zinc-500 dark:text-zinc-400 mb-6 group-hover:text-white group-hover:bg-zinc-800 dark:group-hover:bg-zinc-700 transition-colors">
                             <Icon size={24} strokeWidth={1.5} />
                         </div>
-                        <h3 className="text-lg font-bold text-white mb-3">
+                        <h3 className="text-lg font-bold text-zinc-900 dark:text-white mb-3">
                             {item.title}
                         </h3>
-                        <p className="text-sm text-zinc-500 leading-relaxed font-medium group-hover:text-zinc-400 transition-colors">
+                        <p className="text-sm text-zinc-600 dark:text-zinc-500 leading-relaxed font-medium group-hover:text-zinc-500 dark:group-hover:text-zinc-400 transition-colors">
                             {item.desc}
                         </p>
                     </div>

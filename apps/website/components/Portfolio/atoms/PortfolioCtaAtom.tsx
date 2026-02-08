@@ -11,8 +11,8 @@ interface PortfolioCtaProps {
 
 export const PortfolioCtaAtom: React.FC<PortfolioCtaProps> = ({ title, sub, btnText }) => {
   return (
-    <div className="bg-black py-24 border-t border-zinc-900 text-center relative overflow-hidden">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand-900/20 blur-[100px] rounded-full pointer-events-none" />
+    <div className="bg-zinc-900 dark:bg-black py-24 border-t border-zinc-800 dark:border-zinc-900 text-center relative overflow-hidden">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand-600/20 dark:bg-brand-900/20 blur-[100px] rounded-full pointer-events-none" />
         
         <div className="container mx-auto px-6 relative z-10">
             <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tight mb-4">

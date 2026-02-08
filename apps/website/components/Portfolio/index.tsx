@@ -12,7 +12,7 @@ export const Portfolio: React.FC = () => {
   const { content, activeCategory, setActiveCategory, filteredItems } = usePortfolio();
 
   return (
-    <section className="min-h-screen bg-black transition-colors duration-500">
+    <section className="min-h-screen bg-zinc-50 dark:bg-black transition-colors duration-500">
       <PortfolioHeaderAtom 
         heading={content.heading}
         headingSpan={content.headingSpan}

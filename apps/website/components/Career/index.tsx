@@ -12,7 +12,7 @@ export const Career: React.FC = () => {
   const content = useCareer();
 
   return (
-    <section className="min-h-screen bg-black text-white transition-colors duration-500">
+    <section className="min-h-screen bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white transition-colors duration-500">
       <CareerHeaderAtom 
         heading={content.heading}
         headingSpan={content.headingSpan}

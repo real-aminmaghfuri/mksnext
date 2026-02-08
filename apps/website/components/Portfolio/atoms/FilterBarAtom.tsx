@@ -20,7 +20,7 @@ export const FilterBarAtom: React.FC<FilterBarProps> = ({ filters, activeCategor
     flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all duration-300 border
     ${isActive 
       ? 'bg-brand-600 text-white border-brand-500 shadow-[0_0_20px_rgba(249,115,22,0.3)]' 
-      : 'bg-zinc-900 text-zinc-500 border-zinc-800 hover:border-zinc-700 hover:text-zinc-300'
+      : 'bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-500 border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 hover:text-zinc-900 dark:hover:text-zinc-300'
     }
   `;
 

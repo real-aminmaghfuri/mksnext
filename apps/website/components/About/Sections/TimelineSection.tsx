@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { LucideIcon } from 'lucide-react';
 
@@ -20,7 +21,7 @@ export const TimelineSection: React.FC<TimelineSectionProps> = ({ items }) => {
         <h3 className="text-3xl md:text-4xl font-black text-zinc-900 dark:text-white uppercase tracking-tighter">
           War Log & Chronicle
         </h3>
-        <div className="flex-1 h-[2px] bg-gradient-to-r from-brand-600/30 via-zinc-800 to-transparent" />
+        <div className="flex-1 h-[2px] bg-gradient-to-r from-brand-600/30 via-zinc-300 dark:via-zinc-800 to-transparent" />
       </div>
 
       <div className="relative">
@@ -34,7 +35,7 @@ export const TimelineSection: React.FC<TimelineSectionProps> = ({ items }) => {
                   <Icon size={28} strokeWidth={2.5} className="md:size-32" />
                 </div>
                 <div className="space-y-2">
-                  <span className="inline-block px-3 py-1 rounded-lg bg-zinc-900 text-[10px] font-black text-brand-500 uppercase tracking-[0.2em] border border-brand-500/20">
+                  <span className="inline-block px-3 py-1 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-[10px] font-black text-brand-600 dark:text-brand-500 uppercase tracking-[0.2em] border border-brand-500/20">
                     {item.year}
                   </span>
                   <h4 className="text-2xl md:text-4xl font-black text-zinc-900 dark:text-white tracking-tight">
