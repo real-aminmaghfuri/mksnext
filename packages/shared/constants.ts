@@ -1,5 +1,5 @@
 
-import { Language, Translation, ProductItem } from './types';
+import { Language, Translation, ProductItem, PortfolioItem } from './types';
 
 export const DICTIONARY: Record<Language, Translation> = {
   [Language.ID]: {
@@ -22,6 +22,7 @@ export const DICTIONARY: Record<Language, Translation> = {
     navAboutProfile: "Profil Perusahaan",
     navAboutTeam: "Pasukan Elite",
     navAboutVision: "Visi & Misi",
+    navAboutPortfolio: "Jejak Pertempuran",
     navCareer: "Rekrutmen Pasukan",
     
     navSolutions: "SOLUSI BISNIS",
@@ -79,7 +80,7 @@ export const DICTIONARY: Record<Language, Translation> = {
     aboutPhil3Title: "Survival Instinct",
     aboutPhil3Desc: "Gue pernah bangkrut. Gue tau persis cara jagain aset lo biar gak bernasib sama kayak gue dulu.",
 
-    // Vision Mission (UPDATED FROM IMAGE)
+    // Vision Mission
     visionHeading: "Mimpi Gede & Kerja Keras.",
     visionSub: "Gue gak bangun PT Mesin Kasir Solo cuma buat cari untung receh. Gue punya misi buat nyelametin ribuan UMKM dari kebangkrutan karena buta data.",
     visionTitle: "Visi Gue (The Dream)",
@@ -96,7 +97,7 @@ export const DICTIONARY: Record<Language, Translation> = {
     mission4Title: "Support Tanpa Drama",
     mission4Desc: "Kalau alat rusak, gue yang pusing, bukan lo. Tim teknis gue siap backup biar jualan lo gak keganggu.",
 
-    // DNA Section (NEW FROM IMAGE)
+    // DNA Section
     dnaTitle: "DNA Gue",
     dnaSub: "Prinsip jalanan yang gue tanam ke semua anak buah gue.",
     dna1Title: "Jujur Harga Mati",
@@ -117,17 +118,43 @@ export const DICTIONARY: Record<Language, Translation> = {
     manifestoFooter: "\"Di PT Mesin Kasir Solo, gue percaya satu hal: Bisnis tanpa data itu judi. Tugas gue adalah mastiin lo pegang kartu As (Sistem & Data) biar lo selalu menang di pasar.\"",
 
     // Career
-    careerHeading: "REKRUTMEN PASUKAN.",
-    careerSub: "MKS bukan tempat buat lo yang mental kerupuk. Kita kerja keras, main keras, dan digaji pantas. Kalau lo ngerasa jago, buktiin di sini.",
-    careerPerk1Title: "Gaji Kompetitif",
-    careerPerk1Desc: "Skill lo dewa? Gue bayar harga dewa. Gak ada cerita gaji UMR buat otak sekelas lo.",
-    careerPerk2Title: "Tools Sultan",
-    careerPerk2Desc: "Laptop kentang? Gak laku. Gue modalin lo gear terbaik biar gak ada alesan kerja lambat.",
-    careerPerk3Title: "Lingkaran Setan (Positif)",
-    careerPerk3Desc: "Lo bakal dikelilingin orang-orang obsesif. Lo bakal dipaksa berkembang atau mati konyol.",
-    careerRoleTitle: "POSISI TEMPUR",
-    careerRoleEmpty: "Markas penuh. Belum ada kursi kosong. Asah terus pedang lo.",
-    careerApplyBtn: "Lamar Sekarang",
+    careerHeading: "Gue Gak Cari Karyawan, Gue Cari",
+    careerHeadingSpan: "Partner Perjuangan.",
+    careerSub: "PT Mesin Kasir Solo bukan tempat buat lo yang cuma cari \"zona nyaman\" 9-to-5. Ini markas buat lo yang mau ngebangun sistem buat nyelametin ribuan UMKM bareng gue.",
+    
+    careerDnaTitle: "DNA GUE",
+    careerDnaSub: "Gue pernah jatuh sejatuh-jatuhnya di 2022. Kehilangan domain, kehilangan aset. Gue bangkit lagi sendirian. Kalau mental lo tempe, lo gak bakal bertahan di sini.",
+    
+    careerDna1Title: "Tahan Banting",
+    careerDna1Desc: "Masalah teknis, komplain klien, deadline mepet itu makanan sehari-hari gue. Gue butuh Problem Solver yang tenang pas badai dateng.",
+    careerDna2Title: "Impact Over Output",
+    careerDna2Desc: "Jangan bangga cuma karena lo 'lembur'. Gue cuma nilai hasil akhir. Kode lo bikin transaksi makin cepet? Itu yang gue itung.",
+    careerDna3Title: "Empati ke User",
+    careerDna3Desc: "Klien gue itu pedagang pasar & ustadz TPA. Sistem lo harus membumi. Jangan bikin UI/UX rumit yang cuma dimengerti anak startup Jaksel.",
+
+    careerAntiTitle: "JANGAN COBA-COBA MASUK KALAU:",
+    careerAnti1: "Mental PNS (Cari Aman)",
+    careerAnti2: "Baperan (Anti Kritik)",
+    careerAnti3: "Males Belajar",
+    careerAnti4: "Kerja Kayak Robot",
+
+    careerRoleTitle: "Posisi Tempur",
+    careerRoleSub: "Kalau lo merasa punya DNA yang sama, ambil senjata lo dan gabung barisan.",
+    careerForceHireTitle: "Gue Belum Buka Lowongan",
+    careerForceHireDesc: "Skill lo di atas rata-rata (Top 1%)? Coba paksa gue hire lo lewat jalur nekat.",
+    careerForceHireBtn: "UPLOAD CV SPONTAN",
+
+    // Portfolio Section
+    portHeading: "Jejak Pertempuran",
+    portHeadingSpan: "Bukan Kaleng-Kaleng.",
+    portSub: "Gue gak jual janji manis. Ini bukti otentik instalasi Mesin Kasir Solo dan sistem digital yang gue kerjain. Foto asli lapangan, bukan colongan Google. Cek sendiri biar lo yakin gue bukan sales abal-abal.",
+    portFilterAll: "Semua Arsenal",
+    portFilterPhysical: "Mesin Kasir (Fisik)",
+    portFilterDigital: "Software & Web (Otak)",
+    portCtaTitle: "Mau Bisnis Lo Masuk Sini?",
+    portCtaSub: "Jangan cuma jadi penonton kesuksesan orang lain. Saatnya giliran lo yang gue bantu upgrade sistemnya.",
+    portCtaBtn: "MULAI PROYEK BARU",
+    portViewCase: "LIHAT DETAIL",
 
     // Legality
     legalTitle: "Gue Main Bersih",
@@ -168,7 +195,6 @@ export const DICTIONARY: Record<Language, Translation> = {
     footerLegal2: "Syarat Perang",
   },
   [Language.EN]: {
-    // Keeping EN simpler/similar but translating the vibe
     heroTitle: "Your Business is War. Don't Bring Toys.",
     heroSubtitle: "This is the most savage weapon to validate your hustle in Solo. I built MKS not to look cool, but to ensure your ops don't crumble under fire.",
     ctaPrimary: "Let's Ride",
@@ -187,6 +213,7 @@ export const DICTIONARY: Record<Language, Translation> = {
     navAboutProfile: "Company Profile",
     navAboutTeam: "Elite Squad",
     navAboutVision: "Vision & Mission",
+    navAboutPortfolio: "Battle Tracks",
     navCareer: "Join Corps",
     
     navSolutions: "BIZ SOLUTIONS",
@@ -277,17 +304,44 @@ export const DICTIONARY: Record<Language, Translation> = {
     manifestoText: "I Don't Sell Magic Tricks, I Sell War Weapons.",
     manifestoFooter: "\"At PT Mesin Kasir Solo, I believe one thing: Business without data is gambling. My job is ensuring you hold the Ace Card (System & Data) so you always win the market.\"",
 
-    careerHeading: "SPECIAL FORCES RECRUITMENT.",
-    careerSub: "MKS is not for the weak. We work hard, play hard, and pay well. If you think you're a god, prove it here.",
-    careerPerk1Title: "God-Tier Salary",
-    careerPerk1Desc: "You have skills? I pay well. No minimum wage nonsense for brains like yours.",
-    careerPerk2Title: "Sultan Tools",
-    careerPerk2Desc: "Potato laptop? Get out. I provide the best gear so you have zero excuses for being slow.",
-    careerPerk3Title: "Vicious Circle (Positive)",
-    careerPerk3Desc: "You will be surrounded by obsessed people. Evolve or die trying.",
-    careerRoleTitle: "COMBAT POSITIONS",
-    careerRoleEmpty: "Base is full. No open seats. Keep sharpening your blade.",
-    careerApplyBtn: "Apply Now",
+    // Career (EN)
+    careerHeading: "I Don't Need Employees, I Need",
+    careerHeadingSpan: "Struggle Partners.",
+    careerSub: "PT Mesin Kasir Solo is not for those seeking a 9-to-5 'comfort zone'. This is a base for those who want to build systems to save thousands of SMEs with me.",
+    
+    careerDnaTitle: "MY DNA",
+    careerDnaSub: "I hit rock bottom in 2022. Lost domains, lost assets. I rose back up alone. If you're fragile, you won't survive here.",
+    
+    careerDna1Title: "Resilient",
+    careerDna1Desc: "Tech issues, client complaints, tight deadlines are my daily bread. I need a Problem Solver who stays calm in a storm.",
+    careerDna2Title: "Impact Over Output",
+    careerDna2Desc: "Don't brag about 'overtime'. I only judge the final result. Does your code make transactions faster? That's what counts.",
+    careerDna3Title: "User Empathy",
+    careerDna3Desc: "My clients are market traders & religious teachers. Your system must be grounded. Don't make complex UX only startup kids understand.",
+
+    careerAntiTitle: "DON'T EVEN TRY TO JOIN IF:",
+    careerAnti1: "Safety Seeker (Civil Servant Mindset)",
+    careerAnti2: "Can't Take Criticism (Fragile)",
+    careerAnti3: "Lazy to Learn",
+    careerAnti4: "Work Like a Robot",
+
+    careerRoleTitle: "Combat Positions",
+    careerRoleSub: "If you feel you share the same DNA, grab your weapon and join the line.",
+    careerForceHireTitle: "I Haven't Opened Vacancies",
+    careerForceHireDesc: "Skill above average (Top 1%)? Force me to hire you via the reckless path.",
+    careerForceHireBtn: "UPLOAD CV SPONTANEOUSLY",
+
+    // Portfolio
+    portHeading: "Battle Tracks",
+    portHeadingSpan: "Not Fake News.",
+    portSub: "I don't sell sweet promises. These are authentic proofs of MKS installations. Real field photos, not stolen from Google. Check yourself so you know I'm not a fake salesman.",
+    portFilterAll: "All Arsenal",
+    portFilterPhysical: "POS Hardware (Physical)",
+    portFilterDigital: "Software & Web (Brain)",
+    portCtaTitle: "Want Your Business Here?",
+    portCtaSub: "Don't just watch others succeed. It's your turn for me to upgrade your system.",
+    portCtaBtn: "START NEW PROJECT",
+    portViewCase: "VIEW DETAIL",
 
     legalTitle: "I Play Clean",
     legalDesc: "Business is trust. I won't ruin the name I rebuilt from zero. Here is the proof I am legal.",
@@ -362,5 +416,56 @@ export const MOCK_PRODUCTS: ProductItem[] = [
     price: 2800000,
     image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&q=80&w=400",
     desc: "Tablet khusus POS. Baterai badak 8000mAh. Layar IPS jernih. Sudah include stand metal."
+  }
+];
+
+export const MOCK_PORTFOLIO: PortfolioItem[] = [
+  {
+    id: 1,
+    title: "Website Company Profile (Compro) Pasirmas Barkah - Rembang",
+    category: "DIGITAL",
+    tag: "Solusi Bisnis",
+    desc: "Pengembangan website profil perusahaan yang komprehensif mengintegrasikan seluruh lini bisnis strategis untuk memvalidasi kredibilitas.",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 2,
+    title: "Web Company Profile (Compro) Dinara Skincare - Sukoharjo",
+    category: "DIGITAL",
+    tag: "Solusi Bisnis",
+    desc: "Solusi teknis yang diimplementasikan adalah pengembangan website company profile yang responsif dan teroptimasi SEO.",
+    image: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 3,
+    title: "Instalasi & Training Mesin Kasir Android Desktop - Fauzan Net - Sragen",
+    category: "PHYSICAL",
+    tag: "Hardware & Instalasi",
+    desc: "Solusi teknis dilakukan melalui penyusunan struktur kategori yang sistematis dan optimalisasi manajemen database.",
+    image: "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 4,
+    title: "Digital Marketing Executive KPF Semarang - Broker trading komoditi Emas",
+    category: "DIGITAL",
+    tag: "Solusi Bisnis",
+    desc: "Implementasi strategi pemasaran digital mencakup analisis mendalam terhadap perilaku pasar dan eksekusi kampanye terukur.",
+    image: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 5,
+    title: "Mesin Kasir Android Desktop Touchscreen - Short Coffee - Surakarta",
+    category: "PHYSICAL",
+    tag: "Hardware & Instalasi",
+    desc: "Short Coffee di Surakarta menghadapi tantangan untuk menghadirkan area kasir yang selaras dengan estetika interior.",
+    image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 6,
+    title: "Instalasi & training mesin kasir komputer - Orinawa - BTC Solo",
+    category: "PHYSICAL",
+    tag: "Hardware & Instalasi",
+    desc: "Orinawa di BTC Solo menghadapi tantangan operasional signifikan akibat volume transaksi harian yang sangat tinggi.",
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800&auto=format&fit=crop"
   }
 ];

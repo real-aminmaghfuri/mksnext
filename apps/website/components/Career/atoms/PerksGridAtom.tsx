@@ -1,11 +1,10 @@
-
 "use client";
 import React from 'react';
 import { GlassCard } from 'ui';
-import { PerkItem } from '../types';
+import { DnaItem } from '../types';
 
 interface PerksGridProps {
-  items: PerkItem[];
+  items: DnaItem[];
 }
 
 export const PerksGridAtom: React.FC<PerksGridProps> = ({ items }) => {

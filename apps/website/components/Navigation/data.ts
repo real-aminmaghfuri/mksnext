@@ -1,5 +1,5 @@
 
-import { User, Layers, BookOpen, ShoppingBag, Laptop, Cpu, HelpCircle, Briefcase } from 'lucide-react';
+import { User, Layers, BookOpen, ShoppingBag, Laptop, Cpu, HelpCircle, Briefcase, FolderOpen } from 'lucide-react';
 import { Translation } from 'shared';
 import { MenuItem } from './types';
 
@@ -17,6 +17,7 @@ export const getMenuStructure = (text: Translation): MenuItem[] => [
       { label: text.navAboutProfile, path: '/about', icon: User, desc: "Sejarah, Visi & Legitimasi PT MKS" },
       { label: text.navAboutTeam, path: '#', icon: Layers, desc: "Struktur Komando & Tim Lapangan" },
       { label: text.navAboutVision, path: '/vision', icon: BookOpen, desc: "Blueprint Masa Depan" },
+      { label: text.navAboutPortfolio, path: '/portfolio', icon: FolderOpen, desc: "Bukti Otentik Project" },
       { label: text.navCareer, path: '/career', icon: Briefcase, desc: "Gabung Pasukan Elite" },
     ]
   },

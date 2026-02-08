@@ -4,28 +4,38 @@
 import React from 'react';
 import { useCareer } from './useCareer';
 import { CareerHeaderAtom } from './atoms/CareerHeaderAtom';
-import { PerksGridAtom } from './atoms/PerksGridAtom';
+import { CareerDnaAtom } from './atoms/CareerDnaAtom';
+import { AntiPersonaAtom } from './atoms/AntiPersonaAtom';
 import { OpenRolesAtom } from './atoms/OpenRolesAtom';
 
 export const Career: React.FC = () => {
   const content = useCareer();
 
   return (
-    <section className="min-h-screen bg-zinc-50 dark:bg-black transition-colors duration-500">
+    <section className="min-h-screen bg-black text-white transition-colors duration-500">
       <CareerHeaderAtom 
         heading={content.heading}
+        headingSpan={content.headingSpan}
         sub={content.sub}
       />
       
-      <PerksGridAtom 
-        items={content.perks} 
+      <CareerDnaAtom 
+        title={content.dnaTitle}
+        subtitle={content.dnaSub}
+        items={content.dnaItems} 
+      />
+
+      <AntiPersonaAtom 
+        title={content.antiTitle}
+        items={content.antiPersonas}
       />
 
       <OpenRolesAtom 
-        title={content.roleTitle}
-        emptyText={content.roleEmpty}
-        roles={content.roles}
-        applyText={content.applyBtn}
+        roleTitle={content.roleTitle}
+        roleSub={content.roleSub}
+        forceHireTitle={content.forceHireTitle}
+        forceHireDesc={content.forceHireDesc}
+        forceHireBtn={content.forceHireBtn}
       />
     </section>
   );

@@ -1,26 +1,32 @@
 
 import { LucideIcon } from 'lucide-react';
 
-export interface PerkItem {
+export interface DnaItem {
   title: string;
   desc: string;
   icon: LucideIcon;
   color: string;
 }
 
-export interface JobRole {
-  id: string;
-  title: string;
-  type: string;
-  location: string;
+export interface AntiPersonaItem {
+  text: string;
 }
 
 export interface CareerContent {
   heading: string;
+  headingSpan: string;
   sub: string;
-  perks: PerkItem[];
+  
+  dnaTitle: string;
+  dnaSub: string;
+  dnaItems: DnaItem[];
+
+  antiTitle: string;
+  antiPersonas: AntiPersonaItem[];
+
   roleTitle: string;
-  roleEmpty: string;
-  roles: JobRole[];
-  applyBtn: string;
+  roleSub: string;
+  forceHireTitle: string;
+  forceHireDesc: string;
+  forceHireBtn: string;
 }

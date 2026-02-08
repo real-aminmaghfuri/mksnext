@@ -37,20 +37,21 @@ export interface Translation {
   
   // Updated Nav Structure
   navHome: string;
-  navAbout: string; // TENTANG
+  navAbout: string; 
   navAboutProfile: string;
   navAboutTeam: string;
   navAboutVision: string;
-  navCareer: string; // REKRUTMEN
+  navAboutPortfolio: string; // New
+  navCareer: string; 
   
-  navSolutions: string; // SOLUSI BISNIS
+  navSolutions: string; 
   navSolHardware: string;
   navSolSoftware: string;
   navSolConsulting: string;
 
-  navInnovation: string; // INOVASI
-  navHelp: string; // PUSAT BANTUAN
-  navInsights: string; // WAWASAN
+  navInnovation: string;
+  navHelp: string;
+  navInsights: string;
 
   navServices: string;
   navShop: string;
@@ -77,7 +78,6 @@ export interface Translation {
   aboutTagline: string;
   aboutFounderQuote: string;
   
-  // New Turning Point Section
   aboutTurnTitle: string;
   aboutTurnP1: string;
   aboutTurnP1Bold: string;
@@ -95,12 +95,11 @@ export interface Translation {
   aboutPhil3Title: string;
   aboutPhil3Desc: string;
 
-  // Vision & Mission Section
   visionHeading: string;
   visionSub: string;
-  visionTitle: string; // "Visi Gue (The Dream)"
+  visionTitle: string;
   visionStatement: string;
-  missionTitle: string; // "Misi Harian (The Grind)"
+  missionTitle: string;
   missionSub: string;
   mission1Title: string;
   mission1Desc: string;
@@ -108,10 +107,9 @@ export interface Translation {
   mission2Desc: string;
   mission3Title: string;
   mission3Desc: string;
-  mission4Title: string; // Added 4th mission
+  mission4Title: string;
   mission4Desc: string;
   
-  // DNA Section (New)
   dnaTitle: string;
   dnaSub: string;
   dna1Title: string;
@@ -131,20 +129,43 @@ export interface Translation {
   manifestoText: string;
   manifestoFooter: string;
 
-  // Career Section
   careerHeading: string;
+  careerHeadingSpan: string;
   careerSub: string;
-  careerPerk1Title: string;
-  careerPerk1Desc: string;
-  careerPerk2Title: string;
-  careerPerk2Desc: string;
-  careerPerk3Title: string;
-  careerPerk3Desc: string;
-  careerRoleTitle: string;
-  careerRoleEmpty: string;
-  careerApplyBtn: string;
+  careerDnaTitle: string;
+  careerDnaSub: string;
+  
+  careerDna1Title: string;
+  careerDna1Desc: string;
+  careerDna2Title: string;
+  careerDna2Desc: string;
+  careerDna3Title: string;
+  careerDna3Desc: string;
+  
+  careerAntiTitle: string;
+  careerAnti1: string;
+  careerAnti2: string;
+  careerAnti3: string;
+  careerAnti4: string;
 
-  // Legality Section
+  careerRoleTitle: string;
+  careerRoleSub: string;
+  careerForceHireTitle: string;
+  careerForceHireDesc: string;
+  careerForceHireBtn: string;
+
+  // Portfolio Section (New)
+  portHeading: string;
+  portHeadingSpan: string;
+  portSub: string;
+  portFilterAll: string;
+  portFilterPhysical: string;
+  portFilterDigital: string;
+  portCtaTitle: string;
+  portCtaSub: string;
+  portCtaBtn: string;
+  portViewCase: string;
+
   legalTitle: string;
   legalDesc: string;
   legalLabelEntity: string;
@@ -188,4 +209,13 @@ export interface ProductItem {
   image: string;
   desc: string;
   tag?: string;
+}
+
+export interface PortfolioItem {
+  id: number;
+  title: string;
+  category: 'PHYSICAL' | 'DIGITAL';
+  tag: string;
+  desc: string;
+  image: string;
 }
