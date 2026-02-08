@@ -19,7 +19,10 @@ export const Contact: React.FC = () => {
       />
       
       {/* 1. QnA Section after Hero */}
-      <ContactQnaAtom items={content.qna} />
+      <ContactQnaAtom 
+        items={content.qna.items} 
+        title={content.qna.title}
+      />
 
       {/* 2. Main Form Layout (30/70) */}
       <ContactFormLayoutAtom 

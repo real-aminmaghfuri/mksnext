@@ -6,9 +6,10 @@ import { HelpCircle, ChevronDown, ChevronUp } from 'lucide-react';
 
 interface ContactQnaProps {
   items: QnaItem[];
+  title: string;
 }
 
-export const ContactQnaAtom: React.FC<ContactQnaProps> = ({ items }) => {
+export const ContactQnaAtom: React.FC<ContactQnaProps> = ({ items, title }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggle = (idx: number) => {
@@ -16,12 +17,15 @@ export const ContactQnaAtom: React.FC<ContactQnaProps> = ({ items }) => {
   };
 
   return (
-    <div className="container mx-auto px-6 mt-20 mb-20 max-w-4xl relative z-10">
+    <div className="container mx-auto px-6 mt-20 mb-20 max-w-5xl relative z-10">
       <div className="flex flex-col items-center mb-10 text-center">
          <div className="inline-flex items-center gap-2 text-brand-600 dark:text-brand-500 mb-2">
             <HelpCircle size={24} />
-            <h3 className="font-bold uppercase tracking-widest text-sm">Quick Intel (FAQ)</h3>
+            <h3 className="font-bold uppercase tracking-widest text-sm">FAQ</h3>
          </div>
+         <h2 className="text-4xl md:text-5xl font-black uppercase text-zinc-900 dark:text-white tracking-tighter mb-4">
+            {title}
+         </h2>
          <p className="text-zinc-500 dark:text-zinc-400 text-sm">Jawaban cepat buat pertanyaan yang sering masuk.</p>
       </div>
 
@@ -41,19 +45,19 @@ export const ContactQnaAtom: React.FC<ContactQnaProps> = ({ items }) => {
                     onClick={() => toggle(idx)}
                     className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
                 >
-                    <span className={`font-bold text-base md:text-lg transition-colors ${isOpen ? 'text-brand-600 dark:text-brand-500' : 'text-zinc-900 dark:text-white'}`}>
+                    <span className={`font-bold text-base md:text-xl transition-colors italic leading-snug ${isOpen ? 'text-brand-600 dark:text-brand-500' : 'text-zinc-800 dark:text-zinc-200'}`}>
                         {item.q}
                     </span>
-                    <div className={`p-2 rounded-full transition-colors ${isOpen ? 'bg-brand-500/10 text-brand-600' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-500'}`}>
-                        {isOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                    <div className={`p-2 rounded-full transition-colors shrink-0 ml-4 ${isOpen ? 'bg-brand-500/10 text-brand-600' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-500'}`}>
+                        {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                     </div>
                 </button>
                 
                 <div 
-                    className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'}`}
+                    className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
                 >
-                    <div className="px-6 pb-6 pt-0">
-                        <p className="text-zinc-600 dark:text-zinc-400 text-sm md:text-base leading-relaxed border-t border-zinc-100 dark:border-zinc-800 pt-4">
+                    <div className="px-6 pb-8 pt-0">
+                        <p className="text-zinc-600 dark:text-zinc-400 text-sm md:text-lg leading-relaxed border-t border-zinc-100 dark:border-zinc-800 pt-4">
                             {item.a}
                         </p>
                     </div>

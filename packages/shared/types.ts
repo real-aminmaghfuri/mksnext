@@ -181,10 +181,13 @@ export interface Translation {
   // Contact Section
   contactHeading: string;
   contactSub: string;
+  contactQnaTitle: string;
   contactQna: QnaItem[];
   
   contactOfficeLegalTitle: string;
+  contactOfficeLegalAddress: string;
   contactOfficeOpsTitle: string;
+  contactOfficeOpsAddress: string;
   contactLabelWa: string;
   contactLabelEmail: string;
   contactLabelHours: string;
@@ -192,6 +195,7 @@ export interface Translation {
   contactFormTitle: string;
   contactFormName: string;
   contactFormWa: string;
+  contactFormAddress: string;
   contactFormTopic: string;
   contactFormMsg: string;
   contactFormBtn: string;

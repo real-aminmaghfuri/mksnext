@@ -24,10 +24,10 @@ export const ContactFormLayoutAtom: React.FC<ContactFormLayoutProps> = ({ info, 
                   <div>
                       <div className="flex items-center gap-2 text-zinc-400 mb-2">
                           <MapPin size={14} />
-                          <span className="text-[10px] font-black uppercase tracking-widest">{info.officeLegal}</span>
+                          <span className="text-[10px] font-black uppercase tracking-widest text-brand-600 dark:text-brand-500">{info.officeLegal}</span>
                       </div>
-                      <p className="text-sm font-bold text-zinc-800 dark:text-zinc-200 leading-snug">
-                          Jl. Raya Palur Km 5, Ngringo, Jaten, Karanganyar (Depan Plaza Palur)
+                      <p className="text-sm font-bold text-zinc-800 dark:text-zinc-200 leading-relaxed">
+                          {info.officeLegalAddress}
                       </p>
                   </div>
 
@@ -35,10 +35,10 @@ export const ContactFormLayoutAtom: React.FC<ContactFormLayoutProps> = ({ info, 
                    <div>
                       <div className="flex items-center gap-2 text-zinc-400 mb-2">
                           <MapPin size={14} />
-                          <span className="text-[10px] font-black uppercase tracking-widest">{info.officeOps}</span>
+                          <span className="text-[10px] font-black uppercase tracking-widest text-brand-600 dark:text-brand-500">{info.officeOps}</span>
                       </div>
-                      <p className="text-sm font-bold text-zinc-800 dark:text-zinc-200 leading-snug">
-                          Perumahan UNS V, Jl. Kutilang 1 No. 126, Triyagan, Mojolaban
+                      <p className="text-sm font-bold text-zinc-800 dark:text-zinc-200 leading-relaxed">
+                          {info.officeOpsAddress}
                       </p>
                   </div>
 
@@ -55,13 +55,13 @@ export const ContactFormLayoutAtom: React.FC<ContactFormLayoutProps> = ({ info, 
                       <div>
                          <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1">{info.labelEmail}</p>
                          <p className="font-mono text-sm text-zinc-800 dark:text-zinc-300 font-bold flex items-center gap-2">
-                            <Mail size={16} /> admin@mesinkasirsolo.com
+                            <Mail size={16} /> owner.kasirsolo@gmail.com
                          </p>
                       </div>
                       <div>
                          <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1">{info.labelHours}</p>
                          <p className="font-mono text-sm text-zinc-800 dark:text-zinc-300 font-bold flex items-center gap-2">
-                            <Clock size={16} /> 09:00 - 17:00 WIB
+                            <Clock size={16} /> 09:00 - 17:00 WIB (Senin - Sabtu)
                          </p>
                       </div>
                   </div>
@@ -94,12 +94,13 @@ export const ContactFormLayoutAtom: React.FC<ContactFormLayoutProps> = ({ info, 
 
                   <div className="space-y-3 mb-6">
                        <label className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider ml-1">{form.topicLabel}</label>
-                       <div className="flex flex-wrap gap-3">
+                       {/* Full width grid layout for topics */}
+                       <div className="grid grid-cols-2 gap-3">
                            {form.topics.map(topic => (
                                <button
                                   key={topic}
                                   onClick={() => setSelectedTopic(topic)}
-                                  className={`px-4 py-2.5 rounded-lg text-[11px] font-bold border transition-all duration-200 uppercase tracking-wide
+                                  className={`w-full px-4 py-3 rounded-lg text-xs font-bold border transition-all duration-200 uppercase tracking-wide text-center
                                     ${selectedTopic === topic 
                                         ? 'bg-brand-600 border-brand-600 text-white shadow-lg shadow-brand-500/20' 
                                         : 'bg-transparent border-zinc-300 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:border-zinc-400 dark:hover:border-zinc-600'
@@ -109,6 +110,16 @@ export const ContactFormLayoutAtom: React.FC<ContactFormLayoutProps> = ({ info, 
                                </button>
                            ))}
                        </div>
+                  </div>
+
+                  {/* Address Field */}
+                  <div className="space-y-2 mb-6">
+                        <label className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider ml-1">ALAMAT / LOKASI LO</label>
+                        <input 
+                            type="text" 
+                            placeholder={form.addressPlaceholder}
+                            className="w-full bg-transparent border border-zinc-300 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm font-medium text-zinc-900 dark:text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all placeholder:text-zinc-400 dark:placeholder:text-zinc-600"
+                        />
                   </div>
 
                   <div className="space-y-2 mb-8">

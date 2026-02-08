@@ -13,12 +13,15 @@ export const ContactMapsAtom: React.FC<ContactMapsProps> = ({ data }) => {
     <div className="container mx-auto px-6 mb-20 relative z-10">
       
       {/* Section Header */}
-      <div className="flex flex-col items-center mb-10 text-center">
+      <div className="flex flex-col items-center mb-12 text-center">
          <div className="inline-flex items-center gap-2 text-brand-600 dark:text-brand-500 mb-2">
             <Map size={24} />
-            <h3 className="font-bold uppercase tracking-widest text-sm">{data.title}</h3>
+            <h3 className="font-bold uppercase tracking-widest text-sm">NAVIGASI</h3>
          </div>
-         <p className="text-zinc-500 dark:text-zinc-400 text-sm">{data.desc}</p>
+         <h2 className="text-4xl md:text-5xl font-black uppercase text-zinc-900 dark:text-white tracking-tighter mb-4">
+            {data.title}
+         </h2>
+         <p className="text-zinc-500 dark:text-zinc-400 text-sm max-w-xl mx-auto">{data.desc}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

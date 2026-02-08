@@ -13,7 +13,9 @@ export interface ContactInfoItem {
 
 export interface ContactInfoData {
   officeLegal: string;
+  officeLegalAddress: string;
   officeOps: string;
+  officeOpsAddress: string;
   labelWa: string;
   labelEmail: string;
   labelHours: string;
@@ -23,6 +25,7 @@ export interface FormData {
   title: string;
   namePlaceholder: string;
   waPlaceholder: string;
+  addressPlaceholder: string;
   topicLabel: string;
   msgPlaceholder: string;
   btn: string;
@@ -35,10 +38,15 @@ export interface ContactMapsData {
   desc: string;
 }
 
+export interface ContactQnaData {
+    title: string;
+    items: QnaItem[];
+}
+
 export interface ContactContent {
   heading: string;
   sub: string;
-  qna: QnaItem[];
+  qna: ContactQnaData;
   info: ContactInfoData;
   form: FormData;
   maps: ContactMapsData;
