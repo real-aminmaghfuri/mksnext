@@ -41,8 +41,8 @@ export const VisionHeaderAtom: React.FC<VisionHeaderProps> = ({ heading, sub, vi
         {/* Vision Card (The Dream) - Striking Background */}
         <div className="relative p-1 rounded-[32px] bg-gradient-to-b from-zinc-200 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 shadow-2xl max-w-5xl mx-auto group">
              
-             {/* Main Card Content with Solid/Gradient Background */}
-             <div className="bg-gradient-to-br from-brand-600 to-red-600 rounded-[28px] p-8 md:p-14 relative overflow-hidden h-full flex flex-col md:flex-row items-center gap-8 md:gap-16 shadow-inner">
+             {/* Main Card Content with 80% Opacity Gradient Background */}
+             <div className="bg-gradient-to-br from-brand-600/80 to-red-600/80 rounded-[28px] p-8 md:p-14 relative overflow-hidden h-full flex flex-col md:flex-row items-center gap-8 md:gap-16 shadow-inner backdrop-blur-sm">
                  
                  {/* Decorative Glow inside card */}
                  <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 blur-[80px] rounded-full pointer-events-none" />
