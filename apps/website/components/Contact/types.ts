@@ -12,6 +12,7 @@ export interface ContactInfoItem {
 }
 
 export interface ContactInfoData {
+  infoTitle: string; // New title field
   officeLegal: string;
   officeLegalAddress: string;
   officeOps: string;

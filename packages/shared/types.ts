@@ -184,6 +184,7 @@ export interface Translation {
   contactQnaTitle: string;
   contactQna: QnaItem[];
   
+  contactInfoTitle: string; // New field
   contactOfficeLegalTitle: string;
   contactOfficeLegalAddress: string;
   contactOfficeOpsTitle: string;

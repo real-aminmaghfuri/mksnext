@@ -19,25 +19,32 @@ export const ContactFormLayoutAtom: React.FC<ContactFormLayoutProps> = ({ info, 
           
           {/* LEFT COLUMN (INFO) - SEPARATE CONTAINER */}
           <div className="lg:col-span-4 bg-white dark:bg-zinc-900 p-8 rounded-[32px] border border-zinc-200 dark:border-zinc-800 shadow-xl dark:shadow-none h-full">
-              <div className="space-y-8">
+              {/* Card Title */}
+              <div className="mb-6 border-b-2 border-brand-500 pb-4">
+                  <h3 className="text-2xl font-black text-zinc-900 dark:text-white uppercase tracking-tighter">
+                      {info.infoTitle}
+                  </h3>
+              </div>
+
+              <div className="space-y-10">
                   {/* Legal Office */}
                   <div>
-                      <div className="flex items-center gap-2 text-zinc-400 mb-2">
-                          <MapPin size={14} />
-                          <span className="text-[10px] font-black uppercase tracking-widest text-brand-600 dark:text-brand-500">{info.officeLegal}</span>
+                      <div className="flex items-center gap-2 text-zinc-500 mb-2">
+                          <MapPin size={16} />
+                          <span className="text-xs font-black uppercase tracking-widest text-brand-600 dark:text-brand-500">{info.officeLegal}</span>
                       </div>
-                      <p className="text-sm font-bold text-zinc-800 dark:text-zinc-200 leading-relaxed">
+                      <p className="text-base font-bold text-zinc-800 dark:text-zinc-200 leading-relaxed">
                           {info.officeLegalAddress}
                       </p>
                   </div>
 
                    {/* Ops Office */}
                    <div>
-                      <div className="flex items-center gap-2 text-zinc-400 mb-2">
-                          <MapPin size={14} />
-                          <span className="text-[10px] font-black uppercase tracking-widest text-brand-600 dark:text-brand-500">{info.officeOps}</span>
+                      <div className="flex items-center gap-2 text-zinc-500 mb-2">
+                          <MapPin size={16} />
+                          <span className="text-xs font-black uppercase tracking-widest text-brand-600 dark:text-brand-500">{info.officeOps}</span>
                       </div>
-                      <p className="text-sm font-bold text-zinc-800 dark:text-zinc-200 leading-relaxed">
+                      <p className="text-base font-bold text-zinc-800 dark:text-zinc-200 leading-relaxed">
                           {info.officeOpsAddress}
                       </p>
                   </div>
@@ -45,23 +52,23 @@ export const ContactFormLayoutAtom: React.FC<ContactFormLayoutProps> = ({ info, 
                   <div className="h-px bg-zinc-100 dark:bg-zinc-800 w-full" />
 
                   {/* Contact Details */}
-                  <div className="space-y-6">
+                  <div className="space-y-8">
                       <div>
-                         <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1">{info.labelWa}</p>
-                         <p className="font-mono text-base text-brand-600 dark:text-brand-500 font-bold flex items-center gap-2">
-                            <Phone size={16} /> 0881-6566-935
+                         <p className="text-xs font-black uppercase tracking-widest text-zinc-400 mb-1">{info.labelWa}</p>
+                         <p className="font-mono text-lg text-brand-600 dark:text-brand-500 font-black flex items-center gap-2">
+                            <Phone size={20} /> 0881-6566-935
                          </p>
                       </div>
                       <div>
-                         <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1">{info.labelEmail}</p>
-                         <p className="font-mono text-sm text-zinc-800 dark:text-zinc-300 font-bold flex items-center gap-2">
-                            <Mail size={16} /> owner.kasirsolo@gmail.com
+                         <p className="text-xs font-black uppercase tracking-widest text-zinc-400 mb-1">{info.labelEmail}</p>
+                         <p className="font-mono text-base text-zinc-800 dark:text-zinc-300 font-bold flex items-center gap-2">
+                            <Mail size={18} /> owner.kasirsolo@gmail.com
                          </p>
                       </div>
                       <div>
-                         <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1">{info.labelHours}</p>
-                         <p className="font-mono text-sm text-zinc-800 dark:text-zinc-300 font-bold flex items-center gap-2">
-                            <Clock size={16} /> 09:00 - 17:00 WIB (Senin - Sabtu)
+                         <p className="text-xs font-black uppercase tracking-widest text-zinc-400 mb-1">{info.labelHours}</p>
+                         <p className="font-mono text-base text-zinc-800 dark:text-zinc-300 font-bold flex items-center gap-2">
+                            <Clock size={18} /> 09:00 - 17:00 WIB (Senin - Sabtu)
                          </p>
                       </div>
                   </div>
@@ -73,6 +80,7 @@ export const ContactFormLayoutAtom: React.FC<ContactFormLayoutProps> = ({ info, 
               <div className="mb-2">
                   <h3 className="text-3xl font-black text-zinc-900 dark:text-white mb-8">{form.title}</h3>
                   
+                  {/* Name & WA */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                       <div className="space-y-2">
                           <label className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider ml-1">NAMA PANGGILAN</label>
@@ -92,27 +100,7 @@ export const ContactFormLayoutAtom: React.FC<ContactFormLayoutProps> = ({ info, 
                       </div>
                   </div>
 
-                  <div className="space-y-3 mb-6">
-                       <label className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider ml-1">{form.topicLabel}</label>
-                       {/* Full width grid layout for topics */}
-                       <div className="grid grid-cols-2 gap-3">
-                           {form.topics.map(topic => (
-                               <button
-                                  key={topic}
-                                  onClick={() => setSelectedTopic(topic)}
-                                  className={`w-full px-4 py-3 rounded-lg text-xs font-bold border transition-all duration-200 uppercase tracking-wide text-center
-                                    ${selectedTopic === topic 
-                                        ? 'bg-brand-600 border-brand-600 text-white shadow-lg shadow-brand-500/20' 
-                                        : 'bg-transparent border-zinc-300 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:border-zinc-400 dark:hover:border-zinc-600'
-                                    }`}
-                               >
-                                   {topic}
-                               </button>
-                           ))}
-                       </div>
-                  </div>
-
-                  {/* Address Field */}
+                  {/* Address Field - Moved Up */}
                   <div className="space-y-2 mb-6">
                         <label className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider ml-1">ALAMAT / LOKASI LO</label>
                         <input 
@@ -122,6 +110,28 @@ export const ContactFormLayoutAtom: React.FC<ContactFormLayoutProps> = ({ info, 
                         />
                   </div>
 
+                  {/* Topic Buttons - Moved Down, Full Width Stacked */}
+                  <div className="space-y-3 mb-6">
+                       <label className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider ml-1">{form.topicLabel}</label>
+                       {/* Full width stacked buttons */}
+                       <div className="grid grid-cols-1 gap-3">
+                           {form.topics.map(topic => (
+                               <button
+                                  key={topic}
+                                  onClick={() => setSelectedTopic(topic)}
+                                  className={`w-full px-6 py-4 rounded-xl text-sm font-black border transition-all duration-200 uppercase tracking-widest text-center shadow-sm
+                                    ${selectedTopic === topic 
+                                        ? 'bg-brand-600 border-brand-600 text-white shadow-lg shadow-brand-500/20 scale-[1.01]' 
+                                        : 'bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-white dark:hover:bg-zinc-800'
+                                    }`}
+                               >
+                                   {topic}
+                               </button>
+                           ))}
+                       </div>
+                  </div>
+
+                  {/* Message Field */}
                   <div className="space-y-2 mb-8">
                        <label className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider ml-1">DETAIL PESAN</label>
                        <textarea 

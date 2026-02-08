@@ -172,6 +172,7 @@ export const DICTIONARY: Record<Language, Translation> = {
       { q: "\"Kalau rusak gimana klaim garansinya?\"", a: "Jawab: Hardware garansi resmi 1 tahun. Software? Gue support seumur hidup selama lo langganan. Gue gak bakal lari dari tanggung jawab." },
       { q: "\"Saya gaptek Mas, bakal diajari cara pakainya?\"", a: "Jawab: Wajib. Gue haram hukumnya jual lepas. Tim gue bakal training lo & staf sampe bener-bener lancar (bisa via Zoom atau datang langsung)." }
     ],
+    contactInfoTitle: "INFORMASI KANTOR",
     contactOfficeLegalTitle: "KANTOR LEGAL (ADMIN)",
     contactOfficeLegalAddress: "Perum Graha Tiara 2 B1, Gumpang 07/01, Kartasura, Sukoharjo, Jawa Tengah, Indonesia 57169",
     contactOfficeOpsTitle: "MARKAS OPERASIONAL",
@@ -401,6 +402,7 @@ export const DICTIONARY: Record<Language, Translation> = {
       { q: "\"How to claim warranty if broken?\"", a: "Answer: Hardware official warranty 1 year. Software? I support lifetime as long as you subscribe. I won't run from responsibility." },
       { q: "\"I'm tech-illiterate, will I be taught how to use it?\"", a: "Answer: Mandatory. It's forbidden for me to just sell and leave. My team will train you & staff until fluent (via Zoom or on-site)." }
     ],
+    contactInfoTitle: "OFFICE INFORMATION",
     contactOfficeLegalTitle: "LEGAL OFFICE",
     contactOfficeLegalAddress: "Perum Graha Tiara 2 B1, Gumpang 07/01, Kartasura, Sukoharjo, Central Java, Indonesia 57169",
     contactOfficeOpsTitle: "OPS HQ",

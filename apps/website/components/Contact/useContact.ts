@@ -17,6 +17,7 @@ export const useContact = (): ContactContent => {
         items: text.contactQna
     },
     info: {
+        infoTitle: text.contactInfoTitle,
         officeLegal: text.contactOfficeLegalTitle,
         officeLegalAddress: text.contactOfficeLegalAddress,
         officeOps: text.contactOfficeOpsTitle,
