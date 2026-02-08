@@ -34,8 +34,8 @@ export const OpenRolesAtom: React.FC<OpenRolesProps> = ({ roleTitle, roleSub, fo
         <div className="relative p-1 rounded-3xl bg-gradient-to-b from-zinc-200 to-zinc-50 dark:from-zinc-800 dark:to-black overflow-hidden group shadow-xl dark:shadow-none">
             <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.2)_50%,transparent_75%,transparent_100%)] dark:bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.02)_50%,transparent_75%,transparent_100%)] bg-[length:250%_250%,100%_100%] animate-[shimmer_3s_infinite]" />
             
-            {/* Inner Card - Updated to Orange-Red Gradient with 30% Opacity */}
-            <div className="relative rounded-[20px] bg-gradient-to-br from-brand-600/30 to-red-600/30 backdrop-blur-md border border-brand-500/20 p-12 md:p-20 text-center flex flex-col items-center">
+            {/* Inner Card - Updated to Orange-Red Gradient with 15% Opacity */}
+            <div className="relative rounded-[20px] bg-gradient-to-br from-brand-600/15 to-red-600/15 backdrop-blur-md border border-brand-500/20 p-12 md:p-20 text-center flex flex-col items-center">
                 
                 <div className="w-20 h-20 mb-8 flex items-center justify-center">
                     <ShieldAlert size={64} className="text-brand-600 dark:text-brand-500" strokeWidth={1.5} />
