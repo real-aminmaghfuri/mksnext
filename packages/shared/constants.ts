@@ -21,7 +21,8 @@ export const DICTIONARY: Record<Language, Translation> = {
     navAbout: "TENTANG",
     navAboutProfile: "Profil Perusahaan",
     navAboutTeam: "Pasukan Elite",
-    navAboutVision: "Visi & Misi", // Updated Label
+    navAboutVision: "Visi & Misi",
+    navCareer: "Rekrutmen Pasukan", // New
     
     navSolutions: "SOLUSI BISNIS",
     navSolHardware: "Hardware Tempur",
@@ -92,6 +93,19 @@ export const DICTIONARY: Record<Language, Translation> = {
     manifestoTitle: "Manifesto MKS",
     manifestoText: "Kami percaya bisnis adalah perang. Di perang, lo butuh sekutu yang pegang senjata, bukan yang cuma bisa sorak-sorai. MKS ada buat lo yang berani ambil resiko, yang berani capek, dan yang berani kaya.",
 
+    // Career
+    careerHeading: "REKRUTMEN PASUKAN.",
+    careerSub: "MKS bukan tempat buat lo yang mental kerupuk. Kita kerja keras, main keras, dan digaji pantas. Kalau lo ngerasa jago, buktiin di sini.",
+    careerPerk1Title: "Gaji Kompetitif",
+    careerPerk1Desc: "Skill lo dewa? Gue bayar harga dewa. Gak ada cerita gaji UMR buat otak sekelas lo.",
+    careerPerk2Title: "Tools Sultan",
+    careerPerk2Desc: "Laptop kentang? Gak laku. Gue modalin lo gear terbaik biar gak ada alesan kerja lambat.",
+    careerPerk3Title: "Lingkaran Setan (Positif)",
+    careerPerk3Desc: "Lo bakal dikelilingin orang-orang obsesif. Lo bakal dipaksa berkembang atau mati konyol.",
+    careerRoleTitle: "POSISI TEMPUR",
+    careerRoleEmpty: "Markas penuh. Belum ada kursi kosong. Asah terus pedang lo.",
+    careerApplyBtn: "Lamar Sekarang",
+
     // Legality Section
     legalTitle: "Gue Main Bersih",
     legalDesc: "Bisnis itu soal kepercayaan. Gue gak mau ngerusak nama yang udah gue bangun lagi dari nol. Ini buktinya gue legal.",
@@ -149,7 +163,8 @@ export const DICTIONARY: Record<Language, Translation> = {
     navAbout: "ABOUT",
     navAboutProfile: "Company Profile",
     navAboutTeam: "Elite Squad",
-    navAboutVision: "Vision & Mission", // Updated Label
+    navAboutVision: "Vision & Mission",
+    navCareer: "Join Corps", // New
 
     navSolutions: "BIZ SOLUTIONS",
     navSolHardware: "Combat Hardware",
@@ -219,6 +234,19 @@ export const DICTIONARY: Record<Language, Translation> = {
     mission3Desc: "Responsive after-sales service. If your tool dies, your business dies. We won't let that happen.",
     manifestoTitle: "MKS Manifesto",
     manifestoText: "We believe business is war. In war, you need allies who hold weapons, not just cheerleaders. MKS exists for those who dare to take risks, dare to get tired, and dare to get rich.",
+
+    // Career
+    careerHeading: "SPECIAL FORCES RECRUITMENT.",
+    careerSub: "MKS is not for the weak. We work hard, play hard, and pay well. If you think you're a god, prove it here.",
+    careerPerk1Title: "God-Tier Salary",
+    careerPerk1Desc: "You have skills? I pay well. No minimum wage nonsense for brains like yours.",
+    careerPerk2Title: "Sultan Tools",
+    careerPerk2Desc: "Potato laptop? Get out. I provide the best gear so you have zero excuses for being slow.",
+    careerPerk3Title: "Vicious Circle (Positive)",
+    careerPerk3Desc: "You will be surrounded by obsessed people. Evolve or die trying.",
+    careerRoleTitle: "COMBAT POSITIONS",
+    careerRoleEmpty: "Base is full. No open seats. Keep sharpening your blade.",
+    careerApplyBtn: "Apply Now",
 
     // Legality Section
     legalTitle: "I Play Clean",

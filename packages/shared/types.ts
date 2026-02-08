@@ -41,6 +41,7 @@ export interface Translation {
   navAboutProfile: string;
   navAboutTeam: string;
   navAboutVision: string;
+  navCareer: string; // REKRUTMEN
   
   navSolutions: string; // SOLUSI BISNIS
   navSolHardware: string;
@@ -107,6 +108,19 @@ export interface Translation {
   mission3Desc: string;
   manifestoTitle: string;
   manifestoText: string;
+
+  // Career Section
+  careerHeading: string;
+  careerSub: string;
+  careerPerk1Title: string;
+  careerPerk1Desc: string;
+  careerPerk2Title: string;
+  careerPerk2Desc: string;
+  careerPerk3Title: string;
+  careerPerk3Desc: string;
+  careerRoleTitle: string;
+  careerRoleEmpty: string;
+  careerApplyBtn: string;
 
   // Legality Section
   legalTitle: string;
