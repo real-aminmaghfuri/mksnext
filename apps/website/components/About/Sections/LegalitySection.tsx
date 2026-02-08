@@ -96,18 +96,19 @@ export const LegalitySection: React.FC<LegalitySectionProps> = ({ content }) => 
                 </div>
             </div>
 
-            {/* Right Side: CTA */}
-            <div className="lg:col-span-4 p-6 md:p-10 bg-gradient-to-br from-zinc-50 via-zinc-100 to-zinc-200 dark:from-zinc-900 dark:via-zinc-900 dark:to-black border-t lg:border-t-0 lg:border-l border-zinc-200 dark:border-zinc-800 flex flex-col justify-center relative overflow-hidden">
-                {/* Decorative Blur */}
-                <div className="absolute top-0 right-0 w-48 h-48 bg-brand-500/10 dark:bg-brand-500/5 rounded-full blur-[80px]" />
+            {/* Right Side: CTA (Solid Orange Background) */}
+            <div className="lg:col-span-4 p-6 md:p-10 bg-brand-500 border-t lg:border-t-0 lg:border-l border-brand-600 flex flex-col justify-center relative overflow-hidden">
+                {/* Decorative Pattern */}
+                <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(255,255,255,0.1)_25%,transparent_25%,transparent_75%,rgba(255,255,255,0.1)_75%,rgba(255,255,255,0.1))] bg-[size:20px_20px] opacity-20" />
                 
-                <div className="relative z-10 text-center lg:text-left">
-                    <h4 className="text-blue-600 dark:text-blue-400 font-black tracking-widest text-sm mb-3">{content.ctaTitle}</h4>
-                    <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-8 font-medium">
+                <div className="relative z-10 text-center lg:text-left text-white">
+                    <h4 className="font-black tracking-widest text-sm mb-3 opacity-90">{content.ctaTitle}</h4>
+                    <p className="text-white/90 text-sm leading-relaxed mb-8 font-medium">
                         {content.ctaDesc}
                     </p>
                     <a href="https://oss.go.id" target="_blank" rel="noopener noreferrer" className="block w-full">
-                        <Button fullWidth className="bg-gradient-to-r from-brand-600 to-red-600 hover:from-brand-500 hover:to-red-500 text-white shadow-xl shadow-brand-500/20 border-none">
+                        {/* Blue Button */}
+                        <Button fullWidth className="bg-blue-600 hover:bg-blue-700 text-white shadow-xl shadow-blue-900/30 border-none">
                             {content.ctaBtn}
                         </Button>
                     </a>

@@ -38,30 +38,32 @@ export const VisionHeaderAtom: React.FC<VisionHeaderProps> = ({ heading, sub, vi
           </p>
         </div>
 
-        {/* Vision Card (The Dream) */}
-        <div className="relative p-1.5 rounded-[32px] bg-gradient-to-b from-zinc-200 via-white to-zinc-100 dark:from-zinc-800 dark:via-zinc-900 dark:to-black border border-zinc-200 dark:border-zinc-800 shadow-2xl dark:shadow-brand-900/10 overflow-hidden max-w-5xl mx-auto group">
-             {/* Card Background Glow Effect */}
-             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1/2 bg-brand-500/5 dark:bg-brand-500/10 blur-[100px] rounded-full pointer-events-none" />
-
-             <div className="bg-white/60 dark:bg-zinc-950/80 rounded-[28px] p-8 md:p-14 relative overflow-hidden h-full flex flex-col md:flex-row items-center gap-8 md:gap-16 backdrop-blur-xl">
+        {/* Vision Card (The Dream) - Striking Background */}
+        <div className="relative p-1 rounded-[32px] bg-gradient-to-b from-zinc-200 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 shadow-2xl max-w-5xl mx-auto group">
+             
+             {/* Main Card Content with Solid/Gradient Background */}
+             <div className="bg-gradient-to-br from-brand-600 to-red-600 rounded-[28px] p-8 md:p-14 relative overflow-hidden h-full flex flex-col md:flex-row items-center gap-8 md:gap-16 shadow-inner">
                  
-                 {/* Icon Box */}
-                 <div className="relative z-10 w-24 h-24 shrink-0 rounded-3xl bg-gradient-to-br from-brand-500 to-red-600 flex items-center justify-center shadow-lg shadow-brand-500/30 text-white transform group-hover:scale-105 transition-transform duration-500">
-                    <Target size={48} />
+                 {/* Decorative Glow inside card */}
+                 <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 blur-[80px] rounded-full pointer-events-none" />
+
+                 {/* Icon Box - White now for contrast */}
+                 <div className="relative z-10 w-20 h-20 shrink-0 rounded-3xl bg-white text-brand-600 flex items-center justify-center shadow-2xl transform group-hover:scale-105 transition-transform duration-500">
+                    <Target size={40} />
                  </div>
 
                  <div className="flex-1 text-center md:text-left relative z-20">
-                    <h3 className="text-sm font-black text-brand-600 dark:text-brand-500 mb-3 uppercase tracking-[0.2em]">
+                    <h3 className="text-xs font-black text-brand-100 mb-3 uppercase tracking-[0.2em] opacity-90">
                         {visionTitle}
                     </h3>
-                    <p className="text-2xl md:text-3xl lg:text-4xl text-zinc-900 dark:text-white font-black leading-tight tracking-tight">
+                    {/* Reduced Text Size */}
+                    <p className="text-xl md:text-2xl font-bold text-white leading-snug tracking-tight">
                         "{statement}"
                     </p>
                  </div>
 
-                 {/* Decorative Circle - Moved to z-0 to sit BEHIND text */}
-                 <div className="absolute -right-24 -top-24 w-80 h-80 rounded-full border-[30px] border-zinc-50 dark:border-zinc-800/30 z-0 pointer-events-none opacity-50" />
-                 <div className="absolute -right-12 -top-12 w-56 h-56 rounded-full border-[20px] border-zinc-100 dark:border-zinc-800/50 z-0 pointer-events-none opacity-50" />
+                 {/* Decorative Shapes */}
+                 <div className="absolute -right-12 -bottom-12 w-40 h-40 rounded-full border-4 border-white/10 z-0 pointer-events-none" />
              </div>
         </div>
 
