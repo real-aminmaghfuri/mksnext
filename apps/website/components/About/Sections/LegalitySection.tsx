@@ -104,12 +104,13 @@ export const LegalitySection: React.FC<LegalitySectionProps> = ({ content }) => 
                 <div className="absolute top-0 right-0 w-40 h-40 bg-white/20 blur-[50px] rounded-full pointer-events-none" />
 
                 <div className="relative z-10 text-center lg:text-left">
-                    {/* Blue Title Text - Size Increased to 2xl */}
-                    <h4 className="font-black tracking-widest text-xl md:text-2xl mb-4 text-blue-200 drop-shadow-md uppercase">
+                    {/* Blue Title Text - Changed to darker blue in light mode */}
+                    <h4 className="font-black tracking-widest text-xl md:text-2xl mb-4 text-blue-700 dark:text-blue-200 drop-shadow-md uppercase">
                         {content.ctaTitle}
                     </h4>
                     
-                    <p className="text-white/95 text-sm leading-relaxed mb-8 font-bold">
+                    {/* Description Text - Changed to Black in Light Mode */}
+                    <p className="text-zinc-900 dark:text-white text-sm leading-relaxed mb-8 font-bold">
                         {content.ctaDesc}
                     </p>
                     

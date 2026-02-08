@@ -27,14 +27,15 @@ export const ManifestoAtom: React.FC<ManifestoProps> = ({ title, text, footer })
             {part2} <span className="text-brand-600 dark:text-brand-500">Senjata Perang.</span>”
         </h2>
 
-        <div className="p-8 md:p-10 rounded-3xl border border-brand-200 dark:border-brand-900/30 bg-white dark:bg-brand-950/10 relative shadow-xl dark:shadow-none">
-            <p className="text-lg md:text-xl text-brand-700 dark:text-brand-100 font-medium italic leading-relaxed">
+        {/* Updated Card: Orange 500 with 15% Opacity */}
+        <div className="p-8 md:p-10 rounded-3xl border border-brand-500/30 bg-orange-500/15 relative shadow-xl backdrop-blur-md">
+            <p className="text-lg md:text-xl text-brand-800 dark:text-white font-medium italic leading-relaxed">
                 {footer}
             </p>
             <div className="mt-6 flex items-center justify-center gap-4">
-                <div className="h-px w-12 bg-brand-300 dark:bg-brand-800" />
-                <span className="text-[10px] font-black text-brand-600 uppercase tracking-[0.2em]">AMIN MAGHFURI, FOUNDER</span>
-                <div className="h-px w-12 bg-brand-300 dark:bg-brand-800" />
+                <div className="h-px w-12 bg-brand-500/50" />
+                <span className="text-[10px] font-black text-brand-700 dark:text-brand-400 uppercase tracking-[0.2em]">AMIN MAGHFURI, FOUNDER</span>
+                <div className="h-px w-12 bg-brand-500/50" />
             </div>
         </div>
 
