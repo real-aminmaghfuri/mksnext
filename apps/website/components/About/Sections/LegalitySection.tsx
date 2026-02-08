@@ -51,47 +51,47 @@ export const LegalitySection: React.FC<LegalitySectionProps> = ({ content }) => 
       <div className="relative rounded-3xl border border-zinc-200 dark:border-zinc-800 overflow-hidden shadow-lg dark:shadow-none">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-0">
-            {/* Left Side: Data List with Orange 500 at 95% Opacity + White Text */}
-            <div className="lg:col-span-8 p-6 md:p-10 space-y-6 md:space-y-0 bg-orange-500/95 backdrop-blur-md">
+            {/* Left Side: Data List with Orange 500 at 30% Opacity + Readable Text */}
+            <div className="lg:col-span-8 p-6 md:p-10 space-y-6 md:space-y-0 bg-orange-500/30 backdrop-blur-md">
                 
                 {/* Entity Row */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-white/20 border-dashed">
-                    <span className="text-orange-50 font-bold">{content.labelEntity}</span>
+                <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-black/10 dark:border-white/10 border-dashed">
+                    <span className="text-zinc-800 dark:text-zinc-200 font-bold">{content.labelEntity}</span>
                     <div className="flex items-center gap-2 mt-2 md:mt-0">
-                        <CheckCircle2 size={16} className="text-white" />
-                        <span className="text-white font-black tracking-tight text-lg">{content.valueEntity}</span>
+                        <CheckCircle2 size={16} className="text-brand-700 dark:text-brand-500" />
+                        <span className="text-zinc-900 dark:text-white font-black tracking-tight text-lg">{content.valueEntity}</span>
                     </div>
                 </div>
 
                  {/* NIB Row */}
-                 <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-white/20 border-dashed">
-                    <span className="text-orange-50 font-bold">{content.labelNIB}</span>
-                    <span className="text-white font-mono font-black mt-2 md:mt-0">{content.values.nib}</span>
+                 <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-black/10 dark:border-white/10 border-dashed">
+                    <span className="text-zinc-800 dark:text-zinc-200 font-bold">{content.labelNIB}</span>
+                    <span className="text-zinc-900 dark:text-white font-mono font-black mt-2 md:mt-0">{content.values.nib}</span>
                 </div>
 
                 {/* SK Row */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-white/20 border-dashed">
-                    <span className="text-orange-50 font-bold">{content.labelSK}</span>
-                    <span className="text-white font-mono font-black mt-2 md:mt-0">{content.values.sk}</span>
+                <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-black/10 dark:border-white/10 border-dashed">
+                    <span className="text-zinc-800 dark:text-zinc-200 font-bold">{content.labelSK}</span>
+                    <span className="text-zinc-900 dark:text-white font-mono font-black mt-2 md:mt-0">{content.values.sk}</span>
                 </div>
 
                 {/* NPWP Row */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-white/20 border-dashed">
-                    <span className="text-orange-50 font-bold">{content.labelNPWP}</span>
-                    <span className="text-white font-mono font-black mt-2 md:mt-0">{content.values.npwp}</span>
+                <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-black/10 dark:border-white/10 border-dashed">
+                    <span className="text-zinc-800 dark:text-zinc-200 font-bold">{content.labelNPWP}</span>
+                    <span className="text-zinc-900 dark:text-white font-mono font-black mt-2 md:mt-0">{content.values.npwp}</span>
                 </div>
 
                 {/* Bank Row */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between py-4">
-                    <span className="text-orange-50 font-bold">{content.labelBank}</span>
+                    <span className="text-zinc-800 dark:text-zinc-200 font-bold">{content.labelBank}</span>
                     <div className="text-right mt-2 md:mt-0">
-                        <p className="text-white font-mono font-black text-lg">{content.values.bank}</p>
-                        <p className="text-[10px] text-white/80 font-bold uppercase">{content.values.bankName}</p>
+                        <p className="text-zinc-900 dark:text-white font-mono font-black text-lg">{content.values.bank}</p>
+                        <p className="text-[10px] text-zinc-700 dark:text-zinc-300 font-bold uppercase">{content.values.bankName}</p>
                     </div>
                 </div>
 
                 <div className="pt-4">
-                     <p className="text-xs text-white/70 italic font-medium">{content.footerNote}</p>
+                     <p className="text-xs text-zinc-600 dark:text-zinc-400 italic font-medium">{content.footerNote}</p>
                 </div>
             </div>
 
