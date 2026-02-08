@@ -1,5 +1,5 @@
 
-import { Translation } from '../../types';
+import { Translation } from '../types';
 
 export const EN_DICTIONARY: Translation = {
   heroTitle: "Your Business is War. Don't Bring Toys.",

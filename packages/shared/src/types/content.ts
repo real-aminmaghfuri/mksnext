@@ -1,26 +1,4 @@
 
-export enum AppMode {
-  WEBSITE = 'WEBSITE',
-  SYSTEM = 'SYSTEM'
-}
-
-export enum WebsitePage {
-  HOME = 'HOME',
-  ABOUT = 'ABOUT',
-  SERVICES = 'SERVICES',
-  SHOP = 'SHOP'
-}
-
-export enum Language {
-  ID = 'ID',
-  EN = 'EN'
-}
-
-export enum Theme {
-  LIGHT = 'light',
-  DARK = 'dark'
-}
-
 export interface QnaItem {
   q: string;
   a: string;
@@ -177,7 +155,7 @@ export interface Translation {
   portCtaSub: string;
   portCtaBtn: string;
   portViewCase: string;
-  portLoadMore: string; // New Field
+  portLoadMore: string;
 
   // Articles Section
   blogTitle: string;
@@ -255,34 +233,4 @@ export interface Translation {
   footerCopy: string;
   footerLegal1: string;
   footerLegal2: string;
-}
-
-export interface ProductItem {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  desc: string;
-  tag?: string;
-}
-
-export interface PortfolioItem {
-  id: number;
-  title: string;
-  category: 'PHYSICAL' | 'DIGITAL';
-  tag: string;
-  desc: string;
-  image: string;
-}
-
-export interface ArticleItem {
-  id: number;
-  title: string;
-  excerpt: string;
-  category: string;
-  date: string;
-  author: string;
-  image: string;
-  readTime: string;
-  isFeatured?: boolean;
 }

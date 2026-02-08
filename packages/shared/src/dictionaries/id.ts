@@ -1,5 +1,5 @@
 
-import { Translation } from '../../types';
+import { Translation } from '../types';
 
 export const ID_DICTIONARY: Translation = {
   heroTitle: "Bisnis Lo Medan Perang, Bos. Jangan Bawa Mainan.",

@@ -1,9 +1,9 @@
-
 "use client";
 import React from 'react';
-import Link from 'next/link';
 import { SubMenuItem } from '../types';
-import { Sparkles } from 'lucide-react';
+import { useMegaMenu } from '../hooks/useMegaMenu';
+import { MegaMenuLinks } from './MegaMenuLinks';
+import { MegaMenuBanner } from './MegaMenuBanner';
 
 interface MegaMenuAtomProps {
   items: SubMenuItem[];
@@ -13,34 +13,8 @@ interface MegaMenuAtomProps {
 }
 
 export const MegaMenuAtom: React.FC<MegaMenuAtomProps> = ({ items, parentLabel, isVisible, onLinkClick }) => {
-  
-  const getVisual = (label: string) => {
-    const l = label.toLowerCase();
-    if (l.includes('profil') || l.includes('about') || l.includes('mks')) {
-      return {
-        img: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=600&auto=format&fit=crop',
-        title: 'MKS DNA',
-      };
-    }
-    if (l.includes('kasir') || l.includes('pos')) {
-      return {
-        img: 'https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=600&auto=format&fit=crop',
-        title: 'HARDWARE',
-      };
-    }
-    if (l.includes('website') || l.includes('web')) {
-      return {
-        img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop',
-        title: 'DIGITAL',
-      };
-    }
-    return {
-      img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600&auto=format&fit=crop',
-      title: 'EXPLORE',
-    };
-  };
-
-  const visual = getVisual(parentLabel);
+  // 1. Get Visual Data from Hook (The Brain)
+  const { visualData } = useMegaMenu(parentLabel);
 
   return (
     <div 
@@ -54,60 +28,18 @@ export const MegaMenuAtom: React.FC<MegaMenuAtomProps> = ({ items, parentLabel, 
 
         <div className="grid grid-cols-12 h-full">
           
-          {/* LEFT SIDE: Compact Grid Layout */}
-          <div className="col-span-9 p-6">
-            <div className="flex items-center justify-between mb-5 border-b border-zinc-100 dark:border-zinc-800 pb-2">
-                <h4 className="text-[11px] font-black text-zinc-400 uppercase tracking-widest flex items-center gap-2">
-                <span className="w-1.5 h-3 bg-brand-500 rounded-full"/>
-                {parentLabel} DIRECTORY
-                </h4>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-x-6 gap-y-3">
-              {items.map((item, itemIdx) => {
-                const Icon = item.icon;
-                return (
-                  <Link 
-                    key={itemIdx} 
-                    href={item.path}
-                    onClick={onLinkClick}
-                    className="group/item flex items-center gap-3 p-2.5 rounded-xl hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors border border-transparent hover:border-zinc-200 dark:hover:border-zinc-800"
-                  >
-                    <div className="shrink-0 p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-400 group-hover/item:text-brand-600 dark:group-hover/item:text-brand-500 transition-colors">
-                      <Icon size={18} strokeWidth={2} />
-                    </div>
-                    <div className="overflow-hidden">
-                      <div className="flex items-center gap-1">
-                        <p className="text-sm font-bold text-zinc-800 dark:text-zinc-200 group-hover/item:text-brand-600 dark:group-hover:text-brand-500 transition-colors truncate">
-                          {item.label}
-                        </p>
-                      </div>
-                      <p className="text-xs text-zinc-500 dark:text-zinc-500 truncate mt-0.5 font-medium">
-                        {item.desc}
-                      </p>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
+          {/* LEFT SIDE: Menu Links Component */}
+          <MegaMenuLinks 
+            parentLabel={parentLabel} 
+            items={items} 
+            onLinkClick={onLinkClick} 
+          />
 
-          {/* RIGHT SIDE: Visual Banner (Slim) */}
-          <div className="col-span-3 relative overflow-hidden bg-zinc-900">
-            <div className="absolute inset-0 bg-black/40 z-10" />
-            <img 
-              src={visual.img} 
-              alt="Visual" 
-              className="w-full h-full object-cover opacity-80"
-            />
-            
-            <div className="absolute bottom-0 left-0 w-full p-5 z-20 text-white">
-               <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-brand-600/90 backdrop-blur text-[9px] font-bold uppercase tracking-wider mb-2 shadow-sm">
-                 <Sparkles size={10} /> FEATURED
-               </div>
-               <h3 className="text-xl font-black uppercase tracking-tight leading-none">{visual.title}</h3>
-            </div>
-          </div>
+          {/* RIGHT SIDE: Visual Banner Component */}
+          <MegaMenuBanner 
+            img={visualData.img} 
+            title={visualData.title} 
+          />
 
         </div>
       </div>

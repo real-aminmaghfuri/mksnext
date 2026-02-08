@@ -1,5 +1,5 @@
 
-import { Language, Translation } from '../../types';
+import { Language, Translation } from '../types';
 import { ID_DICTIONARY } from './id';
 import { EN_DICTIONARY } from './en';
 

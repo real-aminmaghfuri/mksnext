@@ -1,5 +1,5 @@
 
-import { ArticleItem } from '../../types';
+import { ArticleItem } from '../types';
 
 export const MOCK_ARTICLES: ArticleItem[] = [
   {

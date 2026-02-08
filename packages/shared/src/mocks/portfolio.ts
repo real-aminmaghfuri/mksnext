@@ -1,5 +1,5 @@
 
-import { PortfolioItem } from '../../types';
+import { PortfolioItem } from '../types';
 
 export const MOCK_PORTFOLIO: PortfolioItem[] = [
   {

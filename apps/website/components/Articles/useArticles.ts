@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useMemo, useEffect } from 'react';
@@ -15,8 +14,8 @@ export const useArticles = (): ArticleLogic => {
   const itemsPerPage = 12; // 11 Articles + 1 Product Card
 
   // Extract Categories
-  const categories = useMemo(() => {
-    const cats = Array.from(new Set(MOCK_ARTICLES.map(a => a.category)));
+  const categories: string[] = useMemo(() => {
+    const cats = Array.from(new Set(MOCK_ARTICLES.map(a => a.category))) as string[];
     return ['ALL', ...cats];
   }, []);
 
