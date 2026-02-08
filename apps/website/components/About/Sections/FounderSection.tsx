@@ -64,8 +64,8 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ quote }) => {
                   {quote.bodyPrefix}
                 </p>
                 
-                {/* EMPHASIS CONTAINER - Orange 500 with 80% Opacity + White Text */}
-                <div className="p-6 md:px-10 md:py-8 rounded-2xl bg-orange-500/80 border-l-[6px] border-white shadow-sm backdrop-blur-md">
+                {/* EMPHASIS CONTAINER - Orange 500 with 95% Opacity + White Text */}
+                <div className="p-6 md:px-10 md:py-8 rounded-2xl bg-orange-500/95 border-l-[6px] border-white shadow-sm backdrop-blur-md">
                   <p className="text-lg md:text-xl font-black text-white italic tracking-tight leading-snug drop-shadow-sm">
                     {quote.emphasis} {quote.bodySuffix}
                   </p>

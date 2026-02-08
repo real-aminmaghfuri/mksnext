@@ -51,8 +51,8 @@ export const LegalitySection: React.FC<LegalitySectionProps> = ({ content }) => 
       <div className="relative rounded-3xl border border-zinc-200 dark:border-zinc-800 overflow-hidden shadow-lg dark:shadow-none">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-0">
-            {/* Left Side: Data List with Orange 500 at 80% Opacity + White Text */}
-            <div className="lg:col-span-8 p-6 md:p-10 space-y-6 md:space-y-0 bg-orange-500/80 backdrop-blur-md">
+            {/* Left Side: Data List with Orange 500 at 95% Opacity + White Text */}
+            <div className="lg:col-span-8 p-6 md:p-10 space-y-6 md:space-y-0 bg-orange-500/95 backdrop-blur-md">
                 
                 {/* Entity Row */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-white/20 border-dashed">
