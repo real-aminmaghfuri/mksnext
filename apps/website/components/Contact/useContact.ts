@@ -3,7 +3,6 @@
 
 import { useConfig } from 'ui';
 import { DICTIONARY } from 'shared';
-import { MapPin, Phone, Mail } from 'lucide-react';
 import { ContactContent } from './types';
 
 export const useContact = (): ContactContent => {
@@ -13,38 +12,28 @@ export const useContact = (): ContactContent => {
   return {
     heading: text.contactHeading,
     sub: text.contactSub,
-    infoItems: [
-      {
-        title: text.contactOfficeTitle,
-        desc: text.contactOfficeDesc,
-        value: "Jl. Slamet Riyadi No. X, Solo",
-        icon: MapPin,
-        action: "https://maps.google.com",
-        actionLabel: "MAPS"
-      },
-      {
-        title: text.contactPhoneTitle,
-        desc: text.contactPhoneDesc,
-        value: "+62 812-XXXX-XXXX",
-        icon: Phone,
-        action: "https://wa.me/62812XXXXXXXX",
-        actionLabel: "WHATSAPP"
-      },
-      {
-        title: text.contactEmailTitle,
-        desc: text.contactEmailDesc,
-        value: "biz@mesinkasirsolo.com",
-        icon: Mail,
-        action: "mailto:biz@mesinkasirsolo.com",
-        actionLabel: "EMAIL"
-      }
-    ],
+    qna: text.contactQna,
+    info: {
+        officeLegal: text.contactOfficeLegalTitle,
+        officeOps: text.contactOfficeOpsTitle,
+        labelWa: text.contactLabelWa,
+        labelEmail: text.contactLabelEmail,
+        labelHours: text.contactLabelHours
+    },
     form: {
       title: text.contactFormTitle,
       namePlaceholder: text.contactFormName,
-      emailPlaceholder: text.contactFormEmail,
+      waPlaceholder: text.contactFormWa,
+      topicLabel: text.contactFormTopic,
       msgPlaceholder: text.contactFormMsg,
-      btn: text.contactFormBtn
+      btn: text.contactFormBtn,
+      note: text.contactFormNote,
+      topics: [
+          text.contactTopic1, 
+          text.contactTopic2, 
+          text.contactTopic3, 
+          text.contactTopic4
+      ]
     }
   };
 };

@@ -21,6 +21,11 @@ export enum Theme {
   DARK = 'dark'
 }
 
+export interface QnaItem {
+  q: string;
+  a: string;
+}
+
 export interface Translation {
   heroTitle: string;
   heroSubtitle: string;
@@ -42,7 +47,7 @@ export interface Translation {
   navAboutTeam: string;
   navAboutVision: string;
   navAboutPortfolio: string; 
-  navContact: string; // NEW
+  navContact: string; 
   navCareer: string; 
   
   navSolutions: string; 
@@ -173,20 +178,30 @@ export interface Translation {
   portCtaBtn: string;
   portViewCase: string;
 
-  // Contact Section (NEW)
+  // Contact Section
   contactHeading: string;
   contactSub: string;
-  contactOfficeTitle: string;
-  contactOfficeDesc: string;
-  contactPhoneTitle: string;
-  contactPhoneDesc: string;
-  contactEmailTitle: string;
-  contactEmailDesc: string;
+  contactQna: QnaItem[];
+  
+  contactOfficeLegalTitle: string;
+  contactOfficeOpsTitle: string;
+  contactLabelWa: string;
+  contactLabelEmail: string;
+  contactLabelHours: string;
+
   contactFormTitle: string;
   contactFormName: string;
-  contactFormEmail: string;
+  contactFormWa: string;
+  contactFormTopic: string;
   contactFormMsg: string;
   contactFormBtn: string;
+  contactFormNote: string;
+
+  // Topics
+  contactTopic1: string;
+  contactTopic2: string;
+  contactTopic3: string;
+  contactTopic4: string;
 
   legalTitle: string;
   legalDesc: string;
