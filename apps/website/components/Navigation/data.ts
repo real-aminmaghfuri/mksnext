@@ -1,5 +1,5 @@
 
-import { User, Layers, BookOpen, ShoppingBag, Laptop, Cpu, HelpCircle, Briefcase, FolderOpen, Mail, Globe, Code, ShoppingCart, Search } from 'lucide-react';
+import { User, Layers, BookOpen, ShoppingBag, Laptop, Cpu, HelpCircle, Briefcase, FolderOpen, Mail, Globe, Code, ShoppingCart, Search, Monitor, Printer, CreditCard, Mouse } from 'lucide-react';
 import { Translation } from 'shared';
 import { MenuItem } from './types';
 
@@ -22,13 +22,14 @@ export const getMenuStructure = (text: Translation): MenuItem[] => [
     ]
   },
   { 
-    label: text.navSolutions, // MESIN KASIR & APP
+    label: text.navSolutions, // MESIN KASIR
     path: '#', 
     hasDropdown: true,
     items: [
-      { label: text.navSolHardware, path: '/shop', icon: ShoppingBag, desc: "Supply Mesin Kasir & Device" },
-      { label: text.navSolSoftware, path: '/services', icon: Laptop, desc: "Aplikasi Kasir (SaaS) & Android" },
-      { label: text.navSolConsulting, path: '/services', icon: User, desc: "Konsultasi Manajemen & SOP" },
+      { label: "Paket Mesin Kasir", path: '/shop', icon: Monitor, desc: "Cash Register, Android, Komputer" },
+      { label: "Printer", path: '/shop', icon: Printer, desc: "Thermal, Dotmatrix, Label, Barcode" },
+      { label: "Cash Drawer", path: '/shop', icon: CreditCard, desc: "Penyimpanan Uang Aman" },
+      { label: "Aksesoris Lainnya", path: '/shop', icon: Mouse, desc: "Scanner, Kertas Thermal, dll" },
     ]
   },
   { 

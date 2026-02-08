@@ -11,6 +11,17 @@ interface DnaGridProps {
 }
 
 export const DnaGridAtom: React.FC<DnaGridProps> = ({ title, subtitle, items }) => {
+  
+  // Custom color palette to make icons lively
+  const colors = [
+    { bg: 'bg-orange-500/10 dark:bg-orange-500/20', text: 'text-orange-600 dark:text-orange-500', border: 'border-orange-200 dark:border-orange-500/30' },
+    { bg: 'bg-blue-500/10 dark:bg-blue-500/20', text: 'text-blue-600 dark:text-blue-500', border: 'border-blue-200 dark:border-blue-500/30' },
+    { bg: 'bg-emerald-500/10 dark:bg-emerald-500/20', text: 'text-emerald-600 dark:text-emerald-500', border: 'border-emerald-200 dark:border-emerald-500/30' },
+    { bg: 'bg-purple-500/10 dark:bg-purple-500/20', text: 'text-purple-600 dark:text-purple-500', border: 'border-purple-200 dark:border-purple-500/30' },
+    { bg: 'bg-red-500/10 dark:bg-red-500/20', text: 'text-red-600 dark:text-red-500', border: 'border-red-200 dark:border-red-500/30' },
+    { bg: 'bg-cyan-500/10 dark:bg-cyan-500/20', text: 'text-cyan-600 dark:text-cyan-500', border: 'border-cyan-200 dark:border-cyan-500/30' },
+  ];
+
   return (
     <div className="bg-white dark:bg-zinc-950 py-24 relative border-t border-zinc-200 dark:border-zinc-900">
       {/* Background Texture */}
@@ -35,15 +46,17 @@ export const DnaGridAtom: React.FC<DnaGridProps> = ({ title, subtitle, items }) 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {items.map((item, idx) => {
                 const Icon = item.icon;
+                const style = colors[idx % colors.length];
+
                 return (
-                    <div key={idx} className="group bg-zinc-50 dark:bg-zinc-900/80 backdrop-blur-sm border border-zinc-200 dark:border-zinc-800 p-8 rounded-3xl hover:border-zinc-300 dark:hover:border-zinc-600 transition-all duration-300 hover:-translate-y-1">
-                        <div className="w-12 h-12 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-zinc-500 dark:text-zinc-400 mb-6 group-hover:text-white group-hover:bg-zinc-800 dark:group-hover:bg-zinc-700 transition-colors">
-                            <Icon size={24} strokeWidth={1.5} />
+                    <div key={idx} className="group bg-zinc-50 dark:bg-zinc-900/80 backdrop-blur-sm border border-zinc-200 dark:border-zinc-800 p-8 rounded-3xl hover:border-zinc-300 dark:hover:border-zinc-600 transition-all duration-300 hover:-translate-y-1 shadow-sm">
+                        <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-colors border ${style.bg} ${style.text} ${style.border}`}>
+                            <Icon size={28} strokeWidth={2} />
                         </div>
                         <h3 className="text-lg font-bold text-zinc-900 dark:text-white mb-3">
                             {item.title}
                         </h3>
-                        <p className="text-sm text-zinc-600 dark:text-zinc-500 leading-relaxed font-medium group-hover:text-zinc-500 dark:group-hover:text-zinc-400 transition-colors">
+                        <p className="text-sm text-zinc-600 dark:text-zinc-500 leading-relaxed font-medium">
                             {item.desc}
                         </p>
                     </div>

@@ -18,15 +18,15 @@ export const DICTIONARY: Record<Language, Translation> = {
     
     // Website Nav - KEYWORD OPTIMIZED
     navHome: "BERANDA",
-    navAbout: "PROFIL USAHA", // Popular: Profil
-    navAboutProfile: "Tentang PT MKS",
+    navAbout: "PROFIL", // Updated from PROFIL USAHA
+    navAboutProfile: "Tentang Kasir Solo", // Updated from Tentang PT MKS
     navAboutTeam: "Pasukan Elite",
     navAboutVision: "Visi & Misi",
     navAboutPortfolio: "Jejak Pertempuran",
     navContact: "Hubungi Gue",
     navCareer: "Rekrutmen Pasukan",
     
-    navSolutions: "MESIN KASIR & APP", // Popular: Mesin Kasir, Aplikasi
+    navSolutions: "MESIN KASIR", // Updated from MESIN KASIR & APP
     navSolHardware: "Hardware Kasir (POS)",
     navSolSoftware: "Software Kasir (SaaS)",
     navSolConsulting: "Konsultasi & SOP",
@@ -190,10 +190,10 @@ export const DICTIONARY: Record<Language, Translation> = {
     contactFormBtn: "LANJUT KE WHATSAPP",
     contactFormNote: "*Gue bakal bales secepatnya. Kalau urgent, mending telpon langsung.",
 
-    contactTopic1: "Konsultasi Sistem",
-    contactTopic2: "Lapor Error",
-    contactTopic3: "Ajak Kerjasama",
-    contactTopic4: "Sekadar Sapa",
+    contactTopic1: "MENYAPA",
+    contactTopic2: "KONSULTASI",
+    contactTopic3: "KOMPLAIN",
+    contactTopic4: "KERJASAMA",
     
     contactMapsTitle: "LOKASI KITA",
     contactMapsDesc: "Temukan markas kami di peta. Silakan mampir kalau mau konsultasi tatap muka.",
@@ -252,15 +252,15 @@ export const DICTIONARY: Record<Language, Translation> = {
     
     // Website Nav - EN
     navHome: "HOME",
-    navAbout: "MKS PROFILE",
-    navAboutProfile: "Company Profile",
+    navAbout: "PROFILE", // Updated
+    navAboutProfile: "About Kasir Solo", // Updated
     navAboutTeam: "Elite Squad",
     navAboutVision: "Vision & Mission",
     navAboutPortfolio: "Battle Tracks",
     navContact: "Contact Me",
     navCareer: "Join Corps",
     
-    navSolutions: "POS & SOFTWARE",
+    navSolutions: "POS SYSTEM", // Updated
     navSolHardware: "POS Hardware",
     navSolSoftware: "SaaS POS System",
     navSolConsulting: "Biz Consulting",
@@ -351,7 +351,7 @@ export const DICTIONARY: Record<Language, Translation> = {
 
     manifestoTitle: "MKS Manifesto",
     manifestoText: "I Don't Sell Magic Tricks, I Sell War Weapons.",
-    manifestoFooter: "\"At PT Mesin Kasir Solo, I believe one thing: Business without data is gambling. My job is ensuring you hold the Ace Card (System & Data) so you always win the market.\"",
+    manifestoFooter: "\"At PT Mesin Kasir Solo, I believe one thing: Business without data is gambling. My job is ensuring you hold the Ace Card (System & Data) biar lo selalu menang di pasar.\"",
 
     // Career (EN)
     careerHeading: "I Don't Need Employees,",
@@ -420,10 +420,10 @@ export const DICTIONARY: Record<Language, Translation> = {
     contactFormBtn: "CONTINUE TO WHATSAPP",
     contactFormNote: "*I'll reply ASAP. If urgent, call directly.",
 
-    contactTopic1: "System Consultation",
-    contactTopic2: "Report Error",
-    contactTopic3: "Partnership",
-    contactTopic4: "Just Saying Hi",
+    contactTopic1: "SAY HELLO",
+    contactTopic2: "CONSULTATION",
+    contactTopic3: "COMPLAINT",
+    contactTopic4: "PARTNERSHIP",
     
     contactMapsTitle: "OUR LOCATIONS",
     contactMapsDesc: "Find our HQs on the map. Feel free to visit if you want face-to-face consultation.",
