@@ -1,0 +1,243 @@
+
+import { Translation } from '../../types';
+
+export const ID_DICTIONARY: Translation = {
+  heroTitle: "Bisnis Lo Medan Perang, Bos. Jangan Bawa Mainan.",
+  heroSubtitle: "Ini senjata paling savage buat validasi cuan lo di Solo. Gue ngeracik MKS bukan buat gaya-gayaan doang, tapi buat mastiin operasional lo gak ancur di tengah jalan.",
+  ctaPrimary: "Sikat Sekarang",
+  ctaSecondary: "Liat Barangnya",
+  dashboardTitle: "Ruang Kendali",
+  statsRevenue: "Total Cuan",
+  statsOrders: "Transaksi Masuk",
+  navDashboard: "Markas",
+  navInventory: "Gudang",
+  navSettings: "Settingan",
+  loginHeading: "Login Komandan",
+  loginSub: "Masuk ke akses level dewa.",
+  
+  // Website Nav - KEYWORD OPTIMIZED
+  navHome: "BERANDA",
+  navAbout: "PROFIL", 
+  navAboutProfile: "Tentang Kasir Solo", 
+  navAboutTeam: "Pasukan Elite",
+  navAboutVision: "Visi & Misi",
+  navAboutPortfolio: "Jejak Pertempuran",
+  navContact: "Hubungi Gue",
+  navCareer: "Rekrutmen Pasukan",
+  
+  navSolutions: "MESIN KASIR", 
+  navSolHardware: "Hardware Kasir (POS)",
+  navSolSoftware: "Software Kasir (SaaS)",
+  navSolConsulting: "Konsultasi & SOP",
+
+  navInnovation: "JASA WEBSITE",
+  navWebCompro: "Web Company Profile",
+  navWebEcom: "Web Toko Online",
+  navWebCustom: "Aplikasi Web Custom",
+  navWebSeo: "Jasa SEO Google",
+
+  navHelp: "SUPPORT",
+  navInsights: "WAWASAN",
+  
+  navServices: "Senjata",
+  navShop: "Supply",
+  navMenu: "Menu",
+  navClose: "Cabut",
+
+  // Services
+  servicesTitle: "Amunisi Tempur Kita",
+  servicesSub: "Gue gak jualan kecap manis. Ini semua infrastruktur sadis biar bisnis lo gak mati konyol dimakan kompetitor.",
+  srvHardware: "Gear Fisik",
+  srvHardwareDesc: "Mesin kasir badak, scanner laser, printer anti macet. Tahan banting buat lo yang kerjanya barbar.",
+  srvSoftware: "Otak Digital",
+  srvSoftwareDesc: "Arsitektur Monorepo, Next.js. Bukan web template murahan yang bikin malu brand lo di depan investor.",
+  srvSeo: "Dominasi Google",
+  srvSeoDesc: "Halaman satu atau mati. Teknik SEO 'black-ops' & organik buat nyulik trafik kompetitor masuk ke lapak lo.",
+  srvConsulting: "Transfer Ilmu",
+  srvConsultingDesc: "Gue ajarin SOP kasir anti maling, manajemen stok rapi, dan strategi marketing jalanan yang udah teruji.",
+
+  // Shop
+  shopTitle: "Supply Drop",
+  shopSub: "Upgrade bisnismu pake equipment standar militer. Tahan banting, anti rewel, siap dihajar orderan ribuan kali.",
+  shopBtnOrder: "Angkut Via WA",
+  shopUnit: "Unit",
+
+  // About
+  aboutHeading: "Dibangun Dari Luka & Aspal Panas.",
+  aboutTagline: "Story gue bukan dongeng motivasi basi. Ini kronik berdarah-darah, jalan kaki nawarin alat, dan penolakan yang bikin mental gue sekeras baja.",
+  aboutFounderQuote: "Jujur-jujuran aja... Tahun 2022, gue pernah 'mati suri'. Aset digital ilang, domain diambil orang, profil google bisnis disuspend. Pernah juga dikadalin sama karyawan. Sistem berantakan gara-gara gue terlalu percaya sama 'manusia' tanpa sistem kontrol. Saat itu gue belajar satu hal mahal: Bisnis tanpa sistem yang kuat cuma nunggu waktu buat meledak.",
+  
+  // Turning Point Section
+  aboutTurnTitle: "Titik Balik (The Turn)",
+  aboutTurnP1: "Dari kehancuran itu, gue bangun ulang semuanya sendirian. Bukan buat bales dendam, tapi buat mastiin ",
+  aboutTurnP1Bold: "lo gak perlu ngerasain sakit yang gue rasain.",
+  aboutTurnP2Pre: "SIBOS dan Mesin Kasir yang gue rakit sekarang lahir dari trauma itu. Ini bukan sekadar alat jualan, ini adalah ",
+  aboutTurnP2Bold: "asuransi",
+  aboutTurnP2Mid: " buat bisnis lo. Gue desain fitur-fiturnya berdasarkan apa yang ",
+  aboutTurnP2Italic1: "nyelametin duit",
+  aboutTurnP2Mid2: ", bukan cuma apa yang ",
+  aboutTurnP2Italic2: "keliatan canggih.",
+
+  aboutPhil1Title: "Street Tested",
+  aboutPhil1Desc: "Sistem gue lahir di jalanan, bukan di lab ber-AC. Udah kebal sama error lapangan.",
+  aboutPhil2Title: "No Bullsh*t",
+  aboutPhil2Desc: "Fitur sampah gue buang. Gue cuma kasih apa yang beneran lo butuhin buat nyari duit.",
+  aboutPhil3Title: "Survival Instinct",
+  aboutPhil3Desc: "Gue pernah bangkrut. Gue tau persis cara jagain aset lo biar gak bernasib sama kayak gue dulu.",
+
+  // Vision Mission
+  visionHeading: "Mimpi Gede & Kerja Keras.",
+  visionSub: "Gue gak bangun PT Mesin Kasir Solo cuma buat cari untung receh. Gue punya misi buat nyelametin ribuan UMKM dari kebangkrutan karena buta data.",
+  visionTitle: "Visi Gue (The Dream)",
+  visionStatement: "Menjadi Benteng Pertahanan Digital #1 buat UMKM Indonesia. Gue mau liat warung kecil punya sistem secanggih minimarket modern, tanpa harus bayar mahal.",
+  
+  missionTitle: "Misi Harian (The Grind)",
+  missionSub: "Ini yang tim gue kerjain tiap hari buat lo:",
+  mission1Title: "Hancurin Mitos Mahal",
+  mission1Desc: "Teknologi canggih gak harus bikin kantong bolong. Gue hadirkan mesin kasir & software enterprise dengan harga rakyat.",
+  mission2Title: "Edukasi Sampai Pinter",
+  mission2Desc: "Gue haram hukumnya jual putus. Lo dan staf lo bakal gue training sampai bener-bener ngerti cara baca data bisnis.",
+  mission3Title: "Inovasi Gak Ada Matinya",
+  mission3Desc: "SIBOS & QALAM bakal terus gue update. Lo gak perlu pusing mikirin coding, biar itu urusan gue.",
+  mission4Title: "Support Tanpa Drama",
+  mission4Desc: "Kalau alat rusak, gue yang pusing, bukan lo. Tim teknis gue siap backup biar jualan lo gak keganggu.",
+
+  // DNA Section
+  dnaTitle: "DNA Gue",
+  dnaSub: "Prinsip jalanan yang gue tanam ke semua anak buah gue.",
+  dna1Title: "Jujur Harga Mati",
+  dna1Desc: "Gue gak bakal jual barang yang gak lo butuhin cuma demi omzet. Kalau barang jelek, gue bilang jelek. Transparansi nomor satu.",
+  dna2Title: "Mental Baja",
+  dna2Desc: "Lahir dari kegagalan 2022, gue punya mental survivor. Gue ngerti susahnya bangun bisnis dari nol karena gue juga ngalamin.",
+  dna3Title: "Anti Sambat",
+  dna3Desc: "Disini gak ada tempat buat ngeluh. Ada masalah? Cari solusi. Error? Perbaiki. Deadline? Sikat.",
+  dna4Title: "Lo Bosnya",
+  dna4Desc: "Gue idup dari profit lo. Kalau bisnis lo mati, bisnis gue juga mati. Jadi gue bakal mati-matian bikin lo sukses.",
+  dna5Title: "Sat Set Wat Wet",
+  dna5Desc: "Bisnis itu balapan. Gue kerja cepet. Chat dibales kilat, pengiriman gak pake lama, support sat-set.",
+  dna6Title: "Jangka Panjang",
+  dna6Desc: "Gue gak cari 'hit and run'. Gue mau nemenin lo dari jualan di garasi sampai punya cabang di mana-mana.",
+
+  manifestoTitle: "Manifesto MKS",
+  manifestoText: "Gue Gak Jual Alat Sulap, Gue Jual Senjata Perang.",
+  manifestoFooter: "\"Di PT Mesin Kasir Solo, gue percaya satu hal: Bisnis tanpa data itu judi. Tugas gue adalah mastiin lo pegang kartu As (Sistem & Data) biar lo selalu menang di pasar.\"",
+
+  // Career
+  careerHeading: "Gue Gak Cari Karyawan,",
+  careerHeadingSpan: "Gue Cari Partner Perjuangan.",
+  careerSub: "PT Mesin Kasir Solo bukan tempat buat lo yang cuma cari \"zona nyaman\" 9-to-5. Ini markas buat lo yang mau ngebangun sistem buat nyelametin ribuan UMKM bareng gue.",
+  
+  careerDnaTitle: "DNA GUE",
+  careerDnaSub: "Gue pernah jatuh sejatuh-jatuhnya di 2022. Kehilangan domain, kehilangan aset. Gue bangkit lagi sendirian. Kalau mental lo tempe, lo gak bakal bertahan di sini.",
+  
+  careerDna1Title: "Tahan Banting",
+  careerDna1Desc: "Masalah teknis, komplain klien, deadline mepet itu makanan sehari-hari gue. Gue butuh Problem Solver yang tenang pas badai dateng.",
+  careerDna2Title: "Impact Over Output",
+  careerDna2Desc: "Jangan bangga cuma karena lo 'lembur'. Gue cuma nilai hasil akhir. Kode lo bikin transaksi makin cepet? Itu yang gue itung.",
+  careerDna3Title: "Empati ke User",
+  careerDna3Desc: "Klien gue itu pedagang pasar & ustadz TPA. Sistem lo harus membumi. Jangan bikin UI/UX rumit yang cuma dimengerti anak startup Jaksel.",
+
+  careerAntiTitle: "JANGAN COBA-COBA MASUK KALAU:",
+  careerAnti1: "Mental PNS (Cari Aman)",
+  careerAnti2: "Baperan (Anti Kritik)",
+  careerAnti3: "Males Belajar",
+  careerAnti4: "Kerja Kayak Robot",
+
+  careerRoleTitle: "Posisi Tempur",
+  careerRoleSub: "Kalau lo merasa punya DNA yang sama, ambil senjata lo dan gabung barisan.",
+  careerForceHireTitle: "Gue Belum Buka Lowongan",
+  careerForceHireDesc: "Skill above average (Top 1%)? Force me to hire you via the reckless path.",
+  careerForceHireBtn: "UPLOAD CV SPONTANEOUSLY",
+
+  // Portfolio Section
+  portHeading: "JEJAK PERANG MESIN KASIR SOLO",
+  portHeadingSpan: "BUKAN KALENG-KALENG.",
+  portSub: "Gue gak jual janji manis. Ini bukti otentik instalasi Mesin Kasir Solo dan sistem digital yang gue kerjain. Foto asli lapangan, bukan colongan Google. Cek sendiri biar lo yakin gue bukan sales abal-abal.",
+  portFilterAll: "Semua Arsenal",
+  portFilterPhysical: "Mesin Kasir (Fisik)",
+  portFilterDigital: "Software & Web (Otak)",
+  portCtaTitle: "Mau Bisnis Lo Masuk Sini?",
+  portCtaSub: "Jangan cuma jadi penonton kesuksesan orang lain. Saatnya giliran lo yang gue bantu upgrade sistemnya.",
+  portCtaBtn: "MULAI PROYEK BARU",
+  portViewCase: "LIHAT DETAIL",
+  portLoadMore: "BONGKAR ARSENAL LAINNYA", // Localized Button
+
+  // Articles Section
+  blogTitle: "Gudang Wawasan",
+  blogSub: "Intel jalanan, strategi lapangan, dan update teknologi kasir terbaru. Baca biar bisnis lo nggak kudet.",
+  blogSearchPlaceholder: "Cari data intel...",
+  blogLoadMore: "GALI LEBIH DALAM",
+  blogSidebarTitle: "Radar Kategori",
+  blogSidebarProductTitle: "AMUNISI CADANGAN",
+
+  // Contact Section
+  contactHeading: "Gak Usah Sungkan, Chat Gue Aja.",
+  contactSub: "Di sini gak ada Chatbot atau Admin Robot. Lo bakal ngobrol sama manusia asli (Gue & Tim Inti) yang ngerti lapangan. Gue pastikan setiap chat lo dibalas solusi, bukan template.",
+  contactQnaTitle: "INTEL DASAR (FAQ)",
+  contactQna: [
+    { q: "\"Mas, ada toko fisiknya gak buat liat barang?\"", a: "Jawab: Sekarang gue fokus main *Online & Gudang* aja. Kenapa? Biar gue gak perlu bebanin biaya sewa ruko mahal ke harga barang lo (jadi lebih murah). Gantinya? Kita *Video Call* sepuasnya buat demo unit, atau transaksi via Marketplace (Tokped/Shopee) biar lo aman." },
+    { q: "\"Bisa kirim ke luar pulau? Aman gak?\"", a: "Jawab: Aman 100%. Gue udah kirim unit dari Aceh sampe Papua. Packing kayu, asuransi, garansi sampai tujuan nyala normal. Kalau pecah, gue ganti baru." },
+    { q: "\"Kalau rusak gimana klaim garansinya?\"", a: "Jawab: Hardware garansi resmi 1 tahun. Software? Gue support seumur hidup selama lo langganan. Gue gak bakal lari dari tanggung jawab." },
+    { q: "\"Saya gaptek Mas, bakal diajari cara pakainya?\"", a: "Jawab: Wajib. Gue haram hukumnya jual lepas. Tim gue bakal training lo & staf sampe bener-bener lancar (bisa via Zoom atau datang langsung)." }
+  ],
+  contactInfoTitle: "Informasi Kantor",
+  contactOfficeLegalTitle: "KANTOR LEGAL (ADMIN)",
+  contactOfficeLegalAddress: "Perum Graha Tiara 2 B1, Gumpang 07/01, Kartasura, Sukoharjo, Jawa Tengah, Indonesia 57169",
+  contactOfficeOpsTitle: "MARKAS OPERASIONAL",
+  contactOfficeOpsAddress: "Gumiring 04/04, Sidomulyo, Banjarejo, Blora, Jawa Tengah, Indonesia 58253",
+  contactLabelWa: "WHATSAPP (FAST)",
+  contactLabelEmail: "EMAIL RESMI",
+  contactLabelHours: "JAM OPERASIONAL",
+
+  contactFormTitle: "Drop Pesan Disini",
+  contactFormName: "Mas / Mba ...",
+  contactFormWa: "WA: 0812...",
+  contactFormAddress: "Alamat / Lokasi Lo...",
+  contactFormTopic: "MAU BAHAS APA?",
+  contactFormMsg: "Ceritain kebutuhan atau masalah lo disini...",
+  contactFormBtn: "LANJUT KE WHATSAPP",
+  contactFormNote: "*Gue bakal bales secepatnya. Kalau urgent, mending telpon langsung.",
+
+  contactTopic1: "MENYAPA",
+  contactTopic2: "KONSULTASI",
+  contactTopic3: "KOMPLAIN",
+  contactTopic4: "KERJASAMA",
+  
+  contactMapsTitle: "LOKASI KITA",
+  contactMapsDesc: "Temukan markas kami di peta. Silakan mampir kalau mau konsultasi tatap muka.",
+
+  legalTitle: "Gue Main Bersih",
+  legalDesc: "Business is trust. I won't ruin the name I rebuilt from zero. Here is the proof I am legal.",
+  legalLabelEntity: "Legal Entity",
+  legalValueEntity: "PT MESIN KASIR SOLO",
+  legalLabelNIB: "NIB (Izin Usaha)",
+  legalLabelSK: "SK Kemenkumham",
+  legalLabelNPWP: "NPWP Perusahaan",
+  legalLabelBank: "Rekening Sah (BNC)",
+  legalCtaTitle: "CEK VALIDITAS",
+  legalCtaDesc: "Lo bisa cek sendiri data perusahaan gue di web pemerintah biar yakin.",
+  legalCtaBtn: "Buka OSS.GO.ID",
+  legalFooterNote: "*Buat lo yang butuh dokumen asli buat vendor list atau tender, chat admin gue. Kita transparan.",
+
+  hist2015Title: "2015: Modaldengkul.com",
+  hist2015Desc: "Gue jalan kaki, Bos. Door-to-door di panasnya Solo nawarin mesin kasir. Ditolak ratusan kali, kaki lecet, tapi mental gue jadi bulletproof.",
+  hist2018Title: "2018: Pasukan Terbentuk",
+  hist2018Desc: "Mulai rekrut tim. Kita ngerasa di atas angin, tapi lupa kalo pondasi sistem kita masih kerupuk. Rapuh.",
+  hist2021Title: "2021: Lahirnya SIBOS",
+  hist2021Desc: "Gue muak sama aplikasi pasaran yang lembek. Gue bikin SIBOS. Kasir tempur buat kondisi lapangan yang brutal.",
+  hist2022Title: "2022: Kiamat Kecil",
+  hist2022Desc: "Pandemi hajar kita. Tim bubar jalan. Duit ludes. Domain 'kasirsolo' & 'sibos' ilang diserobot orang. Google Bisnis gue disuspend. Gelap, Bos.",
+  hist2025Title: "2025: Balas Dendam",
+  hist2025Desc: "Kita bangkit dari kubur. Bangun ulang dari nol pake arsitektur Enterprise Monorepo. Lebih pinter, lebih kejam, lebih siap perang.",
+
+  footerDesc: "PT Mesin Kasir Solo. Kita partner perang lo. Gue sediain hardware kasir badak, Web Apps canggih, dan strategi Digital Marketing buat lo yang obsesi dominasi pasar.",
+  footerCol1: "Amunisi",
+  footerLink1: "Paket Kasir UMKM",
+  footerLink2: "Enterprise War System",
+  footerLink3: "Bikin Website Killer",
+  footerLink4: "Konsultan SEO 'Jahat'",
+  footerCol2: "Markas Komando",
+  footerCopy: "© 2024 PT Mesin Kasir Solo. Jangan macem-macem, hak cipta dilindungi.",
+  footerLegal1: "Aturan Main",
+  footerLegal2: "Syarat Perang",
+};
