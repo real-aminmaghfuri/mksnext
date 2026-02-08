@@ -1,6 +1,7 @@
 
 "use client";
 import React from 'react';
+import Link from 'next/link';
 import { Moon, Sun, MessageCircle } from 'lucide-react';
 import { Button } from 'ui';
 import { NavbarLogic } from '../types';
@@ -24,11 +25,12 @@ export const ActionButtonsAtom: React.FC<ActionProps> = ({ isDark, toggleTheme, 
         {language}
       </button>
 
-      <a href="https://wa.me/62812XXXXXXXX" target="_blank" rel="noopener noreferrer" className="hidden md:block">
+      {/* Changed from <a> to Next.js <Link> pointing to /contact */}
+      <Link href="/contact" className="hidden md:block">
         <Button size="md" variant="primary" className="font-bold shadow-brand-500/20 hover:shadow-brand-500/50">
           HUBUNGI GUE <MessageCircle size={18} className="ml-2" />
         </Button>
-      </a>
+      </Link>
     </div>
   );
 };

@@ -16,22 +16,28 @@ export const DICTIONARY: Record<Language, Translation> = {
     loginHeading: "Login Komandan",
     loginSub: "Masuk ke akses level dewa.",
     
-    // Website Nav
+    // Website Nav - KEYWORD OPTIMIZED
     navHome: "BERANDA",
-    navAbout: "TENTANG",
-    navAboutProfile: "Profil Perusahaan",
+    navAbout: "PROFIL USAHA", // Popular: Profil
+    navAboutProfile: "Tentang PT MKS",
     navAboutTeam: "Pasukan Elite",
     navAboutVision: "Visi & Misi",
     navAboutPortfolio: "Jejak Pertempuran",
+    navContact: "Hubungi Gue",
     navCareer: "Rekrutmen Pasukan",
     
-    navSolutions: "SOLUSI BISNIS",
-    navSolHardware: "Hardware Tempur",
-    navSolSoftware: "Software Command",
-    navSolConsulting: "Strategi Lapangan",
+    navSolutions: "MESIN KASIR & APP", // Popular: Mesin Kasir, Aplikasi
+    navSolHardware: "Hardware Kasir (POS)",
+    navSolSoftware: "Software Kasir (SaaS)",
+    navSolConsulting: "Konsultasi & SOP",
 
-    navInnovation: "INOVASI",
-    navHelp: "PUSAT BANTUAN",
+    navInnovation: "JASA WEBSITE", // Popular: Jasa Website
+    navWebCompro: "Web Company Profile",
+    navWebEcom: "Web Toko Online",
+    navWebCustom: "Aplikasi Web Custom",
+    navWebSeo: "Jasa SEO Google",
+
+    navHelp: "SUPPORT",
     navInsights: "WAWASAN",
     
     navServices: "Senjata",
@@ -141,8 +147,8 @@ export const DICTIONARY: Record<Language, Translation> = {
     careerRoleTitle: "Posisi Tempur",
     careerRoleSub: "Kalau lo merasa punya DNA yang sama, ambil senjata lo dan gabung barisan.",
     careerForceHireTitle: "Gue Belum Buka Lowongan",
-    careerForceHireDesc: "Skill lo di atas rata-rata (Top 1%)? Coba paksa gue hire lo lewat jalur nekat.",
-    careerForceHireBtn: "UPLOAD CV SPONTAN",
+    careerForceHireDesc: "Skill above average (Top 1%)? Force me to hire you via the reckless path.",
+    careerForceHireBtn: "UPLOAD CV SPONTANEOUSLY",
 
     // Portfolio Section
     portHeading: "JEJAK PERANG MESIN KASIR SOLO",
@@ -156,10 +162,25 @@ export const DICTIONARY: Record<Language, Translation> = {
     portCtaBtn: "MULAI PROYEK BARU",
     portViewCase: "LIHAT DETAIL",
 
+    // Contact
+    contactHeading: "Markas Komando.",
+    contactSub: "Jangan sungkan kontak gue. Kita bahas strategi perang bisnis lo sambil ngopi. Gue standby di jalur ini buat lo yang serius mau naik level.",
+    contactOfficeTitle: "Base Camp (Fisik)",
+    contactOfficeDesc: "Mampir ke markas kalau lo mau liat barang langsung.",
+    contactPhoneTitle: "Jalur Darurat (WA)",
+    contactPhoneDesc: "Fast response buat lo yang gak suka basa-basi.",
+    contactEmailTitle: "Electronic Mail",
+    contactEmailDesc: "For big project proposals or strategic partnerships.",
+    contactFormTitle: "Kirim Pesan Sandi",
+    contactFormName: "Nama Samaran / Asli",
+    contactFormEmail: "Email Aktif",
+    contactFormMsg: "Pesan Operasi",
+    contactFormBtn: "KIRIM PESAN",
+
     // Legality
     legalTitle: "Gue Main Bersih",
-    legalDesc: "Bisnis itu soal kepercayaan. Gue gak mau ngerusak nama yang udah gue bangun lagi dari nol. Ini buktinya gue legal.",
-    legalLabelEntity: "Badan Hukum",
+    legalDesc: "Business is trust. I won't ruin the name I rebuilt from zero. Here is the proof I am legal.",
+    legalLabelEntity: "Legal Entity",
     legalValueEntity: "PT MESIN KASIR SOLO",
     legalLabelNIB: "NIB (Izin Usaha)",
     legalLabelSK: "SK Kemenkumham",
@@ -208,21 +229,28 @@ export const DICTIONARY: Record<Language, Translation> = {
     loginHeading: "Commander Login",
     loginSub: "Access god-mode privileges.",
     
+    // Website Nav - EN
     navHome: "HOME",
-    navAbout: "ABOUT",
+    navAbout: "MKS PROFILE",
     navAboutProfile: "Company Profile",
     navAboutTeam: "Elite Squad",
     navAboutVision: "Vision & Mission",
     navAboutPortfolio: "Battle Tracks",
+    navContact: "Contact Me",
     navCareer: "Join Corps",
     
-    navSolutions: "BIZ SOLUTIONS",
-    navSolHardware: "Combat Hardware",
-    navSolSoftware: "Command Software",
-    navSolConsulting: "Field Strategy",
+    navSolutions: "POS & SOFTWARE",
+    navSolHardware: "POS Hardware",
+    navSolSoftware: "SaaS POS System",
+    navSolConsulting: "Biz Consulting",
 
-    navInnovation: "INNOVATION",
-    navHelp: "HELP CENTER",
+    navInnovation: "WEB SERVICES",
+    navWebCompro: "Company Profile Website",
+    navWebEcom: "E-Commerce Store",
+    navWebCustom: "Custom Web App",
+    navWebSeo: "Google SEO",
+
+    navHelp: "SUPPORT",
     navInsights: "INSIGHTS",
 
     navServices: "Weapons",
@@ -342,6 +370,21 @@ export const DICTIONARY: Record<Language, Translation> = {
     portCtaSub: "Don't just watch others succeed. It's your turn for me to upgrade your system.",
     portCtaBtn: "START NEW PROJECT",
     portViewCase: "VIEW DETAIL",
+
+    // Contact
+    contactHeading: "Command HQ.",
+    contactSub: "Don't hesitate to contact me. Let's discuss your battle strategy over coffee. I'm standing by on this line for those serious about leveling up.",
+    contactOfficeTitle: "Base Camp (Physical)",
+    contactOfficeDesc: "Drop by HQ if you want to see the gear yourself.",
+    contactPhoneTitle: "Emergency Line (WA)",
+    contactPhoneDesc: "Fast response for those who cut the crap.",
+    contactEmailTitle: "Electronic Mail",
+    contactEmailDesc: "For big project proposals or strategic partnerships.",
+    contactFormTitle: "Send Encrypted Message",
+    contactFormName: "Codename / Real Name",
+    contactFormEmail: "Active Email",
+    contactFormMsg: "Operation Details",
+    contactFormBtn: "TRANSMIT MESSAGE",
 
     legalTitle: "I Play Clean",
     legalDesc: "Business is trust. I won't ruin the name I rebuilt from zero. Here is the proof I am legal.",

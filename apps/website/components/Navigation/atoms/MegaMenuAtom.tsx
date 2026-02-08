@@ -16,16 +16,22 @@ export const MegaMenuAtom: React.FC<MegaMenuAtomProps> = ({ items, parentLabel, 
   
   const getVisual = (label: string) => {
     const l = label.toLowerCase();
-    if (l.includes('tentang') || l.includes('about')) {
+    if (l.includes('profil') || l.includes('about') || l.includes('mks')) {
       return {
         img: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=600&auto=format&fit=crop',
         title: 'MKS DNA',
       };
     }
-    if (l.includes('solusi') || l.includes('solutions')) {
+    if (l.includes('kasir') || l.includes('pos')) {
       return {
-        img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop',
-        title: 'SYSTEMS',
+        img: 'https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=600&auto=format&fit=crop',
+        title: 'HARDWARE',
+      };
+    }
+    if (l.includes('website') || l.includes('web')) {
+      return {
+        img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop',
+        title: 'DIGITAL',
       };
     }
     return {
@@ -40,8 +46,8 @@ export const MegaMenuAtom: React.FC<MegaMenuAtomProps> = ({ items, parentLabel, 
     <div 
       className={`absolute top-full left-1/2 -translate-x-1/2 w-[900px] pt-2 z-50 transition-all duration-200 ease-out origin-top ${isVisible ? 'opacity-100 translate-y-0 visible' : 'opacity-0 translate-y-2 invisible'}`}
     >
-      {/* Compact Container */}
-      <div className="bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-2xl overflow-hidden relative">
+      {/* Compact Container - Solid Background (No Transparency) */}
+      <div className="bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-2xl overflow-hidden relative">
         
         {/* Accent Line */}
         <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-brand-600 via-red-500 to-brand-600" />
@@ -72,7 +78,7 @@ export const MegaMenuAtom: React.FC<MegaMenuAtomProps> = ({ items, parentLabel, 
                     </div>
                     <div className="overflow-hidden">
                       <div className="flex items-center gap-1">
-                        <p className="text-sm font-bold text-zinc-800 dark:text-zinc-200 group-hover/item:text-brand-600 dark:group-hover/item:text-brand-500 transition-colors truncate">
+                        <p className="text-sm font-bold text-zinc-800 dark:text-zinc-200 group-hover/item:text-brand-600 dark:group-hover:text-brand-500 transition-colors truncate">
                           {item.label}
                         </p>
                       </div>

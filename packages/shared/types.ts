@@ -41,7 +41,8 @@ export interface Translation {
   navAboutProfile: string;
   navAboutTeam: string;
   navAboutVision: string;
-  navAboutPortfolio: string; // New
+  navAboutPortfolio: string; 
+  navContact: string; // NEW
   navCareer: string; 
   
   navSolutions: string; 
@@ -50,6 +51,12 @@ export interface Translation {
   navSolConsulting: string;
 
   navInnovation: string;
+  // New Web Service Keys
+  navWebCompro: string;
+  navWebEcom: string;
+  navWebCustom: string;
+  navWebSeo: string;
+
   navHelp: string;
   navInsights: string;
 
@@ -154,7 +161,7 @@ export interface Translation {
   careerForceHireDesc: string;
   careerForceHireBtn: string;
 
-  // Portfolio Section (New)
+  // Portfolio Section
   portHeading: string;
   portHeadingSpan: string;
   portSub: string;
@@ -165,6 +172,21 @@ export interface Translation {
   portCtaSub: string;
   portCtaBtn: string;
   portViewCase: string;
+
+  // Contact Section (NEW)
+  contactHeading: string;
+  contactSub: string;
+  contactOfficeTitle: string;
+  contactOfficeDesc: string;
+  contactPhoneTitle: string;
+  contactPhoneDesc: string;
+  contactEmailTitle: string;
+  contactEmailDesc: string;
+  contactFormTitle: string;
+  contactFormName: string;
+  contactFormEmail: string;
+  contactFormMsg: string;
+  contactFormBtn: string;
 
   legalTitle: string;
   legalDesc: string;

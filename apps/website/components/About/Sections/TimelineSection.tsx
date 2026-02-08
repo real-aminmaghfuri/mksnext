@@ -38,10 +38,10 @@ export const TimelineSection: React.FC<TimelineSectionProps> = ({ items }) => {
                   <span className="inline-block px-3 py-1 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-[10px] font-black text-brand-600 dark:text-brand-500 uppercase tracking-[0.2em] border border-brand-500/20">
                     {item.year}
                   </span>
-                  <h4 className="text-2xl md:text-4xl font-black text-zinc-900 dark:text-white tracking-tight">
+                  <h4 className="text-xl md:text-3xl font-black text-zinc-900 dark:text-white tracking-tight">
                     {item.title}
                   </h4>
-                  <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-base md:text-xl max-w-3xl font-medium">
+                  <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-sm md:text-lg max-w-3xl font-medium">
                     {item.desc}
                   </p>
                 </div>
