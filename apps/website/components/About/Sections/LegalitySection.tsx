@@ -48,15 +48,14 @@ export const LegalitySection: React.FC<LegalitySectionProps> = ({ content }) => 
       </div>
 
       {/* Main Card */}
-      <div className="relative rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 overflow-hidden shadow-lg dark:shadow-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent pointer-events-none" />
+      <div className="relative rounded-3xl border border-orange-200 dark:border-zinc-800 overflow-hidden shadow-lg dark:shadow-none">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-8">
-            {/* Left Side: Data List */}
-            <div className="lg:col-span-8 p-6 md:p-10 space-y-6 md:space-y-0">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-0">
+            {/* Left Side: Data List with Light Orange Background */}
+            <div className="lg:col-span-8 p-6 md:p-10 space-y-6 md:space-y-0 bg-orange-50/60 dark:bg-zinc-900/40">
                 
                 {/* Entity Row */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-zinc-200 dark:border-zinc-800 border-dashed">
+                <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-orange-200 dark:border-zinc-800 border-dashed">
                     <span className="text-zinc-500 font-medium">{content.labelEntity}</span>
                     <div className="flex items-center gap-2 mt-2 md:mt-0">
                         <CheckCircle2 size={16} className="text-blue-500" />
@@ -65,19 +64,19 @@ export const LegalitySection: React.FC<LegalitySectionProps> = ({ content }) => 
                 </div>
 
                  {/* NIB Row */}
-                 <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-zinc-200 dark:border-zinc-800 border-dashed">
+                 <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-orange-200 dark:border-zinc-800 border-dashed">
                     <span className="text-zinc-500 font-medium">{content.labelNIB}</span>
                     <span className="text-zinc-900 dark:text-white font-mono font-bold mt-2 md:mt-0">{content.values.nib}</span>
                 </div>
 
                 {/* SK Row */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-zinc-200 dark:border-zinc-800 border-dashed">
+                <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-orange-200 dark:border-zinc-800 border-dashed">
                     <span className="text-zinc-500 font-medium">{content.labelSK}</span>
                     <span className="text-zinc-900 dark:text-white font-mono font-bold mt-2 md:mt-0">{content.values.sk}</span>
                 </div>
 
                 {/* NPWP Row */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-zinc-200 dark:border-zinc-800 border-dashed">
+                <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-orange-200 dark:border-zinc-800 border-dashed">
                     <span className="text-zinc-500 font-medium">{content.labelNPWP}</span>
                     <span className="text-zinc-900 dark:text-white font-mono font-bold mt-2 md:mt-0">{content.values.npwp}</span>
                 </div>
@@ -96,16 +95,24 @@ export const LegalitySection: React.FC<LegalitySectionProps> = ({ content }) => 
                 </div>
             </div>
 
-            {/* Right Side: CTA (Solid Orange Background) */}
-            <div className="lg:col-span-4 p-6 md:p-10 bg-brand-500 border-t lg:border-t-0 lg:border-l border-brand-600 flex flex-col justify-center relative overflow-hidden">
+            {/* Right Side: CTA with Gradient Background */}
+            <div className="lg:col-span-4 p-6 md:p-10 bg-gradient-to-br from-brand-600 to-red-600 flex flex-col justify-center relative overflow-hidden">
                 {/* Decorative Pattern */}
                 <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(255,255,255,0.1)_25%,transparent_25%,transparent_75%,rgba(255,255,255,0.1)_75%,rgba(255,255,255,0.1))] bg-[size:20px_20px] opacity-20" />
                 
+                {/* Decorative Glow */}
+                <div className="absolute top-0 right-0 w-40 h-40 bg-white/20 blur-[50px] rounded-full pointer-events-none" />
+
                 <div className="relative z-10 text-center lg:text-left text-white">
-                    <h4 className="font-black tracking-widest text-sm mb-3 opacity-90">{content.ctaTitle}</h4>
+                    {/* Blue Title Text */}
+                    <h4 className="font-black tracking-widest text-sm mb-3 text-blue-200 drop-shadow-sm">
+                        {content.ctaTitle}
+                    </h4>
+                    
                     <p className="text-white/90 text-sm leading-relaxed mb-8 font-medium">
                         {content.ctaDesc}
                     </p>
+                    
                     <a href="https://oss.go.id" target="_blank" rel="noopener noreferrer" className="block w-full">
                         {/* Blue Button */}
                         <Button fullWidth className="bg-blue-600 hover:bg-blue-700 text-white shadow-xl shadow-blue-900/30 border-none">

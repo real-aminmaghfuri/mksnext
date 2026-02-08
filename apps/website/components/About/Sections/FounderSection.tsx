@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Quote } from 'lucide-react';
 
@@ -63,8 +64,8 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ quote }) => {
                   {quote.bodyPrefix}
                 </p>
                 
-                {/* EMPHASIS CONTAINER */}
-                <div className="p-6 md:px-10 md:py-8 rounded-2xl bg-brand-600/5 dark:bg-brand-600/10 border-l-[6px] border-brand-600 shadow-sm">
+                {/* EMPHASIS CONTAINER - Updated Background to Orange-100 */}
+                <div className="p-6 md:px-10 md:py-8 rounded-2xl bg-orange-100 dark:bg-orange-900/20 border-l-[6px] border-brand-600 shadow-sm">
                   {/* Reduced text size slightly per request (was lg:text-2xl) */}
                   <p className="text-lg md:text-xl font-black text-zinc-900 dark:text-white italic tracking-tight leading-snug">
                     {quote.emphasis} {quote.bodySuffix}
