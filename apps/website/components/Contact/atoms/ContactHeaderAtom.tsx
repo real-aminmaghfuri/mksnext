@@ -9,6 +9,12 @@ interface ContactHeaderProps {
 }
 
 export const ContactHeaderAtom: React.FC<ContactHeaderProps> = ({ heading, sub }) => {
+  // Logic to split the heading for styling
+  const parts = heading.split(',');
+  const hasSplit = parts.length > 1;
+  const line1 = hasSplit ? parts[0] + ',' : heading;
+  const line2 = hasSplit ? parts.slice(1).join(',').trim() : '';
+
   return (
     <div className="pt-40 pb-20 relative overflow-hidden bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white text-center border-b border-zinc-200 dark:border-zinc-800 transition-colors duration-500">
       {/* Radar Effect Background - Adaptive */}
@@ -20,8 +26,15 @@ export const ContactHeaderAtom: React.FC<ContactHeaderProps> = ({ heading, sub }
             <Radio size={12} /> FREQUENCY OPEN
          </div>
 
-         <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-none text-zinc-900 dark:text-white">
-            {heading}
+         <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-[0.9] text-zinc-900 dark:text-white">
+            {hasSplit ? (
+              <>
+                <span className="block">{line1}</span>
+                <span className="block text-brand-600 dark:text-brand-500">{line2}</span>
+              </>
+            ) : (
+              heading
+            )}
          </h1>
          
          <p className="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto text-lg md:text-xl leading-relaxed">

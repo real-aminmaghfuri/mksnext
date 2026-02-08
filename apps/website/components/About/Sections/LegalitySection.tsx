@@ -86,7 +86,7 @@ export const LegalitySection: React.FC<LegalitySectionProps> = ({ content }) => 
                     <span className="text-zinc-800 dark:text-zinc-200 font-bold">{content.labelBank}</span>
                     <div className="text-right mt-2 md:mt-0">
                         <p className="text-zinc-900 dark:text-white font-mono font-black text-lg">{content.values.bank}</p>
-                        <p className="text-[10px] text-zinc-700 dark:text-zinc-300 font-bold uppercase">{content.values.bankName}</p>
+                        <p className="text-zinc-900 dark:text-zinc-300 font-bold uppercase text-[10px]">{content.values.bankName}</p>
                     </div>
                 </div>
 
@@ -95,8 +95,8 @@ export const LegalitySection: React.FC<LegalitySectionProps> = ({ content }) => 
                 </div>
             </div>
 
-            {/* Right Side: CTA with Gradient (60% opacity) */}
-            <div className="lg:col-span-4 p-6 md:p-10 bg-gradient-to-br from-brand-600/60 to-red-600/60 flex flex-col justify-center relative overflow-hidden">
+            {/* Right Side: CTA with Blue Gradient (60% opacity) */}
+            <div className="lg:col-span-4 p-6 md:p-10 bg-gradient-to-br from-blue-600/60 to-indigo-600/60 flex flex-col justify-center relative overflow-hidden">
                 {/* Decorative Pattern */}
                 <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(255,255,255,0.1)_25%,transparent_25%,transparent_75%,rgba(255,255,255,0.1)_75%,rgba(255,255,255,0.1))] bg-[size:20px_20px] opacity-20" />
                 
@@ -104,19 +104,19 @@ export const LegalitySection: React.FC<LegalitySectionProps> = ({ content }) => 
                 <div className="absolute top-0 right-0 w-40 h-40 bg-white/20 blur-[50px] rounded-full pointer-events-none" />
 
                 <div className="relative z-10 text-center lg:text-left">
-                    {/* Blue Title Text - Changed to darker blue in light mode */}
-                    <h4 className="font-black tracking-widest text-xl md:text-2xl mb-4 text-blue-700 dark:text-blue-200 drop-shadow-md uppercase">
+                    {/* Orange Title Text */}
+                    <h4 className="font-black tracking-widest text-xl md:text-2xl mb-4 text-brand-400 drop-shadow-md uppercase">
                         {content.ctaTitle}
                     </h4>
                     
-                    {/* Description Text - Changed to Black in Light Mode */}
-                    <p className="text-zinc-900 dark:text-white text-sm leading-relaxed mb-8 font-bold">
+                    {/* White Description Text */}
+                    <p className="text-white text-sm leading-relaxed mb-8 font-bold">
                         {content.ctaDesc}
                     </p>
                     
                     <a href="https://oss.go.id" target="_blank" rel="noopener noreferrer" className="block w-full">
-                        {/* Blue Button */}
-                        <Button fullWidth className="!bg-blue-600 !bg-none hover:!bg-blue-700 text-white shadow-xl shadow-blue-900/30 border-none">
+                        {/* Orange-Red Gradient Button */}
+                        <Button fullWidth className="bg-gradient-to-r from-brand-600 to-red-600 hover:to-red-500 text-white shadow-xl shadow-brand-900/30 border-none">
                             {content.ctaBtn}
                         </Button>
                     </a>

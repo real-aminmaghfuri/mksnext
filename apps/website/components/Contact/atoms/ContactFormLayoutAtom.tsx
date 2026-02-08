@@ -17,14 +17,15 @@ export const ContactFormLayoutAtom: React.FC<ContactFormLayoutProps> = ({ info, 
     <div className="container mx-auto px-6 mb-24 relative z-10 max-w-6xl">
        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* LEFT COLUMN (INFO) - SEPARATE CONTAINER */}
+          {/* LEFT COLUMN (INFO) */}
           <div className="lg:col-span-4 bg-white dark:bg-zinc-900 p-8 rounded-[32px] border border-zinc-200 dark:border-zinc-800 shadow-xl dark:shadow-none h-full">
-              {/* Card Title */}
-              <div className="mb-6 border-b-2 border-brand-500 pb-4">
-                  <h3 className="text-2xl font-black text-zinc-900 dark:text-white uppercase tracking-tighter">
-                      {info.infoTitle}
-                  </h3>
-              </div>
+              {/* Card Title - Matched with Right Side */}
+              <h3 className="text-3xl font-black text-zinc-900 dark:text-white mb-6">
+                  {info.infoTitle}
+              </h3>
+              
+              {/* Separator - Matched Style */}
+              <div className="h-px bg-zinc-200 dark:bg-zinc-800 w-full mb-8" />
 
               <div className="space-y-10">
                   {/* Legal Office */}
@@ -33,7 +34,8 @@ export const ContactFormLayoutAtom: React.FC<ContactFormLayoutProps> = ({ info, 
                           <MapPin size={16} />
                           <span className="text-xs font-black uppercase tracking-widest text-brand-600 dark:text-brand-500">{info.officeLegal}</span>
                       </div>
-                      <p className="text-base font-bold text-zinc-800 dark:text-zinc-200 leading-relaxed">
+                      {/* Address Text - Matched to Input Style (text-sm font-medium) */}
+                      <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300 leading-relaxed">
                           {info.officeLegalAddress}
                       </p>
                   </div>
@@ -44,12 +46,12 @@ export const ContactFormLayoutAtom: React.FC<ContactFormLayoutProps> = ({ info, 
                           <MapPin size={16} />
                           <span className="text-xs font-black uppercase tracking-widest text-brand-600 dark:text-brand-500">{info.officeOps}</span>
                       </div>
-                      <p className="text-base font-bold text-zinc-800 dark:text-zinc-200 leading-relaxed">
+                      <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300 leading-relaxed">
                           {info.officeOpsAddress}
                       </p>
                   </div>
 
-                  <div className="h-px bg-zinc-100 dark:bg-zinc-800 w-full" />
+                  <div className="h-px bg-zinc-200 dark:bg-zinc-800 w-full" />
 
                   {/* Contact Details */}
                   <div className="space-y-8">
@@ -75,10 +77,13 @@ export const ContactFormLayoutAtom: React.FC<ContactFormLayoutProps> = ({ info, 
               </div>
           </div>
 
-          {/* RIGHT COLUMN (FORM) - SEPARATE CONTAINER */}
+          {/* RIGHT COLUMN (FORM) */}
           <div className="lg:col-span-8 bg-white dark:bg-black p-8 md:p-12 rounded-[32px] border border-zinc-200 dark:border-zinc-800 shadow-2xl dark:shadow-brand-900/10 relative">
               <div className="mb-2">
-                  <h3 className="text-3xl font-black text-zinc-900 dark:text-white mb-8">{form.title}</h3>
+                  <h3 className="text-3xl font-black text-zinc-900 dark:text-white mb-6">{form.title}</h3>
+                  
+                  {/* Added Separator to match Left Side */}
+                  <div className="h-px bg-zinc-200 dark:bg-zinc-800 w-full mb-8" />
                   
                   {/* Name & WA */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -100,7 +105,7 @@ export const ContactFormLayoutAtom: React.FC<ContactFormLayoutProps> = ({ info, 
                       </div>
                   </div>
 
-                  {/* Address Field - Moved Up */}
+                  {/* Address Field */}
                   <div className="space-y-2 mb-6">
                         <label className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider ml-1">ALAMAT / LOKASI LO</label>
                         <input 
@@ -110,18 +115,17 @@ export const ContactFormLayoutAtom: React.FC<ContactFormLayoutProps> = ({ info, 
                         />
                   </div>
 
-                  {/* Topic Buttons - Moved Down, Full Width Stacked */}
+                  {/* Topic Buttons */}
                   <div className="space-y-3 mb-6">
                        <label className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider ml-1">{form.topicLabel}</label>
-                       {/* Full width stacked buttons */}
-                       <div className="grid grid-cols-1 gap-3">
+                       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                            {form.topics.map(topic => (
                                <button
                                   key={topic}
                                   onClick={() => setSelectedTopic(topic)}
-                                  className={`w-full px-6 py-4 rounded-xl text-sm font-black border transition-all duration-200 uppercase tracking-widest text-center shadow-sm
+                                  className={`w-full px-2 py-4 rounded-xl text-[10px] md:text-xs font-black border transition-all duration-200 uppercase tracking-wider text-center shadow-sm flex items-center justify-center
                                     ${selectedTopic === topic 
-                                        ? 'bg-brand-600 border-brand-600 text-white shadow-lg shadow-brand-500/20 scale-[1.01]' 
+                                        ? 'bg-brand-600 border-brand-600 text-white shadow-lg shadow-brand-500/20 scale-[1.02]' 
                                         : 'bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-white dark:hover:bg-zinc-800'
                                     }`}
                                >
