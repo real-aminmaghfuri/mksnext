@@ -54,7 +54,7 @@ export const getMenuStructure = (text: Translation): MenuItem[] => [
   },
   { 
     label: text.navInsights, 
-    path: '#', 
+    path: '/articles', 
     hasDropdown: false 
   },
 ];

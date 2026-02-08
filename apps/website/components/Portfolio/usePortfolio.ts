@@ -29,7 +29,8 @@ export const usePortfolio = () => {
       sub: text.portCtaSub,
       btn: text.portCtaBtn
     },
-    viewCaseText: text.portViewCase
+    viewCaseText: text.portViewCase,
+    loadMoreLabel: text.portLoadMore // Mapped new field
   };
 
   // Reset pagination when category changes

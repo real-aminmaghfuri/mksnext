@@ -41,7 +41,7 @@ export const Portfolio: React.FC = () => {
             className="border-2 border-brand-500 text-brand-600 dark:text-brand-500 hover:bg-brand-600 hover:text-white font-bold uppercase tracking-widest px-8 py-3 rounded-full transition-all duration-300 shadow-lg shadow-brand-500/10 hover:shadow-brand-500/40"
           >
             <RefreshCw size={16} className="mr-2" />
-            LOAD MORE ARSENAL
+            {content.loadMoreLabel}
           </Button>
         </div>
       )}

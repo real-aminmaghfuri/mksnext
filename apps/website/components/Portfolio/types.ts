@@ -23,4 +23,5 @@ export interface PortfolioContent {
   };
   
   viewCaseText: string;
+  loadMoreLabel: string; // Added new field
 }

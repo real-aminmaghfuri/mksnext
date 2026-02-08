@@ -177,6 +177,15 @@ export interface Translation {
   portCtaSub: string;
   portCtaBtn: string;
   portViewCase: string;
+  portLoadMore: string; // New Field
+
+  // Articles Section
+  blogTitle: string;
+  blogSub: string;
+  blogSearchPlaceholder: string;
+  blogLoadMore: string;
+  blogSidebarTitle: string;
+  blogSidebarProductTitle: string;
 
   // Contact Section
   contactHeading: string;
@@ -184,7 +193,7 @@ export interface Translation {
   contactQnaTitle: string;
   contactQna: QnaItem[];
   
-  contactInfoTitle: string; // New field
+  contactInfoTitle: string; 
   contactOfficeLegalTitle: string;
   contactOfficeLegalAddress: string;
   contactOfficeOpsTitle: string;
@@ -264,4 +273,16 @@ export interface PortfolioItem {
   tag: string;
   desc: string;
   image: string;
+}
+
+export interface ArticleItem {
+  id: number;
+  title: string;
+  excerpt: string;
+  category: string;
+  date: string;
+  author: string;
+  image: string;
+  readTime: string;
+  isFeatured?: boolean;
 }
