@@ -1,0 +1,57 @@
+
+"use client";
+import React from 'react';
+import { DnaItem } from '../types';
+import { Fingerprint } from 'lucide-react';
+
+interface DnaGridProps {
+  title: string;
+  subtitle: string;
+  items: DnaItem[];
+}
+
+export const DnaGridAtom: React.FC<DnaGridProps> = ({ title, subtitle, items }) => {
+  return (
+    <div className="bg-zinc-950 py-24 relative border-t border-zinc-900">
+      {/* Background Texture */}
+      <div className="absolute inset-0 bg-[linear-gradient(45deg,#09090b_25%,transparent_25%,transparent_75%,#09090b_75%,#09090b),linear-gradient(45deg,#09090b_25%,transparent_25%,transparent_75%,#09090b_75%,#09090b)] bg-[size:60px_60px] bg-[position:0_0,30px_30px] opacity-20" />
+
+      <div className="container mx-auto px-6 relative z-10">
+        
+        {/* Header Centered */}
+        <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded border border-brand-900/50 bg-brand-950/30 text-brand-500 text-[10px] font-black uppercase tracking-widest mb-4">
+                <Fingerprint size={12} /> PREMIUM ARSENAL
+            </div>
+            <h2 className="text-5xl md:text-6xl font-black text-white uppercase tracking-tighter mb-4">
+                {title.split(' ')[0]} <span className="text-brand-500">{title.split(' ')[1]}</span>
+            </h2>
+            <p className="text-zinc-500 font-medium italic">
+                {subtitle}
+            </p>
+        </div>
+
+        {/* 3x2 Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {items.map((item, idx) => {
+                const Icon = item.icon;
+                return (
+                    <div key={idx} className="group bg-zinc-900/80 backdrop-blur-sm border border-zinc-800 p-8 rounded-3xl hover:border-zinc-600 transition-all duration-300 hover:-translate-y-1">
+                        <div className="w-12 h-12 rounded-xl bg-zinc-800 flex items-center justify-center text-zinc-400 mb-6 group-hover:text-white group-hover:bg-zinc-700 transition-colors">
+                            <Icon size={24} strokeWidth={1.5} />
+                        </div>
+                        <h3 className="text-lg font-bold text-white mb-3">
+                            {item.title}
+                        </h3>
+                        <p className="text-sm text-zinc-500 leading-relaxed font-medium group-hover:text-zinc-400 transition-colors">
+                            {item.desc}
+                        </p>
+                    </div>
+                );
+            })}
+        </div>
+
+      </div>
+    </div>
+  );
+};

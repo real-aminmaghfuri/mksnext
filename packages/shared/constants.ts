@@ -16,13 +16,13 @@ export const DICTIONARY: Record<Language, Translation> = {
     loginHeading: "Login Komandan",
     loginSub: "Masuk ke akses level dewa.",
     
-    // Website Nav - Updated for Mega Menu
+    // Website Nav
     navHome: "BERANDA",
     navAbout: "TENTANG",
     navAboutProfile: "Profil Perusahaan",
     navAboutTeam: "Pasukan Elite",
     navAboutVision: "Visi & Misi",
-    navCareer: "Rekrutmen Pasukan", // New
+    navCareer: "Rekrutmen Pasukan",
     
     navSolutions: "SOLUSI BISNIS",
     navSolHardware: "Hardware Tempur",
@@ -79,19 +79,42 @@ export const DICTIONARY: Record<Language, Translation> = {
     aboutPhil3Title: "Survival Instinct",
     aboutPhil3Desc: "Gue pernah bangkrut. Gue tau persis cara jagain aset lo biar gak bernasib sama kayak gue dulu.",
 
-    // Vision Mission
-    visionHeading: "Blueprint Kekuasaan.",
-    visionSub: "Kita gak main-main soal arah. Ini bukan sekadar jualan alat, ini soal mendominasi ekosistem ritel di Solo Raya.",
-    visionStatement: "Menjadi infrastruktur tulang punggung paling brutal dan andal bagi bisnis di Solo Raya yang menolak untuk bangkrut.",
-    missionTitle: "Misi Taktis",
-    mission1Title: "Persenjatai UKM",
-    mission1Desc: "Menyediakan hardware kelas militer dan software level enterprise dengan harga yang masuk akal bagi pejuang lapangan.",
-    mission2Title: "Edukasi Jalanan",
-    mission2Desc: "Membuka mata pengusaha soal pentingnya data, sistem, dan kontrol. Bukan cuma cuan hari ini, tapi sustainability tahun depan.",
-    mission3Title: "Support Tanpa Basa-basi",
-    mission3Desc: "Layanan purna jual yang responsif. Kalo alat lo mati, bisnis lo mati. Kita gak biarin itu kejadian.",
+    // Vision Mission (UPDATED FROM IMAGE)
+    visionHeading: "Mimpi Gede & Kerja Keras.",
+    visionSub: "Gue gak bangun PT Mesin Kasir Solo cuma buat cari untung receh. Gue punya misi buat nyelametin ribuan UMKM dari kebangkrutan karena buta data.",
+    visionTitle: "Visi Gue (The Dream)",
+    visionStatement: "Menjadi Benteng Pertahanan Digital #1 buat UMKM Indonesia. Gue mau liat warung kecil punya sistem secanggih minimarket modern, tanpa harus bayar mahal.",
+    
+    missionTitle: "Misi Harian (The Grind)",
+    missionSub: "Ini yang tim gue kerjain tiap hari buat lo:",
+    mission1Title: "Hancurin Mitos Mahal",
+    mission1Desc: "Teknologi canggih gak harus bikin kantong bolong. Gue hadirkan mesin kasir & software enterprise dengan harga rakyat.",
+    mission2Title: "Edukasi Sampai Pinter",
+    mission2Desc: "Gue haram hukumnya jual putus. Lo dan staf lo bakal gue training sampai bener-bener ngerti cara baca data bisnis.",
+    mission3Title: "Inovasi Gak Ada Matinya",
+    mission3Desc: "SIBOS & QALAM bakal terus gue update. Lo gak perlu pusing mikirin coding, biar itu urusan gue.",
+    mission4Title: "Support Tanpa Drama",
+    mission4Desc: "Kalau alat rusak, gue yang pusing, bukan lo. Tim teknis gue siap backup biar jualan lo gak keganggu.",
+
+    // DNA Section (NEW FROM IMAGE)
+    dnaTitle: "DNA Gue",
+    dnaSub: "Prinsip jalanan yang gue tanam ke semua anak buah gue.",
+    dna1Title: "Jujur Harga Mati",
+    dna1Desc: "Gue gak bakal jual barang yang gak lo butuhin cuma demi omzet. Kalau barang jelek, gue bilang jelek. Transparansi nomor satu.",
+    dna2Title: "Mental Baja",
+    dna2Desc: "Lahir dari kegagalan 2022, gue punya mental survivor. Gue ngerti susahnya bangun bisnis dari nol karena gue juga ngalamin.",
+    dna3Title: "Anti Sambat",
+    dna3Desc: "Disini gak ada tempat buat ngeluh. Ada masalah? Cari solusi. Error? Perbaiki. Deadline? Sikat.",
+    dna4Title: "Lo Bosnya",
+    dna4Desc: "Gue idup dari profit lo. Kalau bisnis lo mati, bisnis gue juga mati. Jadi gue bakal mati-matian bikin lo sukses.",
+    dna5Title: "Sat Set Wat Wet",
+    dna5Desc: "Bisnis itu balapan. Gue kerja cepet. Chat dibales kilat, pengiriman gak pake lama, support sat-set.",
+    dna6Title: "Jangka Panjang",
+    dna6Desc: "Gue gak cari 'hit and run'. Gue mau nemenin lo dari jualan di garasi sampai punya cabang di mana-mana.",
+
     manifestoTitle: "Manifesto MKS",
-    manifestoText: "Kami percaya bisnis adalah perang. Di perang, lo butuh sekutu yang pegang senjata, bukan yang cuma bisa sorak-sorai. MKS ada buat lo yang berani ambil resiko, yang berani capek, dan yang berani kaya.",
+    manifestoText: "Gue Gak Jual Alat Sulap, Gue Jual Senjata Perang.",
+    manifestoFooter: "\"Di PT Mesin Kasir Solo, gue percaya satu hal: Bisnis tanpa data itu judi. Tugas gue adalah mastiin lo pegang kartu As (Sistem & Data) biar lo selalu menang di pasar.\"",
 
     // Career
     careerHeading: "REKRUTMEN PASUKAN.",
@@ -106,7 +129,7 @@ export const DICTIONARY: Record<Language, Translation> = {
     careerRoleEmpty: "Markas penuh. Belum ada kursi kosong. Asah terus pedang lo.",
     careerApplyBtn: "Lamar Sekarang",
 
-    // Legality Section
+    // Legality
     legalTitle: "Gue Main Bersih",
     legalDesc: "Bisnis itu soal kepercayaan. Gue gak mau ngerusak nama yang udah gue bangun lagi dari nol. Ini buktinya gue legal.",
     legalLabelEntity: "Badan Hukum",
@@ -120,7 +143,7 @@ export const DICTIONARY: Record<Language, Translation> = {
     legalCtaBtn: "Buka OSS.GO.ID",
     legalFooterNote: "*Buat lo yang butuh dokumen asli buat vendor list atau tender, chat admin gue. Kita transparan.",
 
-    // History Timeline
+    // History
     hist2015Title: "2015: Modaldengkul.com",
     hist2015Desc: "Gue jalan kaki, Bos. Door-to-door di panasnya Solo nawarin mesin kasir. Ditolak ratusan kali, kaki lecet, tapi mental gue jadi bulletproof.",
     hist2018Title: "2018: Pasukan Terbentuk",
@@ -145,6 +168,7 @@ export const DICTIONARY: Record<Language, Translation> = {
     footerLegal2: "Syarat Perang",
   },
   [Language.EN]: {
+    // Keeping EN simpler/similar but translating the vibe
     heroTitle: "Your Business is War. Don't Bring Toys.",
     heroSubtitle: "This is the most savage weapon to validate your hustle in Solo. I built MKS not to look cool, but to ensure your ops don't crumble under fire.",
     ctaPrimary: "Let's Ride",
@@ -157,15 +181,14 @@ export const DICTIONARY: Record<Language, Translation> = {
     navSettings: "Configs",
     loginHeading: "Commander Login",
     loginSub: "Access god-mode privileges.",
-
-    // Website Nav - Mega Menu
+    
     navHome: "HOME",
     navAbout: "ABOUT",
     navAboutProfile: "Company Profile",
     navAboutTeam: "Elite Squad",
     navAboutVision: "Vision & Mission",
-    navCareer: "Join Corps", // New
-
+    navCareer: "Join Corps",
+    
     navSolutions: "BIZ SOLUTIONS",
     navSolHardware: "Combat Hardware",
     navSolSoftware: "Command Software",
@@ -180,7 +203,6 @@ export const DICTIONARY: Record<Language, Translation> = {
     navMenu: "Intel",
     navClose: "Bail",
 
-    // Services
     servicesTitle: "Our Combat Loadout",
     servicesSub: "I don't sell sweet talk. This is the brutal infrastructure you need so your business doesn't die a stupid death.",
     srvHardware: "Physical Gear",
@@ -192,18 +214,15 @@ export const DICTIONARY: Record<Language, Translation> = {
     srvConsulting: "Skill Transfer",
     srvConsultingDesc: "I teach you anti-theft cashier SOPs, strict inventory control, and street-tested marketing strategies.",
 
-    // Shop
     shopTitle: "Supply Drop",
     shopSub: "Upgrade your hustle with military-grade business equipment. Durable, glitch-proof, ready to take a beating.",
     shopBtnOrder: "Grab via WA",
     shopUnit: "Unit",
 
-    // About
     aboutHeading: "Built on Asphalt & Wounds.",
     aboutTagline: "My story isn't some cheesy motivational quote. It's a chronicle of bleeding out, walking miles to sell tools, and rejections that turned my mind into steel.",
     aboutFounderQuote: "To be honest... In 2022, I almost 'died'. Digital assets gone, domain stolen, Google Business suspended. Even got played by employees. The system was a mess because I trusted 'humans' too much without a control system. That's when I learned a costly lesson: Business without a strong system is just waiting to explode.",
     
-    // Turning Point Section
     aboutTurnTitle: "Titik Balik (The Turn)",
     aboutTurnP1: "From that destruction, I rebuilt everything alone. Not for revenge, but to ensure ",
     aboutTurnP1Bold: "you don't have to feel the pain I felt.",
@@ -222,20 +241,42 @@ export const DICTIONARY: Record<Language, Translation> = {
     aboutPhil3Desc: "I went bankrupt once. I know exactly how to guard your assets so you don't end up like I did.",
 
     // Vision Mission
-    visionHeading: "Blueprint of Power.",
-    visionSub: "We don't play around with direction. This isn't just selling tools, it's about dominating the retail ecosystem in Solo Raya.",
-    visionStatement: "To be the most brutal and reliable backbone infrastructure for Solo Raya businesses that refuse to go bankrupt.",
-    missionTitle: "Tactical Missions",
-    mission1Title: "Arm the SMEs",
-    mission1Desc: "Providing military-grade hardware and enterprise-level software at a sensible price for field fighters.",
-    mission2Title: "Street Education",
-    mission2Desc: "Opening entrepreneurs' eyes to the importance of data, systems, and control. Not just profit today, but sustainability next year.",
-    mission3Title: "No Bullsh*t Support",
-    mission3Desc: "Responsive after-sales service. If your tool dies, your business dies. We won't let that happen.",
-    manifestoTitle: "MKS Manifesto",
-    manifestoText: "We believe business is war. In war, you need allies who hold weapons, not just cheerleaders. MKS exists for those who dare to take risks, dare to get tired, and dare to get rich.",
+    visionHeading: "Big Dreams & Hard Work.",
+    visionSub: "I didn't build PT MKS just for petty cash. I have a mission to save thousands of SMEs from bankruptcy caused by data blindness.",
+    visionTitle: "My Vision (The Dream)",
+    visionStatement: "To be the #1 Digital Defense Fortress for Indonesian SMEs. I want to see small stalls have systems as advanced as modern minimarkets, without paying premium prices.",
+    
+    missionTitle: "Daily Mission (The Grind)",
+    missionSub: "This is what my team grinds for everyday:",
+    mission1Title: "Destroy 'Expensive' Myths",
+    mission1Desc: "High tech doesn't mean empty pockets. I bring enterprise-grade registers & software at people's prices.",
+    mission2Title: "Educate 'Til Smart",
+    mission2Desc: "Selling and running is forbidden. I will train you and your staff until you truly understand business data.",
+    mission3Title: "Innovation Never Dies",
+    mission3Desc: "SIBOS & QALAM will keep updating. You don't need to stress about coding, let me handle that.",
+    mission4Title: "No-Drama Support",
+    mission4Desc: "If the tool breaks, I stress out, not you. My tech team is ready to backup so your sales don't stop.",
 
-    // Career
+    // DNA
+    dnaTitle: "My DNA",
+    dnaSub: "Street principles I implant in all my troops.",
+    dna1Title: "Honesty is Fatal",
+    dna1Desc: "I won't sell you junk you don't need just for turnover. If it's bad, I say it's bad. Transparency is #1.",
+    dna2Title: "Steel Mentality",
+    dna2Desc: "Born from 2022 failure, I have a survivor mindset. I know the struggle of building from zero.",
+    dna3Title: "Anti-Whining",
+    dna3Desc: "No place for complaints here. Problem? Find solution. Error? Fix it. Deadline? Kill it.",
+    dna4Title: "You Are The Boss",
+    dna4Desc: "I live off your profit. If your business dies, mine does too. So I'll fight to make you succeed.",
+    dna5Title: "Fast & Furious",
+    dna5Desc: "Business is a race. I work fast. Instant replies, fast shipping, sat-set support.",
+    dna6Title: "Long Game",
+    dna6Desc: "I'm not here for 'hit and run'. I want to accompany you from a garage sale to nationwide branches.",
+
+    manifestoTitle: "MKS Manifesto",
+    manifestoText: "I Don't Sell Magic Tricks, I Sell War Weapons.",
+    manifestoFooter: "\"At PT Mesin Kasir Solo, I believe one thing: Business without data is gambling. My job is ensuring you hold the Ace Card (System & Data) so you always win the market.\"",
+
     careerHeading: "SPECIAL FORCES RECRUITMENT.",
     careerSub: "MKS is not for the weak. We work hard, play hard, and pay well. If you think you're a god, prove it here.",
     careerPerk1Title: "God-Tier Salary",
@@ -248,7 +289,6 @@ export const DICTIONARY: Record<Language, Translation> = {
     careerRoleEmpty: "Base is full. No open seats. Keep sharpening your blade.",
     careerApplyBtn: "Apply Now",
 
-    // Legality Section
     legalTitle: "I Play Clean",
     legalDesc: "Business is trust. I won't ruin the name I rebuilt from zero. Here is the proof I am legal.",
     legalLabelEntity: "Legal Entity",
@@ -262,7 +302,6 @@ export const DICTIONARY: Record<Language, Translation> = {
     legalCtaBtn: "Open OSS.GO.ID",
     legalFooterNote: "*Need original docs for vendor list or tender? Chat my admin. We are transparent.",
 
-    // History Timeline
     hist2015Title: "2015: The Grind",
     hist2015Desc: "I walked, Boss. Door-to-door under the sun selling registers. Hundreds of 'No's. Bleeding feet, bulletproof mindset.",
     hist2018Title: "2018: The Squad",
@@ -274,7 +313,6 @@ export const DICTIONARY: Record<Language, Translation> = {
     hist2025Title: "2025: The Vengeance",
     hist2025Desc: "Rising from the grave. Rebuilt from scratch using Enterprise Monorepo. Smarter, meaner, readier for war.",
 
-    // Footer
     footerDesc: "PT Mesin Kasir Solo. We are your combat partners. I provide tank-grade hardware, sophisticated Web Apps, and Digital Marketing strategies for those obsessed with market domination.",
     footerCol1: "The Arsenal",
     footerLink1: "SME POS Packs",

@@ -5,24 +5,33 @@ import React from 'react';
 interface ManifestoProps {
   title: string;
   text: string;
+  footer: string;
 }
 
-export const ManifestoAtom: React.FC<ManifestoProps> = ({ title, text }) => {
+export const ManifestoAtom: React.FC<ManifestoProps> = ({ title, text, footer }) => {
   return (
-    <div className="bg-zinc-900 dark:bg-zinc-950 py-24 relative overflow-hidden border-t border-zinc-800">
-      <div className="absolute inset-0 bg-[linear-gradient(45deg,#1f1f23_1px,transparent_1px)] bg-[size:32px_32px] opacity-20" />
+    <div className="bg-zinc-950/50 py-32 relative overflow-hidden border-t border-zinc-900">
       
-      <div className="container mx-auto px-6 relative z-10 max-w-5xl text-center">
-        <h2 className="text-[100px] md:text-[180px] font-black text-white/5 leading-[0.8] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none uppercase whitespace-nowrap">
-          WAR ROOM
-        </h2>
+      <div className="container mx-auto px-6 relative z-10 max-w-4xl text-center">
         
-        <h3 className="text-brand-500 font-black tracking-[0.5em] text-sm uppercase mb-6">
-          {title}
-        </h3>
-        <p className="text-2xl md:text-4xl font-black text-white leading-tight tracking-tight uppercase">
-          {text}
-        </p>
+        <h2 className="text-4xl md:text-6xl font-black text-white leading-tight tracking-tighter uppercase mb-2">
+            {text.split(',')[0]},
+        </h2>
+        <h2 className="text-4xl md:text-6xl font-black text-white leading-tight tracking-tighter uppercase mb-12">
+            {text.split(',')[1]} <span className="text-brand-500">Senjata Perang.</span>”
+        </h2>
+
+        <div className="p-8 md:p-10 rounded-3xl border border-brand-900/30 bg-brand-950/10 relative">
+            <p className="text-lg md:text-xl text-brand-100 font-medium italic leading-relaxed">
+                {footer}
+            </p>
+            <div className="mt-6 flex items-center justify-center gap-4">
+                <div className="h-px w-12 bg-brand-800" />
+                <span className="text-[10px] font-black text-brand-600 uppercase tracking-[0.2em]">AMIN MAGHFURI, FOUNDER</span>
+                <div className="h-px w-12 bg-brand-800" />
+            </div>
+        </div>
+
       </div>
     </div>
   );

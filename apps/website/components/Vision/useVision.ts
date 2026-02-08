@@ -3,7 +3,18 @@
 
 import { useConfig } from 'ui';
 import { DICTIONARY } from 'shared';
-import { Target, BookOpen, HeartHandshake } from 'lucide-react';
+import { 
+  ShieldCheck, 
+  TrendingUp, 
+  Zap, 
+  Users, 
+  Clock, 
+  Compass,
+  MonitorOff, 
+  GraduationCap, 
+  Cpu, 
+  Headphones 
+} from 'lucide-react';
 import { VisionContent } from './types';
 
 export const useVision = (): VisionContent => {
@@ -13,31 +24,73 @@ export const useVision = (): VisionContent => {
   return {
     heading: text.visionHeading,
     sub: text.visionSub,
+    visionTitle: text.visionTitle,
     statement: text.visionStatement,
+    
     missionTitle: text.missionTitle,
+    missionSub: text.missionSub,
     missionItems: [
       {
+        id: "01",
         title: text.mission1Title,
         desc: text.mission1Desc,
-        icon: Target,
-        color: 'text-red-500 bg-red-500/10 border-red-500/20'
       },
       {
+        id: "02",
         title: text.mission2Title,
         desc: text.mission2Desc,
-        icon: BookOpen,
-        color: 'text-blue-500 bg-blue-500/10 border-blue-500/20'
       },
       {
+        id: "03",
         title: text.mission3Title,
         desc: text.mission3Desc,
-        icon: HeartHandshake,
-        color: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20'
+      },
+      {
+        id: "04",
+        title: text.mission4Title,
+        desc: text.mission4Desc,
       }
     ],
+
+    dnaTitle: text.dnaTitle,
+    dnaSub: text.dnaSub,
+    dnaItems: [
+      {
+        title: text.dna1Title,
+        desc: text.dna1Desc,
+        icon: ShieldCheck
+      },
+      {
+        title: text.dna2Title,
+        desc: text.dna2Desc,
+        icon: TrendingUp
+      },
+      {
+        title: text.dna3Title,
+        desc: text.dna3Desc,
+        icon: MonitorOff // Simulating "Anti Sambat" / No Complaints
+      },
+      {
+        title: text.dna4Title,
+        desc: text.dna4Desc,
+        icon: Users
+      },
+      {
+        title: text.dna5Title,
+        desc: text.dna5Desc,
+        icon: Zap
+      },
+      {
+        title: text.dna6Title,
+        desc: text.dna6Desc,
+        icon: Compass // Long term
+      }
+    ],
+
     manifesto: {
       title: text.manifestoTitle,
-      text: text.manifestoText
+      text: text.manifestoText,
+      footer: text.manifestoFooter
     }
   };
 };

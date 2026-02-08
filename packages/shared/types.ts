@@ -98,16 +98,38 @@ export interface Translation {
   // Vision & Mission Section
   visionHeading: string;
   visionSub: string;
+  visionTitle: string; // "Visi Gue (The Dream)"
   visionStatement: string;
-  missionTitle: string;
+  missionTitle: string; // "Misi Harian (The Grind)"
+  missionSub: string;
   mission1Title: string;
   mission1Desc: string;
   mission2Title: string;
   mission2Desc: string;
   mission3Title: string;
   mission3Desc: string;
+  mission4Title: string; // Added 4th mission
+  mission4Desc: string;
+  
+  // DNA Section (New)
+  dnaTitle: string;
+  dnaSub: string;
+  dna1Title: string;
+  dna1Desc: string;
+  dna2Title: string;
+  dna2Desc: string;
+  dna3Title: string;
+  dna3Desc: string;
+  dna4Title: string;
+  dna4Desc: string;
+  dna5Title: string;
+  dna5Desc: string;
+  dna6Title: string;
+  dna6Desc: string;
+
   manifestoTitle: string;
   manifestoText: string;
+  manifestoFooter: string;
 
   // Career Section
   careerHeading: string;
