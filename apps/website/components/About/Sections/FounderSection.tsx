@@ -64,10 +64,10 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ quote }) => {
                   {quote.bodyPrefix}
                 </p>
                 
-                {/* EMPHASIS CONTAINER - Updated Background to Orange-100 */}
-                <div className="p-6 md:px-10 md:py-8 rounded-2xl bg-orange-100 dark:bg-orange-900/20 border-l-[6px] border-brand-600 shadow-sm">
-                  {/* Reduced text size slightly per request (was lg:text-2xl) */}
-                  <p className="text-lg md:text-xl font-black text-zinc-900 dark:text-white italic tracking-tight leading-snug">
+                {/* EMPHASIS CONTAINER - Solid Orange 200 (Consistent Light/Dark) */}
+                <div className="p-6 md:px-10 md:py-8 rounded-2xl bg-orange-200 border-l-[6px] border-brand-600 shadow-sm">
+                  {/* Text is forced to zinc-900 (Black) because background is always orange-200 */}
+                  <p className="text-lg md:text-xl font-black text-zinc-900 italic tracking-tight leading-snug">
                     {quote.emphasis} {quote.bodySuffix}
                   </p>
                 </div>
@@ -75,7 +75,7 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ quote }) => {
             </div>
           </div>
 
-          {/* Battle-Tested Bar - Calibrated gap (increased top margin slightly for balance) */}
+          {/* Battle-Tested Bar */}
           <div className="flex items-center gap-6 mt-4">
             <div className="h-[2px] w-12 md:w-32 bg-brand-500" />
             <span className="font-mono text-[10px] md:text-xs font-black text-zinc-500 dark:text-zinc-400 uppercase tracking-[0.5em]">Battle-Tested Since 2015</span>
