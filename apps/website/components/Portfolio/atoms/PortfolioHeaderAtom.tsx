@@ -20,8 +20,9 @@ export const PortfolioHeaderAtom: React.FC<PortfolioHeaderProps> = ({ heading, h
              <FileText size={12} /> ARSIP LAPANGAN
           </div>
           
-          <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 leading-tight">
-            <span className="text-brand-600 dark:text-brand-500">{heading}</span> {headingSpan}
+          <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 leading-[0.9]">
+            <span className="text-zinc-900 dark:text-white block">{heading}</span>
+            <span className="text-brand-600 dark:text-brand-500 block">{headingSpan}</span>
           </h1>
           
           <p className="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto text-lg leading-relaxed">

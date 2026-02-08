@@ -97,16 +97,17 @@ export const LegalitySection: React.FC<LegalitySectionProps> = ({ content }) => 
             </div>
 
             {/* Right Side: CTA */}
-            <div className="lg:col-span-4 p-6 md:p-10 bg-zinc-50 dark:bg-zinc-950/50 border-t lg:border-t-0 lg:border-l border-zinc-200 dark:border-zinc-800 flex flex-col justify-center relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-[50px]" />
+            <div className="lg:col-span-4 p-6 md:p-10 bg-gradient-to-br from-zinc-50 via-zinc-100 to-zinc-200 dark:from-zinc-900 dark:via-zinc-900 dark:to-black border-t lg:border-t-0 lg:border-l border-zinc-200 dark:border-zinc-800 flex flex-col justify-center relative overflow-hidden">
+                {/* Decorative Blur */}
+                <div className="absolute top-0 right-0 w-48 h-48 bg-brand-500/10 dark:bg-brand-500/5 rounded-full blur-[80px]" />
                 
                 <div className="relative z-10 text-center lg:text-left">
-                    <h4 className="text-blue-500 font-black tracking-widest text-sm mb-2">{content.ctaTitle}</h4>
-                    <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-6">
+                    <h4 className="text-blue-600 dark:text-blue-400 font-black tracking-widest text-sm mb-3">{content.ctaTitle}</h4>
+                    <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-8 font-medium">
                         {content.ctaDesc}
                     </p>
                     <a href="https://oss.go.id" target="_blank" rel="noopener noreferrer" className="block w-full">
-                        <Button fullWidth className="bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-500/20 border-none text-white">
+                        <Button fullWidth className="bg-gradient-to-r from-brand-600 to-red-600 hover:from-brand-500 hover:to-red-500 text-white shadow-xl shadow-brand-500/20 border-none">
                             {content.ctaBtn}
                         </Button>
                     </a>

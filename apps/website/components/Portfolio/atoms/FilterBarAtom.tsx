@@ -25,7 +25,7 @@ export const FilterBarAtom: React.FC<FilterBarProps> = ({ filters, activeCategor
   `;
 
   return (
-    <div className="container mx-auto px-6 mb-16 relative z-10">
+    <div className="container mx-auto px-6 mb-16 relative z-10 mt-12">
       <div className="flex flex-wrap justify-center gap-4">
         <button 
           onClick={() => onFilterChange('ALL')}

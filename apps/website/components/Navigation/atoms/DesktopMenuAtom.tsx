@@ -35,7 +35,10 @@ export const DesktopMenuAtom: React.FC<DesktopMenuAtomProps> = ({ structure, cur
 
             {/* Render Mega Menu Atom if items exist */}
             {menu.hasDropdown && menu.items && (
-              <MegaMenuAtom items={menu.items} />
+              <MegaMenuAtom 
+                items={menu.items} 
+                parentLabel={menu.label} // Pass label for visual logic
+              />
             )}
           </div>
         );

@@ -118,8 +118,8 @@ export const DICTIONARY: Record<Language, Translation> = {
     manifestoFooter: "\"Di PT Mesin Kasir Solo, gue percaya satu hal: Bisnis tanpa data itu judi. Tugas gue adalah mastiin lo pegang kartu As (Sistem & Data) biar lo selalu menang di pasar.\"",
 
     // Career
-    careerHeading: "Gue Gak Cari Karyawan, Gue Cari",
-    careerHeadingSpan: "Partner Perjuangan.",
+    careerHeading: "Gue Gak Cari Karyawan,",
+    careerHeadingSpan: "Gue Cari Partner Perjuangan.",
     careerSub: "PT Mesin Kasir Solo bukan tempat buat lo yang cuma cari \"zona nyaman\" 9-to-5. Ini markas buat lo yang mau ngebangun sistem buat nyelametin ribuan UMKM bareng gue.",
     
     careerDnaTitle: "DNA GUE",
@@ -145,8 +145,8 @@ export const DICTIONARY: Record<Language, Translation> = {
     careerForceHireBtn: "UPLOAD CV SPONTAN",
 
     // Portfolio Section
-    portHeading: "Jejak Pertempuran",
-    portHeadingSpan: "Bukan Kaleng-Kaleng.",
+    portHeading: "JEJAK PERANG MESIN KASIR SOLO",
+    portHeadingSpan: "BUKAN KALENG-KALENG.",
     portSub: "Gue gak jual janji manis. Ini bukti otentik instalasi Mesin Kasir Solo dan sistem digital yang gue kerjain. Foto asli lapangan, bukan colongan Google. Cek sendiri biar lo yakin gue bukan sales abal-abal.",
     portFilterAll: "Semua Arsenal",
     portFilterPhysical: "Mesin Kasir (Fisik)",
@@ -305,8 +305,8 @@ export const DICTIONARY: Record<Language, Translation> = {
     manifestoFooter: "\"At PT Mesin Kasir Solo, I believe one thing: Business without data is gambling. My job is ensuring you hold the Ace Card (System & Data) so you always win the market.\"",
 
     // Career (EN)
-    careerHeading: "I Don't Need Employees, I Need",
-    careerHeadingSpan: "Struggle Partners.",
+    careerHeading: "I Don't Need Employees,",
+    careerHeadingSpan: "I Need Struggle Partners.",
     careerSub: "PT Mesin Kasir Solo is not for those seeking a 9-to-5 'comfort zone'. This is a base for those who want to build systems to save thousands of SMEs with me.",
     
     careerDnaTitle: "MY DNA",
@@ -332,8 +332,8 @@ export const DICTIONARY: Record<Language, Translation> = {
     careerForceHireBtn: "UPLOAD CV SPONTANEOUSLY",
 
     // Portfolio
-    portHeading: "Battle Tracks",
-    portHeadingSpan: "Not Fake News.",
+    portHeading: "SOLO POS WAR TRACKS",
+    portHeadingSpan: "NO FAKE STUFF.",
     portSub: "I don't sell sweet promises. These are authentic proofs of MKS installations. Real field photos, not stolen from Google. Check yourself so you know I'm not a fake salesman.",
     portFilterAll: "All Arsenal",
     portFilterPhysical: "POS Hardware (Physical)",
@@ -419,6 +419,7 @@ export const MOCK_PRODUCTS: ProductItem[] = [
   }
 ];
 
+// Doubled the data for pagination demo
 export const MOCK_PORTFOLIO: PortfolioItem[] = [
   {
     id: 1,
@@ -467,5 +468,53 @@ export const MOCK_PORTFOLIO: PortfolioItem[] = [
     tag: "Hardware & Instalasi",
     desc: "Orinawa di BTC Solo menghadapi tantangan operasional signifikan akibat volume transaksi harian yang sangat tinggi.",
     image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 7,
+    title: "Cafe POS System - Kopi Kenangan Mantan - Wonogiri",
+    category: "PHYSICAL",
+    tag: "Hardware & Instalasi",
+    desc: "Instalasi sistem Point of Sales dual screen untuk manajemen pesanan dapur dan kasir depan secara real-time.",
+    image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 8,
+    title: "E-Commerce Integration - Batik Solo Modern",
+    category: "DIGITAL",
+    tag: "Solusi Bisnis",
+    desc: "Pembangunan platform e-commerce terintegrasi payment gateway dan perhitungan ongkir otomatis.",
+    image: "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 9,
+    title: "Retail Management System - Toko Kelontong Berkah",
+    category: "PHYSICAL",
+    tag: "Hardware & Instalasi",
+    desc: "Implementasi barcode scanner omni-directional untuk percepatan transaksi di jam sibuk.",
+    image: "https://images.unsplash.com/photo-1583574932824-c10e0c0f8629?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 10,
+    title: "Company Profile - Konstruksi Jaya Abadi",
+    category: "DIGITAL",
+    tag: "Solusi Bisnis",
+    desc: "Desain website korporat dengan portofolio proyek interaktif dan sistem tender online.",
+    image: "https://images.unsplash.com/photo-1504384308090-c54be3855833?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 11,
+    title: "Restaurant Management - Steak House Solo",
+    category: "PHYSICAL",
+    tag: "Hardware & Instalasi",
+    desc: "Setup full kitchen display system (KDS) menggantikan printer kertas untuk efisiensi dapur.",
+    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 12,
+    title: "SEO Optimization - Klinik Kecantikan Glowing",
+    category: "DIGITAL",
+    tag: "Solusi Bisnis",
+    desc: "Optimasi SEO lokal untuk mendominasi kata kunci pencarian klinik kecantikan di area Solo Raya.",
+    image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=800&auto=format&fit=crop"
   }
 ];

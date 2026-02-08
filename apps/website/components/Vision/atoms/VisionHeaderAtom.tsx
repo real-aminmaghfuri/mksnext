@@ -39,26 +39,29 @@ export const VisionHeaderAtom: React.FC<VisionHeaderProps> = ({ heading, sub, vi
         </div>
 
         {/* Vision Card (The Dream) */}
-        <div className="relative p-1 rounded-3xl bg-gradient-to-br from-zinc-200 to-zinc-100 dark:from-zinc-800 dark:to-zinc-950 border border-zinc-200 dark:border-zinc-800 shadow-2xl overflow-hidden max-w-4xl mx-auto">
-             <div className="bg-white/80 dark:bg-zinc-950/90 rounded-[22px] p-8 md:p-12 relative overflow-hidden h-full flex flex-col md:flex-row items-center gap-8 md:gap-12 backdrop-blur-sm">
+        <div className="relative p-1.5 rounded-[32px] bg-gradient-to-b from-zinc-200 via-white to-zinc-100 dark:from-zinc-800 dark:via-zinc-900 dark:to-black border border-zinc-200 dark:border-zinc-800 shadow-2xl dark:shadow-brand-900/10 overflow-hidden max-w-5xl mx-auto group">
+             {/* Card Background Glow Effect */}
+             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1/2 bg-brand-500/5 dark:bg-brand-500/10 blur-[100px] rounded-full pointer-events-none" />
+
+             <div className="bg-white/60 dark:bg-zinc-950/80 rounded-[28px] p-8 md:p-14 relative overflow-hidden h-full flex flex-col md:flex-row items-center gap-8 md:gap-16 backdrop-blur-xl">
                  
                  {/* Icon Box */}
-                 <div className="w-20 h-20 shrink-0 rounded-2xl bg-gradient-to-br from-brand-500 to-red-600 flex items-center justify-center shadow-lg shadow-brand-500/20 text-white">
-                    <Target size={40} />
+                 <div className="relative z-10 w-24 h-24 shrink-0 rounded-3xl bg-gradient-to-br from-brand-500 to-red-600 flex items-center justify-center shadow-lg shadow-brand-500/30 text-white transform group-hover:scale-105 transition-transform duration-500">
+                    <Target size={48} />
                  </div>
 
-                 <div className="flex-1 text-center md:text-left">
-                    <h3 className="text-2xl font-black text-zinc-900 dark:text-white mb-4 uppercase tracking-tight">
+                 <div className="flex-1 text-center md:text-left relative z-20">
+                    <h3 className="text-sm font-black text-brand-600 dark:text-brand-500 mb-3 uppercase tracking-[0.2em]">
                         {visionTitle}
                     </h3>
-                    <p className="text-lg md:text-xl text-zinc-600 dark:text-zinc-300 font-medium leading-relaxed">
+                    <p className="text-2xl md:text-3xl lg:text-4xl text-zinc-900 dark:text-white font-black leading-tight tracking-tight">
                         "{statement}"
                     </p>
                  </div>
 
-                 {/* Decorative Circle */}
-                 <div className="absolute -right-20 -top-20 w-64 h-64 rounded-full border-[20px] border-zinc-100 dark:border-zinc-900/50" />
-                 <div className="absolute -right-10 -top-10 w-48 h-48 rounded-full border-[20px] border-zinc-100 dark:border-zinc-900/50" />
+                 {/* Decorative Circle - Moved to z-0 to sit BEHIND text */}
+                 <div className="absolute -right-24 -top-24 w-80 h-80 rounded-full border-[30px] border-zinc-50 dark:border-zinc-800/30 z-0 pointer-events-none opacity-50" />
+                 <div className="absolute -right-12 -top-12 w-56 h-56 rounded-full border-[20px] border-zinc-100 dark:border-zinc-800/50 z-0 pointer-events-none opacity-50" />
              </div>
         </div>
 
