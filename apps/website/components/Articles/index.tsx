@@ -49,7 +49,7 @@ export const Articles: React.FC = () => {
                                 border-2 border-brand-500/20 dark:border-brand-500/50 
                                 text-brand-600 dark:text-brand-500 
                                 hover:border-brand-600 dark:hover:border-brand-500
-                                hover:text-white
+                                hover:text-white dark:hover:text-white
                                 font-black uppercase tracking-widest px-10 py-4 rounded-full 
                                 transition-all duration-300 
                                 shadow-xl shadow-brand-500/10 dark:shadow-none
