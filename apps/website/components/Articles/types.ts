@@ -1,9 +1,20 @@
 
 import { ArticleItem, ProductItem } from 'shared';
+import { LucideIcon } from 'lucide-react';
+
+export interface ServiceAdItem {
+  title: string;
+  desc: string;
+  iconName: 'CODE' | 'CHART' | 'WRENCH'; // Simple identifier for icon mapping
+  cta: string;
+}
+
+export type FeedItem = 
+  | { type: 'ARTICLE'; data: ArticleItem }
+  | { type: 'PRODUCT'; data: ProductItem }
+  | { type: 'SERVICE'; data: ServiceAdItem };
 
 export interface ArticlesContent {
-  title: string;
-  sub: string;
   searchPlaceholder: string;
   loadMoreText: string;
   sidebarTitle: string;
@@ -13,7 +24,7 @@ export interface ArticlesContent {
 export interface ArticleLogic {
   text: ArticlesContent;
   heroArticle: ArticleItem;
-  displayItems: (ArticleItem | { type: 'PRODUCT'; product: ProductItem })[]; // Mixed array
+  displayItems: FeedItem[];
   categories: string[];
   activeCategory: string;
   setActiveCategory: (cat: string) => void;

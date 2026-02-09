@@ -24,17 +24,9 @@ export const Articles: React.FC = () => {
 
   return (
     <section className="min-h-screen bg-zinc-50 dark:bg-black transition-colors duration-500">
-       <div className="container mx-auto px-6 py-24">
+       <div className="container mx-auto px-6 pt-32 pb-24">
           
-          {/* Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16">
-             <h1 className="text-4xl md:text-6xl font-black text-zinc-900 dark:text-white uppercase tracking-tighter mb-4">
-                {text.title}
-             </h1>
-             <p className="text-zinc-600 dark:text-zinc-400 text-lg">
-                {text.sub}
-             </p>
-          </div>
+          {/* Header Removed as requested - Direct to Hero Content */}
 
           {/* Hero Article */}
           <HeroArticleAtom article={heroArticle} />

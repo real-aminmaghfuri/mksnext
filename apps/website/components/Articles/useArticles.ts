@@ -1,9 +1,32 @@
+
 "use client";
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useConfig } from 'ui';
-import { DICTIONARY, MOCK_ARTICLES, MOCK_PRODUCTS, ArticleItem, ProductItem } from 'shared';
-import { ArticleLogic } from './types';
+import { DICTIONARY, MOCK_ARTICLES, MOCK_PRODUCTS } from 'shared';
+import { ArticleLogic, FeedItem, ServiceAdItem } from './types';
+
+// Mock Services for the Feed Ads
+const MOCK_SERVICES: ServiceAdItem[] = [
+  {
+    title: "Jasa Website Custom",
+    desc: "Bikin brand lo keliatan mahal. Website company profile atau toko online performa tinggi.",
+    iconName: 'CODE',
+    cta: "KONSULTASI WEB"
+  },
+  {
+    title: "Konsultan SEO Jahat",
+    desc: "Dominasi halaman 1 Google. Teknik SEO organik & barbar buat nyulik trafik kompetitor.",
+    iconName: 'CHART',
+    cta: "AUDIT GRATIS"
+  },
+  {
+    title: "Servis Mesin Kasir",
+    desc: "Hardware rusak pas toko rame? Tim teknis kita siap meluncur benerin masalah lo.",
+    iconName: 'WRENCH',
+    cta: "PANGGIL TEKNISI"
+  }
+];
 
 export const useArticles = (): ArticleLogic => {
   const { language } = useConfig();
@@ -11,7 +34,9 @@ export const useArticles = (): ArticleLogic => {
 
   const [activeCategory, setActiveCategory] = useState('ALL');
   const [page, setPage] = useState(1);
-  const itemsPerPage = 12; // 11 Articles + 1 Product Card
+  
+  // CONFIGURATION
+  const ARTICLES_PER_PAGE = 7; 
 
   // Extract Categories
   const categories: string[] = useMemo(() => {
@@ -25,47 +50,48 @@ export const useArticles = (): ArticleLogic => {
     return MOCK_ARTICLES.filter(a => a.category === activeCategory);
   }, [activeCategory]);
 
-  // Featured Article (First one)
-  const heroArticle = MOCK_ARTICLES[0];
+  // Featured Article (Always the newest one / first one)
+  const heroArticle = filteredArticles[0];
 
-  // Remaining Articles (Exclude hero from grid if 'ALL' is selected, otherwise show all relevant to category)
-  // To keep it simple for the grid logic, we will treat the grid as separate list.
-  // Actually, let's keep hero separate.
+  // Grid Pool (Exclude hero)
   const gridArticlesSource = useMemo(() => {
-     if(activeCategory === 'ALL') {
-         return filteredArticles.filter(a => a.id !== heroArticle.id);
-     }
-     return filteredArticles;
-  }, [filteredArticles, heroArticle, activeCategory]);
+     return filteredArticles.filter(a => a.id !== heroArticle.id);
+  }, [filteredArticles, heroArticle]);
 
-  // Pagination & Mixing Logic
+  // Mixing Logic
   const displayItems = useMemo(() => {
-    // Determine how many articles to show based on pages
-    // Note: We want 11 articles per page to allow 1 product slot = 12 items total
-    const articlesNeeded = page * 11;
+    const articlesNeeded = page * ARTICLES_PER_PAGE;
     const slicedArticles = gridArticlesSource.slice(0, articlesNeeded);
 
-    // Mix in products
-    // We will insert 1 product for every 11 articles.
-    const mixedList: (ArticleItem | { type: 'PRODUCT'; product: ProductItem })[] = [];
+    const mixedList: FeedItem[] = [];
     
-    let productIndex = 0;
+    // We iterate through the sliced articles and inject ads
     slicedArticles.forEach((article, index) => {
-        mixedList.push(article);
-        // Insert product after every 7th item in the current batch (just an arbitrary position that looks good in grid)
-        // Or strictly at the end of the batch?
-        // Let's insert it at index 4 of every page (5th position) to break the flow nicely
-        if ((index + 1) % 7 === 0) {
-            const prod = MOCK_PRODUCTS[productIndex % MOCK_PRODUCTS.length];
-            mixedList.push({ type: 'PRODUCT', product: prod });
-            productIndex++;
+        mixedList.push({ type: 'ARTICLE', data: article });
+
+        // Calculate current batch index (0, 1, 2...)
+        const batchIndex = Math.floor(index / ARTICLES_PER_PAGE);
+        // Position within the current batch (0 to 6)
+        const positionInBatch = index % ARTICLES_PER_PAGE;
+
+        // INJECTION LOGIC:
+        // Insert Product at Index 2 (3rd slot visually)
+        if (positionInBatch === 2) {
+            const prod = MOCK_PRODUCTS[batchIndex % MOCK_PRODUCTS.length];
+            mixedList.push({ type: 'PRODUCT', data: prod });
+        }
+
+        // Insert Service at Index 5 (6th slot visually)
+        if (positionInBatch === 5) {
+            const serv = MOCK_SERVICES[batchIndex % MOCK_SERVICES.length];
+            mixedList.push({ type: 'SERVICE', data: serv });
         }
     });
 
     return mixedList;
   }, [gridArticlesSource, page]);
 
-  const hasMore = (page * 11) < gridArticlesSource.length;
+  const hasMore = (page * ARTICLES_PER_PAGE) < gridArticlesSource.length;
 
   const loadMore = () => {
     setPage(prev => prev + 1);
@@ -73,8 +99,6 @@ export const useArticles = (): ArticleLogic => {
 
   return {
     text: {
-      title: text.blogTitle,
-      sub: text.blogSub,
       searchPlaceholder: text.blogSearchPlaceholder,
       loadMoreText: text.blogLoadMore,
       sidebarTitle: text.blogSidebarTitle,
