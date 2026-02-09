@@ -24,10 +24,8 @@ export const DashboardLayout: React.FC = () => {
 
   return (
     <div className="flex h-screen bg-zinc-50 dark:bg-luxury-dark text-zinc-900 dark:text-white overflow-hidden">
-      {/* Sidebar - Desktop Only */}
-      <Sidebar />
       
-      {/* Main Content Area */}
+      {/* Main Content Area - Moved to Left */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
         <div className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px]" />
 
@@ -60,6 +58,10 @@ export const DashboardLayout: React.FC = () => {
         {/* Mobile Bottom Nav */}
         <MobileNav />
       </div>
+
+      {/* Sidebar - Desktop Only - Moved to Right */}
+      <Sidebar />
+      
     </div>
   );
 };

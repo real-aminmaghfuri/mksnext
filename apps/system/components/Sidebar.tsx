@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from 'react';
@@ -16,7 +17,7 @@ export const Sidebar: React.FC<{ collapsed?: boolean }> = ({ collapsed = false }
   ];
 
   return (
-    <aside className={`hidden lg:flex h-screen flex-col bg-white dark:bg-zinc-950 border-r border-zinc-200 dark:border-zinc-800 transition-all duration-500 ${collapsed ? 'w-20' : 'w-72'}`}>
+    <aside className={`hidden lg:flex h-screen flex-col bg-white dark:bg-zinc-950 border-l border-zinc-200 dark:border-zinc-800 transition-all duration-500 ${collapsed ? 'w-20' : 'w-72'}`}>
       {/* Sidebar Logo */}
       <div className="h-20 flex items-center px-8 border-b border-zinc-100 dark:border-zinc-900">
         <div className="flex items-center gap-3">
