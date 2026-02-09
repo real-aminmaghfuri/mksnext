@@ -4,24 +4,34 @@ export interface QnaItem {
   a: string;
 }
 
-export interface Translation {
+// --- ATOMIC INTERFACES ---
+
+export interface HeroDictionary {
   heroTitle: string;
   heroSubtitle: string;
   ctaPrimary: string;
   ctaSecondary: string;
+}
+
+export interface DashboardDictionary {
   dashboardTitle: string;
   statsRevenue: string;
   statsOrders: string;
   navDashboard: string;
   navInventory: string;
   navSettings: string;
+}
+
+export interface AuthDictionary {
   loginHeading: string;
   loginSub: string;
-  
-  // Updated Nav Structure
+}
+
+export interface NavDictionary {
+  // Website Nav
   navHome: string;
   navAbout: string; 
-  navAboutCompany: string; // New: "PERUSAHAAN"
+  navAboutCompany: string;
   navAboutProfile: string;
   navAboutTeam: string;
   navAboutVision: string;
@@ -29,57 +39,57 @@ export interface Translation {
   navContact: string; 
   navCareer: string; 
   
-  // New Innovation Profile
+  // Innovation Profile
   navInnoHeader: string;
   navInnoSibos: string;
   navInnoQalam: string;
   
-  navSolutions: string; // Keep for backward compat
-  navSolHardware: string; // Keep for backward compat
-  navSolSoftware: string; // Keep for backward compat
-  navSolConsulting: string; // Keep for backward compat
+  // Legacy Solutions
+  navSolutions: string;
+  navSolHardware: string;
+  navSolSoftware: string;
+  navSolConsulting: string;
 
-  navInnovation: string; // Keep for backward compat
-  // New Web Service Keys
+  // Web Services
+  navInnovation: string;
   navWebCompro: string;
   navWebEcom: string;
   navWebCustom: string;
   navWebSeo: string;
 
-  // --- NEW NAVIGATION DICTIONARY (STEP 1) ---
-  navLayanan: string; // The Main Menu "LAYANAN"
+  // Main Menu Service
+  navLayanan: string;
   
-  // Col 1: Technology
+  // Technology
   navTechHeader: string;
   navTechCompro: string;
   navTechEcom: string;
   navTechCustom: string;
 
-  // Col 2: Business Solutions
+  // Business Solutions
   navBizHeader: string;
   navIndRetail: string;
   navIndFnb: string;
   navIndService: string;
   navIndHealth: string;
   navIndEdu: string;
-  navIndGov: string; // New
+  navIndGov: string;
   navIndCorp: string;
   navIndAll: string;
-  // ------------------------------------------
   
-  // New Hardware Menu
-  navHwBundle: string; // New: "Paket Mesin Kasir"
+  // Hardware Menu
+  navHwBundle: string;
   navHwAndroid: string;
   navHwPc: string;
   navHwRegister: string;
   navHwScanner: string;
   navHwPaper: string;
-  navHwDrawer: string; // New: "Cash Drawer"
+  navHwDrawer: string;
   navHwDesk: string;
   navHwRack: string;
   navHwAksesoris: string;
 
-  // New Support Menu
+  // Support Menu
   navHelp: string;
   navSupHeader: string;
   navSupDownload: string;
@@ -93,12 +103,13 @@ export interface Translation {
   navSupFaq: string;
 
   navInsights: string;
-
   navServices: string;
   navShop: string;
   navMenu: string;
   navClose: string;
+}
 
+export interface ServicesDictionary {
   servicesTitle: string;
   servicesSub: string;
   srvHardware: string;
@@ -109,12 +120,16 @@ export interface Translation {
   srvSeoDesc: string;
   srvConsulting: string;
   srvConsultingDesc: string;
+}
 
+export interface ShopDictionary {
   shopTitle: string;
   shopSub: string;
   shopBtnOrder: string;
   shopUnit: string;
+}
 
+export interface AboutDictionary {
   aboutHeading: string;
   aboutTagline: string;
   aboutFounderQuote: string;
@@ -135,7 +150,37 @@ export interface Translation {
   aboutPhil2Desc: string;
   aboutPhil3Title: string;
   aboutPhil3Desc: string;
+}
 
+export interface HistoryDictionary {
+  hist2015Title: string;
+  hist2015Desc: string;
+  hist2018Title: string;
+  hist2018Desc: string;
+  hist2021Title: string;
+  hist2021Desc: string;
+  hist2022Title: string;
+  hist2022Desc: string;
+  hist2025Title: string;
+  hist2025Desc: string;
+}
+
+export interface LegalDictionary {
+  legalTitle: string;
+  legalDesc: string;
+  legalLabelEntity: string;
+  legalValueEntity: string;
+  legalLabelNIB: string;
+  legalLabelSK: string;
+  legalLabelNPWP: string;
+  legalLabelBank: string;
+  legalCtaTitle: string;
+  legalCtaDesc: string;
+  legalCtaBtn: string;
+  legalFooterNote: string;
+}
+
+export interface VisionDictionary {
   visionHeading: string;
   visionSub: string;
   visionTitle: string;
@@ -169,7 +214,9 @@ export interface Translation {
   manifestoTitle: string;
   manifestoText: string;
   manifestoFooter: string;
+}
 
+export interface CareerDictionary {
   careerHeading: string;
   careerHeadingSpan: string;
   careerSub: string;
@@ -194,8 +241,9 @@ export interface Translation {
   careerForceHireTitle: string;
   careerForceHireDesc: string;
   careerForceHireBtn: string;
+}
 
-  // Portfolio Section
+export interface PortfolioDictionary {
   portHeading: string;
   portHeadingSpan: string;
   portSub: string;
@@ -207,8 +255,9 @@ export interface Translation {
   portCtaBtn: string;
   portViewCase: string;
   portLoadMore: string;
+}
 
-  // Articles Section
+export interface BlogDictionary {
   blogTitle: string;
   blogSub: string;
   blogSearchPlaceholder: string;
@@ -222,8 +271,9 @@ export interface Translation {
   articleCtaTitle: string;
   articleCtaDesc: string;
   articleCtaBtn: string;
+}
 
-  // Contact Section
+export interface ContactDictionary {
   contactHeading: string;
   contactSub: string;
   contactQnaTitle: string;
@@ -247,40 +297,16 @@ export interface Translation {
   contactFormBtn: string;
   contactFormNote: string;
 
-  // Topics
   contactTopic1: string;
   contactTopic2: string;
   contactTopic3: string;
   contactTopic4: string;
 
-  // Maps
   contactMapsTitle: string;
   contactMapsDesc: string;
+}
 
-  legalTitle: string;
-  legalDesc: string;
-  legalLabelEntity: string;
-  legalValueEntity: string;
-  legalLabelNIB: string;
-  legalLabelSK: string;
-  legalLabelNPWP: string;
-  legalLabelBank: string;
-  legalCtaTitle: string;
-  legalCtaDesc: string;
-  legalCtaBtn: string;
-  legalFooterNote: string;
-
-  hist2015Title: string;
-  hist2015Desc: string;
-  hist2018Title: string;
-  hist2018Desc: string;
-  hist2021Title: string;
-  hist2021Desc: string;
-  hist2022Title: string;
-  hist2022Desc: string;
-  hist2025Title: string;
-  hist2025Desc: string;
-
+export interface FooterDictionary {
   footerDesc: string;
   footerCol1: string;
   footerLink1: string;
@@ -292,3 +318,23 @@ export interface Translation {
   footerLegal1: string;
   footerLegal2: string;
 }
+
+// --- AGGREGATED INTERFACE (THE GOD INTERFACE REBORN) ---
+// This ensures backward compatibility with existing code.
+export interface Translation extends 
+  HeroDictionary,
+  DashboardDictionary,
+  AuthDictionary,
+  NavDictionary,
+  ServicesDictionary,
+  ShopDictionary,
+  AboutDictionary,
+  HistoryDictionary,
+  LegalDictionary,
+  VisionDictionary,
+  CareerDictionary,
+  PortfolioDictionary,
+  BlogDictionary,
+  ContactDictionary,
+  FooterDictionary
+{}

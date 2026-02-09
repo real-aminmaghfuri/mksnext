@@ -1,0 +1,76 @@
+
+import { VisionDictionary } from '../../types';
+
+export const Vision_ID: VisionDictionary = {
+  visionHeading: "Mimpi Gede & Kerja Keras.",
+  visionSub: "Gue gak bangun PT Mesin Kasir Solo cuma buat cari untung receh. Gue punya misi buat nyelametin ribuan UMKM dari kebangkrutan karena buta data.",
+  visionTitle: "Visi Gue (The Dream)",
+  visionStatement: "Menjadi Benteng Pertahanan Digital #1 buat UMKM Indonesia. Gue mau liat warung kecil punya sistem secanggih minimarket modern, tanpa harus bayar mahal.",
+  
+  missionTitle: "Misi Harian (The Grind)",
+  missionSub: "Ini yang tim gue kerjain tiap hari buat lo:",
+  mission1Title: "Hancurin Mitos Mahal",
+  mission1Desc: "Teknologi canggih gak harus bikin kantong bolong. Gue hadirkan mesin kasir & software enterprise dengan harga rakyat.",
+  mission2Title: "Edukasi Sampai Pinter",
+  mission2Desc: "Gue haram hukumnya jual putus. Lo dan staf lo bakal gue training sampai bener-bener ngerti cara baca data bisnis.",
+  mission3Title: "Inovasi Gak Ada Matinya",
+  mission3Desc: "SIBOS & QALAM bakal terus gue update. Lo gak perlu pusing mikirin coding, biar itu urusan gue.",
+  mission4Title: "Support Tanpa Drama",
+  mission4Desc: "Kalau alat rusak, gue yang pusing, bukan lo. Tim teknis gue siap backup biar jualan lo gak keganggu.",
+
+  dnaTitle: "DNA Gue",
+  dnaSub: "Prinsip jalanan yang gue tanam ke semua anak buah gue.",
+  dna1Title: "Jujur Harga Mati",
+  dna1Desc: "Gue gak bakal jual barang yang gak lo butuhin cuma demi omzet. Kalau barang jelek, gue bilang jelek. Transparansi nomor satu.",
+  dna2Title: "Mental Baja",
+  dna2Desc: "Lahir dari kegagalan 2022, gue punya mental survivor. Gue ngerti susahnya bangun bisnis dari nol karena gue juga ngalamin.",
+  dna3Title: "Anti Sambat",
+  dna3Desc: "Disini gak ada tempat buat ngeluh. Ada masalah? Cari solusi. Error? Perbaiki. Deadline? Sikat.",
+  dna4Title: "Lo Bosnya",
+  dna4Desc: "Gue idup dari profit lo. Kalau bisnis lo mati, bisnis gue juga mati. Jadi gue bakal mati-matian bikin lo sukses.",
+  dna5Title: "Sat Set Wat Wet",
+  dna5Desc: "Bisnis itu balapan. Gue kerja cepet. Chat dibales kilat, pengiriman gak pake lama, support sat-set.",
+  dna6Title: "Jangka Panjang",
+  dna6Desc: "Gue gak cari 'hit and run'. Gue mau nemenin lo dari jualan di garasi sampai punya cabang di mana-mana.",
+
+  manifestoTitle: "Manifesto MKS",
+  manifestoText: "Gue Gak Jual Alat Sulap, Gue Jual Senjata Perang.",
+  manifestoFooter: "\"Di PT Mesin Kasir Solo, gue percaya satu hal: Bisnis tanpa data itu judi. Tugas gue adalah mastiin lo pegang kartu As (Sistem & Data) biar lo selalu menang di pasar.\"",
+};
+
+export const Vision_EN: VisionDictionary = {
+  visionHeading: "Big Dreams & Hard Work.",
+  visionSub: "I didn't build PT MKS just for petty cash. I have a mission to save thousands of SMEs from bankruptcy caused by data blindness.",
+  visionTitle: "My Vision (The Dream)",
+  visionStatement: "To be the #1 Digital Defense Fortress for Indonesian SMEs. I want to see small stalls have systems as advanced as modern minimarkets, without paying premium prices.",
+  
+  missionTitle: "Daily Mission (The Grind)",
+  missionSub: "This is what my team grinds for everyday:",
+  mission1Title: "Destroy 'Expensive' Myths",
+  mission1Desc: "High tech doesn't mean empty pockets. I bring enterprise-grade registers & software at people's prices.",
+  mission2Title: "Educate 'Til Smart",
+  mission2Desc: "Selling and running is forbidden. I will train you and your staff until you truly understand business data.",
+  mission3Title: "Inovasi Never Dies",
+  mission3Desc: "SIBOS & QALAM will keep updating. You don't need to stress about coding, let me handle that.",
+  mission4Title: "No-Drama Support",
+  mission4Desc: "If the tool breaks, I stress out, not you. My tech team is ready to backup so your sales don't stop.",
+
+  dnaTitle: "My DNA",
+  dnaSub: "Street principles I implant in all my troops.",
+  dna1Title: "Honesty is Fatal",
+  dna1Desc: "I won't sell you junk you don't need just for turnover. If it's bad, I say it's bad. Transparency is #1.",
+  dna2Title: "Steel Mentality",
+  dna2Desc: "Born from 2022 failure, I have a survivor mindset. I know the struggle of building from zero.",
+  dna3Title: "Anti-Whining",
+  dna3Desc: "No place for complaints here. Problem? Find solution. Error? Fix it. Deadline? Kill it.",
+  dna4Title: "You Are The Boss",
+  dna4Desc: "I live off your profit. If your business dies, mine does too. So I'll fight to make you succeed.",
+  dna5Title: "Fast & Furious",
+  dna5Desc: "Business is a race. I work fast. Instant replies, fast shipping, sat-set support.",
+  dna6Title: "Long Game",
+  dna6Desc: "I'm not here for 'hit and run'. I want to accompany you from a garage sale to nationwide branches.",
+
+  manifestoTitle: "MKS Manifesto",
+  manifestoText: "I Don't Sell Magic Tricks, I Sell War Weapons.",
+  manifestoFooter: "\"At PT Mesin Kasir Solo, I believe one thing: Business without data is gambling. My job is ensuring you hold the Ace Card (System & Data) biar lo selalu menang di pasar.\"",
+};

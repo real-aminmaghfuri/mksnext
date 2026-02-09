@@ -1,297 +1,33 @@
 
 import { Translation } from '../types';
+import { Hero_EN } from './modules/hero';
+import { Dashboard_EN } from './modules/dashboard';
+import { Auth_EN } from './modules/auth';
+import { Navigation_EN } from './modules/navigation';
+import { Services_EN } from './modules/services';
+import { Shop_EN } from './modules/shop';
+import { About_EN, History_EN, Legal_EN } from './modules/about';
+import { Vision_EN } from './modules/vision';
+import { Career_EN } from './modules/career';
+import { Portfolio_EN } from './modules/portfolio';
+import { Blog_EN } from './modules/blog';
+import { Contact_EN } from './modules/contact';
+import { Footer_EN } from './modules/footer';
 
 export const EN_DICTIONARY: Translation = {
-  heroTitle: "Your Business is War. Don't Bring Toys.",
-  heroSubtitle: "This is the most savage weapon to validate your hustle in Solo. I built MKS not to look cool, but to ensure your ops don't crumble under fire.",
-  ctaPrimary: "Let's Ride",
-  ctaSecondary: "Check Gear",
-  dashboardTitle: "Command Center",
-  statsRevenue: "Total Loot",
-  statsOrders: "Incoming Hits",
-  navDashboard: "HQ",
-  navInventory: "Armory",
-  navSettings: "Configs",
-  loginHeading: "Commander Login",
-  loginSub: "Access god-mode privileges.",
-  
-  // Website Nav - EN
-  navHome: "HOME",
-  navAbout: "PROFILE", // Updated
-  navAboutCompany: "COMPANY",
-  navAboutProfile: "About Kasir Solo", // Updated
-  navAboutTeam: "Elite Squad",
-  navAboutVision: "Vision & Mission",
-  navAboutPortfolio: "Battle Tracks",
-  navContact: "Contact Me",
-  navCareer: "Join Corps",
-  
-  // Innovation Profile
-  navInnoHeader: "INNOVATION",
-  navInnoSibos: "SIBOS ERP",
-  navInnoQalam: "QALAM",
-
-  navSolutions: "POS SYSTEM", 
-  navSolHardware: "POS Hardware",
-  navSolSoftware: "SaaS POS System",
-  navSolConsulting: "Biz Consulting",
-
-  navInnovation: "WEB SERVICES",
-  navWebCompro: "Company Profile Website",
-  navWebEcom: "E-Commerce Store",
-  navWebCustom: "Custom Web App",
-  navWebSeo: "Google SEO",
-
-  // --- NEW NAVIGATION DICTIONARY ---
-  navLayanan: "SERVICES",
-  
-  // Col 1: Technology
-  navTechHeader: "TECHNOLOGY",
-  navTechCompro: "Company Profile Website",
-  navTechEcom: "Online Store Website",
-  navTechCustom: "Custom Web App / System",
-
-  // Col 2: Business Solutions
-  navBizHeader: "BUSINESS SOLUTIONS",
-  navIndRetail: "Retail & Wholesale",
-  navIndFnb: "F&B (Resto & Cafe)",
-  navIndService: "Services & Professional",
-  navIndHealth: "Healthcare (Clinic)",
-  navIndEdu: "Education & School",
-  navIndGov: "Government & Village",
-  navIndCorp: "Corporate & Factory",
-  navIndAll: "View All Industries",
-  // --------------------------------
-
-  // Hardware Menu
-  navHwBundle: "POS Bundle",
-  navHwAndroid: "Android POS",
-  navHwPc: "PC / Desktop POS",
-  navHwRegister: "Cash Register",
-  navHwScanner: "Barcode Scanner",
-  navHwPaper: "Thermal Paper",
-  navHwDrawer: "Cash Drawer",
-  navHwDesk: "Cashier Desk",
-  navHwRack: "Minimarket Rack",
-  navHwAksesoris: "Other Accessories",
-
-  // Support Menu
-  navHelp: "SUPPORT",
-  navSupHeader: "HELP CENTER",
-  navSupDownload: "Download Center",
-  navSupKb: "Knowledge Base",
-  navSupOrderHeader: "ORDERS",
-  navSupTrack: "Track Order Status",
-  navSupClaim: "Warranty Claim & Return",
-  navSupLegalHeader: "TERMS",
-  navSupTerms: "Terms & Conditions",
-  navSupPrivacy: "Privacy & Cookie",
-  navSupFaq: "Frequently Asked Questions",
-
-  navInsights: "INSIGHTS",
-
-  navServices: "Weapons",
-  navShop: "Supply",
-  navMenu: "Intel",
-  navClose: "Bail",
-
-  servicesTitle: "Our Combat Loadout",
-  servicesSub: "I don't sell sweet talk. This is the brutal infrastructure you need so your business doesn't die a stupid death.",
-  srvHardware: "Physical Gear",
-  srvHardwareDesc: "Tank-grade registers, laser scanners. Built tough for those of you who work like savages.",
-  srvSoftware: "Digital Brain",
-  srvSoftwareDesc: "Monorepo Architecture, Next.js. Not some cheap template web that embarrasses your brand in front of VCs.",
-  srvSeo: "Google Domination",
-  srvSeoDesc: "Page one or die trying. Black-ops & organic SEO techniques to hijack your competitor's traffic.",
-  srvConsulting: "Skill Transfer",
-  srvConsultingDesc: "I teach you anti-theft cashier SOPs, strict inventory control, and street-tested marketing strategies.",
-
-  shopTitle: "Supply Drop",
-  shopSub: "Upgrade your hustle with military-grade business equipment. Durable, glitch-proof, ready to take a beating.",
-  shopBtnOrder: "Grab via WA",
-  shopUnit: "Unit",
-
-  aboutHeading: "Built on Asphalt & Wounds.",
-  aboutTagline: "My story isn't some cheesy motivational quote. It's a chronicle of bleeding out, walking miles to sell tools, and rejections that turned my mind into steel.",
-  aboutFounderQuote: "To be honest... In 2022, I almost 'died'. Digital assets gone, domain stolen, Google Business suspended. Even got played by employees. The system was a mess because I trusted 'humans' too much without a control system. That's when I learned a costly lesson: Business without a strong system is just waiting to explode.",
-  
-  aboutTurnTitle: "Titik Balik (The Turn)",
-  aboutTurnP1: "From that destruction, I rebuilt everything alone. Not for revenge, but to ensure ",
-  aboutTurnP1Bold: "you don't have to feel the pain I felt.",
-  aboutTurnP2Pre: "SIBOS and the Cash Registers I build now were born from that trauma. These aren't just sales tools, they are ",
-  aboutTurnP2Bold: "insurance",
-  aboutTurnP2Mid: " for your business. I designed the features based on what ",
-  aboutTurnP2Italic1: "saves money",
-  aboutTurnP2Mid2: ", not just what ",
-  aboutTurnP2Italic2: "looks high-tech.",
-
-  aboutPhil1Title: "Street Tested",
-  aboutPhil1Desc: "My system was born on the streets, not in an AC lab. It's immune to field errors.",
-  aboutPhil2Title: "No Bullsh*t",
-  aboutPhil2Desc: "I cut the garbage features. I only give you what you actually need to make bank.",
-  aboutPhil3Title: "Survival Instinct",
-  aboutPhil3Desc: "I went bankrupt once. I know exactly how to guard your assets so you don't end up like I did.",
-
-  // Vision Mission
-  visionHeading: "Big Dreams & Hard Work.",
-  visionSub: "I didn't build PT MKS just for petty cash. I have a mission to save thousands of SMEs from bankruptcy caused by data blindness.",
-  visionTitle: "My Vision (The Dream)",
-  visionStatement: "To be the #1 Digital Defense Fortress for Indonesian SMEs. I want to see small stalls have systems as advanced as modern minimarkets, without paying premium prices.",
-  
-  missionTitle: "Daily Mission (The Grind)",
-  missionSub: "This is what my team grinds for everyday:",
-  mission1Title: "Destroy 'Expensive' Myths",
-  mission1Desc: "High tech doesn't mean empty pockets. I bring enterprise-grade registers & software at people's prices.",
-  mission2Title: "Educate 'Til Smart",
-  mission2Desc: "Selling and running is forbidden. I will train you and your staff until you truly understand business data.",
-  mission3Title: "Inovasi Never Dies",
-  mission3Desc: "SIBOS & QALAM will keep updating. You don't need to stress about coding, let me handle that.",
-  mission4Title: "No-Drama Support",
-  mission4Desc: "If the tool breaks, I stress out, not you. My tech team is ready to backup so your sales don't stop.",
-
-  // DNA
-  dnaTitle: "My DNA",
-  dnaSub: "Street principles I implant in all my troops.",
-  dna1Title: "Honesty is Fatal",
-  dna1Desc: "I won't sell you junk you don't need just for turnover. If it's bad, I say it's bad. Transparency is #1.",
-  dna2Title: "Steel Mentality",
-  dna2Desc: "Born from 2022 failure, I have a survivor mindset. I know the struggle of building from zero.",
-  dna3Title: "Anti-Whining",
-  dna3Desc: "No place for complaints here. Problem? Find solution. Error? Fix it. Deadline? Kill it.",
-  dna4Title: "You Are The Boss",
-  dna4Desc: "I live off your profit. If your business dies, mine does too. So I'll fight to make you succeed.",
-  dna5Title: "Fast & Furious",
-  dna5Desc: "Business is a race. I work fast. Instant replies, fast shipping, sat-set support.",
-  dna6Title: "Long Game",
-  dna6Desc: "I'm not here for 'hit and run'. I want to accompany you from a garage sale to nationwide branches.",
-
-  manifestoTitle: "MKS Manifesto",
-  manifestoText: "I Don't Sell Magic Tricks, I Sell War Weapons.",
-  manifestoFooter: "\"At PT Mesin Kasir Solo, I believe one thing: Business without data is gambling. My job is ensuring you hold the Ace Card (System & Data) biar lo selalu menang di pasar.\"",
-
-  // Career (EN)
-  careerHeading: "I Don't Need Employees,",
-  careerHeadingSpan: "I Need Struggle Partners.",
-  careerSub: "PT Mesin Kasir Solo is not for those seeking a 9-to-5 'comfort zone'. This is a base for those who want to build systems to save thousands of SMEs with me.",
-  
-  careerDnaTitle: "MY DNA",
-  careerDnaSub: "I hit rock bottom in 2022. Lost domains, lost assets. I rose back up alone. If you're fragile, you won't survive here.",
-  
-  careerDna1Title: "Resilient",
-  careerDna1Desc: "Tech issues, client complaints, tight deadlines are my daily bread. I need a Problem Solver who stays calm in a storm.",
-  careerDna2Title: "Impact Over Output",
-  careerDna2Desc: "Don't brag about 'overtime'. I only judge the final result. Does your code make transactions faster? That's what counts.",
-  careerDna3Title: "User Empathy",
-  careerDna3Desc: "My clients are market traders & religious teachers. Your system must be grounded. Don't make complex UX only startup kids understand.",
-
-  careerAntiTitle: "DON'T EVEN TRY TO JOIN IF:",
-  careerAnti1: "Safety Seeker (Civil Servant Mindset)",
-  careerAnti2: "Can't Take Criticism (Fragile)",
-  careerAnti3: "Lazy to Learn",
-  careerAnti4: "Work Like a Robot",
-
-  careerRoleTitle: "Combat Positions",
-  careerRoleSub: "If you feel you share the same DNA, grab your weapon and join the line.",
-  careerForceHireTitle: "I Haven't Opened Vacancies",
-  careerForceHireDesc: "Skill above average (Top 1%)? Force me to hire you via the reckless path.",
-  careerForceHireBtn: "UPLOAD CV SPONTANEOUSLY",
-
-  // Portfolio
-  portHeading: "SOLO POS WAR TRACKS",
-  portHeadingSpan: "NO FAKE STUFF.",
-  portSub: "I don't sell sweet promises. These are authentic proofs of MKS installations. Real field photos, not stolen from Google. Check yourself so you know I'm not a fake salesman.",
-  portFilterAll: "All Arsenal",
-  portFilterPhysical: "POS Hardware (Physical)",
-  portFilterDigital: "Software & Web (Brain)",
-  portCtaTitle: "Want Your Business Here?",
-  portCtaSub: "Don't just watch others succeed. It's your turn for me to upgrade your system.",
-  portCtaBtn: "START NEW PROJECT",
-  portViewCase: "VIEW DETAIL",
-  portLoadMore: "LOAD MORE ARSENAL",
-
-  // Articles Section
-  blogTitle: "Intel Warehouse",
-  blogSub: "Street intel, field strategies, and latest POS tech updates. Read so your business doesn't go extinct.",
-  blogSearchPlaceholder: "Search intel data...",
-  blogLoadMore: "DIG DEEPER",
-  blogSidebarTitle: "Radar Categories",
-  blogSidebarProductTitle: "BACKUP AMMO",
-  blogCatAll: "ALL ARCHIVES",
-  blogCatBiz: "BUSINESS STRATEGY",
-  blogCatTech: "TECH & TOOLS",
-  articleBack: "Back to Insights",
-  articleCtaTitle: "Overwhelmed Managing Systems Alone?",
-  articleCtaDesc: "Just focus on selling, Boss. Let the MKS team handle the POS system, inventory management, and financial reports.",
-  articleCtaBtn: "Free Consultation",
-
-  // Contact
-  contactHeading: "Don't Be Shy, Just Chat Me.",
-  contactSub: "No Chatbots or Robot Admins here. You'll talk to real humans (Me & Core Team) who understand the field. I ensure every chat gets a solution, not a template.",
-  contactQnaTitle: "BASIC INTEL (FAQ)",
-  contactQna: [
-    { q: "\"Do you have a physical store to see items?\"", a: "Answer: Currently I focus on *Online & Warehouse* only. Why? So I don't have to load expensive rent costs onto your item price (cheaper for you). The replacement? We *Video Call* as much as you want for unit demos, or transaction via Marketplace (Tokped/Shopee) for safety." },
-    { q: "\"Can you ship outside the island? Is it safe?\"", a: "Answer: 100% Safe. I've shipped units from Aceh to Papua. Wood packing, insurance, warranty until arrival normal. If broken, I replace it new." },
-    { q: "\"How to claim warranty if broken?\"", a: "Answer: Hardware official warranty 1 year. Software? I support lifetime as long as you subscribe. I won't run from responsibility." },
-    { q: "\"I'm tech-illiterate, will I be taught how to use it?\"", a: "Answer: Mandatory. It's forbidden for me to just sell and leave. My team will train you & staff until fluent (via Zoom or on-site)." }
-  ],
-  contactInfoTitle: "Office Information",
-  contactOfficeLegalTitle: "LEGAL OFFICE",
-  contactOfficeLegalAddress: "Perum Graha Tiara 2 B1, Gumpang 07/01, Kartasura, Sukoharjo, Central Java, Indonesia 57169",
-  contactOfficeOpsTitle: "OPS HQ",
-  contactOfficeOpsAddress: "Gumiring 04/04, Sidomulyo, Banjarejo, Blora, Central Java, Indonesia 58253",
-  contactLabelWa: "WHATSAPP (FAST)",
-  contactLabelEmail: "OFFICIAL EMAIL",
-  contactLabelHours: "OPERATIONAL HOURS",
-
-  contactFormTitle: "Drop Your Message",
-  contactFormName: "Mr / Ms ...",
-  contactFormWa: "WA: +62...",
-  contactFormAddress: "Your Location / Address...",
-  contactFormTopic: "TOPIC?",
-  contactFormMsg: "Tell us your needs or problems...",
-  contactFormBtn: "CONTINUE TO WHATSAPP",
-  contactFormNote: "*I'll reply ASAP. If urgent, call directly.",
-
-  contactTopic1: "SAY HELLO",
-  contactTopic2: "CONSULTATION",
-  contactTopic3: "COMPLAINT",
-  contactTopic4: "PARTNERSHIP",
-  
-  contactMapsTitle: "OUR LOCATIONS",
-  contactMapsDesc: "Find our HQs on the map. Feel free to visit if you want face-to-face consultation.",
-
-  legalTitle: "I Play Clean",
-  legalDesc: "Business is trust. I won't ruin the name I rebuilt from zero. Here is the proof I am legal.",
-  legalLabelEntity: "Legal Entity",
-  legalValueEntity: "PT MESIN KASIR SOLO",
-  legalLabelNIB: "NIB (Business License)",
-  legalLabelSK: "Ministry Decree (SK)",
-  legalLabelNPWP: "Company Tax ID",
-  legalLabelBank: "Official Bank Acc (BNC)",
-  legalCtaTitle: "CHECK VALIDITY",
-  legalCtaDesc: "You can check my company data yourself on the government website.",
-  legalCtaBtn: "Open OSS.GO.ID",
-  legalFooterNote: "*Need original docs for vendor list or tender? Chat my admin. We are transparent.",
-
-  hist2015Title: "2015: The Grind",
-  hist2015Desc: "I walked, Boss. Door-to-door under the sun selling registers. Hundreds of 'No's. Bleeding feet, bulletproof mindset.",
-  hist2018Title: "2018: The Squad",
-  hist2018Desc: "Started recruiting. We felt invincible, but forgot our system foundation was made of crackers. Fragile.",
-  hist2021Title: "2021: Birth of SIBOS",
-  hist2021Desc: "Sick of weak market apps. I engineered SIBOS. Combat-ready POS for brutal field conditions.",
-  hist2022Title: "2022: The Mini Apocalypse",
-  hist2022Desc: "Pandemi hit hard. Team dissolved. Funds dried up. Domains stolen. Google Business suspended. Total darkness, Boss.",
-  hist2025Title: "2025: The Vengeance",
-  hist2025Desc: "Rising from the grave. Rebuilt from scratch using Enterprise Monorepo. Smarter, meaner, readier for war.",
-
-  footerDesc: "PT Mesin Kasir Solo. We are your combat partners. I provide tank-grade hardware, sophisticated Web Apps, and Digital Marketing strategies for those obsessed with market domination.",
-  footerCol1: "The Arsenal",
-  footerLink1: "SME POS Packs",
-  footerLink2: "Enterprise War System",
-  footerLink3: "Build Killer Websites",
-  footerLink4: "'Evil' SEO Consulting",
-  footerCol2: "Command HQ",
-  footerCopy: "© 2024 PT Mesin Kasir Solo. Don't try anything funny. All rights reserved.",
-  footerLegal1: "Rules of Engagement",
-  footerLegal2: "Terms of War",
+  ...Hero_EN,
+  ...Dashboard_EN,
+  ...Auth_EN,
+  ...Navigation_EN,
+  ...Services_EN,
+  ...Shop_EN,
+  ...About_EN,
+  ...History_EN,
+  ...Legal_EN,
+  ...Vision_EN,
+  ...Career_EN,
+  ...Portfolio_EN,
+  ...Blog_EN,
+  ...Contact_EN,
+  ...Footer_EN,
 };
