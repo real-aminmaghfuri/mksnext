@@ -19,8 +19,10 @@ export interface PortfolioItem {
 
 export interface ArticleItem {
   id: number;
+  slug: string; // Added for routing
   title: string;
   excerpt: string;
+  content: string; // Added for full body content
   category: string;
   date: string;
   author: string;
