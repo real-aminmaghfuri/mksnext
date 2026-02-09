@@ -24,8 +24,8 @@ export const MegaMenuSplitLinks: React.FC<MegaMenuSplitLinksProps> = ({ columns,
              </h4>
           </div>
 
-          {/* List Items */}
-          <div className="space-y-3">
+          {/* List Items: Max 3 Vertical Sequence */}
+          <div className="grid grid-rows-3 grid-flow-col gap-x-6 gap-y-2">
             {col.items.map((item, itemIdx) => {
               const Icon = item.icon;
               return (
@@ -38,14 +38,14 @@ export const MegaMenuSplitLinks: React.FC<MegaMenuSplitLinksProps> = ({ columns,
                   <div className="shrink-0 mt-1 p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-400 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">
                     <Icon size={18} strokeWidth={2} />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <div className="flex items-center gap-1">
-                      <span className="text-sm font-bold text-zinc-800 dark:text-zinc-200 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">
+                      <span className="text-sm font-bold text-zinc-800 dark:text-zinc-200 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors truncate">
                         {item.label}
                       </span>
-                      <ArrowRight size={12} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-brand-500" />
+                      <ArrowRight size={12} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-brand-500 shrink-0" />
                     </div>
-                    <p className="text-xs text-zinc-500 dark:text-zinc-500 mt-0.5 font-medium leading-relaxed">
+                    <p className="text-xs text-zinc-500 dark:text-zinc-500 mt-0.5 font-medium leading-relaxed line-clamp-2">
                       {item.desc}
                     </p>
                   </div>
