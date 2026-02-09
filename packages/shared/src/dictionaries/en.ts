@@ -25,6 +25,11 @@ export const EN_DICTIONARY: Translation = {
   navContact: "Contact Me",
   navCareer: "Join Corps",
   
+  // Innovation Profile
+  navInnoHeader: "INNOVATION",
+  navInnoSibos: "SIBOS ERP",
+  navInnoQalam: "QALAM",
+
   navSolutions: "POS SYSTEM", 
   navSolHardware: "POS Hardware",
   navSolSoftware: "SaaS POS System",
@@ -52,11 +57,34 @@ export const EN_DICTIONARY: Translation = {
   navIndService: "Services & Professional",
   navIndHealth: "Healthcare (Clinic)",
   navIndEdu: "Education & School",
+  navIndGov: "Government & Village",
   navIndCorp: "Corporate & Factory",
   navIndAll: "View All Industries",
   // --------------------------------
 
+  // Hardware Menu
+  navHwAndroid: "Android POS",
+  navHwPc: "PC / Desktop POS",
+  navHwRegister: "Cash Register",
+  navHwScanner: "Barcode Scanner",
+  navHwPaper: "Thermal Paper",
+  navHwDesk: "Cashier Desk",
+  navHwRack: "Minimarket Rack",
+  navHwAksesoris: "Other Accessories",
+
+  // Support Menu
   navHelp: "SUPPORT",
+  navSupHeader: "HELP CENTER",
+  navSupDownload: "Download Center",
+  navSupKb: "Knowledge Base",
+  navSupOrderHeader: "ORDERS",
+  navSupTrack: "Track Order Status",
+  navSupClaim: "Warranty Claim & Return",
+  navSupLegalHeader: "TERMS",
+  navSupTerms: "Terms & Conditions",
+  navSupPrivacy: "Privacy & Cookie",
+  navSupFaq: "Frequently Asked Questions",
+
   navInsights: "INSIGHTS",
 
   navServices: "Weapons",

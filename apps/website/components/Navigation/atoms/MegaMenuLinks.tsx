@@ -36,7 +36,7 @@ export const MegaMenuLinks: React.FC<MegaMenuLinksProps> = ({ parentLabel, items
               key={itemIdx} 
               href={item.path}
               onClick={onLinkClick}
-              className="group flex items-start gap-2.5 p-1 -ml-1 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-all duration-200"
+              className="group flex items-start gap-2.5 py-1 transition-all duration-200"
             >
               <div className="shrink-0 mt-0.5 text-zinc-400 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">
                 <Icon size={18} strokeWidth={2} />

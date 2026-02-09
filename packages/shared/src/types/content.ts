@@ -28,6 +28,11 @@ export interface Translation {
   navContact: string; 
   navCareer: string; 
   
+  // New Innovation Profile
+  navInnoHeader: string;
+  navInnoSibos: string;
+  navInnoQalam: string;
+  
   navSolutions: string; // Keep for backward compat
   navSolHardware: string; // Keep for backward compat
   navSolSoftware: string; // Keep for backward compat
@@ -56,11 +61,34 @@ export interface Translation {
   navIndService: string;
   navIndHealth: string;
   navIndEdu: string;
+  navIndGov: string; // New
   navIndCorp: string;
   navIndAll: string;
   // ------------------------------------------
+  
+  // New Hardware Menu
+  navHwAndroid: string;
+  navHwPc: string;
+  navHwRegister: string;
+  navHwScanner: string;
+  navHwPaper: string;
+  navHwDesk: string;
+  navHwRack: string;
+  navHwAksesoris: string;
 
+  // New Support Menu
   navHelp: string;
+  navSupHeader: string;
+  navSupDownload: string;
+  navSupKb: string;
+  navSupOrderHeader: string;
+  navSupTrack: string;
+  navSupClaim: string;
+  navSupLegalHeader: string;
+  navSupTerms: string;
+  navSupPrivacy: string;
+  navSupFaq: string;
+
   navInsights: string;
 
   navServices: string;

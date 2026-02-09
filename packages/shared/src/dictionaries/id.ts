@@ -25,6 +25,11 @@ export const ID_DICTIONARY: Translation = {
   navContact: "Hubungi Gue",
   navCareer: "Rekrutmen Pasukan",
   
+  // Innovation Profile
+  navInnoHeader: "INOVASI",
+  navInnoSibos: "SIBOS ERP",
+  navInnoQalam: "QALAM",
+
   navSolutions: "MESIN KASIR", 
   navSolHardware: "Hardware Kasir (POS)",
   navSolSoftware: "Software Kasir (SaaS)",
@@ -52,11 +57,33 @@ export const ID_DICTIONARY: Translation = {
   navIndService: "Jasa & Layanan",
   navIndHealth: "Kesehatan (Klinik)",
   navIndEdu: "Pendidikan & Sekolah",
+  navIndGov: "Birokrasi & Desa",
   navIndCorp: "Corporate & Pabrik",
   navIndAll: "Lihat Semua Industri",
   // --------------------------------
+  
+  // Mesin Kasir Items
+  navHwAndroid: "Mesin Kasir Android",
+  navHwPc: "Mesin Kasir Komputer",
+  navHwRegister: "Cash Register",
+  navHwScanner: "Barcode Scanner",
+  navHwPaper: "Kertas Kasir",
+  navHwDesk: "Meja Kasir",
+  navHwRack: "Rak Minimarket",
+  navHwAksesoris: "Aksesoris Lainnya",
 
   navHelp: "SUPPORT",
+  navSupHeader: "BANTUAN",
+  navSupDownload: "Download Center",
+  navSupKb: "Knowledge Base",
+  navSupOrderHeader: "PESANAN",
+  navSupTrack: "Lacak Status Pesanan",
+  navSupClaim: "Klaim Garansi & Retur",
+  navSupLegalHeader: "ATURAN MAIN",
+  navSupTerms: "Syarat & Ketentuan",
+  navSupPrivacy: "Privasi & Cookie",
+  navSupFaq: "Frequently Asked Questions",
+
   navInsights: "WAWASAN",
   
   navServices: "Senjata",

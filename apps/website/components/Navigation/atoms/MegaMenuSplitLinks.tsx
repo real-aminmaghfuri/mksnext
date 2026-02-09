@@ -35,11 +35,6 @@ export const MegaMenuSplitLinks: React.FC<MegaMenuSplitLinksProps> = ({ columns,
                {col.title}
             </h4>
 
-            {/* 
-               Grid Layout:
-               - No longer using grid-rows-3 flow-col to force explicit column structure
-               - We use grid-cols-X directly to fill the space horizontally
-            */}
             <div className={`grid ${innerGridClass} gap-x-6 gap-y-3`}>
               {col.items.map((item, itemIdx) => {
                 const Icon = item.icon;
@@ -48,7 +43,7 @@ export const MegaMenuSplitLinks: React.FC<MegaMenuSplitLinksProps> = ({ columns,
                     key={itemIdx} 
                     href={item.path}
                     onClick={onLinkClick}
-                    className="group flex items-start gap-2.5 p-1 -ml-1 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-all duration-200"
+                    className="group flex items-start gap-2.5 py-1 transition-all duration-200"
                   >
                     <div className="shrink-0 mt-0.5 text-zinc-400 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">
                       <Icon size={18} strokeWidth={2} />
