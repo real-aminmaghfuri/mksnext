@@ -49,7 +49,7 @@ export const MegaMenuSplitLinks: React.FC<MegaMenuSplitLinksProps> = ({ columns,
                     
                     <div className="min-w-0">
                       <div className="flex items-center gap-2 mb-0.5">
-                        {/* Label: Zinc-900 (Light) / White (Dark) -> Orange on Hover */}
+                        {/* Label: STRICTLY Zinc-900 (Light) / White (Dark) -> Orange on Hover */}
                         <span className="text-[13px] font-bold text-zinc-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors leading-none">
                           {item.label}
                         </span>
