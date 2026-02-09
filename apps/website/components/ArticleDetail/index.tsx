@@ -8,8 +8,8 @@ import { ArticleBodyAtom } from './atoms/ArticleBodyAtom';
 import { ShareWidgetAtom } from './atoms/ShareWidgetAtom';
 import { ArticleCtaAtom } from './atoms/ArticleCtaAtom';
 import { SidebarAtom } from '../Articles/atoms/SidebarAtom';
-import { DICTIONARY, useConfig } from 'shared'; // Import correctly based on mono structure
-import { useConfig as useUIConfig } from 'ui'; // Use UI config hook
+import { DICTIONARY } from 'shared';
+import { useConfig } from 'ui';
 
 interface ArticleDetailProps {
   slug: string;
@@ -17,7 +17,7 @@ interface ArticleDetailProps {
 
 export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
   const { article, sidebarProducts, categories, activeCategory, setActiveCategory } = useArticleDetail(slug);
-  const { language } = useUIConfig();
+  const { language } = useConfig();
   
   // Quick fix: Direct dictionary access since hook might not provide text directly for detail
   // In a real app, extend the dictionary. Here we assume text is available or hardcode fallbacks.
