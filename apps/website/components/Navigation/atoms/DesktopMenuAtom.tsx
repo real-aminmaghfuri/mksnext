@@ -15,19 +15,20 @@ export const DesktopMenuAtom: React.FC<DesktopMenuAtomProps> = ({ structure, cur
   const [activeMenuIndex, setActiveMenuIndex] = useState<number | null>(null);
   const navRef = useRef<HTMLDivElement>(null);
 
-  // Toggle Logic (Manual Trigger)
+  // Toggle Logic (Manual Trigger - Click Only)
   const handleMenuClick = (idx: number, e: React.MouseEvent) => {
-    // If has dropdown, toggle visibility
+    // Check if the item has a dropdown (Mega Menu)
     if (structure[idx].hasDropdown) {
-      e.preventDefault(); // Prevent navigation if it's a trigger
+      e.preventDefault(); // Stop navigation
+      // Toggle: If open, close. If closed, open.
       setActiveMenuIndex(activeMenuIndex === idx ? null : idx);
     } else {
-      // If regular link, close menu
+      // Standard link, just close menu
       setActiveMenuIndex(null);
     }
   };
 
-  // Click Outside Logic
+  // Close when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(event.target as Node)) {
@@ -48,7 +49,7 @@ export const DesktopMenuAtom: React.FC<DesktopMenuAtomProps> = ({ structure, cur
         const isOpen = activeMenuIndex === idx;
         
         return (
-          <div key={idx} className="relative px-3 py-6 group">
+          <div key={idx} className="relative px-3 py-6">
             <Link 
               href={menu.path} 
               onClick={(e) => handleMenuClick(idx, e)}
@@ -69,7 +70,7 @@ export const DesktopMenuAtom: React.FC<DesktopMenuAtomProps> = ({ structure, cur
               )}
             </Link>
 
-            {/* Mega Menu Atom controlled by State (isOpen), not Hover */}
+            {/* Mega Menu Atom: Only visible if isOpen is true (Manual Trigger) */}
             {menu.hasDropdown && (menu.items || menu.columns) && (
               <MegaMenuAtom 
                 items={menu.items}
