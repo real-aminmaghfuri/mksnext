@@ -28,17 +28,37 @@ export interface Translation {
   navContact: string; 
   navCareer: string; 
   
-  navSolutions: string; 
-  navSolHardware: string;
-  navSolSoftware: string;
-  navSolConsulting: string;
+  navSolutions: string; // Keep for backward compat
+  navSolHardware: string; // Keep for backward compat
+  navSolSoftware: string; // Keep for backward compat
+  navSolConsulting: string; // Keep for backward compat
 
-  navInnovation: string;
+  navInnovation: string; // Keep for backward compat
   // New Web Service Keys
   navWebCompro: string;
   navWebEcom: string;
   navWebCustom: string;
   navWebSeo: string;
+
+  // --- NEW NAVIGATION DICTIONARY (STEP 1) ---
+  navLayanan: string; // The Main Menu "LAYANAN"
+  
+  // Col 1: Technology
+  navTechHeader: string;
+  navTechCompro: string;
+  navTechEcom: string;
+  navTechCustom: string;
+
+  // Col 2: Business Solutions
+  navBizHeader: string;
+  navIndRetail: string;
+  navIndFnb: string;
+  navIndService: string;
+  navIndHealth: string;
+  navIndEdu: string;
+  navIndCorp: string;
+  navIndAll: string;
+  // ------------------------------------------
 
   navHelp: string;
   navInsights: string;

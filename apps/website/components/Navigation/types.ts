@@ -8,11 +8,17 @@ export interface SubMenuItem {
   desc: string;
 }
 
+export interface MegaMenuColumn {
+  title: string;
+  items: SubMenuItem[];
+}
+
 export interface MenuItem {
   label: string;
   path: string;
   hasDropdown: boolean;
-  items?: SubMenuItem[];
+  items?: SubMenuItem[]; // Legacy/Standard layout (Left List + Right Image)
+  columns?: MegaMenuColumn[]; // New Split layout (Column 1 + Column 2)
 }
 
 export interface NavbarLogic {

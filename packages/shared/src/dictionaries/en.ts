@@ -25,7 +25,7 @@ export const EN_DICTIONARY: Translation = {
   navContact: "Contact Me",
   navCareer: "Join Corps",
   
-  navSolutions: "POS SYSTEM", // Updated
+  navSolutions: "POS SYSTEM", 
   navSolHardware: "POS Hardware",
   navSolSoftware: "SaaS POS System",
   navSolConsulting: "Biz Consulting",
@@ -35,6 +35,26 @@ export const EN_DICTIONARY: Translation = {
   navWebEcom: "E-Commerce Store",
   navWebCustom: "Custom Web App",
   navWebSeo: "Google SEO",
+
+  // --- NEW NAVIGATION DICTIONARY ---
+  navLayanan: "SERVICES",
+  
+  // Col 1: Technology
+  navTechHeader: "TECHNOLOGY",
+  navTechCompro: "Company Profile Website",
+  navTechEcom: "Online Store Website",
+  navTechCustom: "Custom Web App / System",
+
+  // Col 2: Business Solutions
+  navBizHeader: "BUSINESS SOLUTIONS",
+  navIndRetail: "Retail & Wholesale",
+  navIndFnb: "F&B (Resto & Cafe)",
+  navIndService: "Services & Professional",
+  navIndHealth: "Healthcare (Clinic)",
+  navIndEdu: "Education & School",
+  navIndCorp: "Corporate & Factory",
+  navIndAll: "View All Industries",
+  // --------------------------------
 
   navHelp: "SUPPORT",
   navInsights: "INSIGHTS",

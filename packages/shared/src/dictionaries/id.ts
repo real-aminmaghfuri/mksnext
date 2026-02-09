@@ -36,6 +36,26 @@ export const ID_DICTIONARY: Translation = {
   navWebCustom: "Aplikasi Web Custom",
   navWebSeo: "Jasa SEO Google",
 
+  // --- NEW NAVIGATION DICTIONARY ---
+  navLayanan: "LAYANAN",
+  
+  // Col 1: Technology
+  navTechHeader: "TEKNOLOGI",
+  navTechCompro: "Web Company Profile",
+  navTechEcom: "Web Toko Online",
+  navTechCustom: "Web Custom / Sistem",
+
+  // Col 2: Business Solutions
+  navBizHeader: "SOLUSI BISNIS",
+  navIndRetail: "Retail & Grosir",
+  navIndFnb: "F&B (Resto/Cafe)",
+  navIndService: "Jasa & Layanan",
+  navIndHealth: "Kesehatan (Klinik)",
+  navIndEdu: "Pendidikan & Sekolah",
+  navIndCorp: "Corporate & Pabrik",
+  navIndAll: "Lihat Semua Industri",
+  // --------------------------------
+
   navHelp: "SUPPORT",
   navInsights: "WAWASAN",
   

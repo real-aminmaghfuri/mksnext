@@ -1,5 +1,27 @@
 
-import { User, Layers, BookOpen, ShoppingBag, Laptop, Cpu, HelpCircle, Briefcase, FolderOpen, Mail, Globe, Code, ShoppingCart, Search, Monitor, Printer, CreditCard, Mouse } from 'lucide-react';
+import { 
+  User, 
+  BookOpen, 
+  ShoppingBag, 
+  HelpCircle, 
+  Briefcase, 
+  FolderOpen, 
+  Mail, 
+  Globe, 
+  Code, 
+  ShoppingCart, 
+  Search, 
+  Monitor, 
+  Printer, 
+  CreditCard, 
+  Mouse,
+  Coffee,
+  Scissors,
+  Activity,
+  Factory,
+  GraduationCap,
+  LayoutGrid
+} from 'lucide-react';
 import { Translation } from 'shared';
 import { MenuItem } from './types';
 
@@ -22,7 +44,34 @@ export const getMenuStructure = (text: Translation): MenuItem[] => [
     ]
   },
   { 
-    label: text.navSolutions, // MESIN KASIR
+    label: text.navLayanan, // NEW: "LAYANAN" (Replaces Innovation)
+    path: '#', 
+    hasDropdown: true,
+    // Using 'columns' triggers the new Split Layout in MegaMenuAtom
+    columns: [
+      {
+        title: text.navTechHeader, // "TEKNOLOGI"
+        items: [
+          { label: text.navTechCompro, path: '/services', icon: Globe, desc: "Branding Perusahaan & SEO" },
+          { label: text.navTechEcom, path: '/services', icon: ShoppingCart, desc: "Sistem Toko Online Auto-Pilot" },
+          { label: text.navTechCustom, path: '/services', icon: Code, desc: "Web Apps & Sistem Custom" },
+        ]
+      },
+      {
+        title: text.navBizHeader, // "SOLUSI BISNIS"
+        items: [
+          { label: text.navIndRetail, path: '/solutions?tag=RETAIL', icon: ShoppingBag, desc: "Minimarket, Fashion, Grosir" },
+          { label: text.navIndFnb, path: '/solutions?tag=FNB', icon: Coffee, desc: "Cafe, Resto, Franchise" },
+          { label: text.navIndService, path: '/solutions?tag=SERVICES', icon: Scissors, desc: "Barbershop, Laundry, Bengkel" },
+          { label: text.navIndHealth, path: '/solutions?tag=HEALTH', icon: Activity, desc: "Apotek & Klinik" },
+          { label: text.navIndCorp, path: '/solutions?tag=CORP', icon: Factory, desc: "Gudang & Pabrik" },
+          { label: text.navIndAll, path: '/solutions', icon: LayoutGrid, desc: "Lihat Semua Industri" },
+        ]
+      }
+    ]
+  },
+  { 
+    label: text.navSolutions, // "MESIN KASIR" (Hardware Focused)
     path: '#', 
     hasDropdown: true,
     items: [
@@ -33,23 +82,12 @@ export const getMenuStructure = (text: Translation): MenuItem[] => [
     ]
   },
   { 
-    label: text.navInnovation, // JASA WEBSITE
-    path: '#', 
-    hasDropdown: true,
-    items: [
-      { label: text.navWebCompro, path: '/services', icon: Globe, desc: "Branding Perusahaan Profesional" },
-      { label: text.navWebEcom, path: '/services', icon: ShoppingCart, desc: "Jualan Online 24 Jam" },
-      { label: text.navWebCustom, path: '/services', icon: Code, desc: "Sistem Web Sesuai Request" },
-      { label: text.navWebSeo, path: '/services', icon: Search, desc: "Optimasi Pencarian Google" },
-    ]
-  },
-  { 
     label: text.navHelp, 
     path: '#', 
     hasDropdown: true,
     items: [
-      { label: "Live Support", path: '#', icon: HelpCircle, desc: "Bantuan Teknis 24/7" },
-      { label: "Knowledge Base", path: '#', icon: BookOpen, desc: "Tutorial & Dokumentasi" },
+      { label: "Live Support", path: '/contact', icon: HelpCircle, desc: "Bantuan Teknis 24/7" },
+      { label: "Knowledge Base", path: '/articles', icon: BookOpen, desc: "Tutorial & Dokumentasi" },
     ]
   },
   { 

@@ -60,10 +60,11 @@ export const DesktopMenuAtom: React.FC<DesktopMenuAtomProps> = ({ structure, cur
               )}
             </Link>
 
-            {/* Render Mega Menu Atom if items exist & is hovered */}
-            {menu.hasDropdown && menu.items && (
+            {/* Render Mega Menu Atom if items or columns exist & is hovered */}
+            {menu.hasDropdown && (menu.items || menu.columns) && (
               <MegaMenuAtom 
-                items={menu.items} 
+                items={menu.items}
+                columns={menu.columns}
                 parentLabel={menu.label} 
                 isVisible={isHovered}
                 onLinkClick={closeMenu}

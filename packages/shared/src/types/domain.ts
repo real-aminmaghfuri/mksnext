@@ -30,3 +30,14 @@ export interface ArticleItem {
   readTime: string;
   isFeatured?: boolean;
 }
+
+export type IndustryTag = 'RETAIL' | 'FNB' | 'SERVICES' | 'HEALTH' | 'CORP' | 'EDU';
+
+export interface SolutionItem {
+  id: number;
+  title: string;
+  industryTag: IndustryTag;
+  desc: string;
+  image: string;
+  features: string[];
+}
