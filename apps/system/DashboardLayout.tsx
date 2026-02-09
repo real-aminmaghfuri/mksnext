@@ -27,7 +27,7 @@ export const DashboardLayout: React.FC = () => {
       
       {/* Main Content Area - Moved to Left */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
-        <div className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px]" />
+        <div className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
 
         {/* Top Header Atom */}
         <DashboardHeaderAtom 
@@ -37,13 +37,13 @@ export const DashboardLayout: React.FC = () => {
           user={user}
         />
 
-        {/* Scrollable Dashboard Content */}
-        <main className="flex-1 overflow-y-auto p-6 md:p-10 pb-32 md:pb-10 custom-scrollbar relative z-10">
+        {/* Scrollable Dashboard Content - Compact Padding */}
+        <main className="flex-1 overflow-y-auto p-4 md:p-6 pb-24 md:pb-6 custom-scrollbar relative z-10">
           
           {/* Statistics Grid Atom */}
           <StatsGridAtom stats={statItems} />
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
             {/* Analytics Chart Placeholder Atom */}
             <RevenueChartAtom />
 
