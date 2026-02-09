@@ -1,6 +1,6 @@
 
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { ChevronDown } from 'lucide-react';
 import { MenuItem } from '../types';
@@ -12,62 +12,71 @@ interface DesktopMenuAtomProps {
 }
 
 export const DesktopMenuAtom: React.FC<DesktopMenuAtomProps> = ({ structure, currentPath }) => {
-  // Use state to manage hover to allow programmatic closing
   const [activeMenuIndex, setActiveMenuIndex] = useState<number | null>(null);
+  const navRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseEnter = (idx: number) => {
-    setActiveMenuIndex(idx);
+  // Toggle Logic (Manual Trigger)
+  const handleMenuClick = (idx: number, e: React.MouseEvent) => {
+    // If has dropdown, toggle visibility
+    if (structure[idx].hasDropdown) {
+      e.preventDefault(); // Prevent navigation if it's a trigger
+      setActiveMenuIndex(activeMenuIndex === idx ? null : idx);
+    } else {
+      // If regular link, close menu
+      setActiveMenuIndex(null);
+    }
   };
 
-  const handleMouseLeave = () => {
-    setActiveMenuIndex(null);
-  };
+  // Click Outside Logic
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setActiveMenuIndex(null);
+      }
+    };
 
-  const closeMenu = () => {
-    setActiveMenuIndex(null);
-  };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
-    <div className="hidden lg:flex items-center gap-1 xl:gap-2">
+    <div className="hidden lg:flex items-center gap-1 xl:gap-2" ref={navRef}>
       {structure.map((menu, idx) => {
         const isActive = currentPath === menu.path;
-        const isHovered = activeMenuIndex === idx;
+        const isOpen = activeMenuIndex === idx;
         
         return (
-          <div 
-            key={idx} 
-            className="relative px-3 py-6 group"
-            onMouseEnter={() => handleMouseEnter(idx)}
-            onMouseLeave={handleMouseLeave}
-          >
+          <div key={idx} className="relative px-3 py-6 group">
             <Link 
               href={menu.path} 
-              onClick={closeMenu}
-              className={`flex items-center gap-1.5 text-[13px] font-bold tracking-wider uppercase transition-colors 
+              onClick={(e) => handleMenuClick(idx, e)}
+              className={`flex items-center gap-1.5 text-[13px] font-bold tracking-wider uppercase transition-colors select-none
                 ${isActive
                   ? 'text-brand-600 dark:text-brand-500' 
-                  : isHovered 
+                  : isOpen 
                     ? 'text-brand-600 dark:text-brand-500' 
-                    : 'text-zinc-600 dark:text-zinc-300'
+                    : 'text-zinc-600 dark:text-zinc-300 hover:text-brand-600 dark:hover:text-brand-500'
                 }`}
             >
               {menu.label}
               {menu.hasDropdown && (
                 <ChevronDown 
                   size={14} 
-                  className={`transition-transform duration-300 ${isHovered ? '-rotate-180' : ''}`} 
+                  className={`transition-transform duration-300 ${isOpen ? '-rotate-180' : ''}`} 
                 />
               )}
             </Link>
 
-            {/* Render Mega Menu Atom if items or columns exist & is hovered */}
+            {/* Mega Menu Atom controlled by State (isOpen), not Hover */}
             {menu.hasDropdown && (menu.items || menu.columns) && (
               <MegaMenuAtom 
                 items={menu.items}
                 columns={menu.columns}
                 parentLabel={menu.label} 
-                isVisible={isHovered}
-                onLinkClick={closeMenu}
+                isVisible={isOpen}
+                onLinkClick={() => setActiveMenuIndex(null)}
               />
             )}
           </div>
