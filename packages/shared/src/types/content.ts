@@ -1,10 +1,12 @@
+import { NavDictionary } from './nav-types';
+
+// Re-exporting NavDictionary for backward compatibility
+export type { NavDictionary } from './nav-types';
 
 export interface QnaItem {
   q: string;
   a: string;
 }
-
-// --- ATOMIC INTERFACES ---
 
 export interface HeroDictionary {
   heroTitle: string;
@@ -25,88 +27,6 @@ export interface DashboardDictionary {
 export interface AuthDictionary {
   loginHeading: string;
   loginSub: string;
-}
-
-export interface NavDictionary {
-  // Website Nav
-  navHome: string;
-  navAbout: string; 
-  navAboutCompany: string;
-  navAboutProfile: string;
-  navAboutTeam: string;
-  navAboutVision: string;
-  navAboutPortfolio: string; 
-  navContact: string; 
-  navCareer: string; 
-  
-  // Innovation Profile
-  navInnoHeader: string;
-  navInnoSibos: string;
-  navInnoQalam: string;
-  
-  // Legacy Solutions
-  navSolutions: string;
-  navSolHardware: string;
-  navSolSoftware: string;
-  navSolConsulting: string;
-
-  // Web Services
-  navInnovation: string;
-  navWebCompro: string;
-  navWebEcom: string;
-  navWebCustom: string;
-  navWebSeo: string;
-
-  // Main Menu Service
-  navLayanan: string;
-  
-  // Technology
-  navTechHeader: string;
-  navTechCompro: string;
-  navTechEcom: string;
-  navTechCustom: string;
-
-  // Business Solutions
-  navBizHeader: string;
-  navIndRetail: string;
-  navIndFnb: string;
-  navIndService: string;
-  navIndHealth: string;
-  navIndEdu: string;
-  navIndGov: string;
-  navIndCorp: string;
-  navIndAll: string;
-  
-  // Hardware Menu
-  navHwBundle: string;
-  navHwAndroid: string;
-  navHwPc: string;
-  navHwRegister: string;
-  navHwScanner: string;
-  navHwPaper: string;
-  navHwDrawer: string;
-  navHwDesk: string;
-  navHwRack: string;
-  navHwAksesoris: string;
-
-  // Support Menu
-  navHelp: string;
-  navSupHeader: string;
-  navSupDownload: string;
-  navSupKb: string;
-  navSupOrderHeader: string;
-  navSupTrack: string;
-  navSupClaim: string;
-  navSupLegalHeader: string;
-  navSupTerms: string;
-  navSupPrivacy: string;
-  navSupFaq: string;
-
-  navInsights: string;
-  navServices: string;
-  navShop: string;
-  navMenu: string;
-  navClose: string;
 }
 
 export interface ServicesDictionary {
@@ -133,7 +53,6 @@ export interface AboutDictionary {
   aboutHeading: string;
   aboutTagline: string;
   aboutFounderQuote: string;
-  
   aboutTurnTitle: string;
   aboutTurnP1: string;
   aboutTurnP1Bold: string;
@@ -143,7 +62,6 @@ export interface AboutDictionary {
   aboutTurnP2Italic1: string;
   aboutTurnP2Mid2: string;
   aboutTurnP2Italic2: string;
-
   aboutPhil1Title: string;
   aboutPhil1Desc: string;
   aboutPhil2Title: string;
@@ -195,7 +113,6 @@ export interface VisionDictionary {
   mission3Desc: string;
   mission4Title: string;
   mission4Desc: string;
-  
   dnaTitle: string;
   dnaSub: string;
   dna1Title: string;
@@ -210,7 +127,6 @@ export interface VisionDictionary {
   dna5Desc: string;
   dna6Title: string;
   dna6Desc: string;
-
   manifestoTitle: string;
   manifestoText: string;
   manifestoFooter: string;
@@ -222,20 +138,17 @@ export interface CareerDictionary {
   careerSub: string;
   careerDnaTitle: string;
   careerDnaSub: string;
-  
   careerDna1Title: string;
   careerDna1Desc: string;
   careerDna2Title: string;
   careerDna2Desc: string;
   careerDna3Title: string;
   careerDna3Desc: string;
-  
   careerAntiTitle: string;
   careerAnti1: string;
   careerAnti2: string;
   careerAnti3: string;
   careerAnti4: string;
-
   careerRoleTitle: string;
   careerRoleSub: string;
   careerForceHireTitle: string;
@@ -278,7 +191,6 @@ export interface ContactDictionary {
   contactSub: string;
   contactQnaTitle: string;
   contactQna: QnaItem[];
-  
   contactInfoTitle: string; 
   contactOfficeLegalTitle: string;
   contactOfficeLegalAddress: string;
@@ -287,7 +199,6 @@ export interface ContactDictionary {
   contactLabelWa: string;
   contactLabelEmail: string;
   contactLabelHours: string;
-
   contactFormTitle: string;
   contactFormName: string;
   contactFormWa: string;
@@ -296,12 +207,10 @@ export interface ContactDictionary {
   contactFormMsg: string;
   contactFormBtn: string;
   contactFormNote: string;
-
   contactTopic1: string;
   contactTopic2: string;
   contactTopic3: string;
   contactTopic4: string;
-
   contactMapsTitle: string;
   contactMapsDesc: string;
 }
@@ -319,8 +228,6 @@ export interface FooterDictionary {
   footerLegal2: string;
 }
 
-// --- AGGREGATED INTERFACE (THE GOD INTERFACE REBORN) ---
-// This ensures backward compatibility with existing code.
 export interface Translation extends 
   HeroDictionary,
   DashboardDictionary,

@@ -1,0 +1,75 @@
+
+import { NavDictionary } from '../../types';
+
+export const Navigation_ID: NavDictionary = {
+  navHome: "BERANDA",
+  navAbout: "PROFIL", 
+  navAboutCompany: "PERUSAHAAN",
+  navAboutProfile: "Tentang Kasir Solo", 
+  navAboutTeam: "Pasukan Elite",
+  navAboutVision: "Visi & Misi",
+  navAboutPortfolio: "Jejak Pertempuran",
+  navContact: "Hubungi Gue",
+  navCareer: "Rekrutmen Pasukan",
+  
+  navInnoHeader: "INOVASI",
+  navInnoSibos: "SIBOS ERP",
+  navInnoQalam: "QALAM",
+
+  navSolutions: "MESIN KASIR", 
+  navSolHardware: "Hardware Kasir (POS)",
+  navSolSoftware: "Software Kasir (SaaS)",
+  navSolConsulting: "Konsultasi & SOP",
+
+  navInnovation: "JASA WEBSITE",
+  navWebCompro: "Web Company Profile",
+  navWebEcom: "Web Toko Online",
+  navWebCustom: "Aplikasi Web Custom",
+  navWebSeo: "Jasa SEO Google",
+
+  navLayanan: "LAYANAN",
+  
+  navTechHeader: "TEKNOLOGI",
+  navTechCompro: "Web Company Profile",
+  navTechEcom: "Web Toko Online",
+  navTechCustom: "Web Custom / Sistem",
+
+  navBizHeader: "SOLUSI BISNIS",
+  navIndRetail: "Retail & Grosir",
+  navIndFnb: "F&B (Resto/Cafe)",
+  navIndService: "Jasa & Layanan",
+  navIndHealth: "Kesehatan (Klinik)",
+  navIndEdu: "Pendidikan & Sekolah",
+  navIndGov: "Birokrasi & Desa",
+  navIndCorp: "Corporate & Pabrik",
+  navIndAll: "Lihat Semua Industri",
+  
+  navHwBundle: "Paket Mesin Kasir",
+  navHwAndroid: "Mesin Kasir Android",
+  navHwPc: "Mesin Kasir Komputer",
+  navHwRegister: "Cash Register",
+  navHwScanner: "Barcode Scanner",
+  navHwPaper: "Kertas Kasir",
+  navHwDrawer: "Cash Drawer",
+  navHwDesk: "Meja Kasir",
+  navHwRack: "Rak Minimarket",
+  navHwAksesoris: "Aksesoris Lainnya",
+
+  navHelp: "SUPPORT",
+  navSupHeader: "BANTUAN",
+  navSupDownload: "Download Center",
+  navSupKb: "Knowledge Base",
+  navSupOrderHeader: "PESANAN",
+  navSupTrack: "Lacak Status Pesanan",
+  navSupClaim: "Klaim Garansi & Retur",
+  navSupLegalHeader: "ATURAN MAIN",
+  navSupTerms: "Syarat & Ketentuan",
+  navSupPrivacy: "Privasi & Cookie",
+  navSupFaq: "Frequently Asked Questions",
+
+  navInsights: "WAWASAN",
+  navServices: "Senjata",
+  navShop: "Supply",
+  navMenu: "Menu",
+  navClose: "Cabut",
+};
