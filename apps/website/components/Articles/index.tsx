@@ -77,7 +77,10 @@ export const Articles: React.FC = () => {
                     text={{
                        searchPlaceholder: text.searchPlaceholder,
                        sidebarTitle: text.sidebarTitle,
-                       productTitle: text.sidebarProductTitle
+                       productTitle: text.sidebarProductTitle,
+                       catAll: text.catAll,
+                       catBiz: text.catBiz,
+                       catTech: text.catTech
                     }}
                  />
              </div>

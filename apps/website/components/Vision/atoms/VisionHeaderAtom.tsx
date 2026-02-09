@@ -1,7 +1,7 @@
 
 "use client";
 import React from 'react';
-import { Target } from 'lucide-react';
+import { Target, Compass } from 'lucide-react';
 
 interface VisionHeaderProps {
   heading: string;
@@ -22,10 +22,13 @@ export const VisionHeaderAtom: React.FC<VisionHeaderProps> = ({ heading, sub, vi
         
         {/* Top Section: Heading */}
         <div className="max-w-4xl mx-auto text-center mb-24">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-brand-600 dark:text-brand-500 text-[10px] font-black uppercase tracking-widest mb-6 shadow-sm">
-             <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse" />
-             Peta Perang Kita
+          
+          {/* Uniform Hero Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 text-sm font-bold animate-fade-in-up mx-auto shadow-sm mb-8">
+             <Compass size={16} className="text-brand-500" />
+             <span>PETA PERANG KITA</span>
           </div>
+
           <h1 className="text-5xl md:text-7xl font-black text-zinc-900 dark:text-white tracking-tighter mb-8 leading-[0.9]">
             {heading.split('&').map((part, i) => (
                <span key={i} className={i === 1 ? "text-brand-600 dark:text-brand-500 block md:inline" : "block md:inline"}>

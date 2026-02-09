@@ -1,6 +1,7 @@
 
 "use client";
 import React from 'react';
+import { ShoppingBag } from 'lucide-react';
 
 interface ShopHeaderProps {
   title: string;
@@ -9,9 +10,16 @@ interface ShopHeaderProps {
 
 export const ShopHeaderAtom: React.FC<ShopHeaderProps> = ({ title, subtitle }) => {
   return (
-    <div className="pt-12 pb-16 px-4 relative overflow-hidden bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800">
+    <div className="pt-32 pb-16 px-4 relative overflow-hidden bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800">
        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
        <div className="container mx-auto max-w-6xl relative z-10 text-center">
+          
+          {/* Uniform Hero Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 text-sm font-bold animate-fade-in-up mx-auto shadow-sm mb-8">
+              <ShoppingBag size={16} className="text-brand-500" />
+              <span>OFFICIAL STORE</span>
+          </div>
+
           <h1 className="text-4xl md:text-6xl font-black text-zinc-900 dark:text-white uppercase tracking-tighter mb-4">
             {title}
           </h1>

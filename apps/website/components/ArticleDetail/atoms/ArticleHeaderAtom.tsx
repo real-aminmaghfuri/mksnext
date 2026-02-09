@@ -7,9 +7,10 @@ import Link from 'next/link';
 
 interface ArticleHeaderProps {
   article: ArticleItem;
+  backText?: string;
 }
 
-export const ArticleHeaderAtom: React.FC<ArticleHeaderProps> = ({ article }) => {
+export const ArticleHeaderAtom: React.FC<ArticleHeaderProps> = ({ article, backText = "KEMBALI KE WAWASAN" }) => {
   return (
     <div className="mb-12">
       {/* Breadcrumb / Back */}
@@ -18,7 +19,7 @@ export const ArticleHeaderAtom: React.FC<ArticleHeaderProps> = ({ article }) => 
             href="/articles" 
             className="inline-flex items-center text-xs font-bold text-zinc-500 hover:text-brand-600 dark:hover:text-brand-500 transition-colors uppercase tracking-widest"
         >
-            <ChevronLeft size={16} className="mr-1" /> Kembali ke Wawasan
+            <ChevronLeft size={16} className="mr-1" /> {backText}
         </Link>
       </div>
 

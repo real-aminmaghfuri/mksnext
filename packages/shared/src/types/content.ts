@@ -164,6 +164,13 @@ export interface Translation {
   blogLoadMore: string;
   blogSidebarTitle: string;
   blogSidebarProductTitle: string;
+  blogCatAll: string;
+  blogCatBiz: string;
+  blogCatTech: string;
+  articleBack: string;
+  articleCtaTitle: string;
+  articleCtaDesc: string;
+  articleCtaBtn: string;
 
   // Contact Section
   contactHeading: string;

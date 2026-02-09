@@ -17,9 +17,10 @@ export const CareerHeaderAtom: React.FC<CareerHeaderProps> = ({ heading, heading
        
        <div className="container mx-auto px-6 relative z-10 text-center">
           
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 text-zinc-900 dark:text-white text-[10px] font-black uppercase tracking-widest mb-8 shadow-sm">
-            <UserPlus size={12} className="text-brand-600 dark:text-brand-500" />
-            JOIN THE RESISTANCE
+          {/* Uniform Hero Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 text-sm font-bold animate-fade-in-up mx-auto shadow-sm mb-8">
+            <UserPlus size={16} className="text-brand-500" />
+            <span>JOIN THE RESISTANCE</span>
           </div>
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-zinc-900 dark:text-white tracking-tighter mb-8 leading-[0.9]">

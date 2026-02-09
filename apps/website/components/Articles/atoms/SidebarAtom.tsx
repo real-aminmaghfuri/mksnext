@@ -1,6 +1,6 @@
 
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Search, Tag, ShoppingBag, ChevronDown, ChevronRight, Layers, Cpu, Briefcase } from 'lucide-react';
 import { GlassCard } from 'ui';
 import { ProductItem } from 'shared';
@@ -14,34 +14,36 @@ interface SidebarProps {
     searchPlaceholder: string;
     sidebarTitle: string;
     productTitle: string;
+    catAll: string;
+    catBiz: string;
+    catTech: string;
   };
 }
 
-// Helper to Map Flat Data to Hierarchy for UI
-// In a real app, this might come from the DB, but here we structure the mocks.
-const CATEGORY_TREE = [
-  {
-    id: 'MAIN_ALL',
-    label: 'SEMUA ARSIP',
-    icon: Layers,
-    subs: ['ALL']
-  },
-  {
-    id: 'MAIN_BIZ',
-    label: 'STRATEGI BISNIS',
-    icon: Briefcase,
-    subs: ['MARKETING', 'MANAJEMEN']
-  },
-  {
-    id: 'MAIN_TECH',
-    label: 'TEKNOLOGI & ALAT',
-    icon: Cpu,
-    subs: ['TEKNIS']
-  }
-];
-
 export const SidebarAtom: React.FC<SidebarProps> = ({ categories, activeCategory, onCategoryChange, products, text }) => {
   
+  // Dynamic Category Tree based on props
+  const categoryTree = useMemo(() => [
+    {
+      id: 'MAIN_ALL',
+      label: text.catAll,
+      icon: Layers,
+      subs: ['ALL']
+    },
+    {
+      id: 'MAIN_BIZ',
+      label: text.catBiz,
+      icon: Briefcase,
+      subs: ['MARKETING', 'MANAJEMEN']
+    },
+    {
+      id: 'MAIN_TECH',
+      label: text.catTech,
+      icon: Cpu,
+      subs: ['TEKNIS']
+    }
+  ], [text]);
+
   // Accordion State: Default open 'MAIN_BIZ' or based on active
   const [expandedSection, setExpandedSection] = useState<string | null>('MAIN_BIZ');
 
@@ -68,7 +70,7 @@ export const SidebarAtom: React.FC<SidebarProps> = ({ categories, activeCategory
           </h4>
           
           <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-sm">
-            {CATEGORY_TREE.map((section) => {
+            {categoryTree.map((section) => {
               const Icon = section.icon;
               const isOpen = expandedSection === section.id;
               

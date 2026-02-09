@@ -169,6 +169,13 @@ export const ID_DICTIONARY: Translation = {
   blogLoadMore: "GALI LEBIH DALAM",
   blogSidebarTitle: "Radar Kategori",
   blogSidebarProductTitle: "AMUNISI CADANGAN",
+  blogCatAll: "SEMUA ARSIP",
+  blogCatBiz: "STRATEGI BISNIS",
+  blogCatTech: "TEKNOLOGI & ALAT",
+  articleBack: "Kembali ke Wawasan",
+  articleCtaTitle: "Pusing Ngurusin Sistem Sendirian?",
+  articleCtaDesc: "Fokus jualan aja, Bos. Urusan sistem kasir, manajemen stok, dan laporan keuangan biar tim MKS yang handle.",
+  articleCtaBtn: "Konsultasi Gratis",
 
   // Contact Section
   contactHeading: "Gak Usah Sungkan, Chat Gue Aja.",

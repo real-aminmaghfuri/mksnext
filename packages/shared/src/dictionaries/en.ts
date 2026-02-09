@@ -165,6 +165,13 @@ export const EN_DICTIONARY: Translation = {
   blogLoadMore: "DIG DEEPER",
   blogSidebarTitle: "Radar Categories",
   blogSidebarProductTitle: "BACKUP AMMO",
+  blogCatAll: "ALL ARCHIVES",
+  blogCatBiz: "BUSINESS STRATEGY",
+  blogCatTech: "TECH & TOOLS",
+  articleBack: "Back to Insights",
+  articleCtaTitle: "Overwhelmed Managing Systems Alone?",
+  articleCtaDesc: "Just focus on selling, Boss. Let the MKS team handle the POS system, inventory management, and financial reports.",
+  articleCtaBtn: "Free Consultation",
 
   // Contact
   contactHeading: "Don't Be Shy, Just Chat Me.",

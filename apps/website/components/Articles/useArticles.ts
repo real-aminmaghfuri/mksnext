@@ -102,7 +102,10 @@ export const useArticles = (): ArticleLogic => {
       searchPlaceholder: text.blogSearchPlaceholder,
       loadMoreText: text.blogLoadMore,
       sidebarTitle: text.blogSidebarTitle,
-      sidebarProductTitle: text.blogSidebarProductTitle
+      sidebarProductTitle: text.blogSidebarProductTitle,
+      catAll: text.blogCatAll,
+      catBiz: text.blogCatBiz,
+      catTech: text.blogCatTech
     },
     heroArticle,
     displayItems,

@@ -19,6 +19,9 @@ export interface ArticlesContent {
   loadMoreText: string;
   sidebarTitle: string;
   sidebarProductTitle: string;
+  catAll: string;
+  catBiz: string;
+  catTech: string;
 }
 
 export interface ArticleLogic {

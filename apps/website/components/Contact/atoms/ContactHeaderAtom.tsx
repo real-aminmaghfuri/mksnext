@@ -22,8 +22,11 @@ export const ContactHeaderAtom: React.FC<ContactHeaderProps> = ({ heading, sub }
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:32px_32px] opacity-20" />
 
       <div className="container mx-auto px-6 relative z-10">
-         <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-orange-100 dark:bg-orange-500/10 border border-orange-200 dark:border-orange-500/20 text-orange-600 dark:text-orange-500 text-[10px] font-black uppercase tracking-widest mb-8 animate-pulse shadow-sm">
-            <Radio size={12} /> FREQUENCY OPEN
+         
+         {/* Uniform Hero Badge */}
+         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 text-sm font-bold animate-fade-in-up mx-auto shadow-sm mb-8">
+            <Radio size={16} className="text-brand-500 animate-pulse" />
+            <span>FREQUENCY OPEN</span>
          </div>
 
          <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-[0.9] text-zinc-900 dark:text-white">

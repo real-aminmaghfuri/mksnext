@@ -18,13 +18,15 @@ interface ArticleDetailProps {
 export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
   const { article, sidebarProducts, categories, activeCategory, setActiveCategory } = useArticleDetail(slug);
   const { language } = useConfig();
+  const text = DICTIONARY[language];
   
-  // Quick fix: Direct dictionary access since hook might not provide text directly for detail
-  // In a real app, extend the dictionary. Here we assume text is available or hardcode fallbacks.
-  const text = {
-    searchPlaceholder: "Cari data...",
-    sidebarTitle: "Radar Kategori",
-    productTitle: "Amunisi Cadangan"
+  const sidebarText = {
+    searchPlaceholder: text.blogSearchPlaceholder,
+    sidebarTitle: text.blogSidebarTitle,
+    productTitle: text.blogSidebarProductTitle,
+    catAll: text.blogCatAll,
+    catBiz: text.blogCatBiz,
+    catTech: text.blogCatTech
   };
 
   if (!article) {
@@ -49,9 +51,16 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
 
              {/* Center: Content - 8 Cols */}
              <div className="lg:col-span-7">
-                 <ArticleHeaderAtom article={article} />
+                 <ArticleHeaderAtom 
+                    article={article} 
+                    backText={text.articleBack}
+                 />
                  <ArticleBodyAtom content={article.content} />
-                 <ArticleCtaAtom />
+                 <ArticleCtaAtom 
+                    title={text.articleCtaTitle}
+                    desc={text.articleCtaDesc}
+                    btn={text.articleCtaBtn}
+                 />
              </div>
 
              {/* Right: Sidebar - 4 Cols */}
@@ -61,7 +70,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
                     activeCategory={activeCategory}
                     onCategoryChange={setActiveCategory}
                     products={sidebarProducts}
-                    text={text}
+                    text={sidebarText}
                  />
              </div>
 
