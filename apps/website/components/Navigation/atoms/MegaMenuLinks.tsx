@@ -38,13 +38,15 @@ export const MegaMenuLinks: React.FC<MegaMenuLinksProps> = ({ parentLabel, items
               onClick={onLinkClick}
               className="group flex items-start gap-2.5 py-1 transition-all duration-200"
             >
-              <div className="shrink-0 mt-0.5 text-zinc-400 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">
+              {/* Icon: Orange by default (text-brand-500), slightly darker/lighter on hover based on theme */}
+              <div className="shrink-0 mt-0.5 text-brand-500 group-hover:text-brand-600 dark:text-brand-500 dark:group-hover:text-brand-400 transition-colors">
                 <Icon size={18} strokeWidth={2} />
               </div>
               
               <div className="min-w-0">
                 <div className="flex items-center gap-2 mb-0.5">
-                  <span className="text-[13px] font-bold text-zinc-800 dark:text-zinc-200 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors leading-none">
+                  {/* Label: Pure White in Dark Mode (dark:text-white), Black in Light Mode */}
+                  <span className="text-[13px] font-bold text-zinc-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors leading-none">
                     {item.label}
                   </span>
                   <ArrowRight size={10} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-brand-500" />
