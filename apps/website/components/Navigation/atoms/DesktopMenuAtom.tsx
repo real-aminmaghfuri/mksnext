@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
@@ -13,47 +12,48 @@ interface DesktopMenuAtomProps {
 
 export const DesktopMenuAtom: React.FC<DesktopMenuAtomProps> = ({ structure, currentPath }) => {
   const [activeMenuIndex, setActiveMenuIndex] = useState<number | null>(null);
-  const navRef = useRef<HTMLDivElement>(null);
+  // Ref to store the timeout ID so we can cancel it if the user comes back quickly
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Toggle Logic (Manual Trigger - Click Only)
-  const handleMenuClick = (idx: number, e: React.MouseEvent) => {
-    // Check if the item has a dropdown (Mega Menu)
-    if (structure[idx].hasDropdown) {
-      e.preventDefault(); // Stop navigation
-      // Toggle: If open, close. If closed, open.
-      setActiveMenuIndex(activeMenuIndex === idx ? null : idx);
-    } else {
-      // Standard link, just close menu
-      setActiveMenuIndex(null);
+  // 1. Mouse Enter: Open immediately & Clear any pending close timer
+  const handleMouseEnter = (idx: number) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
     }
+    setActiveMenuIndex(idx);
   };
 
-  // Close when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (navRef.current && !navRef.current.contains(event.target as Node)) {
-        setActiveMenuIndex(null);
-      }
-    };
+  // 2. Mouse Leave: Wait 300ms before closing. 
+  // This gives the user time to move cursor from Link to MegaMenu panel.
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setActiveMenuIndex(null);
+    }, 300); 
+  };
 
-    document.addEventListener('mousedown', handleClickOutside);
+  // Cleanup on unmount
+  useEffect(() => {
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
   }, []);
 
   return (
-    <div className="hidden lg:flex items-center gap-1 xl:gap-2" ref={navRef}>
+    <div className="hidden lg:flex items-center gap-1 xl:gap-2">
       {structure.map((menu, idx) => {
         const isActive = currentPath === menu.path;
         const isOpen = activeMenuIndex === idx;
         
         return (
-          <div key={idx} className="relative px-3 py-6">
+          <div 
+            key={idx} 
+            className="relative px-3 py-6 group"
+            onMouseEnter={() => handleMouseEnter(idx)}
+            onMouseLeave={handleMouseLeave}
+          >
             <Link 
               href={menu.path} 
-              onClick={(e) => handleMenuClick(idx, e)}
-              className={`flex items-center gap-1.5 text-[13px] font-bold tracking-wider uppercase transition-colors select-none
+              className={`flex items-center gap-1.5 text-[13px] font-bold tracking-wider uppercase transition-colors select-none py-2
                 ${isActive
                   ? 'text-brand-600 dark:text-brand-500' 
                   : isOpen 
@@ -70,7 +70,7 @@ export const DesktopMenuAtom: React.FC<DesktopMenuAtomProps> = ({ structure, cur
               )}
             </Link>
 
-            {/* Mega Menu Atom: Only visible if isOpen is true (Manual Trigger) */}
+            {/* Mega Menu Atom */}
             {menu.hasDropdown && (menu.items || menu.columns) && (
               <MegaMenuAtom 
                 items={menu.items}
