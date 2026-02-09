@@ -46,7 +46,7 @@ export const MegaMenuLinks: React.FC<MegaMenuLinksProps> = ({ parentLabel, items
                   </span>
                   <ArrowRight size={10} className="opacity-0 -translate-x-1 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all duration-300 text-brand-500" />
                 </div>
-                <p className="text-[10px] font-medium text-zinc-500 dark:text-zinc-500 line-clamp-1 group-hover/item:text-zinc-400 transition-colors leading-tight">
+                <p className="text-[10px] font-medium text-zinc-500 dark:text-zinc-500 line-clamp-1 group-hover/item:text-brand-600 dark:group-hover/item:text-brand-500 transition-colors leading-tight">
                   {item.desc}
                 </p>
               </div>
