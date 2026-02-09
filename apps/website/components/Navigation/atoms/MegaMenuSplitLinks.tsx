@@ -13,7 +13,7 @@ interface MegaMenuSplitLinksProps {
 
 export const MegaMenuSplitLinks: React.FC<MegaMenuSplitLinksProps> = ({ columns, onLinkClick }) => {
   return (
-    <div className="w-full grid grid-cols-4 gap-8"> {/* Main Wrapper 4 Cols */}
+    <div className="w-full grid grid-cols-4 gap-8">
       {columns.map((col, idx) => {
         // Layout Logic based on 'width' prop
         const isWide = col.width === 'wide';
@@ -42,14 +42,14 @@ export const MegaMenuSplitLinks: React.FC<MegaMenuSplitLinksProps> = ({ columns,
                     onClick={onLinkClick}
                     className="group flex items-start gap-2.5 py-1 transition-all duration-200"
                   >
-                    {/* Icon: Orange by default */}
+                    {/* ICON: Default Orange (brand-500) */}
                     <div className="shrink-0 mt-0.5 text-brand-500 group-hover:text-brand-600 dark:text-brand-500 dark:group-hover:text-brand-400 transition-colors">
                       <Icon size={18} strokeWidth={2} />
                     </div>
                     
                     <div className="min-w-0">
                       <div className="flex items-center gap-2 mb-0.5">
-                        {/* Label: Pure White in Dark Mode */}
+                        {/* LABEL: Default White in Dark Mode */}
                         <span className="text-[13px] font-bold text-zinc-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors leading-none">
                           {item.label}
                         </span>

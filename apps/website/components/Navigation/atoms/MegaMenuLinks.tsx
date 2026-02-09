@@ -22,12 +22,7 @@ export const MegaMenuLinks: React.FC<MegaMenuLinksProps> = ({ parentLabel, items
           {parentLabel} DIRECTORY
       </h4>
       
-      {/* 
-         4 Column Grid Layout 
-         - lg:grid-cols-4 : Forces 4 columns on desktop
-         - gap-x-6 : Tighter horizontal gap
-         - gap-y-3 : Tighter vertical gap (Compact)
-      */}
+      {/* Grid Layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-3">
         {items.map((item, itemIdx) => {
           const Icon = item.icon;
@@ -38,14 +33,14 @@ export const MegaMenuLinks: React.FC<MegaMenuLinksProps> = ({ parentLabel, items
               onClick={onLinkClick}
               className="group flex items-start gap-2.5 py-1 transition-all duration-200"
             >
-              {/* Icon: Orange by default (text-brand-500), slightly darker/lighter on hover based on theme */}
+              {/* Icon: Orange by default (text-brand-500) */}
               <div className="shrink-0 mt-0.5 text-brand-500 group-hover:text-brand-600 dark:text-brand-500 dark:group-hover:text-brand-400 transition-colors">
                 <Icon size={18} strokeWidth={2} />
               </div>
               
               <div className="min-w-0">
                 <div className="flex items-center gap-2 mb-0.5">
-                  {/* Label: Pure White in Dark Mode (dark:text-white), Black in Light Mode */}
+                  {/* Label: Default White in Dark Mode */}
                   <span className="text-[13px] font-bold text-zinc-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors leading-none">
                     {item.label}
                   </span>
