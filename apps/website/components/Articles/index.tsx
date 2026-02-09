@@ -42,11 +42,26 @@ export const Articles: React.FC = () => {
                     <div className="flex justify-center mt-16">
                         <Button 
                             onClick={loadMore} 
-                            variant="outline"
-                            className="font-bold uppercase tracking-widest px-8 py-3 rounded-full transition-all duration-300 shadow-lg shadow-brand-500/10 hover:shadow-brand-500/40"
+                            variant="ghost" // Base ghost allows us to fully customize styles
+                            className="
+                                group relative overflow-hidden
+                                bg-white dark:bg-zinc-900 
+                                border-2 border-brand-500/20 dark:border-brand-500/50 
+                                text-brand-600 dark:text-brand-500 
+                                hover:border-brand-600 dark:hover:border-brand-500
+                                hover:text-white
+                                font-black uppercase tracking-widest px-10 py-4 rounded-full 
+                                transition-all duration-300 
+                                shadow-xl shadow-brand-500/10 dark:shadow-none
+                                hover:shadow-brand-600/30 dark:hover:shadow-brand-500/20
+                                hover:-translate-y-1
+                            "
                         >
-                            <RefreshCw size={16} className="mr-2" />
-                            {text.loadMoreText}
+                            <span className="relative z-10 flex items-center">
+                                <RefreshCw size={18} className="mr-3 transition-transform group-hover:rotate-180" />
+                                {text.loadMoreText}
+                            </span>
+                            <div className="absolute inset-0 bg-brand-600 dark:bg-brand-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out" />
                         </Button>
                     </div>
                  )}
