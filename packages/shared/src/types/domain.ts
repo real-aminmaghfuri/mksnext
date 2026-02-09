@@ -17,6 +17,20 @@ export interface PortfolioItem {
   image: string;
 }
 
+export interface CommentItem {
+  id: number;
+  name: string;
+  url?: string;
+  content: string;
+  date: string;
+  avatar: string;
+}
+
+export interface TOCItem {
+  id: string;
+  text: string;
+}
+
 export interface ArticleItem {
   id: number;
   slug: string; // Added for routing

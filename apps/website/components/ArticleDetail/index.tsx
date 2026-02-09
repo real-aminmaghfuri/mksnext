@@ -3,80 +3,104 @@
 
 import React from 'react';
 import { useArticleDetail } from './useArticleDetail';
-import { ArticleHeaderAtom } from './atoms/ArticleHeaderAtom';
-import { ArticleBodyAtom } from './atoms/ArticleBodyAtom';
-import { ShareWidgetAtom } from './atoms/ShareWidgetAtom';
-import { ArticleCtaAtom } from './atoms/ArticleCtaAtom';
-import { SidebarAtom } from '../Articles/atoms/SidebarAtom';
-import { DICTIONARY } from 'shared';
-import { useConfig } from 'ui';
+import { ArticleHeroAtom } from './atoms/ArticleHeroAtom';
+import { ArticleProgressBarAtom } from './atoms/ArticleProgressBarAtom';
+import { ArticleTocAtom } from './atoms/ArticleTocAtom';
+import { ArticleContentAtom } from './atoms/ArticleContentAtom';
+import { ArticleRightSidebarAtom } from './atoms/ArticleRightSidebarAtom';
+import { ArticleRelatedAtom } from './atoms/ArticleRelatedAtom';
+import { ArticleCommentsAtom } from './atoms/ArticleCommentsAtom';
 
 interface ArticleDetailProps {
   slug: string;
 }
 
 export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
-  const { article, sidebarProducts, categories, activeCategory, setActiveCategory } = useArticleDetail(slug);
-  const { language } = useConfig();
-  const text = DICTIONARY[language];
-  
-  const sidebarText = {
-    searchPlaceholder: text.blogSearchPlaceholder,
-    sidebarTitle: text.blogSidebarTitle,
-    productTitle: text.blogSidebarProductTitle,
-    catAll: text.blogCatAll,
-    catBiz: text.blogCatBiz,
-    catTech: text.blogCatTech
-  };
+  const { 
+    article, 
+    prevArticle, 
+    nextArticle, 
+    sidebarProducts, 
+    categories, 
+    toc,
+    comments,
+    
+    scrollProgress,
+    isHeroShrunk,
+    isContentExpanded,
+    isCommentsOpen,
+    
+    toggleContent,
+    toggleComments,
+    submitComment,
+    closeArticle
+  } = useArticleDetail(slug);
 
-  if (!article) {
-    return (
-        <div className="min-h-screen pt-40 text-center">
-            <h1 className="text-4xl font-black text-zinc-900 dark:text-white">404</h1>
-            <p className="text-zinc-500">Artikel tidak ditemukan di arsip intel.</p>
-        </div>
-    );
-  }
+  if (!article) return null; // Or 404 Component
 
   return (
-    <section className="min-h-screen bg-zinc-50 dark:bg-black transition-colors duration-500">
-       <div className="container mx-auto px-6 pt-32 pb-24">
+    // FULL PAGE OVERLAY - Z-100 to cover RootLayout Navbar/Footer
+    <div className="fixed inset-0 z-[100] bg-zinc-50 dark:bg-zinc-950 overflow-y-auto custom-scrollbar">
+       
+       <ArticleProgressBarAtom progress={scrollProgress} />
+       
+       <ArticleHeroAtom 
+          article={article} 
+          isShrunk={isHeroShrunk} 
+          onClose={closeArticle} 
+       />
+
+       {/* Spacer for Hero when not shrunk (50vh/60vh) + Buffer */}
+       <div className="h-[50vh] md:h-[60vh] w-full pointer-events-none" />
+
+       {/* Main Content Area - White/Dark Paper Background */}
+       <div className="relative z-20 bg-zinc-50 dark:bg-zinc-950 min-h-screen rounded-t-[40px] -mt-10 shadow-[0_-20px_40px_rgba(0,0,0,0.1)] border-t border-zinc-200 dark:border-zinc-900">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-             
-             {/* Left: Share (Desktop) - 1 Col */}
-             <div className="hidden lg:block lg:col-span-1">
-                <ShareWidgetAtom />
-             </div>
+          <div className="container mx-auto px-6 py-16 md:py-20">
+             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                {/* LEFT: 20% (TOC & Share) */}
+                <div className="hidden lg:block lg:col-span-3">
+                   <ArticleTocAtom items={toc} />
+                </div>
 
-             {/* Center: Content - 8 Cols */}
-             <div className="lg:col-span-7">
-                 <ArticleHeaderAtom 
-                    article={article} 
-                    backText={text.articleBack}
-                 />
-                 <ArticleBodyAtom content={article.content} />
-                 <ArticleCtaAtom 
-                    title={text.articleCtaTitle}
-                    desc={text.articleCtaDesc}
-                    btn={text.articleCtaBtn}
-                 />
-             </div>
+                {/* CENTER: 60% (Main Content) */}
+                <div className="lg:col-span-6">
+                   <ArticleContentAtom 
+                      content={article.content} 
+                      isExpanded={isContentExpanded} 
+                      onToggle={toggleContent} 
+                   />
 
-             {/* Right: Sidebar - 4 Cols */}
-             <div className="lg:col-span-4 pl-0 lg:pl-8">
-                 <SidebarAtom 
-                    categories={categories}
-                    activeCategory={activeCategory}
-                    onCategoryChange={setActiveCategory}
-                    products={sidebarProducts}
-                    text={sidebarText}
-                 />
-             </div>
+                   {/* Post-Article Navigation */}
+                   <ArticleRelatedAtom prev={prevArticle} next={nextArticle} />
 
+                   {/* Discussion Section */}
+                   <div className="mt-16">
+                      <ArticleCommentsAtom 
+                         comments={comments} 
+                         isOpen={isCommentsOpen} 
+                         onToggle={toggleComments} 
+                         onSubmit={submitComment} 
+                      />
+                   </div>
+                </div>
+
+                {/* RIGHT: 20% (Widgets) */}
+                <div className="hidden lg:block lg:col-span-3">
+                   <ArticleRightSidebarAtom 
+                      categories={categories} 
+                      products={sidebarProducts} 
+                   />
+                </div>
+
+             </div>
           </div>
 
+          {/* Mobile Spacer */}
+          <div className="h-20 lg:hidden" />
        </div>
-    </section>
+
+    </div>
   );
 };
