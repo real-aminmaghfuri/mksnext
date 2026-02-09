@@ -29,13 +29,10 @@ export const MegaMenuAtom: React.FC<MegaMenuAtomProps> = ({
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-zinc-200 dark:via-zinc-700 to-transparent" />
 
       {/* 
-         Compact Container Logic:
-         - Removed min-h-[450px] -> Height is now dynamic (h-auto)
-         - Removed Image Column
-         - Added 'container mx-auto' to center content like the main website
-         - Reduced padding (py-8) for compact feel
+         Ultra Compact Container:
+         - py-6 (Reduced from 8)
       */}
-      <div className="container mx-auto px-6 md:px-8 lg:px-12 max-w-7xl py-8">
+      <div className="container mx-auto px-6 md:px-8 lg:px-12 max-w-7xl py-6">
           {isSplitLayout ? (
               <MegaMenuSplitLinks 
                 columns={columns} 
