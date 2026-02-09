@@ -1,3 +1,4 @@
+
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
@@ -47,7 +48,7 @@ export const DesktopMenuAtom: React.FC<DesktopMenuAtomProps> = ({ structure, cur
         return (
           <div 
             key={idx} 
-            className="relative px-3 py-6 group"
+            className="relative px-3 py-6"
             onMouseEnter={() => handleMouseEnter(idx)}
             onMouseLeave={handleMouseLeave}
           >

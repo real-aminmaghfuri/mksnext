@@ -40,22 +40,22 @@ export const MegaMenuSplitLinks: React.FC<MegaMenuSplitLinksProps> = ({ columns,
                     key={itemIdx} 
                     href={item.path}
                     onClick={onLinkClick}
-                    className="group flex items-start gap-2.5 py-1 transition-all duration-200"
+                    className="group/item flex items-start gap-2.5 py-1 transition-all duration-200"
                   >
                     {/* Icon: Always Orange (Brand) in Normal State */}
-                    <div className="shrink-0 mt-0.5 text-brand-500 group-hover:text-brand-600 dark:text-brand-500 dark:group-hover:text-brand-400 transition-colors">
+                    <div className="shrink-0 mt-0.5 text-brand-500 group-hover/item:text-brand-600 dark:text-brand-500 dark:group-hover/item:text-brand-400 transition-colors">
                       <Icon size={18} strokeWidth={2} />
                     </div>
                     
                     <div className="min-w-0">
                       <div className="flex items-center gap-2 mb-0.5">
                         {/* Label: STRICTLY Zinc-900 (Light) / White (Dark) -> Orange on Hover */}
-                        <span className="text-[13px] font-bold text-zinc-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors leading-none">
+                        <span className="text-[13px] font-bold text-zinc-900 dark:text-white group-hover/item:text-brand-600 dark:group-hover/item:text-brand-500 transition-colors leading-none">
                           {item.label}
                         </span>
-                        <ArrowRight size={10} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-brand-500" />
+                        <ArrowRight size={10} className="opacity-0 -translate-x-1 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all duration-300 text-brand-500" />
                       </div>
-                      <p className="text-[10px] font-medium text-zinc-500 dark:text-zinc-500 line-clamp-1 group-hover:text-zinc-400 transition-colors leading-tight">
+                      <p className="text-[10px] font-medium text-zinc-500 dark:text-zinc-500 line-clamp-1 group-hover/item:text-zinc-400 transition-colors leading-tight">
                         {item.desc}
                       </p>
                     </div>
