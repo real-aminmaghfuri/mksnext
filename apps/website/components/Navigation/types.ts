@@ -11,6 +11,7 @@ export interface SubMenuItem {
 export interface MegaMenuColumn {
   title: string;
   items: SubMenuItem[];
+  width?: 'narrow' | 'wide'; // New property for controlling column span
 }
 
 export interface MenuItem {

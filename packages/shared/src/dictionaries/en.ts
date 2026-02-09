@@ -18,6 +18,7 @@ export const EN_DICTIONARY: Translation = {
   // Website Nav - EN
   navHome: "HOME",
   navAbout: "PROFILE", // Updated
+  navAboutCompany: "COMPANY",
   navAboutProfile: "About Kasir Solo", // Updated
   navAboutTeam: "Elite Squad",
   navAboutVision: "Vision & Mission",
@@ -63,11 +64,13 @@ export const EN_DICTIONARY: Translation = {
   // --------------------------------
 
   // Hardware Menu
+  navHwBundle: "POS Bundle",
   navHwAndroid: "Android POS",
   navHwPc: "PC / Desktop POS",
   navHwRegister: "Cash Register",
   navHwScanner: "Barcode Scanner",
   navHwPaper: "Thermal Paper",
+  navHwDrawer: "Cash Drawer",
   navHwDesk: "Cashier Desk",
   navHwRack: "Minimarket Rack",
   navHwAksesoris: "Other Accessories",
@@ -141,7 +144,7 @@ export const EN_DICTIONARY: Translation = {
   mission1Desc: "High tech doesn't mean empty pockets. I bring enterprise-grade registers & software at people's prices.",
   mission2Title: "Educate 'Til Smart",
   mission2Desc: "Selling and running is forbidden. I will train you and your staff until you truly understand business data.",
-  mission3Title: "Innovation Never Dies",
+  mission3Title: "Inovasi Never Dies",
   mission3Desc: "SIBOS & QALAM will keep updating. You don't need to stress about coding, let me handle that.",
   mission4Title: "No-Drama Support",
   mission4Desc: "If the tool breaks, I stress out, not you. My tech team is ready to backup so your sales don't stop.",

@@ -21,6 +21,7 @@ export interface Translation {
   // Updated Nav Structure
   navHome: string;
   navAbout: string; 
+  navAboutCompany: string; // New: "PERUSAHAAN"
   navAboutProfile: string;
   navAboutTeam: string;
   navAboutVision: string;
@@ -67,11 +68,13 @@ export interface Translation {
   // ------------------------------------------
   
   // New Hardware Menu
+  navHwBundle: string; // New: "Paket Mesin Kasir"
   navHwAndroid: string;
   navHwPc: string;
   navHwRegister: string;
   navHwScanner: string;
   navHwPaper: string;
+  navHwDrawer: string; // New: "Cash Drawer"
   navHwDesk: string;
   navHwRack: string;
   navHwAksesoris: string;

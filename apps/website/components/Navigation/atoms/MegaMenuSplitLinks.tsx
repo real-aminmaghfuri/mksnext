@@ -15,18 +15,22 @@ export const MegaMenuSplitLinks: React.FC<MegaMenuSplitLinksProps> = ({ columns,
   return (
     <div className="w-full grid grid-cols-4 gap-8"> {/* Main Wrapper 4 Cols */}
       {columns.map((col, idx) => {
-        // Layout Logic for 4-Column Target:
-        // Index 0 (Teknologi/Small) -> Col Span 1
-        // Index 1 (Solusi Bisnis/Large) -> Col Span 3
-        const colSpan = idx === 0 ? "col-span-4 lg:col-span-1" : "col-span-4 lg:col-span-3";
+        // Layout Logic based on 'width' prop
+        // 'narrow' -> 1 Column
+        // 'wide' -> 3 Columns
+        // If width is undefined (fallback), logic mimics old behavior based on index (0=narrow, 1=wide) if needed, 
+        // but explicit definition is safer.
         
-        // Border Separator
+        const isWide = col.width === 'wide';
+        const colSpan = isWide ? "col-span-4 lg:col-span-3" : "col-span-4 lg:col-span-1";
+        
+        // Border Separator: Add right border if it's the first element (Left side visually)
         const borderClass = idx === 0 ? "lg:border-r border-zinc-100 dark:border-zinc-800 pr-0 lg:pr-8" : "pl-0 lg:pl-0";
         
         // Inner Grid Logic:
-        // Col 1 needs 1 internal column
-        // Col 3 needs 3 internal columns to spread the items horizontally
-        const innerGridClass = idx === 0 ? "grid-cols-1" : "grid-cols-1 md:grid-cols-3";
+        // Wide columns need 3 internal columns to spread items horizontally
+        // Narrow columns just stack (1 internal column)
+        const innerGridClass = isWide ? "grid-cols-1 md:grid-cols-3" : "grid-cols-1";
 
         return (
           <div key={idx} className={`${colSpan} ${borderClass}`}>

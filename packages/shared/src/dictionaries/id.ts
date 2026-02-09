@@ -18,6 +18,7 @@ export const ID_DICTIONARY: Translation = {
   // Website Nav - KEYWORD OPTIMIZED
   navHome: "BERANDA",
   navAbout: "PROFIL", 
+  navAboutCompany: "PERUSAHAAN",
   navAboutProfile: "Tentang Kasir Solo", 
   navAboutTeam: "Pasukan Elite",
   navAboutVision: "Visi & Misi",
@@ -63,11 +64,13 @@ export const ID_DICTIONARY: Translation = {
   // --------------------------------
   
   // Mesin Kasir Items
+  navHwBundle: "Paket Mesin Kasir",
   navHwAndroid: "Mesin Kasir Android",
   navHwPc: "Mesin Kasir Komputer",
   navHwRegister: "Cash Register",
   navHwScanner: "Barcode Scanner",
   navHwPaper: "Kertas Kasir",
+  navHwDrawer: "Cash Drawer",
   navHwDesk: "Meja Kasir",
   navHwRack: "Rak Minimarket",
   navHwAksesoris: "Aksesoris Lainnya",
