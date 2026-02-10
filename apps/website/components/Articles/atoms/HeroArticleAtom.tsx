@@ -1,9 +1,8 @@
-
 "use client";
 import React from 'react';
 import { ArticleItem } from 'shared';
 import { Calendar, User, Clock } from 'lucide-react';
-import { GlassCard } from 'ui';
+import Image from 'next/image';
 import Link from 'next/link';
 
 interface HeroArticleProps {
@@ -13,25 +12,28 @@ interface HeroArticleProps {
 export const HeroArticleAtom: React.FC<HeroArticleProps> = ({ article }) => {
   return (
     <Link href={`/articles/${article.slug}`}>
-        <div className="relative w-full h-[500px] md:h-[600px] rounded-3xl overflow-hidden mb-16 group cursor-pointer">
-        {/* Background Image */}
-        <img 
+        <div className="relative w-full h-[500px] md:h-[600px] rounded-3xl overflow-hidden mb-16 group cursor-pointer shadow-2xl">
+        {/* Background Image - Optimized for LCP */}
+        <Image 
             src={article.image} 
-            alt={article.title} 
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+            alt={article.title}
+            fill
+            priority={true}
+            sizes="100vw"
+            className="object-cover transition-transform duration-1000 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90 z-10" />
 
         {/* Content */}
-        <div className="absolute bottom-0 left-0 w-full p-8 md:p-16">
+        <div className="absolute bottom-0 left-0 w-full p-8 md:p-16 z-20">
             <div className="max-w-4xl">
             <div className="inline-block px-3 py-1 bg-brand-600 text-white text-[10px] font-black uppercase tracking-widest rounded mb-4 shadow-lg shadow-brand-600/50">
                 {article.category}
             </div>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-6 tracking-tight">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-6 tracking-tight drop-shadow-lg">
                 {article.title}
             </h1>
-            <p className="text-zinc-300 text-lg md:text-xl line-clamp-2 mb-8 font-medium max-w-3xl">
+            <p className="text-zinc-300 text-lg md:text-xl line-clamp-2 mb-8 font-medium max-w-3xl drop-shadow-md">
                 {article.excerpt}
             </p>
 

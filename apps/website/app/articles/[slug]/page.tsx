@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata, ResolvingMetadata } from 'next';
 import { MOCK_ARTICLES } from 'shared';
 import { ArticleDetail } from '../../../components/ArticleDetail';
+import { processArticleContent } from '../../../utils/contentProcessor'; // The Brain Utility
 
 // Next.js 15 / App Router Compatibility: Params is a Promise
 type Props = {
@@ -11,7 +12,7 @@ type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-// 1. GENERATE STATIC PARAMS (SSG Strategy)
+// 1. GENERATE STATIC PARAMS (SSG Strategy for Maximum SEO Speed)
 export async function generateStaticParams() {
   return MOCK_ARTICLES.map((article) => ({
     slug: article.slug,
@@ -49,7 +50,7 @@ export async function generateMetadata(
       locale: 'id_ID',
       type: 'article',
       authors: [article.author],
-      publishedTime: new Date(article.date).toISOString(), // Ensure standard format if possible
+      publishedTime: new Date(article.date).toISOString(),
     },
     twitter: {
       card: 'summary_large_image',
@@ -65,19 +66,24 @@ export async function generateMetadata(
   };
 }
 
-// 3. SERVER COMPONENT RENDER (The Supply Chain)
+// 3. SERVER COMPONENT RENDER (The Distribution Center)
 export default async function ArticleDetailPage({ params }: Props) {
   const { slug } = await params;
   
-  // Server-Side Fetching (Mock DB)
+  // A. Fetch Raw Data (Mock DB / Supabase later)
   const article = MOCK_ARTICLES.find((a) => a.slug === slug);
   
-  // Validasi: Kalau gak ada, buang ke 404
+  // B. Validation
   if (!article) {
     notFound();
   }
 
-  // 4. STRUCTURED DATA (JSON-LD) - The SEO Nuke
+  // C. THE BRAIN SHIFT: Process Content on Server
+  // HTML is parsed, IDs injected, and TOC generated HERE.
+  // Browser receives ready-to-render HTML. Zero JS overhead for content parsing.
+  const { processedContent, toc } = processArticleContent(article.content);
+
+  // D. SEO Schema Injection
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -95,7 +101,7 @@ export default async function ArticleDetailPage({ params }: Props) {
       name: 'PT Mesin Kasir Solo',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://mesinkasirsolo.com/logo.png' // Pastikan ada aset ini nanti
+        url: 'https://mesinkasirsolo.com/logo.png'
       }
     },
     mainEntityOfPage: {
@@ -106,14 +112,20 @@ export default async function ArticleDetailPage({ params }: Props) {
 
   return (
     <>
-      {/* Inject JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       
-      {/* Render Visual Component */}
-      <ArticleDetail article={article} />
+      {/* 
+        E. PROP DRILLING
+        Pass the server-processed data to the Client Component.
+      */}
+      <ArticleDetail 
+        article={article} 
+        processedContent={processedContent}
+        toc={toc}
+      />
     </>
   );
 }

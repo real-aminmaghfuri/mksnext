@@ -1,8 +1,8 @@
-
 "use client";
 import React from 'react';
 import { ArticleItem } from 'shared';
 import { X, Calendar, User, Clock } from 'lucide-react';
+import Image from 'next/image';
 
 interface ArticleHeroProps {
   article: ArticleItem;
@@ -33,12 +33,18 @@ export const ArticleHeroAtom: React.FC<ArticleHeroProps> = ({ article, scrollTop
             transition: 'background-color 0.3s, backdrop-filter 0.3s' 
         }}
       >
-        {/* Background Image - Passive */}
+        {/* Background Image - Passive & Optimized */}
         <div 
             className="absolute inset-0 pointer-events-none"
             style={{ opacity: isCompact ? 0 : 0.6 }}
         >
-           <img src={article.image} alt="Cover" className="w-full h-full object-cover" />
+           <Image 
+             src={article.image} 
+             alt={article.title} 
+             fill
+             priority
+             className="object-cover" 
+           />
            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/50 to-transparent" />
         </div>
 
@@ -75,8 +81,6 @@ export const ArticleHeroAtom: React.FC<ArticleHeroProps> = ({ article, scrollTop
                   {article.title}
               </h1>
               
-              {/* EXCERPT REMOVED FROM HERE */}
-
               <div className="flex flex-wrap items-center gap-6 text-xs md:text-sm font-bold text-zinc-400 uppercase tracking-wider">
                   <div className="flex items-center gap-2">
                       <User size={16} className="text-brand-500" />
@@ -96,8 +100,6 @@ export const ArticleHeroAtom: React.FC<ArticleHeroProps> = ({ article, scrollTop
 
         {/* 
             Close Button 
-            UPDATED: Moved up (top-4 md:top-5) to center vertically with collapsed header (80px height).
-            UPDATED: Color set to Brand Orange with White icon.
         */}
         <button 
           onClick={onClose}

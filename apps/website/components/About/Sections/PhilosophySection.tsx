@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { GlassCard } from 'ui';
 import { LucideIcon } from 'lucide-react';
@@ -23,7 +24,8 @@ export const PhilosophySection: React.FC<PhilosophySectionProps> = ({ items }) =
               <div className="p-3 rounded-xl bg-brand-500/10">
                 <Icon size={24} strokeWidth={2.5} />
               </div>
-              <h5 className="font-black text-sm md:text-base uppercase tracking-wider">{p.title}</h5>
+              {/* SEMANTIC FIX: Upgraded from h5 to h3. Visual style kept identical. */}
+              <h3 className="font-black text-sm md:text-base uppercase tracking-wider">{p.title}</h3>
             </div>
             <p className="text-sm md:text-base text-zinc-500 dark:text-zinc-400 leading-relaxed font-medium">{p.desc}</p>
           </GlassCard>

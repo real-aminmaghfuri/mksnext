@@ -2,7 +2,7 @@
 export const PILLAR_HTML = `
 <p class="lead">Lo pikir buka toko itu cuma sewa ruko, isi barang, terus duduk manis nunggu pembeli dateng bawa duit? Bangun, Bos! Itu mindset pedagang asongan, bukan pengusaha ritel. Kalau lo mau bangun kerajaan bisnis yang <em>sustainable</em>, lo butuh sistem, strategi, dan sedikit "kekejaman" dalam eksekusi.</p>
 
-<p>Artikel ini bakal panjang. Gue gak minta maaf soal itu. Ini adalah <strong>Blue-Print Ritel Barbar</strong> yang gue rangkum dari 9 tahun berdarah-darah di lapangan. Gue bakal bongkar semuanya: dari manajemen stok yang bikin lo gak boncos, sistem kasir yang anti-maling, sampai cara scale-up tanpa kehilangan kendali. Siapin kopi, kunci pintu, dan baca sampai habis.</p>
+<p>Artikel ini bakal panjang. Gue gak minta maaf soal itu. Ini adalah <strong>Blue-Print Ritel Barbar</strong> yang gue rangkum dari 9 tahun berdarah-darah di lapangan. Gue bakal bongkar semuanya: dari <a href="/solutions/retail" class="text-brand-600 hover:underline font-bold">manajemen stok</a> yang bikin lo gak boncos, <a href="/shop" class="text-brand-600 hover:underline font-bold">sistem kasir</a> yang anti-maling, sampai cara scale-up tanpa kehilangan kendali. Siapin kopi, kunci pintu, dan baca sampai habis.</p>
 
 <h3>BAB 1: MINDSET PERANG (THE WARTIME CEO)</h3>
 
@@ -22,7 +22,7 @@ export const PILLAR_HTML = `
 
 <p>Gue sering nemu klien yang tokonya keliatan rame, barang numpuk sampai plafon, tapi pas ditanya "Profit bulan ini berapa?", jawabnya "Gak tau Mas, yang penting bisa kulakan lagi". Ini bahaya. Ini namanya gali lubang tutup lubang berkedok bisnis.</p>
 
-<p>Manajemen stok itu bukan cuma nyatet barang masuk dan keluar. Ini seni menyeimbangkan <em>availability</em> dan <em>cash flow</em>.</p>
+<p><a href="/solutions/retail" class="text-brand-600 hover:underline font-bold">Manajemen stok</a> itu bukan cuma nyatet barang masuk dan keluar. Ini seni menyeimbangkan <em>availability</em> dan <em>cash flow</em>.</p>
 
 <p><strong>1. Klasifikasi Stok (Hukum Pareto 80/20)</strong></p>
 <p>Gak semua barang di toko lo itu setara. Lakukan analisis ABC:</p>
@@ -33,7 +33,7 @@ export const PILLAR_HTML = `
 </ul>
 
 <p><strong>2. Stok Opname: Ritual Pengusir Setan</strong></p>
-<p>Banyak owner males stok opname (SO) karena capek. Padahal, SO itu satu-satunya cara buat tau apakah stok di komputer sama dengan stok di rak. Kalau beda, kemana barangnya? Dimakan tikus? Atau "tikus berkepala hitam"?</p>
+<p>Banyak owner males <a href="/solutions/retail" class="text-brand-600 hover:underline font-bold">stok opname (SO)</a> karena capek. Padahal, SO itu satu-satunya cara buat tau apakah stok di komputer sama dengan stok di rak. Kalau beda, kemana barangnya? Dimakan tikus? Atau "tikus berkepala hitam"?</p>
 <p>Tips Barbar:</p>
 <ul>
   <li>Lakukan <strong>SO Parsial</strong> (dicicil) tiap hari per rak. Jangan nunggu setahun sekali tutup toko. Itu kuno.</li>
@@ -44,7 +44,7 @@ export const PILLAR_HTML = `
 
 <p>Meja kasir adalah titik paling krusial. Di sini duit masuk, di sini juga potensi kebocoran paling gede. Kalau lo masih pakai kalkulator atau catetan buku, lo sebenernya lagi "sedekah" ke karyawan lo yang panjang tangan.</p>
 
-<p>Sistem Point of Sales (POS) modern itu wajib, bukan opsi. Dan jangan asal pilih software murahan yang datanya bisa diotak-atik. Lo butuh sistem yang:</p>
+<p><a href="/solutions" class="text-brand-600 hover:underline font-bold">Sistem Point of Sales (POS)</a> modern itu wajib, bukan opsi. Dan jangan asal pilih software murahan yang datanya bisa diotak-atik. Lo butuh sistem yang:</p>
 <ol>
   <li><strong>Lock Harga:</strong> Kasir gak bisa ubah harga seenaknya.</li>
   <li><strong>Void Trail:</strong> Setiap kali kasir menghapus item dari keranjang belanja, harus ada jejaknya. Kenapa dihapus? Salah input atau duitnya dimakan?</li>
@@ -86,14 +86,14 @@ export const PILLAR_HTML = `
 <ul>
   <li>SOP tertulis untuk setiap pekerjaan (bahkan cara ngepel lantai pun harus ada SOP-nya).</li>
   <li>Struktur organisasi jelas. Siapa lapor ke siapa.</li>
-  <li>Sistem audit & kontrol jarak jauh (CCTV Online + Cloud POS).</li>
+  <li><a href="/solutions" class="text-brand-600 hover:underline font-bold">Sistem audit & kontrol jarak jauh</a> (CCTV Online + Cloud POS).</li>
 </ul>
 
 <h3>KESIMPULAN: EKSEKUSI ATAU MATI</h3>
 
 <p>Teori di atas gak ada gunanya kalau cuma lo baca sambil manggut-manggut. "Knowledge is power" itu bohong. <strong>"Applied Knowledge is Power"</strong> itu baru bener.</p>
 
-<p>Mulai dari hal kecil. Beresin gudang lo besok pagi. Pasang software kasir yang bener. Pecat karyawan yang toxic. Lakukan perubahan.</p>
+<p>Mulai dari hal kecil. Beresin gudang lo besok pagi. <a href="/shop" class="text-brand-600 hover:underline font-bold">Pasang software kasir</a> yang bener. Pecat karyawan yang toxic. Lakukan perubahan.</p>
 <p>Dunia ritel makin kejam. Raksasa bermodal triliunan udah masuk ke gang-gang perumahan. Kalau lo masih manage toko lo kayak warung tahun 90-an, siap-siap aja gulung tikar.</p>
 
 <p>Tapi kalau lo siap bertarung, siap beradaptasi, dan siap pake teknologi... Peluang lo buat jadi raja di wilayah lo masih terbuka lebar.</p>

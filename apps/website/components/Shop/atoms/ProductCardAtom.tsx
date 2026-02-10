@@ -1,15 +1,15 @@
-
 "use client";
 import React from 'react';
 import { GlassCard, Button } from 'ui';
 import { ShoppingCart, Tag, Smartphone, Monitor, Mouse } from 'lucide-react';
 import { ProductItem } from 'shared';
+import Image from 'next/image';
 
 interface ProductCardProps {
   product: ProductItem;
   btnText: string;
   formattedPrice: string;
-  waLink: string; // New Prop
+  waLink: string;
 }
 
 export const ProductCardAtom: React.FC<ProductCardProps> = ({ product, btnText, formattedPrice, waLink }) => {
@@ -25,22 +25,24 @@ export const ProductCardAtom: React.FC<ProductCardProps> = ({ product, btnText, 
 
   return (
     <GlassCard hoverEffect className="group flex flex-col h-full bg-white dark:bg-zinc-900/40 border-zinc-200 dark:border-zinc-800">
-      {/* Image Area */}
+      {/* Image Area - Using Contain to show full product */}
       <div className="relative aspect-[4/3] overflow-hidden rounded-t-xl bg-white p-6 flex items-center justify-center border-b border-zinc-100 dark:border-zinc-800">
-        <img 
+        <Image 
           src={product.image} 
           alt={product.name} 
-          className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-contain p-4 transition-transform duration-500 group-hover:scale-110"
         />
         
         {/* Category Badge */}
-        <div className="absolute top-3 left-3 bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 text-[10px] font-bold px-2 py-1 rounded flex items-center gap-1">
+        <div className="absolute top-3 left-3 bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 text-[10px] font-bold px-2 py-1 rounded flex items-center gap-1 z-10">
            <CategoryIcon /> {product.category}
         </div>
 
         {/* Promo Tag */}
         {product.tag && (
-          <div className="absolute top-3 right-3 bg-red-600 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg flex items-center gap-1 animate-pulse">
+          <div className="absolute top-3 right-3 bg-red-600 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg flex items-center gap-1 animate-pulse z-10">
             <Tag size={10} /> {product.tag}
           </div>
         )}

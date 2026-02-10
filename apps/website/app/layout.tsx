@@ -28,9 +28,91 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // SCHEMA MARKUP (JURUS BAYANGAN)
+  // Data ini tidak terlihat user, tapi dibaca robot Google.
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://mesinkasirsolo.com/#organization",
+        "name": "PT MESIN KASIR SOLO",
+        "url": "https://mesinkasirsolo.com",
+        "logo": "https://mesinkasirsolo.com/icon.svg",
+        "email": "owner.kasirsolo@gmail.com",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+628816566935",
+          "contactType": "customer service",
+          "areaServed": "ID",
+          "availableLanguage": ["en", "id"]
+        }
+      },
+      {
+        "@type": "LocalBusiness",
+        "parentOrganization": { "@id": "https://mesinkasirsolo.com/#organization" },
+        "name": "PT MESIN KASIR SOLO (Kantor Legal)",
+        "image": "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d", 
+        "telephone": "+628816566935",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Perum Graha Tiara 2 B1, Gumpang 07/01",
+          "addressLocality": "Kartasura",
+          "addressRegion": "Jawa Tengah",
+          "postalCode": "57169",
+          "addressCountry": "ID"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -7.561021,
+          "longitude": 110.852573
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "09:00",
+          "closes": "17:00"
+        }
+      },
+      {
+        "@type": "ProfessionalService",
+        "name": "PT MESIN KASIR SOLO (Markas Operasional)",
+        "description": "Pusat perakitan sistem, servis hardware, dan konsultasi manajemen bisnis ritel.",
+        "telephone": "+628816566935",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Gumiring 04/04, Sidomulyo, Banjarejo",
+          "addressLocality": "Blora",
+          "addressRegion": "Jawa Tengah",
+          "postalCode": "58253",
+          "addressCountry": "ID"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -7.039000, 
+          "longitude": 111.398000
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "09:00",
+          "closes": "17:00"
+        }
+      }
+    ]
+  };
+
   return (
     <html lang="en" className="dark">
       <body className={`${font.className} bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white transition-colors duration-500`}>
+        {/* INJECTION SUCCESSFUL */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        
         <ConfigProvider>
           <Navbar />
           <main className="min-h-screen">

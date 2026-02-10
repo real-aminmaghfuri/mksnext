@@ -6,23 +6,26 @@ import { useRouter } from 'next/navigation';
 import { MOCK_ARTICLES, MOCK_PRODUCTS, TOCItem, CommentItem, ArticleItem } from 'shared';
 import { ArticleDetailLogic } from './types';
 
-// UPDATED: Hook now accepts the full 'article' object (pre-fetched on server)
-export const useArticleDetail = (article: ArticleItem): ArticleDetailLogic & { relatedArticles: ArticleItem[] } => {
+// CLEANUP: Hook now strictly expects processed content and TOC from server
+export const useArticleDetail = (
+  article: ArticleItem, 
+  processedContent: string, 
+  toc: TOCItem[]
+): ArticleDetailLogic & { relatedArticles: ArticleItem[] } => {
   const router = useRouter();
   const scrollRef = useRef<HTMLDivElement>(null);
   
-  // 1. Data Logic (Simplified)
-  // We no longer search for the article here. We just find its index for pagination.
+  // 1. Data Logic
   const currentIndex = MOCK_ARTICLES.findIndex(a => a.id === article.id);
   
-  // Prev/Next Logic based on global MOCK_ARTICLES
+  // Prev/Next Logic
   const prevArticle = currentIndex > 0 ? MOCK_ARTICLES[currentIndex - 1] : MOCK_ARTICLES[MOCK_ARTICLES.length - 1];
   const nextArticle = currentIndex < MOCK_ARTICLES.length - 1 ? MOCK_ARTICLES[currentIndex + 1] : MOCK_ARTICLES[0];
 
   // Related Articles Logic
   const relatedArticles = useMemo(() => {
     return MOCK_ARTICLES
-      .filter(a => a.id !== article.id) // Filter by ID is safer
+      .filter(a => a.id !== article.id)
       .slice(0, 3);
   }, [article.id]);
 
@@ -34,26 +37,10 @@ export const useArticleDetail = (article: ArticleItem): ArticleDetailLogic & { r
   const [isCommentsOpen, setIsCommentsOpen] = useState(false);
   const [activeSectionId, setActiveSectionId] = useState<string>('');
 
-  // 3. Logic: Process Content & Generate TOC
-  const { processedContent, toc } = useMemo(() => {
-    // Article is guaranteed to exist now
-    let content = article.content;
-    const tocItems: TOCItem[] = [];
-    
-    let index = 0;
-    // Inject IDs into H3 tags for Scroll Spy
-    const newContent = content.replace(/<h3>(.*?)<\/h3>/g, (match, title) => {
-        const id = `section-${index}`;
-        tocItems.push({ id, text: title });
-        index++;
-        return `<h3 id="${id}">${title}</h3>`;
-    });
+  // REMOVED: Expensive regex parsing logic. 
+  // We trust `processedContent` and `toc` passed from Server Component.
 
-    return { processedContent: newContent, toc: tocItems };
-  }, [article]);
-
-
-  // 4. Logic: Scroll Listener on Container
+  // 3. Logic: Scroll Listener on Container (Spy)
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
@@ -69,18 +56,20 @@ export const useArticleDetail = (article: ArticleItem): ArticleDetailLogic & { r
 
       setIsHeroShrunk(currentScroll > 100);
 
-      const headerOffset = 200; 
+      // Scroll Spy Logic
+      const spyThreshold = window.innerHeight / 3; 
       let currentId = '';
       
-      toc.forEach((section) => {
+      // Efficiently check which section is in view based on the props TOC
+      for (const section of toc) {
           const element = document.getElementById(section.id);
           if (element) {
               const rect = element.getBoundingClientRect();
-              if (rect.top < window.innerHeight / 2) {
+              if (rect.top < spyThreshold) {
                   currentId = section.id;
               }
           }
-      });
+      }
       
       if (currentId) {
           setActiveSectionId(currentId);
@@ -91,7 +80,7 @@ export const useArticleDetail = (article: ArticleItem): ArticleDetailLogic & { r
     return () => container.removeEventListener('scroll', handleScroll);
   }, [toc]);
 
-  // 5. Logic: Mock Comments
+  // 4. Logic: Mock Comments
   const comments: CommentItem[] = [
     {
       id: 1,
@@ -120,13 +109,13 @@ export const useArticleDetail = (article: ArticleItem): ArticleDetailLogic & { r
 
   return {
     article,
-    processedContent, 
+    processedContent, // Passthrough
     prevArticle,
     nextArticle,
     relatedArticles, 
     sidebarProducts: MOCK_PRODUCTS.slice(0, 2), 
     categories,
-    toc,
+    toc, // Passthrough
     comments,
     
     scrollRef,

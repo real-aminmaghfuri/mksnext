@@ -2,7 +2,7 @@
 "use client";
 
 import React from 'react';
-import { ArticleItem } from 'shared'; // Import Type
+import { ArticleItem, TOCItem } from 'shared'; 
 import { useArticleDetail } from './useArticleDetail';
 import { ArticleHeroAtom } from './atoms/ArticleHeroAtom';
 import { ArticleProgressBarAtom } from './atoms/ArticleProgressBarAtom';
@@ -12,19 +12,20 @@ import { ArticleRightSidebarAtom } from './atoms/ArticleRightSidebarAtom';
 import { ArticleRelatedAtom } from './atoms/ArticleRelatedAtom';
 import { ArticleCommentsAtom } from './atoms/ArticleCommentsAtom';
 
-// UPDATED: Props now require the full Article object
+// Strict Interface ensuring we receive the processed data
 interface ArticleDetailProps {
   article: ArticleItem;
+  processedContent: string;
+  toc: TOCItem[];
 }
 
-export const ArticleDetail: React.FC<ArticleDetailProps> = ({ article }) => {
+export const ArticleDetail: React.FC<ArticleDetailProps> = ({ article, processedContent: injectedContent, toc: injectedToc }) => {
+  // Hook acts as the State Manager, receiving data from props (Step 2)
   const { 
-    // article is now passed to the hook, not fetched inside it
     processedContent, 
     prevArticle, 
     nextArticle, 
     relatedArticles, 
-    sidebarProducts, 
     categories, 
     toc,
     comments,
@@ -40,7 +41,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ article }) => {
     toggleComments,
     submitComment,
     closeArticle
-  } = useArticleDetail(article);
+  } = useArticleDetail(article, injectedContent, injectedToc);
 
   return (
     // FULL PAGE OVERLAY
