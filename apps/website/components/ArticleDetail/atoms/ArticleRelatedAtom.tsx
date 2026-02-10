@@ -14,31 +14,35 @@ export const ArticleRelatedAtom: React.FC<RelatedProps> = ({ prev, next }) => {
   const NavCard = ({ item, type }: { item: ArticleItem, type: 'PREV' | 'NEXT' }) => (
     <Link 
        href={`/articles/${item.slug}`}
-       className={`flex-1 relative h-32 md:h-48 rounded-2xl overflow-hidden group border border-zinc-200 dark:border-zinc-800
-         ${type === 'NEXT' ? 'text-right' : 'text-left'}
-       `}
+       className={`flex-1 group flex flex-col ${type === 'NEXT' ? 'items-end text-right' : 'items-start text-left'}`}
     >
-       <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors z-10" />
-       <img src={item.image} alt={item.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-       
-       <div className={`absolute inset-0 z-20 p-6 flex flex-col justify-center ${type === 'NEXT' ? 'items-end' : 'items-start'}`}>
-          <span className="text-[10px] font-black text-brand-500 uppercase tracking-widest mb-2 flex items-center gap-2">
-             {type === 'PREV' && <ArrowLeft size={12} />}
-             {type === 'PREV' ? 'INTEL SEBELUMNYA' : 'INTEL SELANJUTNYA'}
-             {type === 'NEXT' && <ArrowRight size={12} />}
+       {/* High Contrast Label */}
+       <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-600 text-white shadow-lg shadow-brand-500/30 mb-4 transition-transform group-hover:scale-105`}>
+          {type === 'PREV' && <ArrowLeft size={12} strokeWidth={3} />}
+          <span className="text-[10px] font-black uppercase tracking-widest">
+             {type === 'PREV' ? 'SEBELUMNYA' : 'SELANJUTNYA'}
           </span>
-          <h4 className="text-sm md:text-lg font-bold text-white leading-tight line-clamp-2 max-w-xs">
-             {item.title}
-          </h4>
+          {type === 'NEXT' && <ArrowRight size={12} strokeWidth={3} />}
        </div>
+
+       {/* Article Title - No Container */}
+       <h4 className="text-lg md:text-xl font-black text-zinc-900 dark:text-white leading-tight line-clamp-2 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">
+          {item.title}
+       </h4>
     </Link>
   );
 
   return (
     <div className="border-t border-zinc-200 dark:border-zinc-800 py-12 mt-12">
-       <div className="flex gap-4 md:gap-8">
-          {prev && <NavCard item={prev} type="PREV" />}
-          {next && <NavCard item={next} type="NEXT" />}
+       <div className="flex flex-col md:flex-row gap-12 md:gap-8 justify-between">
+          <div className="flex-1">
+            {prev && <NavCard item={prev} type="PREV" />}
+          </div>
+          {/* Vertical Separator for desktop */}
+          <div className="hidden md:block w-px bg-zinc-200 dark:bg-zinc-800 self-stretch" />
+          <div className="flex-1 flex justify-end">
+            {next && <NavCard item={next} type="NEXT" />}
+          </div>
        </div>
     </div>
   );

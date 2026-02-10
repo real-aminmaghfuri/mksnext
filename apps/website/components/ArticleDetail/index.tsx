@@ -62,16 +62,18 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
        {/* Main Content Area - White/Dark Paper Background */}
        <div className="relative z-20 bg-zinc-50 dark:bg-zinc-950 min-h-screen rounded-t-[40px] -mt-10 shadow-[0_-20px_40px_rgba(0,0,0,0.1)] border-t border-zinc-200 dark:border-zinc-900">
           
-          <div className="container mx-auto px-6 py-16 md:py-20">
-             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div className="container mx-auto px-6 py-16 md:py-20 max-w-[1600px]">
+             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12">
                 
-                {/* LEFT: 20% (TOC & Share) */}
-                <div className="hidden lg:block lg:col-span-3">
-                   <ArticleTocAtom items={toc} />
+                {/* LEFT: ~16% (TOC & Share) - Changed from col-span-3 to 2 */}
+                <div className="hidden lg:block lg:col-span-2">
+                   <div className="sticky top-32">
+                      <ArticleTocAtom items={toc} />
+                   </div>
                 </div>
 
-                {/* CENTER: 60% (Main Content) */}
-                <div className="lg:col-span-6">
+                {/* CENTER: ~66% (Main Content) - Changed from col-span-6 to 8 */}
+                <div className="lg:col-span-8">
                    <ArticleContentAtom 
                       content={article.content} 
                       isExpanded={isContentExpanded} 
@@ -92,12 +94,14 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
                    </div>
                 </div>
 
-                {/* RIGHT: 20% (Widgets) */}
-                <div className="hidden lg:block lg:col-span-3">
-                   <ArticleRightSidebarAtom 
-                      categories={categories} 
-                      products={sidebarProducts} 
-                   />
+                {/* RIGHT: ~16% (Widgets) - Changed from col-span-3 to 2 */}
+                <div className="hidden lg:block lg:col-span-2">
+                   <div className="sticky top-32">
+                      <ArticleRightSidebarAtom 
+                          categories={categories} 
+                          products={sidebarProducts} 
+                      />
+                   </div>
                 </div>
 
              </div>
