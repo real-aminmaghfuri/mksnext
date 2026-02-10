@@ -2,6 +2,7 @@
 "use client";
 import React from 'react';
 import { RefreshCw } from 'lucide-react';
+import Image from 'next/image';
 
 interface DashboardHeaderProps {
   title: string;
@@ -41,8 +42,14 @@ export const DashboardHeaderAtom: React.FC<DashboardHeaderProps> = ({ title, isL
               <p className="text-xs font-black leading-none mb-0.5">{user.name}</p>
               <p className="text-[9px] text-zinc-500 font-bold uppercase leading-none">{user.role}</p>
            </div>
-           <div className="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-700 overflow-hidden shadow-lg">
-              <img src={user.avatar} alt="Admin" className="w-full h-full object-cover grayscale" />
+           <div className="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-700 overflow-hidden shadow-lg relative">
+              <Image 
+                src={user.avatar} 
+                alt="Admin" 
+                fill
+                sizes="32px"
+                className="object-cover grayscale" 
+              />
            </div>
         </div>
       </div>
