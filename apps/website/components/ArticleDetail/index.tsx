@@ -10,6 +10,7 @@ import { ArticleContentAtom } from './atoms/ArticleContentAtom';
 import { ArticleRightSidebarAtom } from './atoms/ArticleRightSidebarAtom';
 import { ArticleRelatedAtom } from './atoms/ArticleRelatedAtom';
 import { ArticleCommentsAtom } from './atoms/ArticleCommentsAtom';
+import { ArticleSupplyDropAtom } from './atoms/ArticleSupplyDropAtom'; // NEW IMPORT
 
 interface ArticleDetailProps {
   slug: string;
@@ -17,7 +18,8 @@ interface ArticleDetailProps {
 
 export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
   const { 
-    article, 
+    article,
+    processedContent, // Use processed content with IDs 
     prevArticle, 
     nextArticle, 
     sidebarProducts, 
@@ -30,6 +32,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
     scrollProgress,
     isContentExpanded,
     isCommentsOpen,
+    activeSectionId, // Use active section ID
     
     toggleContent,
     toggleComments,
@@ -54,11 +57,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
           onClose={closeArticle} 
        />
 
-       {/* 
-          Spacer for Hero 
-          FIX: Removed 'pointer-events-none' so this transparent block captures mouse events 
-          (like scrolling) and passes them to the scroll container, even when covering the video/hero.
-       */}
+       {/* Spacer for Hero */}
        <div className="h-[50vh] md:h-[60vh] w-full" />
 
        {/* Main Content Area */}
@@ -67,23 +66,25 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
           <div className="container mx-auto px-6 py-16 md:py-20 max-w-[1600px]">
              {/* 
                 GRID CALIBRATION: 18fr - 64fr - 18fr 
-                FIX: Changed from % to fr units. 
-                Using percentages (18%+64%+18%=100%) PLUS gap creates overflow (100% + 48px).
-                Using 'fr' ensures the gap is subtracted from the available space first.
              */}
              <div className="grid grid-cols-1 lg:grid-cols-[18fr_64fr_18fr] gap-8 xl:gap-12">
                 
-                {/* LEFT SIDEBAR */}
+                {/* LEFT SIDEBAR: TOC + Supply Drop */}
                 <div className="hidden lg:block">
                    <div className="sticky top-32">
-                      <ArticleTocAtom items={toc} />
+                      <ArticleTocAtom 
+                        items={toc} 
+                        activeId={activeSectionId} // Pass Active ID
+                      />
+                      {/* MOVED SUPPLY DROP HERE */}
+                      <ArticleSupplyDropAtom products={sidebarProducts} />
                    </div>
                 </div>
 
                 {/* CENTER CONTENT */}
-                <div className="min-w-0"> {/* min-w-0 prevents flex/grid blowout */}
+                <div className="min-w-0"> 
                    <ArticleContentAtom 
-                      content={article.content} 
+                      content={processedContent} // Pass Content with IDs
                       isExpanded={isContentExpanded} 
                       onToggle={toggleContent} 
                    />
@@ -102,12 +103,12 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
                    </div>
                 </div>
 
-                {/* RIGHT SIDEBAR */}
+                {/* RIGHT SIDEBAR: Categories Only */}
                 <div className="hidden lg:block">
                    <div className="sticky top-32">
                       <ArticleRightSidebarAtom 
                           categories={categories} 
-                          products={sidebarProducts} 
+                          // Products removed from here
                       />
                    </div>
                 </div>

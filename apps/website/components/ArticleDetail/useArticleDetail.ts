@@ -14,7 +14,7 @@ export const useArticleDetail = (slug: string): ArticleDetailLogic => {
   const currentIndex = MOCK_ARTICLES.findIndex(a => a.slug === slug);
   const article = MOCK_ARTICLES[currentIndex];
   
-  // Prev/Next Logic (Cyclic for demo)
+  // Prev/Next Logic
   const prevArticle = currentIndex > 0 ? MOCK_ARTICLES[currentIndex - 1] : MOCK_ARTICLES[MOCK_ARTICLES.length - 1];
   const nextArticle = currentIndex < MOCK_ARTICLES.length - 1 ? MOCK_ARTICLES[currentIndex + 1] : MOCK_ARTICLES[0];
 
@@ -24,8 +24,31 @@ export const useArticleDetail = (slug: string): ArticleDetailLogic => {
   const [isHeroShrunk, setIsHeroShrunk] = useState(false);
   const [isContentExpanded, setIsContentExpanded] = useState(false);
   const [isCommentsOpen, setIsCommentsOpen] = useState(false);
+  const [activeSectionId, setActiveSectionId] = useState<string>('');
 
-  // 3. Logic: Scroll Listener on Container
+  // 3. Logic: Process Content & Generate TOC
+  // We MUST inject IDs into the HTML string so the scroll spy can find them.
+  const { processedContent, toc } = useMemo(() => {
+    if (!article) return { processedContent: '', toc: [] };
+
+    let content = article.content;
+    const tocItems: TOCItem[] = [];
+    
+    // Regex to find H3 and replace with H3 id="..."
+    // Note: detailed parsing might require a real parser, but regex works for this controlled mock data
+    let index = 0;
+    const newContent = content.replace(/<h3>(.*?)<\/h3>/g, (match, title) => {
+        const id = `section-${index}`;
+        tocItems.push({ id, text: title });
+        index++;
+        return `<h3 id="${id}">${title}</h3>`;
+    });
+
+    return { processedContent: newContent, toc: tocItems };
+  }, [article]);
+
+
+  // 4. Logic: Scroll Listener on Container
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
@@ -40,28 +63,33 @@ export const useArticleDetail = (slug: string): ArticleDetailLogic => {
       const scrolled = scrollHeight > 0 ? currentScroll / scrollHeight : 0;
       setScrollProgress(scrolled);
 
-      // Logical shrinking threshold for UI elements (text opacity etc)
-      // We use a larger threshold for smoother text transition
+      // Shrink Hero
       setIsHeroShrunk(currentScroll > 100);
+
+      // Scroll Spy Logic for TOC
+      // We check the position of each header relative to the viewport top
+      const headerOffset = 200; // Offset to trigger active state before it hits top
+      let currentId = '';
+      
+      toc.forEach((section) => {
+          const element = document.getElementById(section.id);
+          if (element) {
+              const rect = element.getBoundingClientRect();
+              // If the element is near the top (but not too far up)
+              if (rect.top < window.innerHeight / 2) {
+                  currentId = section.id;
+              }
+          }
+      });
+      
+      if (currentId) {
+          setActiveSectionId(currentId);
+      }
     };
 
     container.addEventListener('scroll', handleScroll);
     return () => container.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // 4. Logic: Parse TOC from HTML Content (Mocking extraction)
-  // In a real app, use a parser. Here we manually map based on the mock data structure we know exists.
-  const toc: TOCItem[] = useMemo(() => {
-    if (!article) return [];
-    // Extract <h3> tags
-    const matches = article.content.match(/<h3>(.*?)<\/h3>/g);
-    if (!matches) return [];
-    
-    return matches.map((m, i) => ({
-      id: `section-${i}`,
-      text: m.replace(/<\/?h3>/g, '') // Strip tags
-    }));
-  }, [article]);
+  }, [toc]); // Dependency on TOC ensures we have IDs
 
   // 5. Logic: Mock Comments
   const comments: CommentItem[] = [
@@ -92,9 +120,10 @@ export const useArticleDetail = (slug: string): ArticleDetailLogic => {
 
   return {
     article,
+    processedContent, // Return the modified content
     prevArticle,
     nextArticle,
-    sidebarProducts: MOCK_PRODUCTS.slice(0, 2), // Random 2 products
+    sidebarProducts: MOCK_PRODUCTS.slice(0, 2), 
     categories,
     toc,
     comments,
@@ -105,6 +134,7 @@ export const useArticleDetail = (slug: string): ArticleDetailLogic => {
     isHeroShrunk,
     isContentExpanded,
     isCommentsOpen,
+    activeSectionId, // Return active state
     
     toggleContent,
     toggleComments,

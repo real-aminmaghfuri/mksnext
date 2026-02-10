@@ -4,6 +4,7 @@ import { ArticleItem, ProductItem, CommentItem, TOCItem } from 'shared';
 
 export interface ArticleDetailLogic {
   article: ArticleItem | undefined;
+  processedContent: string; // New: Content with injected IDs
   prevArticle: ArticleItem | undefined;
   nextArticle: ArticleItem | undefined;
   sidebarProducts: ProductItem[];
@@ -18,6 +19,7 @@ export interface ArticleDetailLogic {
   isHeroShrunk: boolean;
   isContentExpanded: boolean;
   isCommentsOpen: boolean;
+  activeSectionId: string; // New: For TOC highlighting
   
   // Actions
   toggleContent: () => void;

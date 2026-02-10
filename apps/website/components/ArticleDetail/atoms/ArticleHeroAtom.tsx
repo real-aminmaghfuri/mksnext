@@ -75,6 +75,15 @@ export const ArticleHeroAtom: React.FC<ArticleHeroProps> = ({ article, scrollTop
                   {article.title}
               </h1>
               
+              {/* UPDATED: Description with Glowing Orange Container */}
+              <div className="mb-8 max-w-3xl">
+                 <div className="p-6 rounded-2xl bg-brand-600/20 backdrop-blur-md border border-brand-500/30 shadow-[0_0_40px_rgba(249,115,22,0.2)]">
+                    <p className="text-lg md:text-xl font-bold text-white/90 leading-relaxed drop-shadow-sm">
+                        {article.excerpt}
+                    </p>
+                 </div>
+              </div>
+
               <div className="flex flex-wrap items-center gap-6 text-xs md:text-sm font-bold text-zinc-400 uppercase tracking-wider">
                   <div className="flex items-center gap-2">
                       <User size={16} className="text-brand-500" />

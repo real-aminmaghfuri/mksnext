@@ -6,28 +6,44 @@ import { Share2, Facebook, Twitter, Linkedin, Link as LinkIcon, AlignLeft } from
 
 interface TocProps {
   items: TOCItem[];
+  activeId?: string; // New Prop
 }
 
-export const ArticleTocAtom: React.FC<TocProps> = ({ items }) => {
+export const ArticleTocAtom: React.FC<TocProps> = ({ items, activeId }) => {
   return (
-    <div className="flex flex-col gap-8"> {/* Reduced gap from 10 to 8 for compactness */}
+    <div className="flex flex-col gap-8"> 
       
       {/* 1. Table of Contents */}
       <div className="hidden lg:block">
          <h4 className="flex items-center gap-2 text-xs font-black text-zinc-400 uppercase tracking-widest mb-3">
             <AlignLeft size={14} /> Intelligence
          </h4>
-         <div className="space-y-1 border-l-2 border-zinc-200 dark:border-zinc-800 pl-4">
-            {items.length > 0 ? items.map((item, idx) => (
-               <a 
-                 key={idx} 
-                 href={`#${item.id}`} 
-                 // Standardized text size to text-sm (was text-[11px]) for better readability
-                 className="block text-sm font-bold text-zinc-500 hover:text-brand-600 dark:text-zinc-500 dark:hover:text-brand-500 py-1 transition-colors leading-snug line-clamp-2"
-               >
-                 {item.text}
-               </a>
-            )) : (
+         {/* Using relative to create a sliding marker effect if we wanted, but simple border-l is fine */}
+         <div className="space-y-1 relative pl-4">
+            {/* Background Line */}
+            <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-zinc-200 dark:bg-zinc-800" />
+            
+            {items.length > 0 ? items.map((item, idx) => {
+               const isActive = activeId === item.id;
+               return (
+                <div key={idx} className="relative">
+                   {/* Active Marker Indicator */}
+                   <div 
+                      className={`absolute -left-[17px] top-1.5 w-[2px] h-4 bg-brand-500 transition-all duration-300 ${isActive ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}`} 
+                   />
+                   <a 
+                     href={`#${item.id}`} 
+                     className={`block text-sm font-bold py-1 transition-all duration-300 leading-snug line-clamp-2
+                        ${isActive 
+                            ? 'text-brand-600 dark:text-brand-500 translate-x-1' 
+                            : 'text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-300'}
+                     `}
+                   >
+                     {item.text}
+                   </a>
+                </div>
+               );
+            }) : (
               <p className="text-sm text-zinc-400 italic">No sub-sections</p>
             )}
          </div>

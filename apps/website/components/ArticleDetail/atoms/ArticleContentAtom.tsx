@@ -22,9 +22,15 @@ export const ArticleContentAtom: React.FC<ContentProps> = ({ content, isExpanded
           <div 
              className="
                 space-y-8 text-zinc-700 dark:text-zinc-300 leading-loose
+                
                 [&>p]:text-lg [&>p]:md:text-xl [&>p]:font-medium [&>p]:text-zinc-600 [&>p]:dark:text-zinc-300
                 [&>p.lead]:text-2xl [&>p.lead]:font-bold [&>p.lead]:text-zinc-900 [&>p.lead]:dark:text-white [&>p.lead]:leading-snug
-                [&>h3]:text-2xl [&>h3]:md:text-3xl [&>h3]:font-black [&>h3]:text-zinc-900 [&>h3]:dark:text-white [&>h3]:mt-12 [&>h3]:mb-4 [&>h3]:uppercase [&>h3]:tracking-tight
+                
+                /* UPDATED H3 STYLING: Gradient Text */
+                [&>h3]:text-2xl [&>h3]:md:text-3xl [&>h3]:font-black 
+                [&>h3]:mt-12 [&>h3]:mb-4 [&>h3]:uppercase [&>h3]:tracking-tight
+                [&>h3]:text-transparent [&>h3]:bg-clip-text [&>h3]:bg-gradient-to-r [&>h3]:from-brand-600 [&>h3]:to-red-600
+                
                 [&>blockquote]:border-l-4 [&>blockquote]:border-brand-500 [&>blockquote]:pl-6 [&>blockquote]:py-4 [&>blockquote]:my-8 [&>blockquote]:italic [&>blockquote]:text-xl [&>blockquote]:font-bold [&>blockquote]:text-zinc-800 [&>blockquote]:dark:text-zinc-200 [&>blockquote]:bg-brand-50 [&>blockquote]:dark:bg-brand-900/10 [&>blockquote]:rounded-r-xl
                 [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-2
              "
