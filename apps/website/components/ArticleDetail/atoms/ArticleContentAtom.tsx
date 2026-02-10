@@ -31,27 +31,41 @@ export const ArticleContentAtom: React.FC<ContentProps> = ({ excerpt, content, i
              className="
                 space-y-8 text-zinc-700 dark:text-zinc-300 leading-relaxed
                 
-                /* UPDATED: Paragraph size matches Hero Description (text-lg lg:text-xl) */
+                /* --- BASE TYPOGRAPHY (Consistent Size) --- */
                 [&>p]:text-lg [&>p]:lg:text-xl [&>p]:font-medium [&>p]:text-zinc-600 [&>p]:dark:text-zinc-300 [&>p]:leading-relaxed
                 
-                /* UPDATED: Lists Consistency to match Paragraphs */
-                [&>ul>li]:text-lg [&>ul>li]:lg:text-xl [&>ul>li]:font-medium [&>ul>li]:text-zinc-600 [&>ul>li]:dark:text-zinc-300 [&>ul>li]:leading-relaxed
-                [&>ol>li]:text-lg [&>ol>li]:lg:text-xl [&>ol>li]:font-medium [&>ol>li]:text-zinc-600 [&>ol>li]:dark:text-zinc-300 [&>ol>li]:leading-relaxed
+                /* --- LISTS STYLING --- */
+                /* Base List Text */
+                [&_li]:text-lg [&_li]:lg:text-xl [&_li]:font-medium [&_li]:text-zinc-600 [&_li]:dark:text-zinc-300 [&_li]:leading-relaxed [&_li]:pl-2
+                /* List Markers (Bullets/Numbers) -> Brand Orange & Bold */
+                [&_li::marker]:text-brand-600 [&_li::marker]:dark:text-brand-500 [&_li::marker]:font-black
+                /* Spacing */
+                [&>ul]:space-y-4 [&>ol]:space-y-4 [&>ul]:list-disc [&>ol]:list-decimal [&>ul]:pl-6 [&>ol]:pl-6
                 
-                /* Lead */
+                /* --- INLINE EMPHASIS --- */
+                /* Strong/Bold: Max Contrast */
+                [&_strong]:text-zinc-900 [&_strong]:dark:text-white [&_strong]:font-black
+                [&_b]:text-zinc-900 [&_b]:dark:text-white [&_b]:font-black
+                /* Emphasis/Italic: Subtle Highlight */
+                [&_em]:text-zinc-800 [&_em]:dark:text-zinc-200 [&_em]:font-bold
+                
+                /* --- HEADINGS (H3) --- */
+                [&>h3]:text-2xl [&>h3]:md:text-3xl [&>h3]:font-black 
+                [&>h3]:mt-16 [&>h3]:mb-6 [&>h3]:uppercase [&>h3]:tracking-tight
+                [&>h3]:text-transparent [&>h3]:bg-clip-text [&>h3]:bg-gradient-to-r [&>h3]:from-brand-600 [&>h3]:to-red-600
+                /* Scroll Margin for TOC Navigation accuracy */
+                [&>h3]:scroll-mt-32
+                
+                /* --- SPECIAL ELEMENTS --- */
+                /* Lead Paragraph */
                 [&>p.lead]:text-2xl [&>p.lead]:font-bold [&>p.lead]:text-zinc-900 [&>p.lead]:dark:text-white [&>p.lead]:leading-snug
                 
-                /* H3 Styling */
-                [&>h3]:text-2xl [&>h3]:md:text-3xl [&>h3]:font-black 
-                [&>h3]:mt-12 [&>h3]:mb-4 [&>h3]:uppercase [&>h3]:tracking-tight
-                [&>h3]:text-transparent [&>h3]:bg-clip-text [&>h3]:bg-gradient-to-r [&>h3]:from-brand-600 [&>h3]:to-red-600
-                
                 /* Blockquotes */
-                [&>blockquote]:border-l-4 [&>blockquote]:border-brand-500 [&>blockquote]:pl-6 [&>blockquote]:py-4 [&>blockquote]:my-8 [&>blockquote]:italic [&>blockquote]:text-xl [&>blockquote]:font-bold [&>blockquote]:text-zinc-800 [&>blockquote]:dark:text-zinc-200 [&>blockquote]:bg-brand-50 [&>blockquote]:dark:bg-brand-900/10 [&>blockquote]:rounded-r-xl
-                
-                /* List Spacing */
-                [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-2
-                [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:space-y-2
+                [&>blockquote]:border-l-4 [&>blockquote]:border-brand-500 [&>blockquote]:pl-8 [&>blockquote]:py-6 [&>blockquote]:my-10 
+                [&>blockquote]:italic [&>blockquote]:text-xl [&>blockquote]:font-bold 
+                [&>blockquote]:text-zinc-800 [&>blockquote]:dark:text-zinc-100 
+                [&>blockquote]:bg-zinc-100 [&>blockquote]:dark:bg-zinc-900 
+                [&>blockquote]:rounded-r-2xl
              "
              dangerouslySetInnerHTML={{ __html: content }} 
           />
