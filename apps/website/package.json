@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "ignore-build": "npx turbo-ignore"
+    "ignore-build": "echo 'Proceeding with build...' && exit 1"
   },
   "dependencies": {
     "react": "^19.0.0",
