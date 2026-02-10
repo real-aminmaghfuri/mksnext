@@ -54,18 +54,24 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
           onClose={closeArticle} 
        />
 
-       {/* Spacer for Hero */}
-       <div className="h-[50vh] md:h-[60vh] w-full pointer-events-none" />
+       {/* 
+          Spacer for Hero 
+          FIX: Removed 'pointer-events-none' so this transparent block captures mouse events 
+          (like scrolling) and passes them to the scroll container, even when covering the video/hero.
+       */}
+       <div className="h-[50vh] md:h-[60vh] w-full" />
 
        {/* Main Content Area */}
        <div className="relative z-20 bg-zinc-50 dark:bg-zinc-950 min-h-screen rounded-t-[40px] -mt-10 shadow-[0_-20px_40px_rgba(0,0,0,0.1)] border-t border-zinc-200 dark:border-zinc-900">
           
           <div className="container mx-auto px-6 py-16 md:py-20 max-w-[1600px]">
              {/* 
-                GRID CALIBRATION: 18% - 64% - 18% 
-                Using arbitrary values to force the exact ratio requested.
+                GRID CALIBRATION: 18fr - 64fr - 18fr 
+                FIX: Changed from % to fr units. 
+                Using percentages (18%+64%+18%=100%) PLUS gap creates overflow (100% + 48px).
+                Using 'fr' ensures the gap is subtracted from the available space first.
              */}
-             <div className="grid grid-cols-1 lg:grid-cols-[18%_64%_18%] gap-8 xl:gap-12">
+             <div className="grid grid-cols-1 lg:grid-cols-[18fr_64fr_18fr] gap-8 xl:gap-12">
                 
                 {/* LEFT SIDEBAR */}
                 <div className="hidden lg:block">

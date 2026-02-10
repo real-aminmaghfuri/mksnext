@@ -18,7 +18,8 @@ export const ArticleCommentsAtom: React.FC<CommentsProps> = ({ comments, isOpen,
        
        {/* Narrative Text */}
        <div className="px-2">
-          <h4 className="text-xl md:text-2xl font-black text-zinc-900 dark:text-white uppercase tracking-tight mb-2">
+          {/* UPDATED: Title to Brand Color */}
+          <h4 className="text-xl md:text-2xl font-black text-brand-600 dark:text-brand-500 uppercase tracking-tight mb-2">
              Forum Bawah Tanah
           </h4>
           <p className="text-zinc-600 dark:text-zinc-400 font-medium">
@@ -34,11 +35,13 @@ export const ArticleCommentsAtom: React.FC<CommentsProps> = ({ comments, isOpen,
              className="w-full flex items-center justify-between p-6 md:p-8 hover:bg-zinc-200 dark:hover:bg-zinc-800/50 transition-colors"
           >
              <div className="flex items-center gap-4">
-                <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center shadow-inner transition-colors ${isOpen ? 'bg-brand-600 text-white' : 'bg-white dark:bg-zinc-800 text-zinc-400'}`}>
+                {/* UPDATED: Icon Color Logic (Always Brand when Open/Active, or distinct when closed) */}
+                <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center shadow-inner transition-colors ${isOpen ? 'bg-brand-600 text-white' : 'bg-brand-100 dark:bg-brand-900/20 text-brand-600 dark:text-brand-500'}`}>
                    <MessageSquare size={20} />
                 </div>
                 <div className="text-left">
-                   <h3 className="text-sm md:text-base font-black text-zinc-900 dark:text-white uppercase tracking-widest">Buka Diskusi</h3>
+                   {/* UPDATED: Text Color */}
+                   <h3 className="text-sm md:text-base font-black text-brand-600 dark:text-brand-500 uppercase tracking-widest">Buka Diskusi</h3>
                    <p className="text-xs font-bold text-zinc-500">{comments.length} Komentar Terverifikasi</p>
                 </div>
              </div>
