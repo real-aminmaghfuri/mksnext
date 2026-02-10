@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from 'react';
@@ -12,8 +11,8 @@ export const MobileMenuFooter: React.FC = () => {
 
   return (
     <div className="shrink-0 space-y-4">
-        {/* System Login Button */}
-        <a href="http://localhost:3001" target="_blank" rel="noopener noreferrer">
+        {/* System Login Button - Updated link to use a placeholder or env variable in future */}
+        <a href="https://system.mesinkasirsolo.com" target="_blank" rel="noopener noreferrer">
             <button 
             className="w-full flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-zinc-800 to-black text-white shadow-lg active:scale-95 transition-transform"
             >
