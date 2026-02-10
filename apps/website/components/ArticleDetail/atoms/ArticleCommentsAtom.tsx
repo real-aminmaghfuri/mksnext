@@ -18,7 +18,7 @@ export const ArticleCommentsAtom: React.FC<CommentsProps> = ({ comments, isOpen,
        
        {/* Narrative Text */}
        <div className="px-2">
-          {/* UPDATED: Title to Brand Color */}
+          {/* UPDATED: Title to Brand Color (Orange) */}
           <h4 className="text-xl md:text-2xl font-black text-brand-600 dark:text-brand-500 uppercase tracking-tight mb-2">
              Forum Bawah Tanah
           </h4>
@@ -35,13 +35,15 @@ export const ArticleCommentsAtom: React.FC<CommentsProps> = ({ comments, isOpen,
              className="w-full flex items-center justify-between p-6 md:p-8 hover:bg-zinc-200 dark:hover:bg-zinc-800/50 transition-colors"
           >
              <div className="flex items-center gap-4">
-                {/* UPDATED: Icon Color Logic (Always Brand when Open/Active, or distinct when closed) */}
-                <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center shadow-inner transition-colors ${isOpen ? 'bg-brand-600 text-white' : 'bg-brand-100 dark:bg-brand-900/20 text-brand-600 dark:text-brand-500'}`}>
+                {/* UPDATED: Icon Color - Always Orange Background with White Icon */}
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center shadow-inner transition-colors bg-brand-600 text-white">
                    <MessageSquare size={20} />
                 </div>
                 <div className="text-left">
-                   {/* UPDATED: Text Color */}
-                   <h3 className="text-sm md:text-base font-black text-brand-600 dark:text-brand-500 uppercase tracking-widest">Buka Diskusi</h3>
+                   {/* UPDATED: Text Color - Always Orange */}
+                   <h3 className="text-sm md:text-base font-black text-brand-600 dark:text-brand-500 uppercase tracking-widest">
+                      Buka Diskusi
+                   </h3>
                    <p className="text-xs font-bold text-zinc-500">{comments.length} Komentar Terverifikasi</p>
                 </div>
              </div>
@@ -61,8 +63,8 @@ export const ArticleCommentsAtom: React.FC<CommentsProps> = ({ comments, isOpen,
                          </div>
                          <div>
                             <div className="flex flex-wrap items-center gap-2 mb-1">
-                               <span className="font-bold text-zinc-900 dark:text-white text-sm">{comment.name}</span>
-                               <span className="text-[9px] font-bold text-zinc-400 uppercase bg-zinc-200 dark:bg-zinc-800 px-1.5 py-0.5 rounded">{comment.date}</span>
+                                <span className="font-bold text-zinc-900 dark:text-white text-sm">{comment.name}</span>
+                                <span className="text-[9px] font-bold text-zinc-400 uppercase bg-zinc-200 dark:bg-zinc-800 px-1.5 py-0.5 rounded">{comment.date}</span>
                             </div>
                             <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
                                {comment.content}

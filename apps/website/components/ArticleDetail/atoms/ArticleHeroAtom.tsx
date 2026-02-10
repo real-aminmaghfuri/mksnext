@@ -44,19 +44,16 @@ export const ArticleHeroAtom: React.FC<ArticleHeroProps> = ({ article, scrollTop
 
         {/* 
             Content Container 
-            FIX: Added 'pointer-events-auto' specifically for this container so users can 
-            interact with the text/tags, but the empty space remains clickable-through.
+            FIX: Removed 'pointer-events-auto' from text containers. 
+            This ensures that even if the user hovers over the text, the scroll event falls through 
+            to the page scroller. Only the Close button captures events.
         */}
-        <div className="container mx-auto px-6 h-full relative z-10 flex flex-col justify-end pb-8 md:pb-12">
+        <div className="container mx-auto px-6 h-full relative z-10 flex flex-col justify-end pb-8 md:pb-12 pointer-events-none">
            
            {/* Shrunk State: Compact Title */}
            <div 
-                className="absolute left-6 top-1/2 -translate-y-1/2 flex items-center pointer-events-auto"
-                style={{ 
-                    opacity: smallTitleOpacity,
-                    // Only enable pointer events when visible
-                    pointerEvents: smallTitleOpacity > 0.5 ? 'auto' : 'none' 
-                }}
+                className="absolute left-6 top-1/2 -translate-y-1/2 flex items-center"
+                style={{ opacity: smallTitleOpacity }}
            >
               <h2 className="text-lg font-black text-white uppercase tracking-tight line-clamp-1 max-w-xl">
                 {article.title}
@@ -65,12 +62,10 @@ export const ArticleHeroAtom: React.FC<ArticleHeroProps> = ({ article, scrollTop
 
            {/* Expanded State: Full Hero Info */}
            <div 
-                className="origin-bottom-left pointer-events-auto"
+                className="origin-bottom-left"
                 style={{ 
                     opacity: contentOpacity,
                     transform: `scale(${0.9 + (contentOpacity * 0.1)}) translateY(${scrollTop * 0.5}px)`, 
-                    // Only enable pointer events when visible
-                    pointerEvents: contentOpacity > 0.1 ? 'auto' : 'none'
                 }}
            >
               <div className="inline-block px-3 py-1 bg-brand-600 text-white text-[10px] font-black uppercase tracking-widest rounded mb-4 shadow-lg shadow-brand-600/30">
@@ -99,7 +94,7 @@ export const ArticleHeroAtom: React.FC<ArticleHeroProps> = ({ article, scrollTop
 
         {/* 
             Close Button 
-            FIX: Needs pointer-events-auto to be clickable
+            FIX: This is the ONLY interactive element in the header.
         */}
         <button 
           onClick={onClose}
