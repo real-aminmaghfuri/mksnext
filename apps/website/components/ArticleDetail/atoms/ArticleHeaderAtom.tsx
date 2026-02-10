@@ -4,6 +4,7 @@ import React from 'react';
 import { ArticleItem } from 'shared';
 import { Calendar, User, Clock, ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface ArticleHeaderProps {
   article: ArticleItem;
@@ -51,10 +52,13 @@ export const ArticleHeaderAtom: React.FC<ArticleHeaderProps> = ({ article, backT
 
       {/* Hero Image */}
       <div className="w-full aspect-video rounded-3xl overflow-hidden shadow-2xl bg-zinc-100 dark:bg-zinc-800 relative">
-         <img 
+         <Image 
             src={article.image} 
             alt={article.title} 
-            className="w-full h-full object-cover"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
          />
          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
       </div>

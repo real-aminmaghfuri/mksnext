@@ -5,6 +5,7 @@ import { FeedItem } from '../types';
 import { ArticleCardAtom } from './ArticleCardAtom';
 import { Button } from 'ui';
 import { ShoppingCart, Code, TrendingUp, Wrench, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 interface ArticleListProps {
   items: FeedItem[];
@@ -55,11 +56,15 @@ export const ArticleListAtom: React.FC<ArticleListProps> = ({ items }) => {
                         </Button>
 
                         {/* Image Overlay */}
-                         <img 
-                            src={product.image} 
-                            alt={product.name} 
-                            className="absolute -bottom-10 -right-10 w-40 h-40 object-cover rounded-full opacity-20 rotate-12 group-hover:opacity-40 transition-opacity duration-500"
-                        />
+                        <div className="absolute -bottom-10 -right-10 w-40 h-40 opacity-20 rotate-12 group-hover:opacity-40 transition-opacity duration-500">
+                             <Image 
+                                src={product.image} 
+                                alt={product.name} 
+                                fill
+                                sizes="160px"
+                                className="object-cover rounded-full"
+                            />
+                        </div>
                     </div>
                 </div>
              );

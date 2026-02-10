@@ -5,6 +5,7 @@ import { Search, Tag, ShoppingBag } from 'lucide-react';
 import { GlassCard } from 'ui';
 import { ProductItem } from 'shared';
 import { SidebarCategories } from './SidebarCategories';
+import Image from 'next/image';
 
 interface SidebarProps {
   categories: string[];
@@ -54,8 +55,14 @@ export const SidebarAtom: React.FC<SidebarProps> = ({ activeCategory, onCategory
           <div className="space-y-4">
              {products.map(product => (
                 <GlassCard key={product.id} variant="solid" hoverEffect className="p-4 flex gap-4 items-center bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800">
-                   <div className="w-16 h-16 rounded-lg bg-zinc-100 dark:bg-zinc-800 overflow-hidden shrink-0">
-                      <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+                   <div className="w-16 h-16 rounded-lg bg-zinc-100 dark:bg-zinc-800 overflow-hidden shrink-0 relative">
+                      <Image 
+                        src={product.image} 
+                        alt={product.name} 
+                        fill
+                        sizes="64px"
+                        className="object-cover" 
+                      />
                    </div>
                    <div>
                       <h5 className="font-bold text-sm text-zinc-900 dark:text-white line-clamp-1 mb-1">{product.name}</h5>

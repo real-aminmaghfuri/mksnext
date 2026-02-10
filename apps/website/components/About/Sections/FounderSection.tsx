@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Quote } from 'lucide-react';
+import Image from 'next/image';
 
 interface FounderSectionProps {
   quote: {
@@ -20,10 +21,12 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ quote }) => {
         {/* Portrait Column - Reduced to 4/12 Grid (Smaller Photo) */}
         <div className="md:col-span-4 lg:col-span-4">
           <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-2xl bg-zinc-900 group">
-            <img 
+            <Image 
               src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop" 
               alt="Amin Maghfuri" 
-              className="w-full h-full object-cover object-center grayscale transition-transform duration-700 group-hover:scale-105"
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+              className="object-cover object-center grayscale transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60" />
             <div className="absolute inset-0 ring-1 ring-inset ring-white/10" />

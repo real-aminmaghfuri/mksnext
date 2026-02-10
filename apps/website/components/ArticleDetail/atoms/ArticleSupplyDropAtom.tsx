@@ -4,6 +4,7 @@ import React from 'react';
 import { ProductItem } from 'shared';
 import { ShoppingBag, Zap } from 'lucide-react';
 import { GlassCard } from 'ui';
+import Image from 'next/image';
 
 interface SupplyDropProps {
   products: ProductItem[];
@@ -21,7 +22,13 @@ export const ArticleSupplyDropAtom: React.FC<SupplyDropProps> = ({ products }) =
                 
                 {/* Thumbnail */}
                 <div className="w-12 h-12 rounded-md bg-zinc-100 dark:bg-zinc-800 overflow-hidden shrink-0 relative border border-zinc-100 dark:border-zinc-700">
-                    <img src={product.image} alt={product.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" />
+                    <Image 
+                        src={product.image} 
+                        alt={product.name} 
+                        fill
+                        sizes="48px"
+                        className="object-cover grayscale group-hover:grayscale-0 transition-all" 
+                    />
                 </div>
                 
                 {/* Content */}

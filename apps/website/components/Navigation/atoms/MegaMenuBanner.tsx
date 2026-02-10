@@ -3,6 +3,7 @@
 
 import React from 'react';
 import { Sparkles } from 'lucide-react';
+import Image from 'next/image';
 
 interface MegaMenuBannerProps {
   img: string;
@@ -16,10 +17,12 @@ export const MegaMenuBanner: React.FC<MegaMenuBannerProps> = ({ img, title }) =>
       <div className="absolute inset-0 bg-black/40 z-10 group-hover:bg-black/20 transition-colors duration-500" />
       
       {/* Background Image */}
-      <img 
+      <Image 
         src={img} 
         alt="Visual" 
-        className="w-full h-full object-cover opacity-80 transition-transform duration-1000 group-hover:scale-110"
+        fill
+        sizes="33vw"
+        className="object-cover opacity-80 transition-transform duration-1000 group-hover:scale-110"
       />
       
       {/* Content Overlay */}

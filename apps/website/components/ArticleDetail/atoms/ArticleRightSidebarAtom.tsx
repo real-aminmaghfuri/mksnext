@@ -4,6 +4,7 @@ import React from 'react';
 import { Tag, ChevronRight, Files } from 'lucide-react';
 import { ArticleItem } from 'shared';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface RightSidebarProps {
   categories: string[];
@@ -48,10 +49,12 @@ export const ArticleRightSidebarAtom: React.FC<RightSidebarProps> = ({ categorie
                       
                       {/* Thumbnail */}
                       <div className="w-20 h-14 rounded-lg bg-zinc-100 dark:bg-zinc-800 overflow-hidden shrink-0 relative border border-zinc-200 dark:border-zinc-800 group-hover:border-brand-500/50 transition-colors">
-                          <img 
+                          <Image 
                             src={article.image} 
                             alt={article.title} 
-                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" 
+                            fill
+                            sizes="80px"
+                            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500" 
                           />
                       </div>
                       

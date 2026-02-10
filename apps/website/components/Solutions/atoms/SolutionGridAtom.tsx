@@ -4,6 +4,7 @@ import React from 'react';
 import { SolutionItem } from 'shared';
 import { GlassCard, Button } from 'ui';
 import { CheckCircle2, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 interface SolutionGridProps {
   solutions: SolutionItem[];
@@ -30,10 +31,12 @@ export const SolutionGridAtom: React.FC<SolutionGridProps> = ({ solutions }) => 
             
             {/* Image Side */}
             <div className="md:w-2/5 relative min-h-[250px] md:min-h-full">
-               <img 
+               <Image 
                  src={item.image} 
                  alt={item.title} 
-                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                 fill
+                 sizes="(max-width: 768px) 100vw, 50vw"
+                 className="object-cover transition-transform duration-700 group-hover:scale-110"
                />
                <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
                <div className="absolute top-4 left-4">

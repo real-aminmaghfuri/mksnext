@@ -4,6 +4,7 @@ import React from 'react';
 import { GlassCard } from 'ui';
 import { PortfolioItem } from 'shared';
 import { ArrowRight, Monitor, Box } from 'lucide-react';
+import Image from 'next/image';
 
 interface ProjectGridProps {
   items: PortfolioItem[];
@@ -20,10 +21,12 @@ export const ProjectGridAtom: React.FC<ProjectGridProps> = ({ items, viewText })
             {/* Image Container */}
             <div className="relative aspect-video overflow-hidden bg-zinc-100 dark:bg-zinc-800">
                 <div className="absolute inset-0 bg-black/10 dark:bg-zinc-900/20 group-hover:bg-transparent transition-colors z-10" />
-                <img 
+                <Image 
                     src={item.image} 
-                    alt={item.title} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute top-4 left-4 z-20">
                     <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-white/90 dark:bg-black/80 backdrop-blur text-[10px] font-bold text-zinc-900 dark:text-white uppercase tracking-wider border border-zinc-200 dark:border-white/10 shadow-sm">
