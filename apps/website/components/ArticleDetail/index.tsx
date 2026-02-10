@@ -10,7 +10,6 @@ import { ArticleContentAtom } from './atoms/ArticleContentAtom';
 import { ArticleRightSidebarAtom } from './atoms/ArticleRightSidebarAtom';
 import { ArticleRelatedAtom } from './atoms/ArticleRelatedAtom';
 import { ArticleCommentsAtom } from './atoms/ArticleCommentsAtom';
-import { ArticleSupplyDropAtom } from './atoms/ArticleSupplyDropAtom'; 
 
 interface ArticleDetailProps {
   slug: string;
@@ -70,15 +69,13 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
              */}
              <div className="grid grid-cols-1 lg:grid-cols-[18fr_64fr_18fr] gap-8 xl:gap-12">
                 
-                {/* LEFT SIDEBAR: TOC + Supply Drop */}
+                {/* LEFT SIDEBAR: TOC Only (Supply Drop Removed) */}
                 <div className="hidden lg:block">
                    <div className="sticky top-32">
                       <ArticleTocAtom 
                         items={toc} 
                         activeId={activeSectionId} // Pass Active ID
                       />
-                      {/* Supply Drop (Products) */}
-                      <ArticleSupplyDropAtom products={sidebarProducts} />
                    </div>
                 </div>
 

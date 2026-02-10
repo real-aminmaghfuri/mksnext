@@ -33,13 +33,14 @@ export const ArticleTocAtom: React.FC<TocProps> = ({ items, activeId }) => {
                    />
                    <a 
                      href={`#${item.id}`} 
-                     className={`block text-sm font-bold py-1 transition-all duration-300 leading-snug line-clamp-2
+                     className={`block text-sm font-bold py-1 transition-all duration-300 leading-snug line-clamp-2 capitalize
                         ${isActive 
                             ? 'text-brand-600 dark:text-brand-500 translate-x-1' 
                             : 'text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-300'}
                      `}
                    >
-                     {item.text}
+                     {/* Lowercase first to ensure capitalize works on ALL CAPS source */}
+                     {item.text.toLowerCase()}
                    </a>
                 </div>
                );
