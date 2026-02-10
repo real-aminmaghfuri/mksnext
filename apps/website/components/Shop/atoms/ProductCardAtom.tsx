@@ -14,7 +14,7 @@ interface ProductCardProps {
 
 export const ProductCardAtom: React.FC<ProductCardProps> = ({ product, btnText, formattedPrice, waLink }) => {
   
-  const CategoryIcon = () => {
+  const getCategoryIcon = () => {
     switch(product.category) {
       case 'ANDROID': return <Smartphone size={12} />;
       case 'PC': return <Monitor size={12} />;
@@ -37,7 +37,7 @@ export const ProductCardAtom: React.FC<ProductCardProps> = ({ product, btnText, 
         
         {/* Category Badge */}
         <div className="absolute top-3 left-3 bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 text-[10px] font-bold px-2 py-1 rounded flex items-center gap-1 z-10">
-           <CategoryIcon /> {product.category}
+           {getCategoryIcon()} {product.category}
         </div>
 
         {/* Promo Tag */}
