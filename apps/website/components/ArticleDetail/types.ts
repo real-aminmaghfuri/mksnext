@@ -1,4 +1,5 @@
 
+import { RefObject } from 'react';
 import { ArticleItem, ProductItem, CommentItem, TOCItem } from 'shared';
 
 export interface ArticleDetailLogic {
@@ -11,6 +12,8 @@ export interface ArticleDetailLogic {
   comments: CommentItem[];
   
   // States
+  scrollRef: RefObject<HTMLDivElement | null>;
+  scrollTop: number;
   scrollProgress: number;
   isHeroShrunk: boolean;
   isContentExpanded: boolean;

@@ -1,12 +1,14 @@
+
 "use client";
 
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { MOCK_ARTICLES, MOCK_PRODUCTS, TOCItem, CommentItem } from 'shared';
 import { ArticleDetailLogic } from './types';
 
 export const useArticleDetail = (slug: string): ArticleDetailLogic => {
   const router = useRouter();
+  const scrollRef = useRef<HTMLDivElement>(null);
   
   // 1. Data Retrieval
   const currentIndex = MOCK_ARTICLES.findIndex(a => a.slug === slug);
@@ -17,27 +19,34 @@ export const useArticleDetail = (slug: string): ArticleDetailLogic => {
   const nextArticle = currentIndex < MOCK_ARTICLES.length - 1 ? MOCK_ARTICLES[currentIndex + 1] : MOCK_ARTICLES[0];
 
   // 2. States
+  const [scrollTop, setScrollTop] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isHeroShrunk, setIsHeroShrunk] = useState(false);
   const [isContentExpanded, setIsContentExpanded] = useState(false);
   const [isCommentsOpen, setIsCommentsOpen] = useState(false);
 
-  // 3. Logic: Scroll Listener
+  // 3. Logic: Scroll Listener on Container
   useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
     const handleScroll = () => {
-      const totalScroll = document.documentElement.scrollTop;
-      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const currentScroll = container.scrollTop;
+      const scrollHeight = container.scrollHeight - container.clientHeight;
+      
+      setScrollTop(currentScroll);
       
       // Calculate 0-100%
-      const scrolled = totalScroll / windowHeight;
+      const scrolled = scrollHeight > 0 ? currentScroll / scrollHeight : 0;
       setScrollProgress(scrolled);
 
-      // Hero shrinks after 100px scroll
-      setIsHeroShrunk(totalScroll > 100);
+      // Logical shrinking threshold for UI elements (text opacity etc)
+      // We use a larger threshold for smoother text transition
+      setIsHeroShrunk(currentScroll > 100);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    container.addEventListener('scroll', handleScroll);
+    return () => container.removeEventListener('scroll', handleScroll);
   }, []);
 
   // 4. Logic: Parse TOC from HTML Content (Mocking extraction)
@@ -90,6 +99,8 @@ export const useArticleDetail = (slug: string): ArticleDetailLogic => {
     toc,
     comments,
     
+    scrollRef,
+    scrollTop,
     scrollProgress,
     isHeroShrunk,
     isContentExpanded,

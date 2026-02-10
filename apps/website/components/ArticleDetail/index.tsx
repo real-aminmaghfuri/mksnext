@@ -25,8 +25,9 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
     toc,
     comments,
     
+    scrollRef,
+    scrollTop,
     scrollProgress,
-    isHeroShrunk,
     isContentExpanded,
     isCommentsOpen,
     
@@ -40,17 +41,22 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
 
   return (
     // FULL PAGE OVERLAY - Z-100 to cover RootLayout Navbar/Footer
-    <div className="fixed inset-0 z-[100] bg-zinc-50 dark:bg-zinc-950 overflow-y-auto custom-scrollbar">
+    // Attach scrollRef here to listen to the actual scrollable element
+    <div 
+        ref={scrollRef}
+        className="fixed inset-0 z-[100] bg-zinc-50 dark:bg-zinc-950 overflow-y-auto custom-scrollbar"
+    >
        
        <ArticleProgressBarAtom progress={scrollProgress} />
        
        <ArticleHeroAtom 
           article={article} 
-          isShrunk={isHeroShrunk} 
+          scrollTop={scrollTop}
           onClose={closeArticle} 
        />
 
        {/* Spacer for Hero when not shrunk (50vh/60vh) + Buffer */}
+       {/* This spacer pushes the content down to the initial visible fold position */}
        <div className="h-[50vh] md:h-[60vh] w-full pointer-events-none" />
 
        {/* Main Content Area - White/Dark Paper Background */}
