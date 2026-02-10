@@ -15,7 +15,7 @@ export const ArticleTocAtom: React.FC<TocProps> = ({ items, activeId }) => {
       
       {/* 1. Table of Contents */}
       <div className="hidden lg:block">
-         <h4 className="flex items-center gap-2 text-xs font-black text-zinc-400 uppercase tracking-widest mb-3">
+         <h4 className="flex items-center gap-2 text-xs font-black text-brand-600 dark:text-brand-500 uppercase tracking-widest mb-3">
             <AlignLeft size={14} /> Intelligence
          </h4>
          {/* Using relative to create a sliding marker effect if we wanted, but simple border-l is fine */}
@@ -51,7 +51,7 @@ export const ArticleTocAtom: React.FC<TocProps> = ({ items, activeId }) => {
 
       {/* 2. Social Share */}
       <div>
-        <h4 className="flex items-center gap-2 text-xs font-black text-zinc-400 uppercase tracking-widest mb-3">
+        <h4 className="flex items-center gap-2 text-xs font-black text-brand-600 dark:text-brand-500 uppercase tracking-widest mb-3">
             <Share2 size={14} /> Sebarkan
         </h4>
         <div className="flex flex-wrap gap-2">

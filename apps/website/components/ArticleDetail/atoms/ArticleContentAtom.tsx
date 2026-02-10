@@ -5,12 +5,13 @@ import { Button } from 'ui';
 import { ChevronDown } from 'lucide-react';
 
 interface ContentProps {
+  excerpt: string;
   content: string;
   isExpanded: boolean;
   onToggle: () => void;
 }
 
-export const ArticleContentAtom: React.FC<ContentProps> = ({ content, isExpanded, onToggle }) => {
+export const ArticleContentAtom: React.FC<ContentProps> = ({ excerpt, content, isExpanded, onToggle }) => {
   return (
     <div className="relative">
        {/* Body */}
@@ -19,6 +20,13 @@ export const ArticleContentAtom: React.FC<ContentProps> = ({ content, isExpanded
             ${isExpanded ? '' : 'max-h-[600px] overflow-hidden'}
          `}
        >
+          {/* UPDATED: Description/Excerpt moved here */}
+          <div className="mb-12 p-6 md:p-8 rounded-2xl bg-brand-600/10 dark:bg-brand-900/10 border-l-4 border-brand-500 backdrop-blur-sm">
+             <p className="text-xl md:text-2xl font-bold text-zinc-900 dark:text-white leading-relaxed italic tracking-tight">
+                "{excerpt}"
+             </p>
+          </div>
+
           <div 
              className="
                 space-y-8 text-zinc-700 dark:text-zinc-300 leading-loose

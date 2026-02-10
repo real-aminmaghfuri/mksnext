@@ -10,7 +10,7 @@ import { ArticleContentAtom } from './atoms/ArticleContentAtom';
 import { ArticleRightSidebarAtom } from './atoms/ArticleRightSidebarAtom';
 import { ArticleRelatedAtom } from './atoms/ArticleRelatedAtom';
 import { ArticleCommentsAtom } from './atoms/ArticleCommentsAtom';
-import { ArticleSupplyDropAtom } from './atoms/ArticleSupplyDropAtom'; // NEW IMPORT
+import { ArticleSupplyDropAtom } from './atoms/ArticleSupplyDropAtom'; 
 
 interface ArticleDetailProps {
   slug: string;
@@ -22,6 +22,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
     processedContent, // Use processed content with IDs 
     prevArticle, 
     nextArticle, 
+    relatedArticles, // New Prop
     sidebarProducts, 
     categories, 
     toc,
@@ -76,7 +77,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
                         items={toc} 
                         activeId={activeSectionId} // Pass Active ID
                       />
-                      {/* MOVED SUPPLY DROP HERE */}
+                      {/* Supply Drop (Products) */}
                       <ArticleSupplyDropAtom products={sidebarProducts} />
                    </div>
                 </div>
@@ -84,7 +85,8 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
                 {/* CENTER CONTENT */}
                 <div className="min-w-0"> 
                    <ArticleContentAtom 
-                      content={processedContent} // Pass Content with IDs
+                      excerpt={article.excerpt} // Pass Excerpt to Body
+                      content={processedContent} 
                       isExpanded={isContentExpanded} 
                       onToggle={toggleContent} 
                    />
@@ -103,12 +105,12 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
                    </div>
                 </div>
 
-                {/* RIGHT SIDEBAR: Categories Only */}
+                {/* RIGHT SIDEBAR: Categories + Related Articles */}
                 <div className="hidden lg:block">
                    <div className="sticky top-32">
                       <ArticleRightSidebarAtom 
                           categories={categories} 
-                          // Products removed from here
+                          relatedArticles={relatedArticles}
                       />
                    </div>
                 </div>

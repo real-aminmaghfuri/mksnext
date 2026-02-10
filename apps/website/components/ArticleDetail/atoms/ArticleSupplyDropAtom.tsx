@@ -12,7 +12,7 @@ interface SupplyDropProps {
 export const ArticleSupplyDropAtom: React.FC<SupplyDropProps> = ({ products }) => {
   return (
     <div className="hidden lg:block mt-10">
-        <h4 className="flex items-center gap-2 text-xs font-black text-zinc-400 uppercase tracking-widest mb-3">
+        <h4 className="flex items-center gap-2 text-xs font-black text-brand-600 dark:text-brand-500 uppercase tracking-widest mb-3">
             <ShoppingBag size={14} /> Supply Drop
         </h4>
         <div className="space-y-3">

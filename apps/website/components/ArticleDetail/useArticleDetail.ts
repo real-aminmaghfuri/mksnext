@@ -3,10 +3,10 @@
 
 import { useMemo, useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { MOCK_ARTICLES, MOCK_PRODUCTS, TOCItem, CommentItem } from 'shared';
+import { MOCK_ARTICLES, MOCK_PRODUCTS, TOCItem, CommentItem, ArticleItem } from 'shared';
 import { ArticleDetailLogic } from './types';
 
-export const useArticleDetail = (slug: string): ArticleDetailLogic => {
+export const useArticleDetail = (slug: string): ArticleDetailLogic & { relatedArticles: ArticleItem[] } => {
   const router = useRouter();
   const scrollRef = useRef<HTMLDivElement>(null);
   
@@ -17,6 +17,14 @@ export const useArticleDetail = (slug: string): ArticleDetailLogic => {
   // Prev/Next Logic
   const prevArticle = currentIndex > 0 ? MOCK_ARTICLES[currentIndex - 1] : MOCK_ARTICLES[MOCK_ARTICLES.length - 1];
   const nextArticle = currentIndex < MOCK_ARTICLES.length - 1 ? MOCK_ARTICLES[currentIndex + 1] : MOCK_ARTICLES[0];
+
+  // Related Articles Logic (Simple: All except current, Limit 5)
+  // In a real app, filtering by category/tag would happen here
+  const relatedArticles = useMemo(() => {
+    return MOCK_ARTICLES
+      .filter(a => a.slug !== slug)
+      .slice(0, 5);
+  }, [slug]);
 
   // 2. States
   const [scrollTop, setScrollTop] = useState(0);
@@ -123,6 +131,7 @@ export const useArticleDetail = (slug: string): ArticleDetailLogic => {
     processedContent, // Return the modified content
     prevArticle,
     nextArticle,
+    relatedArticles, // Export related articles
     sidebarProducts: MOCK_PRODUCTS.slice(0, 2), 
     categories,
     toc,
