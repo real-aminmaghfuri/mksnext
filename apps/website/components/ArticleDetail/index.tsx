@@ -2,6 +2,7 @@
 "use client";
 
 import React from 'react';
+import { ArticleItem } from 'shared'; // Import Type
 import { useArticleDetail } from './useArticleDetail';
 import { ArticleHeroAtom } from './atoms/ArticleHeroAtom';
 import { ArticleProgressBarAtom } from './atoms/ArticleProgressBarAtom';
@@ -11,17 +12,18 @@ import { ArticleRightSidebarAtom } from './atoms/ArticleRightSidebarAtom';
 import { ArticleRelatedAtom } from './atoms/ArticleRelatedAtom';
 import { ArticleCommentsAtom } from './atoms/ArticleCommentsAtom';
 
+// UPDATED: Props now require the full Article object
 interface ArticleDetailProps {
-  slug: string;
+  article: ArticleItem;
 }
 
-export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
+export const ArticleDetail: React.FC<ArticleDetailProps> = ({ article }) => {
   const { 
-    article,
-    processedContent, // Use processed content with IDs 
+    // article is now passed to the hook, not fetched inside it
+    processedContent, 
     prevArticle, 
     nextArticle, 
-    relatedArticles, // New Prop
+    relatedArticles, 
     sidebarProducts, 
     categories, 
     toc,
@@ -32,15 +34,13 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
     scrollProgress,
     isContentExpanded,
     isCommentsOpen,
-    activeSectionId, // Use active section ID
+    activeSectionId, 
     
     toggleContent,
     toggleComments,
     submitComment,
     closeArticle
-  } = useArticleDetail(slug);
-
-  if (!article) return null; 
+  } = useArticleDetail(article);
 
   return (
     // FULL PAGE OVERLAY
@@ -69,12 +69,12 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
              */}
              <div className="grid grid-cols-1 lg:grid-cols-[18fr_64fr_18fr] gap-8 xl:gap-12">
                 
-                {/* LEFT SIDEBAR: TOC Only (Supply Drop Removed) */}
+                {/* LEFT SIDEBAR: TOC Only */}
                 <div className="hidden lg:block">
                    <div className="sticky top-32">
                       <ArticleTocAtom 
                         items={toc} 
-                        activeId={activeSectionId} // Pass Active ID
+                        activeId={activeSectionId} 
                       />
                    </div>
                 </div>
@@ -82,7 +82,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
                 {/* CENTER CONTENT */}
                 <div className="min-w-0"> 
                    <ArticleContentAtom 
-                      excerpt={article.excerpt} // Pass Excerpt to Body
+                      excerpt={article.excerpt} 
                       content={processedContent} 
                       isExpanded={isContentExpanded} 
                       onToggle={toggleContent} 

@@ -6,25 +6,25 @@ import { useRouter } from 'next/navigation';
 import { MOCK_ARTICLES, MOCK_PRODUCTS, TOCItem, CommentItem, ArticleItem } from 'shared';
 import { ArticleDetailLogic } from './types';
 
-export const useArticleDetail = (slug: string): ArticleDetailLogic & { relatedArticles: ArticleItem[] } => {
+// UPDATED: Hook now accepts the full 'article' object (pre-fetched on server)
+export const useArticleDetail = (article: ArticleItem): ArticleDetailLogic & { relatedArticles: ArticleItem[] } => {
   const router = useRouter();
   const scrollRef = useRef<HTMLDivElement>(null);
   
-  // 1. Data Retrieval
-  const currentIndex = MOCK_ARTICLES.findIndex(a => a.slug === slug);
-  const article = MOCK_ARTICLES[currentIndex];
+  // 1. Data Logic (Simplified)
+  // We no longer search for the article here. We just find its index for pagination.
+  const currentIndex = MOCK_ARTICLES.findIndex(a => a.id === article.id);
   
-  // Prev/Next Logic
+  // Prev/Next Logic based on global MOCK_ARTICLES
   const prevArticle = currentIndex > 0 ? MOCK_ARTICLES[currentIndex - 1] : MOCK_ARTICLES[MOCK_ARTICLES.length - 1];
   const nextArticle = currentIndex < MOCK_ARTICLES.length - 1 ? MOCK_ARTICLES[currentIndex + 1] : MOCK_ARTICLES[0];
 
   // Related Articles Logic
-  // UPDATED: Limit to 3 items as requested
   const relatedArticles = useMemo(() => {
     return MOCK_ARTICLES
-      .filter(a => a.slug !== slug)
+      .filter(a => a.id !== article.id) // Filter by ID is safer
       .slice(0, 3);
-  }, [slug]);
+  }, [article.id]);
 
   // 2. States
   const [scrollTop, setScrollTop] = useState(0);
@@ -35,16 +35,13 @@ export const useArticleDetail = (slug: string): ArticleDetailLogic & { relatedAr
   const [activeSectionId, setActiveSectionId] = useState<string>('');
 
   // 3. Logic: Process Content & Generate TOC
-  // We MUST inject IDs into the HTML string so the scroll spy can find them.
   const { processedContent, toc } = useMemo(() => {
-    if (!article) return { processedContent: '', toc: [] };
-
+    // Article is guaranteed to exist now
     let content = article.content;
     const tocItems: TOCItem[] = [];
     
-    // Regex to find H3 and replace with H3 id="..."
-    // Note: detailed parsing might require a real parser, but regex works for this controlled mock data
     let index = 0;
+    // Inject IDs into H3 tags for Scroll Spy
     const newContent = content.replace(/<h3>(.*?)<\/h3>/g, (match, title) => {
         const id = `section-${index}`;
         tocItems.push({ id, text: title });
@@ -67,23 +64,18 @@ export const useArticleDetail = (slug: string): ArticleDetailLogic & { relatedAr
       
       setScrollTop(currentScroll);
       
-      // Calculate 0-100%
       const scrolled = scrollHeight > 0 ? currentScroll / scrollHeight : 0;
       setScrollProgress(scrolled);
 
-      // Shrink Hero
       setIsHeroShrunk(currentScroll > 100);
 
-      // Scroll Spy Logic for TOC
-      // We check the position of each header relative to the viewport top
-      const headerOffset = 200; // Offset to trigger active state before it hits top
+      const headerOffset = 200; 
       let currentId = '';
       
       toc.forEach((section) => {
           const element = document.getElementById(section.id);
           if (element) {
               const rect = element.getBoundingClientRect();
-              // If the element is near the top (but not too far up)
               if (rect.top < window.innerHeight / 2) {
                   currentId = section.id;
               }
@@ -97,7 +89,7 @@ export const useArticleDetail = (slug: string): ArticleDetailLogic & { relatedAr
 
     container.addEventListener('scroll', handleScroll);
     return () => container.removeEventListener('scroll', handleScroll);
-  }, [toc]); // Dependency on TOC ensures we have IDs
+  }, [toc]);
 
   // 5. Logic: Mock Comments
   const comments: CommentItem[] = [
@@ -128,10 +120,10 @@ export const useArticleDetail = (slug: string): ArticleDetailLogic & { relatedAr
 
   return {
     article,
-    processedContent, // Return the modified content
+    processedContent, 
     prevArticle,
     nextArticle,
-    relatedArticles, // Export related articles
+    relatedArticles, 
     sidebarProducts: MOCK_PRODUCTS.slice(0, 2), 
     categories,
     toc,
@@ -143,7 +135,7 @@ export const useArticleDetail = (slug: string): ArticleDetailLogic & { relatedAr
     isHeroShrunk,
     isContentExpanded,
     isCommentsOpen,
-    activeSectionId, // Return active state
+    activeSectionId, 
     
     toggleContent,
     toggleComments,

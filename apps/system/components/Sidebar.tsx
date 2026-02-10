@@ -2,18 +2,21 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useConfig, Logo } from 'ui';
 import { DICTIONARY } from 'shared';
-import { LayoutDashboard, Package, Settings, LogOut, ChevronRight, ShieldCheck } from 'lucide-react';
+import { LayoutDashboard, Package, Settings, LogOut } from 'lucide-react';
 
 export const Sidebar: React.FC<{ collapsed?: boolean }> = ({ collapsed = false }) => {
   const { language } = useConfig();
   const text = DICTIONARY[language];
+  const pathname = usePathname();
   
   const menuItems = [
-    { icon: LayoutDashboard, label: text.navDashboard, active: true },
-    { icon: Package, label: text.navInventory, active: false },
-    { icon: Settings, label: text.navSettings, active: false },
+    { icon: LayoutDashboard, label: text.navDashboard, path: '/' },
+    { icon: Package, label: text.navInventory, path: '/inventory' },
+    { icon: Settings, label: text.navSettings, path: '/settings' },
   ];
 
   return (
@@ -37,23 +40,25 @@ export const Sidebar: React.FC<{ collapsed?: boolean }> = ({ collapsed = false }
         {!collapsed && <p className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.2em] mb-3 ml-2 mt-2">Main Command</p>}
         {menuItems.map((item, idx) => {
           const Icon = item.icon;
+          const isActive = pathname === item.path;
           return (
-            <button
+            <Link
               key={idx}
+              href={item.path}
               className={`w-full flex items-center p-3 rounded-xl transition-all duration-300 group
-                ${item.active 
+                ${isActive 
                   ? 'bg-zinc-900 dark:bg-white text-white dark:text-black shadow-lg' 
                   : 'text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-white'
                 }`}
             >
-              <Icon size={18} strokeWidth={item.active ? 2.5 : 2} />
+              <Icon size={18} strokeWidth={isActive ? 2.5 : 2} />
               {!collapsed && (
                 <div className="ml-3 flex-1 flex justify-between items-center">
                   <span className="font-bold text-sm">{item.label}</span>
-                  {item.active && <div className="w-1.5 h-1.5 rounded-full bg-brand-500" />}
+                  {isActive && <div className="w-1.5 h-1.5 rounded-full bg-brand-500" />}
                 </div>
               )}
-            </button>
+            </Link>
           );
         })}
       </nav>

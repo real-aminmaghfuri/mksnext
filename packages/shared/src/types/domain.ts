@@ -6,6 +6,7 @@ export interface ProductItem {
   image: string;
   desc: string;
   tag?: string;
+  category: 'ANDROID' | 'PC' | 'PERIPHERALS'; // Added Category
 }
 
 export interface PortfolioItem {
@@ -33,10 +34,10 @@ export interface TOCItem {
 
 export interface ArticleItem {
   id: number;
-  slug: string; // Added for routing
+  slug: string;
   title: string;
   excerpt: string;
-  content: string; // Added for full body content
+  content: string;
   category: string;
   date: string;
   author: string;
@@ -45,7 +46,24 @@ export interface ArticleItem {
   isFeatured?: boolean;
 }
 
-export type IndustryTag = 'RETAIL' | 'FNB' | 'SERVICES' | 'HEALTH' | 'CORP' | 'EDU';
+export type IndustryTag = 'RETAIL' | 'FNB' | 'SERVICES' | 'HEALTH' | 'CORP' | 'EDU' | 'GOV';
+
+export type IndustrySlug = 'retail' | 'fnb' | 'services' | 'health' | 'corporate' | 'education' | 'government';
+
+export interface IndustryData {
+  slug: IndustrySlug;
+  tag: IndustryTag;
+  label: string;
+  seo: {
+    title: string;
+    description: string;
+    keywords: string[];
+  };
+  hero: {
+    title: string;
+    subtitle: string;
+  };
+}
 
 export interface SolutionItem {
   id: number;

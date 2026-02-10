@@ -1,18 +1,23 @@
+
 import { localDB } from './local-db';
 import { getSupabase, isOnline } from './remote-db';
-import { DashboardStats, Transaction } from './types';
+import { DashboardStats, Transaction, Product } from './types';
 
 const FORCE_OFFLINE = true; // Set to true for AIStudio/StackBlitz env
 
 export class Repository {
   
-  // Fetch Dashboard Stats
+  static async init() {
+    if(FORCE_OFFLINE) {
+        await localDB.seed();
+    }
+  }
+
+  // --- DASHBOARD ---
   static async getStats(): Promise<DashboardStats> {
     if (!FORCE_OFFLINE && isOnline() && getSupabase()) {
-      // Supabase logic would go here
       return { revenue: 0, orders: 0, activePos: 0 }; 
     } else {
-      // Dexie Logic
       const transactions = await localDB.transactions.toArray();
       const revenue = transactions
         .filter(t => t.status === 'COMPLETED')
@@ -21,12 +26,11 @@ export class Repository {
       return {
         revenue,
         orders: transactions.length,
-        activePos: 12 // Hardcoded for hardware demo
+        activePos: 12 
       };
     }
   }
 
-  // Fetch Recent Transactions
   static async getRecentTransactions(): Promise<Transaction[]> {
     if (!FORCE_OFFLINE && isOnline() && getSupabase()) {
        return [];
@@ -39,18 +43,20 @@ export class Repository {
     }
   }
 
-  // Create Transaction
-  static async createTransaction(data: Transaction): Promise<void> {
-    // In a real hybrid app, we would save to Dexie first, then sync to Supabase
-    await localDB.transactions.add({
-      ...data,
-      createdAt: new Date()
-    });
+  // --- INVENTORY / PRODUCTS ---
+  static async getProducts(): Promise<Product[]> {
+    return await localDB.products.toArray();
   }
 
-  static async init() {
-    if(FORCE_OFFLINE) {
-        await localDB.seed();
-    }
+  static async addProduct(product: Product): Promise<void> {
+    await localDB.products.add(product);
+  }
+
+  static async updateProduct(id: number, product: Partial<Product>): Promise<void> {
+    await localDB.products.update(id, product);
+  }
+
+  static async deleteProduct(id: number): Promise<void> {
+    await localDB.products.delete(id);
   }
 }

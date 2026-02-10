@@ -1,8 +1,10 @@
 
 "use client";
 import React from 'react';
+import Link from 'next/link';
 import { FilterType } from '../types';
 import { ShoppingBag, Coffee, Scissors, Activity, Factory, GraduationCap, LayoutGrid } from 'lucide-react';
+import { INDUSTRY_DICTIONARY, IndustryData } from 'shared';
 
 interface IndustryFilterProps {
   filters: {
@@ -15,7 +17,7 @@ interface IndustryFilterProps {
     edu: string;
   };
   activeFilter: FilterType;
-  onFilterChange: (tag: FilterType) => void;
+  onFilterChange?: (tag: FilterType) => void;
 }
 
 export const IndustryFilterAtom: React.FC<IndustryFilterProps> = ({ filters, activeFilter, onFilterChange }) => {
@@ -30,6 +32,16 @@ export const IndustryFilterAtom: React.FC<IndustryFilterProps> = ({ filters, act
     { id: 'EDU', label: filters.edu, icon: GraduationCap },
   ];
 
+  // Helper to resolve URL path based on Filter ID using the centralized dictionary
+  const getHref = (id: FilterType) => {
+    if (id === 'ALL') return '/solutions';
+    
+    // Find the matching dictionary entry by tag
+    // Explicitly casting Object.values result to IndustryData[] to avoid 'unknown' type error
+    const entry = (Object.values(INDUSTRY_DICTIONARY) as IndustryData[]).find(item => item.tag === id);
+    return entry ? `/solutions/${entry.slug}` : '/solutions';
+  };
+
   return (
     <div className="sticky top-20 z-40 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800">
       <div className="container mx-auto px-6 py-4 overflow-x-auto custom-scrollbar">
@@ -37,11 +49,15 @@ export const IndustryFilterAtom: React.FC<IndustryFilterProps> = ({ filters, act
            {filterItems.map((item) => {
              const Icon = item.icon;
              const isActive = activeFilter === item.id;
+             const href = getHref(item.id);
              
              return (
-               <button
+               <Link
                  key={item.id}
-                 onClick={() => onFilterChange(item.id)}
+                 href={href}
+                 // We keep onFilterChange optionally if needed for tracking, 
+                 // but navigation is now handled by the Link href.
+                 onClick={() => onFilterChange && onFilterChange(item.id)} 
                  className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-black uppercase tracking-wide transition-all duration-300 border
                     ${isActive 
                       ? 'bg-brand-600 text-white border-brand-500 shadow-lg shadow-brand-500/25 scale-105' 
@@ -51,7 +67,7 @@ export const IndustryFilterAtom: React.FC<IndustryFilterProps> = ({ filters, act
                >
                  <Icon size={16} strokeWidth={isActive ? 2.5 : 2} />
                  {item.label}
-               </button>
+               </Link>
              );
            })}
         </div>
