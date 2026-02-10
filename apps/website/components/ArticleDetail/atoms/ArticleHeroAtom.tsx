@@ -20,8 +20,8 @@ export const ArticleHeroAtom: React.FC<ArticleHeroProps> = ({ article, scrollTop
     <>
       {/* 
         Dynamic Header Container 
-        FIX: Added 'pointer-events-none' to allow scroll events to pass through this fixed layer 
-        to the scrollable container beneath it.
+        CRITICAL FIX: 'pointer-events-none' ensures scroll events pass through this fixed layer 
+        to the body/scroll container underneath.
       */}
       <div 
         className="fixed top-0 left-0 w-full z-40 border-b border-white/10 overflow-hidden [--initial-h:50vh] md:[--initial-h:60vh] pointer-events-none"
@@ -33,9 +33,9 @@ export const ArticleHeroAtom: React.FC<ArticleHeroProps> = ({ article, scrollTop
             transition: 'background-color 0.3s, backdrop-filter 0.3s' 
         }}
       >
-        {/* Background Image */}
+        {/* Background Image - Passive */}
         <div 
-            className="absolute inset-0"
+            className="absolute inset-0 pointer-events-none"
             style={{ opacity: isCompact ? 0 : 0.6 }}
         >
            <img src={article.image} alt="Cover" className="w-full h-full object-cover" />
@@ -44,16 +44,18 @@ export const ArticleHeroAtom: React.FC<ArticleHeroProps> = ({ article, scrollTop
 
         {/* 
             Content Container 
-            FIX: Added 'pointer-events-auto' so users can still select text or interact with metadata
+            FIX: Added 'pointer-events-auto' specifically for this container so users can 
+            interact with the text/tags, but the empty space remains clickable-through.
         */}
-        <div className="container mx-auto px-6 h-full relative z-10 flex flex-col justify-end pb-8 md:pb-12 pointer-events-auto">
+        <div className="container mx-auto px-6 h-full relative z-10 flex flex-col justify-end pb-8 md:pb-12">
            
            {/* Shrunk State: Compact Title */}
            <div 
-                className="absolute left-6 top-1/2 -translate-y-1/2 flex items-center"
+                className="absolute left-6 top-1/2 -translate-y-1/2 flex items-center pointer-events-auto"
                 style={{ 
                     opacity: smallTitleOpacity,
-                    pointerEvents: smallTitleOpacity > 0.5 ? 'auto' : 'none'
+                    // Only enable pointer events when visible
+                    pointerEvents: smallTitleOpacity > 0.5 ? 'auto' : 'none' 
                 }}
            >
               <h2 className="text-lg font-black text-white uppercase tracking-tight line-clamp-1 max-w-xl">
@@ -63,10 +65,11 @@ export const ArticleHeroAtom: React.FC<ArticleHeroProps> = ({ article, scrollTop
 
            {/* Expanded State: Full Hero Info */}
            <div 
-                className="origin-bottom-left"
+                className="origin-bottom-left pointer-events-auto"
                 style={{ 
                     opacity: contentOpacity,
-                    transform: `scale(${0.9 + (contentOpacity * 0.1)}) translateY(${scrollTop * 0.5}px)`, // Parallax effect
+                    transform: `scale(${0.9 + (contentOpacity * 0.1)}) translateY(${scrollTop * 0.5}px)`, 
+                    // Only enable pointer events when visible
                     pointerEvents: contentOpacity > 0.1 ? 'auto' : 'none'
                 }}
            >
@@ -96,7 +99,7 @@ export const ArticleHeroAtom: React.FC<ArticleHeroProps> = ({ article, scrollTop
 
         {/* 
             Close Button 
-            FIX: Added 'pointer-events-auto' so the button remains clickable 
+            FIX: Needs pointer-events-auto to be clickable
         */}
         <button 
           onClick={onClose}

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "ignore-build": "cd ../.. && npx turbo-ignore website"
+    "ignore-build": "cd ../.. && ( [ -z \"$VERCEL_GIT_PREVIOUS_SHA\" ] && exit 1 || git diff --quiet $VERCEL_GIT_PREVIOUS_SHA $VERCEL_GIT_COMMIT_SHA -- apps/website packages/ui packages/shared )"
   },
   "dependencies": {
     "react": "^19.0.0",

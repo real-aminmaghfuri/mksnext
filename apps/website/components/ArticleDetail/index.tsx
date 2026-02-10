@@ -37,11 +37,10 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
     closeArticle
   } = useArticleDetail(slug);
 
-  if (!article) return null; // Or 404 Component
+  if (!article) return null; 
 
   return (
-    // FULL PAGE OVERLAY - Z-100 to cover RootLayout Navbar/Footer
-    // Attach scrollRef here to listen to the actual scrollable element
+    // FULL PAGE OVERLAY
     <div 
         ref={scrollRef}
         className="fixed inset-0 z-[100] bg-zinc-50 dark:bg-zinc-950 overflow-y-auto custom-scrollbar"
@@ -55,25 +54,28 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
           onClose={closeArticle} 
        />
 
-       {/* Spacer for Hero when not shrunk (50vh/60vh) + Buffer */}
-       {/* This spacer pushes the content down to the initial visible fold position */}
+       {/* Spacer for Hero */}
        <div className="h-[50vh] md:h-[60vh] w-full pointer-events-none" />
 
-       {/* Main Content Area - White/Dark Paper Background */}
+       {/* Main Content Area */}
        <div className="relative z-20 bg-zinc-50 dark:bg-zinc-950 min-h-screen rounded-t-[40px] -mt-10 shadow-[0_-20px_40px_rgba(0,0,0,0.1)] border-t border-zinc-200 dark:border-zinc-900">
           
           <div className="container mx-auto px-6 py-16 md:py-20 max-w-[1600px]">
-             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12">
+             {/* 
+                GRID CALIBRATION: 18% - 64% - 18% 
+                Using arbitrary values to force the exact ratio requested.
+             */}
+             <div className="grid grid-cols-1 lg:grid-cols-[18%_64%_18%] gap-8 xl:gap-12">
                 
-                {/* LEFT: ~16% (TOC & Share) - Changed from col-span-3 to 2 */}
-                <div className="hidden lg:block lg:col-span-2">
+                {/* LEFT SIDEBAR */}
+                <div className="hidden lg:block">
                    <div className="sticky top-32">
                       <ArticleTocAtom items={toc} />
                    </div>
                 </div>
 
-                {/* CENTER: ~66% (Main Content) - Changed from col-span-6 to 8 */}
-                <div className="lg:col-span-8">
+                {/* CENTER CONTENT */}
+                <div className="min-w-0"> {/* min-w-0 prevents flex/grid blowout */}
                    <ArticleContentAtom 
                       content={article.content} 
                       isExpanded={isContentExpanded} 
@@ -94,8 +96,8 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug }) => {
                    </div>
                 </div>
 
-                {/* RIGHT: ~16% (Widgets) - Changed from col-span-3 to 2 */}
-                <div className="hidden lg:block lg:col-span-2">
+                {/* RIGHT SIDEBAR */}
+                <div className="hidden lg:block">
                    <div className="sticky top-32">
                       <ArticleRightSidebarAtom 
                           categories={categories} 
