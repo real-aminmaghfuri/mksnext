@@ -96,11 +96,12 @@ export const ArticleHeroAtom: React.FC<ArticleHeroProps> = ({ article, scrollTop
 
         {/* 
             Close Button 
-            FIX: This is the ONLY interactive element in the header.
+            UPDATED: Moved up (top-4 md:top-5) to center vertically with collapsed header (80px height).
+            UPDATED: Color set to Brand Orange with White icon.
         */}
         <button 
           onClick={onClose}
-          className="absolute right-6 top-6 md:top-8 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-red-600 backdrop-blur-md flex items-center justify-center text-white transition-all hover:rotate-90 z-50 group pointer-events-auto"
+          className="absolute right-4 top-4 md:right-6 md:top-5 w-10 h-10 md:w-12 md:h-12 rounded-full bg-brand-600 hover:bg-brand-500 flex items-center justify-center text-white transition-all hover:rotate-90 z-50 group pointer-events-auto shadow-lg shadow-brand-500/30"
         >
           <X size={24} />
         </button>

@@ -21,7 +21,8 @@ export const ArticleContentAtom: React.FC<ContentProps> = ({ excerpt, content, i
          `}
        >
           {/* Description/Excerpt */}
-          <div className="mb-12 p-6 md:p-8 rounded-2xl bg-brand-600/10 dark:bg-brand-900/10 border-l-4 border-brand-500 backdrop-blur-sm">
+          {/* UPDATED: Increased opacity (bg-brand-600/20) for more vivid look */}
+          <div className="mb-12 p-6 md:p-8 rounded-2xl bg-brand-600/20 dark:bg-brand-900/40 border-l-4 border-brand-500 backdrop-blur-sm">
              <p className="text-xl md:text-2xl font-bold text-zinc-900 dark:text-white leading-relaxed italic tracking-tight">
                 "{excerpt}"
              </p>

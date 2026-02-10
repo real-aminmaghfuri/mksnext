@@ -18,12 +18,12 @@ export const useArticleDetail = (slug: string): ArticleDetailLogic & { relatedAr
   const prevArticle = currentIndex > 0 ? MOCK_ARTICLES[currentIndex - 1] : MOCK_ARTICLES[MOCK_ARTICLES.length - 1];
   const nextArticle = currentIndex < MOCK_ARTICLES.length - 1 ? MOCK_ARTICLES[currentIndex + 1] : MOCK_ARTICLES[0];
 
-  // Related Articles Logic (Simple: All except current, Limit 5)
-  // In a real app, filtering by category/tag would happen here
+  // Related Articles Logic
+  // UPDATED: Limit to 3 items as requested
   const relatedArticles = useMemo(() => {
     return MOCK_ARTICLES
       .filter(a => a.slug !== slug)
-      .slice(0, 5);
+      .slice(0, 3);
   }, [slug]);
 
   // 2. States
