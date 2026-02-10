@@ -3,7 +3,6 @@
 import React from 'react';
 import { Tag, ChevronRight, Files } from 'lucide-react';
 import { ArticleItem } from 'shared';
-import { GlassCard } from 'ui';
 import Link from 'next/link';
 
 interface RightSidebarProps {
@@ -16,40 +15,7 @@ export const ArticleRightSidebarAtom: React.FC<RightSidebarProps> = ({ categorie
   return (
     <div className="space-y-12">
        
-       {/* 1. Related Articles Widget */}
-       <div>
-          <h4 className="flex items-center gap-2 text-xs font-black text-brand-600 dark:text-brand-500 uppercase tracking-widest mb-4">
-             <Files size={14} /> Dokumen Terkait
-          </h4>
-          <div className="space-y-3">
-             {relatedArticles.map((article) => (
-                <Link href={`/articles/${article.slug}`} key={article.id} className="block group">
-                   <GlassCard variant="solid" hoverEffect className="p-2 flex gap-3 items-center bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 cursor-pointer">
-                      
-                      {/* Thumbnail */}
-                      <div className="w-12 h-12 rounded-md bg-zinc-100 dark:bg-zinc-800 overflow-hidden shrink-0 relative border border-zinc-100 dark:border-zinc-700">
-                          <img 
-                            src={article.image} 
-                            alt={article.title} 
-                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" 
-                          />
-                      </div>
-                      
-                      {/* Content */}
-                      <div className="flex-1 min-w-0">
-                          <h5 className="font-bold text-xs text-zinc-800 dark:text-zinc-200 line-clamp-2 leading-snug group-hover:text-brand-600 transition-colors">
-                              {article.title}
-                          </h5>
-                          <p className="text-[9px] text-zinc-400 mt-1 font-bold uppercase">{article.category}</p>
-                      </div>
-
-                   </GlassCard>
-                </Link>
-             ))}
-          </div>
-       </div>
-
-       {/* 2. Categories */}
+       {/* 1. Categories (MOVED TO TOP) */}
        <div>
           <h4 className="flex items-center gap-2 text-xs font-black text-brand-600 dark:text-brand-500 uppercase tracking-widest mb-3">
              <Tag size={14} /> Kategori Intel
@@ -65,6 +31,42 @@ export const ArticleRightSidebarAtom: React.FC<RightSidebarProps> = ({ categorie
                    </span>
                    <ChevronRight size={14} className="text-zinc-300 group-hover:text-brand-500 transition-colors" />
                 </button>
+             ))}
+          </div>
+       </div>
+
+       {/* 2. Related Articles Widget (MOVED DOWN & STYLED MINIMALLY) */}
+       <div>
+          <h4 className="flex items-center gap-2 text-xs font-black text-brand-600 dark:text-brand-500 uppercase tracking-widest mb-4">
+             <Files size={14} /> Dokumen Terkait
+          </h4>
+          <div className="space-y-6">
+             {relatedArticles.map((article) => (
+                <Link href={`/articles/${article.slug}`} key={article.id} className="block group">
+                   {/* Removed GlassCard container. Using clean flex layout. */}
+                   <div className="flex gap-4 items-start">
+                      
+                      {/* Thumbnail */}
+                      <div className="w-20 h-14 rounded-lg bg-zinc-100 dark:bg-zinc-800 overflow-hidden shrink-0 relative border border-zinc-200 dark:border-zinc-800 group-hover:border-brand-500/50 transition-colors">
+                          <img 
+                            src={article.image} 
+                            alt={article.title} 
+                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" 
+                          />
+                      </div>
+                      
+                      {/* Content */}
+                      <div className="flex-1 min-w-0 py-0.5">
+                          <h5 className="font-bold text-sm text-zinc-800 dark:text-zinc-200 line-clamp-2 leading-snug group-hover:text-brand-600 transition-colors mb-1.5">
+                              {article.title}
+                          </h5>
+                          <p className="text-[10px] text-zinc-400 font-bold uppercase tracking-wide flex items-center gap-2">
+                              {article.category}
+                          </p>
+                      </div>
+
+                   </div>
+                </Link>
              ))}
           </div>
        </div>

@@ -20,7 +20,7 @@ export const ArticleContentAtom: React.FC<ContentProps> = ({ excerpt, content, i
             ${isExpanded ? '' : 'max-h-[600px] overflow-hidden'}
          `}
        >
-          {/* UPDATED: Description/Excerpt moved here */}
+          {/* Description/Excerpt */}
           <div className="mb-12 p-6 md:p-8 rounded-2xl bg-brand-600/10 dark:bg-brand-900/10 border-l-4 border-brand-500 backdrop-blur-sm">
              <p className="text-xl md:text-2xl font-bold text-zinc-900 dark:text-white leading-relaxed italic tracking-tight">
                 "{excerpt}"
@@ -29,12 +29,14 @@ export const ArticleContentAtom: React.FC<ContentProps> = ({ excerpt, content, i
 
           <div 
              className="
-                space-y-8 text-zinc-700 dark:text-zinc-300 leading-loose
+                space-y-8 text-zinc-700 dark:text-zinc-300 leading-relaxed
                 
-                [&>p]:text-lg [&>p]:md:text-xl [&>p]:font-medium [&>p]:text-zinc-600 [&>p]:dark:text-zinc-300
+                /* UPDATED: Paragraph size matches Hero Description (text-lg lg:text-xl) */
+                [&>p]:text-lg [&>p]:lg:text-xl [&>p]:font-medium [&>p]:text-zinc-600 [&>p]:dark:text-zinc-300 [&>p]:leading-relaxed
+                
                 [&>p.lead]:text-2xl [&>p.lead]:font-bold [&>p.lead]:text-zinc-900 [&>p.lead]:dark:text-white [&>p.lead]:leading-snug
                 
-                /* UPDATED H3 STYLING: Gradient Text */
+                /* H3 Styling: Gradient Text */
                 [&>h3]:text-2xl [&>h3]:md:text-3xl [&>h3]:font-black 
                 [&>h3]:mt-12 [&>h3]:mb-4 [&>h3]:uppercase [&>h3]:tracking-tight
                 [&>h3]:text-transparent [&>h3]:bg-clip-text [&>h3]:bg-gradient-to-r [&>h3]:from-brand-600 [&>h3]:to-red-600
