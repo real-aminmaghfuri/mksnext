@@ -12,7 +12,7 @@ interface HeroArticleProps {
 export const HeroArticleAtom: React.FC<HeroArticleProps> = ({ article }) => {
   return (
     <Link href={`/articles/${article.slug}`}>
-        <div className="relative w-full h-[500px] md:h-[600px] rounded-3xl overflow-hidden mb-16 group cursor-pointer shadow-2xl">
+        <div className="relative w-full h-[500px] md:h-[600px] rounded-3xl overflow-hidden mb-16 group cursor-pointer shadow-2xl bg-zinc-900">
         {/* Background Image - Optimized for LCP */}
         <Image 
             src={article.image} 
