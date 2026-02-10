@@ -12,9 +12,6 @@ interface ArticleHeroProps {
 
 export const ArticleHeroAtom: React.FC<ArticleHeroProps> = ({ article, scrollTop, onClose }) => {
   // Logic: Calculate thresholds for opacity transitions
-  // We want the big content to fade out quickly as we scroll (0 to 300px)
-  // We want the small title to fade in after we have shrunk significantly (200px+)
-  
   const contentOpacity = Math.max(0, 1 - scrollTop / 300);
   const smallTitleOpacity = Math.min(1, Math.max(0, (scrollTop - 300) / 100));
   const isCompact = scrollTop > 300;
@@ -23,12 +20,11 @@ export const ArticleHeroAtom: React.FC<ArticleHeroProps> = ({ article, scrollTop
     <>
       {/* 
         Dynamic Header Container 
-        - Uses CSS variable --initial-h to handle responsive heights (50vh mobile, 60vh desktop)
-        - height uses calc() to subtract scrollTop from initial height, clamped to 80px min.
-        - This creates the perfect "fold" effect synchronized with scroll.
+        FIX: Added 'pointer-events-none' to allow scroll events to pass through this fixed layer 
+        to the scrollable container beneath it.
       */}
       <div 
-        className="fixed top-0 left-0 w-full z-40 border-b border-white/10 overflow-hidden [--initial-h:50vh] md:[--initial-h:60vh]"
+        className="fixed top-0 left-0 w-full z-40 border-b border-white/10 overflow-hidden [--initial-h:50vh] md:[--initial-h:60vh] pointer-events-none"
         style={{
             height: `max(80px, calc(var(--initial-h) - ${scrollTop}px))`,
             backgroundColor: isCompact ? 'rgba(0,0,0,0.9)' : '#000',
@@ -37,7 +33,7 @@ export const ArticleHeroAtom: React.FC<ArticleHeroProps> = ({ article, scrollTop
             transition: 'background-color 0.3s, backdrop-filter 0.3s' 
         }}
       >
-        {/* Background Image (Fades out based on scroll) */}
+        {/* Background Image */}
         <div 
             className="absolute inset-0"
             style={{ opacity: isCompact ? 0 : 0.6 }}
@@ -46,8 +42,11 @@ export const ArticleHeroAtom: React.FC<ArticleHeroProps> = ({ article, scrollTop
            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/50 to-transparent" />
         </div>
 
-        {/* Content Container */}
-        <div className="container mx-auto px-6 h-full relative z-10 flex flex-col justify-end pb-8 md:pb-12">
+        {/* 
+            Content Container 
+            FIX: Added 'pointer-events-auto' so users can still select text or interact with metadata
+        */}
+        <div className="container mx-auto px-6 h-full relative z-10 flex flex-col justify-end pb-8 md:pb-12 pointer-events-auto">
            
            {/* Shrunk State: Compact Title */}
            <div 
@@ -95,10 +94,13 @@ export const ArticleHeroAtom: React.FC<ArticleHeroProps> = ({ article, scrollTop
            </div>
         </div>
 
-        {/* Close Button - Always Fixed Right */}
+        {/* 
+            Close Button 
+            FIX: Added 'pointer-events-auto' so the button remains clickable 
+        */}
         <button 
           onClick={onClose}
-          className="absolute right-6 top-6 md:top-8 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-red-600 backdrop-blur-md flex items-center justify-center text-white transition-all hover:rotate-90 z-50 group"
+          className="absolute right-6 top-6 md:top-8 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-red-600 backdrop-blur-md flex items-center justify-center text-white transition-all hover:rotate-90 z-50 group pointer-events-auto"
         >
           <X size={24} />
         </button>
