@@ -1,6 +1,7 @@
 
 import { ArticleItem } from '../types';
 import { DATA_SOURCE } from './articles-data';
+import { PILLAR_HTML } from './pillar-content';
 
 // Re-export for compatibility
 export { ARTICLE_CATEGORIES, AUTHORS } from './articles-data';
@@ -24,5 +25,6 @@ function getDummyContent(): string {
 // --- MAIN MOCK EXPORT ---
 export const MOCK_ARTICLES: ArticleItem[] = DATA_SOURCE.map(item => ({
   ...item,
-  content: getDummyContent()
+  // Inject the Pillar HTML if ID is 13, otherwise use dummy
+  content: item.id === 13 ? PILLAR_HTML : getDummyContent()
 }));

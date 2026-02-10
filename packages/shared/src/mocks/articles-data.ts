@@ -12,6 +12,18 @@ export const AUTHORS = {
 
 export const DATA_SOURCE = [
   {
+    id: 13,
+    slug: "blue-print-ritel-barbar",
+    title: "Blue-Print Ritel Barbar: Kitab Suci Manajemen Toko Modern 2025",
+    excerpt: "Panduan brutal & lengkap ngebangun sistem ritel dari nol. Dari manajemen stok gudang, sistem kasir anti-maling, sampai strategi ekspansi tanpa kehilangan kendali.",
+    category: ARTICLE_CATEGORIES.MANAJEMEN,
+    date: "01 Nov 2024",
+    author: AUTHORS.FOUNDER,
+    readTime: "15 MIN READ",
+    image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=800",
+    isFeatured: true
+  },
+  {
     id: 1,
     slug: "rahasia-psikologi-harga",
     title: "Kenapa Toko Sebelah Lebih Rame? Ini Rahasia Psikologi Harga Mereka",
@@ -21,7 +33,7 @@ export const DATA_SOURCE = [
     author: AUTHORS.FOUNDER,
     readTime: "5 MIN READ",
     image: "https://images.unsplash.com/photo-1556740758-90de2742eefc?auto=format&fit=crop&q=80&w=800",
-    isFeatured: true
+    isFeatured: false
   },
   {
     id: 2,
