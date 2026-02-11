@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build --no-lint",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "ignore-build": "echo 'Proceeding with build...' && exit 1"
+    "lint": "next lint"
   },
   "dependencies": {
     "react": "^19.0.0",
