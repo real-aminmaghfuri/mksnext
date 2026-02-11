@@ -13,6 +13,10 @@ import { Portfolio_EN } from './modules/portfolio';
 import { Blog_EN } from './modules/blog';
 import { Contact_EN } from './modules/contact';
 import { Footer_EN } from './modules/footer';
+import { Retail_EN } from './modules/retail';
+import { WebApp_EN } from './modules/webapp';
+import { WebCompro_EN } from './modules/web-compro';
+import { WebStore_EN } from './modules/web-store';
 
 export const EN_DICTIONARY: Translation = {
   ...Hero_EN,
@@ -30,4 +34,8 @@ export const EN_DICTIONARY: Translation = {
   ...Blog_EN,
   ...Contact_EN,
   ...Footer_EN,
+  ...Retail_EN,
+  ...WebApp_EN,
+  ...WebCompro_EN,
+  ...WebStore_EN,
 };

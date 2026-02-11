@@ -43,5 +43,6 @@ export interface WebAppContent {
     title: string;
     sub: string;
     btn: string;
+    message: string;
   };
 }

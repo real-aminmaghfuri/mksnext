@@ -13,7 +13,7 @@ export const WebAppService: React.FC = () => {
   const content = useWebApp();
 
   return (
-    <section className="min-h-screen bg-black text-white">
+    <section className="min-h-screen bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white transition-colors duration-500">
       <WebAppHeroAtom content={content.hero} />
       <WebAppProblemAtom content={content.problems} />
       <WebAppStackAtom content={content.stack} />

@@ -12,7 +12,7 @@ export const CompanyProfile: React.FC = () => {
   const content = useCompanyProfile();
 
   return (
-    <section className="min-h-screen bg-zinc-50 dark:bg-black transition-colors duration-500">
+    <section className="min-h-screen bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white transition-colors duration-500">
       <ProfileHeroAtom content={content.hero} />
       <ProfileRealityAtom content={content.reality} />
       <ProfileFeaturesAtom content={content.features} />

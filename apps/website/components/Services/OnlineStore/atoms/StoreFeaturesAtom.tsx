@@ -14,7 +14,7 @@ interface StoreFeaturesProps {
 
 export const StoreFeaturesAtom: React.FC<StoreFeaturesProps> = ({ content }) => {
   return (
-    <div className="py-24 bg-zinc-50 dark:bg-black relative">
+    <div className="py-24 bg-zinc-50 dark:bg-zinc-950 relative transition-colors duration-500">
        <div className="container mx-auto px-6 relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16">
              <h2 className="text-3xl md:text-5xl font-black text-zinc-900 dark:text-white uppercase tracking-tighter mb-6">
@@ -40,7 +40,7 @@ export const StoreFeaturesAtom: React.FC<StoreFeaturesProps> = ({ content }) => 
                         {/* Icon Container with Gradient Border */}
                         <div className="w-14 h-14 mb-6 relative">
                             <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 opacity-100" />
-                            <div className="absolute inset-[2px] rounded-[14px] bg-zinc-100 dark:bg-zinc-800 group-hover:bg-emerald-600 transition-colors duration-300 flex items-center justify-center">
+                            <div className="absolute inset-[2px] rounded-[14px] bg-white dark:bg-zinc-800 group-hover:bg-emerald-600 transition-colors duration-300 flex items-center justify-center">
                                 <Icon size={28} strokeWidth={1.5} className="text-emerald-600 dark:text-emerald-500 group-hover:text-white transition-colors duration-300" />
                             </div>
                         </div>

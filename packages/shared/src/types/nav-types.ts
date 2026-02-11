@@ -37,6 +37,7 @@ export interface NavDictionary {
   navTechCompro: string;
   navTechEcom: string;
   navTechCustom: string;
+  navTechCustomDesc: string;
 
   // Business Solutions
   navBizHeader: string;

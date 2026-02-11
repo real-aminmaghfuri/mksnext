@@ -14,7 +14,7 @@ interface ProfileFeaturesProps {
 
 export const ProfileFeaturesAtom: React.FC<ProfileFeaturesProps> = ({ content }) => {
   return (
-    <div className="py-24 bg-zinc-50 dark:bg-black relative">
+    <div className="py-24 bg-zinc-50 dark:bg-black relative transition-colors duration-500">
        {/* Subtle background glow for the section */}
        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-full bg-brand-500/5 blur-[100px] pointer-events-none" />
 
@@ -47,7 +47,7 @@ export const ProfileFeaturesAtom: React.FC<ProfileFeaturesProps> = ({ content })
                             <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand-500 to-red-600 opacity-100" />
                             
                             {/* 2. Inner Content (Background Mask) */}
-                            <div className="absolute inset-[2px] rounded-[14px] bg-zinc-100 dark:bg-zinc-800 group-hover:bg-brand-600 transition-colors duration-300 flex items-center justify-center">
+                            <div className="absolute inset-[2px] rounded-[14px] bg-white dark:bg-zinc-800 group-hover:bg-brand-600 transition-colors duration-300 flex items-center justify-center">
                                 {/* Icon */}
                                 <Icon size={28} strokeWidth={1.5} className="text-brand-600 dark:text-brand-500 group-hover:text-white transition-colors duration-300" />
                             </div>
@@ -56,7 +56,7 @@ export const ProfileFeaturesAtom: React.FC<ProfileFeaturesProps> = ({ content })
                         <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3 uppercase tracking-tight">
                             {item.title}
                         </h3>
-                        <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed font-medium">
+                        <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-medium">
                             {item.desc}
                         </p>
                       </div>

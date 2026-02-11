@@ -1,78 +1,83 @@
 
 "use client";
 
+import { useConfig } from 'ui';
+import { DICTIONARY } from 'shared';
 import { 
   ShoppingCart, Truck, CreditCard, Smartphone, 
-  BarChart3, Zap, Globe, Lock 
+  BarChart3, Zap, Globe 
 } from 'lucide-react';
 import { StoreContent } from './types';
 
 export const useOnlineStore = (): StoreContent => {
+  const { language } = useConfig();
+  const text = DICTIONARY[language];
+
   return {
     hero: {
-      badge: "E-COMMERCE AUTO PILOT",
-      title: "Toko Buka 24 Jam,",
-      titleSpan: "Lo Tidur Duit Masuk.",
-      sub: "Masih jualan via WA manual? Capek jempol, Bos! Gue bikinin mesin otomatis biar orderan masuk sendiri, ongkir kehitung sendiri, duit masuk rekening sendiri. Lo tinggal packing.",
+      badge: text.wsHeroBadge,
+      title: text.wsHeroTitle,
+      titleSpan: text.wsHeroTitleSpan,
+      sub: text.wsHeroSub,
     },
     painPoints: {
-      title: "STOP JADI KULI CHAT",
-      sub: "Coba itung berapa jam waktu lo kebuang cuma buat balesin 'Ongkir ke Bekasi berapa gan?' atau 'Barang ready gak?'. Ini bedanya nasib lo kalau upgrade:",
+      title: text.wsPainTitle,
+      sub: text.wsPainSub,
       comparisons: [
-        { manual: "Balesin chat satu-satu sampai jempol keriting.", auto: "Customer checkout sendiri 24 jam nonstop." },
-        { manual: "Cek ongkir manual buka tutup aplikasi ekspedisi.", auto: "Ongkir otomatis kehitung (JNE, J&T, SiCepat, dll)." },
-        { manual: "Rekapan order di buku tulis/Excel manual.", auto: "Laporan omzet & stok real-time di dashboard." },
-        { manual: "Transfer manual, kudu cek mutasi satu-satu.", auto: "Payment Gateway (QRIS/VA) konfirmasi otomatis." },
+        { manual: text.wsPainManual1, auto: text.wsPainAuto1 },
+        { manual: text.wsPainManual2, auto: text.wsPainAuto2 },
+        { manual: text.wsPainManual3, auto: text.wsPainAuto3 },
+        { manual: text.wsPainManual4, auto: text.wsPainAuto4 },
       ]
     },
     features: {
-      title: "SENJATA JUALAN OTOMATIS",
-      sub: "Sistem yang gue bangun bukan sekadar katalog pajangan. Ini mesin transaksi full power.",
+      title: text.wsFeatureTitle,
+      sub: text.wsFeatureSub,
       items: [
         {
-          title: "Raja Ongkir Pro",
-          desc: "Integrasi API logistik level dewa. Cek ongkir otomatis se-Indonesia sampai level kecamatan.",
+          title: text.wsFeature1Title,
+          desc: text.wsFeature1Desc,
           icon: Truck
         },
         {
-          title: "Payment Gateway",
-          desc: "Terima duit via QRIS, Virtual Account, E-Wallet, sampai Kartu Kredit. Keliatan bonafide, Bos.",
+          title: text.wsFeature2Title,
+          desc: text.wsFeature2Desc,
           icon: CreditCard
         },
         {
-          title: "App-Like Experience",
-          desc: "Tampilan di HP licin kayak aplikasi native. Gak perlu install, loading ngebut.",
+          title: text.wsFeature3Title,
+          desc: text.wsFeature3Desc,
           icon: Smartphone
         },
         {
-          title: "Live Dashboard",
-          desc: "Pantau omzet hari ini, produk terlaris, dan data pelanggan sambil ngopi.",
+          title: text.wsFeature4Title,
+          desc: text.wsFeature4Desc,
           icon: BarChart3
         },
         {
-          title: "SEO E-Commerce",
-          desc: "Produk lo gampang ditemuin di Google. Struktur data schema product udah gue tanem.",
+          title: text.wsFeature5Title,
+          desc: text.wsFeature5Desc,
           icon: Globe
         },
         {
-          title: "Stok Otomatis",
-          desc: "Barang laku, stok berkurang sendiri. Gak ada lagi drama 'Maaf kak barang habis' setelah transfer.",
+          title: text.wsFeature6Title,
+          desc: text.wsFeature6Desc,
           icon: Zap
         }
       ]
     },
     steps: {
-      title: "CARA KERJA MESIN UANG",
+      title: text.wsStepTitle,
       steps: [
-        { num: "01", title: "Setup Produk", desc: "Upload foto, deskripsi, harga, dan berat barang di admin panel yang gampang banget." },
-        { num: "02", title: "Sebar Link", desc: "Taruh link web di Bio IG, TikTok, atau Broadcast WA. Biarin trafik masuk." },
-        { num: "03", title: "Panen Order", desc: "Lo dapet notifikasi order masuk. Tinggal cetak label pengiriman, tempel, kirim." }
+        { num: "01", title: text.wsStep1Title, desc: text.wsStep1Desc },
+        { num: "02", title: text.wsStep2Title, desc: text.wsStep2Desc },
+        { num: "03", title: text.wsStep3Title, desc: text.wsStep3Desc }
       ]
     },
     cta: {
-      title: "Pensiun Jadi Admin",
-      sub: "Mulai jadi Owner beneran. Biarin sistem yang kerja keras, lo fokus mikirin strategi ekspansi.",
-      btn: "BIKIN TOKO OTOMATIS SEKARANG"
+      title: text.wsCtaTitle,
+      sub: text.wsCtaSub,
+      btn: text.wsCtaBtn
     }
   };
 };

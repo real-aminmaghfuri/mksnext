@@ -13,6 +13,10 @@ import { Portfolio_ID } from './modules/portfolio';
 import { Blog_ID } from './modules/blog';
 import { Contact_ID } from './modules/contact';
 import { Footer_ID } from './modules/footer';
+import { Retail_ID } from './modules/retail';
+import { WebApp_ID } from './modules/webapp';
+import { WebCompro_ID } from './modules/web-compro';
+import { WebStore_ID } from './modules/web-store';
 
 export const ID_DICTIONARY: Translation = {
   ...Hero_ID,
@@ -30,4 +34,8 @@ export const ID_DICTIONARY: Translation = {
   ...Blog_ID,
   ...Contact_ID,
   ...Footer_ID,
+  ...Retail_ID,
+  ...WebApp_ID,
+  ...WebCompro_ID,
+  ...WebStore_ID,
 };

@@ -11,7 +11,7 @@ interface StoreStepProps {
 
 export const StoreStepAtom: React.FC<StoreStepProps> = ({ content }) => {
   return (
-    <div className="py-24 bg-white dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800 relative">
+    <div className="py-24 bg-white dark:bg-black border-t border-zinc-200 dark:border-zinc-800 relative transition-colors duration-500">
         <div className="container mx-auto px-6 relative z-10">
             <h2 className="text-3xl md:text-5xl font-black text-center text-zinc-900 dark:text-white uppercase tracking-tighter mb-16">
                 {content.title}
@@ -26,7 +26,7 @@ export const StoreStepAtom: React.FC<StoreStepProps> = ({ content }) => {
                         )}
                         
                         <div className="relative z-10 text-center px-4">
-                            <div className="w-16 h-16 mx-auto rounded-full bg-zinc-100 dark:bg-zinc-900 border-4 border-white dark:border-black flex items-center justify-center text-xl font-black text-zinc-300 dark:text-zinc-700 group-hover:text-emerald-500 group-hover:border-emerald-500 transition-all duration-300 mb-6 shadow-xl">
+                            <div className="w-16 h-16 mx-auto rounded-full bg-zinc-50 dark:bg-zinc-900 border-4 border-white dark:border-black flex items-center justify-center text-xl font-black text-zinc-300 dark:text-zinc-700 group-hover:text-emerald-500 group-hover:border-emerald-500 transition-all duration-300 mb-6 shadow-xl">
                                 {step.num}
                             </div>
                             <h3 className="text-xl font-black text-zinc-900 dark:text-white uppercase tracking-tight mb-4">

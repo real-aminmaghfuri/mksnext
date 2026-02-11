@@ -13,7 +13,7 @@ export const OnlineStore: React.FC = () => {
   const content = useOnlineStore();
 
   return (
-    <section className="min-h-screen bg-zinc-50 dark:bg-black transition-colors duration-500">
+    <section className="min-h-screen bg-zinc-50 dark:bg-black transition-colors duration-500 text-zinc-900 dark:text-white">
       <StoreHeroAtom content={content.hero} />
       <StorePainPointsAtom content={content.painPoints} />
       <StoreFeaturesAtom content={content.features} />

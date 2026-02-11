@@ -13,7 +13,7 @@ interface ProfileRealityProps {
 
 export const ProfileRealityAtom: React.FC<ProfileRealityProps> = ({ content }) => {
   return (
-    <div className="py-24 bg-red-50 dark:bg-red-950/10 relative overflow-hidden border-y border-red-100 dark:border-red-900/20">
+    <div className="py-24 bg-red-50 dark:bg-red-950/10 relative overflow-hidden border-y border-red-100 dark:border-red-900/20 transition-colors duration-500">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,rgba(220,38,38,0.05)_0%,transparent_70%)] pointer-events-none" />
         
         <div className="container mx-auto px-6 relative z-10">
@@ -32,6 +32,7 @@ export const ProfileRealityAtom: React.FC<ProfileRealityProps> = ({ content }) =
                     </p>
                 </div>
 
+                {/* Card Adaptive: White in Light, Black in Dark */}
                 <div className="bg-white dark:bg-black p-8 rounded-3xl border border-red-200 dark:border-red-900/30 shadow-xl relative overflow-hidden">
                     {/* Dramatic Red Glow inside card */}
                     <div className="absolute top-0 right-0 w-64 h-64 bg-red-600/5 rounded-full blur-[60px] pointer-events-none" />
@@ -42,7 +43,7 @@ export const ProfileRealityAtom: React.FC<ProfileRealityProps> = ({ content }) =
                                 <div className="p-1 rounded-full bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-500 mt-1 shrink-0">
                                     <XCircle size={20} />
                                 </div>
-                                <p className="text-zinc-700 dark:text-zinc-300 font-bold text-lg leading-tight">
+                                <p className="text-zinc-800 dark:text-zinc-300 font-bold text-lg leading-tight">
                                     {point}
                                 </p>
                             </li>

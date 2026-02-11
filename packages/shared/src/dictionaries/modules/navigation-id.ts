@@ -33,6 +33,7 @@ export const Navigation_ID: NavDictionary = {
   navTechCompro: "Web Company Profile",
   navTechEcom: "Web Toko Online",
   navTechCustom: "Web Custom / Sistem",
+  navTechCustomDesc: "Sistem Manajemen Custom",
 
   navBizHeader: "SOLUSI BISNIS",
   navIndRetail: "Retail & Grosir",

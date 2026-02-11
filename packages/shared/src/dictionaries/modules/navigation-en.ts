@@ -33,6 +33,7 @@ export const Navigation_EN: NavDictionary = {
   navTechCompro: "Company Profile Website",
   navTechEcom: "Online Store Website",
   navTechCustom: "Custom Web App / System",
+  navTechCustomDesc: "Custom Management System",
 
   navBizHeader: "BUSINESS SOLUTIONS",
   navIndRetail: "Retail & Wholesale",

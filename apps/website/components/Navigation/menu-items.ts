@@ -48,14 +48,14 @@ export const getServicesMenu = (text: Translation): MenuItem => ({
       items: [
         { label: text.navTechCompro, path: '/services/company-profile', icon: Globe, desc: "Branding Perusahaan & SEO" },
         { label: text.navTechEcom, path: '/services/online-store', icon: ShoppingCart, desc: "Sistem Toko Online Auto-Pilot" },
-        { label: "Web Aplikasi / Sistem", path: '/services/web-app', icon: Code, desc: "Sistem Manajemen Custom" },
+        { label: text.navTechCustom, path: '/services/web-app', icon: Code, desc: text.navTechCustomDesc },
       ]
     },
     {
       title: text.navBizHeader,
       width: 'wide',
       items: [
-        { label: text.navIndRetail, path: '/solutions?tag=RETAIL', icon: ShoppingBag, desc: "Minimarket, Fashion, Grosir" },
+        { label: text.navIndRetail, path: '/solutions/retail', icon: ShoppingBag, desc: "Minimarket, Fashion, Grosir" },
         { label: text.navIndFnb, path: '/solutions?tag=FNB', icon: Coffee, desc: "Cafe, Resto, Franchise" },
         { label: text.navIndService, path: '/solutions?tag=SERVICES', icon: Scissors, desc: "Barbershop, Laundry, Bengkel" },
         { label: text.navIndHealth, path: '/solutions?tag=HEALTH', icon: Activity, desc: "Apotek & Klinik" },
