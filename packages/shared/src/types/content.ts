@@ -333,6 +333,8 @@ export interface WebStoreDictionary {
   wsHeroSub: string;
   wsPainTitle: string;
   wsPainSub: string;
+  wsPainManualTitle: string;
+  wsPainAutoTitle: string;
   wsPainManual1: string;
   wsPainAuto1: string;
   wsPainManual2: string;
@@ -367,6 +369,31 @@ export interface WebStoreDictionary {
   wsCtaBtn: string;
 }
 
+export interface FnbDictionary {
+  fnbHeroBadge: string;
+  fnbHeroTitle: string;
+  fnbHeroTitleSpan: string;
+  fnbHeroSub: string;
+  fnbPainTitle: string;
+  fnbPainSub: string;
+  fnbPain1: string;
+  fnbPain2: string;
+  fnbPain3: string;
+  fnbSolTitle: string;
+  fnbSolSub: string;
+  fnbFeature1Title: string;
+  fnbFeature1Desc: string;
+  fnbFeature2Title: string;
+  fnbFeature2Desc: string;
+  fnbFeature3Title: string;
+  fnbFeature3Desc: string;
+  fnbFeature4Title: string;
+  fnbFeature4Desc: string;
+  fnbCtaTitle: string;
+  fnbCtaSub: string;
+  fnbCtaBtn: string;
+}
+
 export interface Translation extends 
   HeroDictionary,
   DashboardDictionary,
@@ -386,5 +413,6 @@ export interface Translation extends
   RetailDictionary,
   WebAppDictionary,
   WebComproDictionary,
-  WebStoreDictionary
+  WebStoreDictionary,
+  FnbDictionary
 {}

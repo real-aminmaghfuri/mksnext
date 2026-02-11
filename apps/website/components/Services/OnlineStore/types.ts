@@ -22,6 +22,8 @@ export interface StoreContent {
   painPoints: {
     title: string;
     sub: string;
+    manualTitle: string;
+    autoTitle: string;
     comparisons: ComparisonItem[];
   };
   features: {

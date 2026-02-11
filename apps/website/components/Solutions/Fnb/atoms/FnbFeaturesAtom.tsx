@@ -1,18 +1,18 @@
 
 "use client";
 import React from 'react';
-import { RetailFeature } from '../types';
+import { FnbFeature } from '../types';
 import { GlassCard } from 'ui';
 
-interface RetailSystemProps {
+interface FnbFeaturesProps {
   content: {
     title: string;
     sub: string;
-    features: RetailFeature[];
+    features: FnbFeature[];
   }
 }
 
-export const RetailSystemAtom: React.FC<RetailSystemProps> = ({ content }) => {
+export const FnbFeaturesAtom: React.FC<FnbFeaturesProps> = ({ content }) => {
   return (
     <div className="py-24 bg-zinc-50 dark:bg-black relative transition-colors duration-500">
        <div className="container mx-auto px-6 relative z-10">
@@ -32,9 +32,9 @@ export const RetailSystemAtom: React.FC<RetailSystemProps> = ({ content }) => {
                    <GlassCard 
                         key={idx} 
                         variant="solid" 
-                        className="p-8 bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 hover:border-red-500/50 hover:shadow-2xl hover:shadow-red-900/20 transition-all duration-500 group flex items-start gap-6"
+                        className="p-8 bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 hover:border-orange-500/50 hover:shadow-2xl hover:shadow-orange-900/20 transition-all duration-500 group flex items-start gap-6"
                    >
-                      <div className="w-16 h-16 shrink-0 rounded-2xl bg-red-50 dark:bg-red-900/20 flex items-center justify-center text-red-600 dark:text-red-500 border border-red-200 dark:border-red-800 group-hover:bg-red-600 group-hover:text-white transition-colors duration-300 group-hover:border-red-500">
+                      <div className="w-16 h-16 shrink-0 rounded-2xl bg-orange-50 dark:bg-orange-900/20 flex items-center justify-center text-orange-600 dark:text-orange-500 border border-orange-200 dark:border-orange-800 group-hover:bg-orange-600 group-hover:text-white transition-colors duration-300 group-hover:border-orange-500">
                           <Icon size={32} strokeWidth={1.5} />
                       </div>
                       <div>

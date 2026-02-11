@@ -17,6 +17,7 @@ import { Retail_EN } from './modules/retail';
 import { WebApp_EN } from './modules/webapp';
 import { WebCompro_EN } from './modules/web-compro';
 import { WebStore_EN } from './modules/web-store';
+import { Fnb_EN } from './modules/fnb';
 
 export const EN_DICTIONARY: Translation = {
   ...Hero_EN,
@@ -38,4 +39,5 @@ export const EN_DICTIONARY: Translation = {
   ...WebApp_EN,
   ...WebCompro_EN,
   ...WebStore_EN,
+  ...Fnb_EN,
 };

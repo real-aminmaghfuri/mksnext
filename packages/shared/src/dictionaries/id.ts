@@ -17,6 +17,7 @@ import { Retail_ID } from './modules/retail';
 import { WebApp_ID } from './modules/webapp';
 import { WebCompro_ID } from './modules/web-compro';
 import { WebStore_ID } from './modules/web-store';
+import { Fnb_ID } from './modules/fnb';
 
 export const ID_DICTIONARY: Translation = {
   ...Hero_ID,
@@ -38,4 +39,5 @@ export const ID_DICTIONARY: Translation = {
   ...WebApp_ID,
   ...WebCompro_ID,
   ...WebStore_ID,
+  ...Fnb_ID,
 };

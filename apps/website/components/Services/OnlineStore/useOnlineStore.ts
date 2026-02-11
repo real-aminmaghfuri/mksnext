@@ -23,6 +23,8 @@ export const useOnlineStore = (): StoreContent => {
     painPoints: {
       title: text.wsPainTitle,
       sub: text.wsPainSub,
+      manualTitle: text.wsPainManualTitle,
+      autoTitle: text.wsPainAutoTitle,
       comparisons: [
         { manual: text.wsPainManual1, auto: text.wsPainAuto1 },
         { manual: text.wsPainManual2, auto: text.wsPainAuto2 },

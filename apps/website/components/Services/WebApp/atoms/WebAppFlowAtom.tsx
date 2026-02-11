@@ -25,7 +25,7 @@ export const WebAppFlowAtom: React.FC<WebAppFlowProps> = ({ content }) => {
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                     {content.steps.map((step, idx) => (
                         <div key={idx} className="relative z-10 bg-white dark:bg-zinc-950 lg:bg-transparent p-6 lg:p-0 rounded-2xl border border-zinc-200 dark:border-zinc-800 lg:border-none shadow-sm lg:shadow-none">
-                            <div className="w-16 h-16 rounded-full bg-zinc-100 dark:bg-zinc-900 border-4 border-white dark:border-zinc-800 flex items-center justify-center text-xl font-black text-zinc-400 dark:text-zinc-500 mb-6 mx-auto group-hover:text-blue-600 dark:group-hover:text-blue-500 group-hover:border-blue-500 transition-colors shadow-lg relative">
+                            <div className="w-16 h-16 rounded-full bg-blue-50 dark:bg-blue-900/10 border-4 border-blue-100 dark:border-blue-900/30 flex items-center justify-center text-xl font-black text-blue-600 dark:text-blue-400 mb-6 mx-auto group-hover:scale-110 transition-transform shadow-lg relative">
                                 {step.num}
                                 {idx < content.steps.length - 1 && (
                                     <div className="lg:hidden absolute bottom-[-40px] left-1/2 w-1 h-8 bg-zinc-100 dark:bg-zinc-800 -translate-x-1/2" />

@@ -56,7 +56,7 @@ export const getServicesMenu = (text: Translation): MenuItem => ({
       width: 'wide',
       items: [
         { label: text.navIndRetail, path: '/solutions/retail', icon: ShoppingBag, desc: "Minimarket, Fashion, Grosir" },
-        { label: text.navIndFnb, path: '/solutions?tag=FNB', icon: Coffee, desc: "Cafe, Resto, Franchise" },
+        { label: text.navIndFnb, path: '/solutions/fnb', icon: Coffee, desc: "Cafe, Resto, Franchise" },
         { label: text.navIndService, path: '/solutions?tag=SERVICES', icon: Scissors, desc: "Barbershop, Laundry, Bengkel" },
         { label: text.navIndHealth, path: '/solutions?tag=HEALTH', icon: Activity, desc: "Apotek & Klinik" },
         { label: text.navIndEdu, path: '/solutions?tag=EDU', icon: School, desc: "Pendidikan & Sekolah" },

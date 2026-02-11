@@ -8,6 +8,8 @@ interface StorePainPointsProps {
   content: {
     title: string;
     sub: string;
+    manualTitle: string;
+    autoTitle: string;
     comparisons: ComparisonItem[];
   }
 }
@@ -38,7 +40,9 @@ export const StorePainPointsAtom: React.FC<StorePainPointsProps> = ({ content })
                     <div className="absolute top-0 right-0 p-4 opacity-5 dark:opacity-10">
                         <XCircle size={120} className="text-red-500" />
                     </div>
-                    <h3 className="text-2xl font-black text-red-600 dark:text-red-500 uppercase mb-8 tracking-tight">Cara Kuno (Manual)</h3>
+                    <h3 className="text-2xl font-black text-red-600 dark:text-red-500 uppercase mb-8 tracking-tight">
+                        {content.manualTitle}
+                    </h3>
                     <ul className="space-y-6 relative z-10">
                         {content.comparisons.map((item, idx) => (
                             <li key={idx} className="flex items-start gap-4 opacity-70 group-hover:opacity-100 transition-opacity">
@@ -56,7 +60,9 @@ export const StorePainPointsAtom: React.FC<StorePainPointsProps> = ({ content })
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     
-                    <h3 className="text-2xl font-black text-emerald-600 dark:text-emerald-500 uppercase mb-8 tracking-tight">Cara MKS (Auto-Pilot)</h3>
+                    <h3 className="text-2xl font-black text-emerald-600 dark:text-emerald-500 uppercase mb-8 tracking-tight">
+                        {content.autoTitle}
+                    </h3>
                     <ul className="space-y-6 relative z-10">
                         {content.comparisons.map((item, idx) => (
                             <li key={idx} className="flex items-start gap-4">
