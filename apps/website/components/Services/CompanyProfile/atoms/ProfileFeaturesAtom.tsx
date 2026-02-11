@@ -41,9 +41,18 @@ export const ProfileFeaturesAtom: React.FC<ProfileFeaturesProps> = ({ content })
                       <div className="absolute inset-0 bg-gradient-to-br from-brand-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                       
                       <div className="relative z-10">
-                        <div className="w-14 h-14 rounded-2xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors text-zinc-900 dark:text-white duration-300">
-                            <Icon size={28} strokeWidth={1.5} />
+                        {/* Icon Container with Gradient Border */}
+                        <div className="w-14 h-14 mb-6 relative">
+                            {/* 1. Gradient Border (Outer Layer) */}
+                            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand-500 to-red-600 opacity-100" />
+                            
+                            {/* 2. Inner Content (Background Mask) */}
+                            <div className="absolute inset-[2px] rounded-[14px] bg-zinc-100 dark:bg-zinc-800 group-hover:bg-brand-600 transition-colors duration-300 flex items-center justify-center">
+                                {/* Icon */}
+                                <Icon size={28} strokeWidth={1.5} className="text-brand-600 dark:text-brand-500 group-hover:text-white transition-colors duration-300" />
+                            </div>
                         </div>
+
                         <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3 uppercase tracking-tight">
                             {item.title}
                         </h3>
