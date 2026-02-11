@@ -48,7 +48,7 @@ export const getServicesMenu = (text: Translation): MenuItem => ({
       items: [
         { label: text.navTechCompro, path: '/services/company-profile', icon: Globe, desc: "Branding Perusahaan & SEO" },
         { label: text.navTechEcom, path: '/services/online-store', icon: ShoppingCart, desc: "Sistem Toko Online Auto-Pilot" },
-        { label: text.navTechCustom, path: '/services', icon: Code, desc: "Web Apps & Sistem Custom" },
+        { label: "Web Aplikasi / Sistem", path: '/services/web-app', icon: Code, desc: "Sistem Manajemen Custom" },
       ]
     },
     {
