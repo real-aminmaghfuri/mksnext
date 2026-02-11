@@ -3,17 +3,20 @@
 
 import { useMemo, useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { MOCK_ARTICLES, MOCK_PRODUCTS, TOCItem, CommentItem, ArticleItem } from 'shared';
+import { MOCK_ARTICLES, MOCK_PRODUCTS, TOCItem, CommentItem, ArticleItem, DICTIONARY } from 'shared';
 import { ArticleDetailLogic } from './types';
+import { useConfig } from 'ui';
 
 // CLEANUP: Hook now strictly expects processed content and TOC from server
 export const useArticleDetail = (
   article: ArticleItem, 
   processedContent: string, 
   toc: TOCItem[]
-): ArticleDetailLogic & { relatedArticles: ArticleItem[] } => {
+): ArticleDetailLogic & { relatedArticles: ArticleItem[], text: any } => {
   const router = useRouter();
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { language } = useConfig();
+  const text = DICTIONARY[language];
   
   // 1. Data Logic
   const currentIndex = MOCK_ARTICLES.findIndex(a => a.id === article.id);
@@ -36,9 +39,6 @@ export const useArticleDetail = (
   const [isContentExpanded, setIsContentExpanded] = useState(false);
   const [isCommentsOpen, setIsCommentsOpen] = useState(false);
   const [activeSectionId, setActiveSectionId] = useState<string>('');
-
-  // REMOVED: Expensive regex parsing logic. 
-  // We trust `processedContent` and `toc` passed from Server Component.
 
   // 3. Logic: Scroll Listener on Container (Spy)
   useEffect(() => {
@@ -117,6 +117,7 @@ export const useArticleDetail = (
     categories,
     toc, // Passthrough
     comments,
+    text, // Exposed for Sidebar
     
     scrollRef,
     scrollTop,

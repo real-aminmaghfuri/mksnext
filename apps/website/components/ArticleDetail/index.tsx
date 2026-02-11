@@ -11,6 +11,7 @@ import { ArticleContentAtom } from './atoms/ArticleContentAtom';
 import { ArticleRightSidebarAtom } from './atoms/ArticleRightSidebarAtom';
 import { ArticleRelatedAtom } from './atoms/ArticleRelatedAtom';
 import { ArticleCommentsAtom } from './atoms/ArticleCommentsAtom';
+import { ArticleSubscribeWidget } from './atoms/ArticleSubscribeWidget';
 
 // Strict Interface ensuring we receive the processed data
 interface ArticleDetailProps {
@@ -26,9 +27,9 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ article, processed
     prevArticle, 
     nextArticle, 
     relatedArticles, 
-    categories, 
     toc,
     comments,
+    text,
     
     scrollRef,
     scrollTop,
@@ -70,13 +71,14 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ article, processed
              */}
              <div className="grid grid-cols-1 lg:grid-cols-[18fr_64fr_18fr] gap-8 xl:gap-12">
                 
-                {/* LEFT SIDEBAR: TOC Only */}
+                {/* LEFT SIDEBAR: TOC + SUBSCRIBE */}
                 <div className="hidden lg:block">
-                   <div className="sticky top-32">
+                   <div className="sticky top-32 space-y-10">
                       <ArticleTocAtom 
                         items={toc} 
                         activeId={activeSectionId} 
                       />
+                      <ArticleSubscribeWidget />
                    </div>
                 </div>
 
@@ -103,11 +105,12 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ article, processed
                    </div>
                 </div>
 
-                {/* RIGHT SIDEBAR: Categories + Related Articles */}
+                {/* RIGHT SIDEBAR: Search + Categories + Related */}
                 <div className="hidden lg:block">
                    <div className="sticky top-32">
                       <ArticleRightSidebarAtom 
-                          categories={categories} 
+                          text={text}
+                          currentCategory={article.category}
                           relatedArticles={relatedArticles}
                       />
                    </div>
