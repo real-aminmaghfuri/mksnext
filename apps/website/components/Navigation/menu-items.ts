@@ -46,7 +46,7 @@ export const getServicesMenu = (text: Translation): MenuItem => ({
       title: text.navTechHeader,
       width: 'narrow',
       items: [
-        { label: text.navTechCompro, path: '/services', icon: Globe, desc: "Branding Perusahaan & SEO" },
+        { label: text.navTechCompro, path: '/services/company-profile', icon: Globe, desc: "Branding Perusahaan & SEO" },
         { label: text.navTechEcom, path: '/services', icon: ShoppingCart, desc: "Sistem Toko Online Auto-Pilot" },
         { label: text.navTechCustom, path: '/services', icon: Code, desc: "Web Apps & Sistem Custom" },
       ]
