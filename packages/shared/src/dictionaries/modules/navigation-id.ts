@@ -43,6 +43,7 @@ export const Navigation_ID: NavDictionary = {
   navIndEdu: "Pendidikan & Sekolah",
   navIndGov: "Birokrasi & Desa",
   navIndCorp: "Corporate & Pabrik",
+  navIndFranchise: "Franchise & Kemitraan",
   navIndAll: "Lihat Semua Industri",
   
   navHwBundle: "Paket Mesin Kasir",

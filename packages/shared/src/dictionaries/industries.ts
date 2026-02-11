@@ -99,6 +99,20 @@ export const INDUSTRY_DICTIONARY: Record<IndustrySlug, IndustryData> = {
       title: 'BIROKRASI SAT-SET',
       subtitle: 'Pelayanan publik gak boleh lelet. Digitalisasi data warga dan aset daerah untuk transparansi dan kecepatan layanan.',
     }
+  },
+  franchise: {
+    slug: 'franchise',
+    tag: 'FRANCHISE',
+    label: 'Franchise & Kemitraan',
+    seo: {
+      title: 'Sistem Manajemen Franchise & Kemitraan | MKS',
+      description: 'Sistem kontrol pusat untuk bisnis franchise. Pantau omzet mitra real-time, kunci stok bahan baku, dan hitung royalti otomatis.',
+      keywords: ['sistem franchise', 'aplikasi kemitraan', 'software franchise', 'manajemen royalti'],
+    },
+    hero: {
+      title: 'SISTEM KOMANDO FRANCHISE',
+      subtitle: 'Satu dashboard untuk ratusan cabang. Pastikan mitra taat SOP, bahan baku terkontrol, dan royalti aman masuk kantong.',
+    }
   }
 };
 

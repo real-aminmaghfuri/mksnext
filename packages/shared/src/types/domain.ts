@@ -46,9 +46,9 @@ export interface ArticleItem {
   isFeatured?: boolean;
 }
 
-export type IndustryTag = 'RETAIL' | 'FNB' | 'SERVICES' | 'HEALTH' | 'CORP' | 'EDU' | 'GOV';
+export type IndustryTag = 'RETAIL' | 'FNB' | 'SERVICES' | 'HEALTH' | 'CORP' | 'EDU' | 'GOV' | 'FRANCHISE';
 
-export type IndustrySlug = 'retail' | 'fnb' | 'services' | 'health' | 'corporate' | 'education' | 'government';
+export type IndustrySlug = 'retail' | 'fnb' | 'services' | 'health' | 'corporate' | 'education' | 'government' | 'franchise';
 
 export interface IndustryData {
   slug: IndustrySlug;

@@ -48,6 +48,7 @@ export interface NavDictionary {
   navIndEdu: string;
   navIndGov: string;
   navIndCorp: string;
+  navIndFranchise: string; // Added Franchise
   navIndAll: string;
   
   // Hardware Menu

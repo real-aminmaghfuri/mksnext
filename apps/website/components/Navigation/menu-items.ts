@@ -5,7 +5,7 @@ import {
   Activity, School, Building2, Factory, LayoutGrid, 
   Package, Tablet, Monitor, Calculator, Scan, Scroll, 
   Inbox, Armchair, Grid, Mouse, FileText, Lock, 
-  HelpCircle, Download, Truck, AlertTriangle 
+  HelpCircle, Download, Truck, AlertTriangle, Network
 } from 'lucide-react';
 import { Translation } from 'shared';
 import { MenuItem } from './types';
@@ -57,11 +57,12 @@ export const getServicesMenu = (text: Translation): MenuItem => ({
       items: [
         { label: text.navIndRetail, path: '/solutions/retail', icon: ShoppingBag, desc: "Minimarket, Fashion, Grosir" },
         { label: text.navIndFnb, path: '/solutions/fnb', icon: Coffee, desc: "Cafe, Resto, Franchise" },
-        { label: text.navIndService, path: '/solutions?tag=SERVICES', icon: Scissors, desc: "Barbershop, Laundry, Bengkel" },
-        { label: text.navIndHealth, path: '/solutions?tag=HEALTH', icon: Activity, desc: "Apotek & Klinik" },
-        { label: text.navIndEdu, path: '/solutions?tag=EDU', icon: School, desc: "Pendidikan & Sekolah" },
-        { label: text.navIndGov, path: '/solutions?tag=GOV', icon: Building2, desc: "Birokrasi & Desa" },
-        { label: text.navIndCorp, path: '/solutions?tag=CORP', icon: Factory, desc: "Gudang & Pabrik" },
+        { label: text.navIndFranchise, path: '/solutions/franchise', icon: Network, desc: "Kemitraan & Cabang" },
+        { label: text.navIndService, path: '/solutions/services', icon: Scissors, desc: "Barbershop, Laundry, Bengkel" },
+        { label: text.navIndHealth, path: '/solutions/health', icon: Activity, desc: "Apotek & Klinik" },
+        { label: text.navIndEdu, path: '/solutions/education', icon: School, desc: "Pendidikan & Sekolah" },
+        { label: text.navIndGov, path: '/solutions/government', icon: Building2, desc: "Birokrasi & Desa" },
+        { label: text.navIndCorp, path: '/solutions/corporate', icon: Factory, desc: "Gudang & Pabrik" },
         { label: text.navIndAll, path: '/solutions', icon: LayoutGrid, desc: "Lihat Semua Industri" },
       ]
     }

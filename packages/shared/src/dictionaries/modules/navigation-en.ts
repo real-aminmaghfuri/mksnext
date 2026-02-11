@@ -43,6 +43,7 @@ export const Navigation_EN: NavDictionary = {
   navIndEdu: "Education & School",
   navIndGov: "Government & Village",
   navIndCorp: "Corporate & Factory",
+  navIndFranchise: "Franchise & Partnership",
   navIndAll: "View All Industries",
 
   navHwBundle: "POS Bundle",

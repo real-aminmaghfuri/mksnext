@@ -18,6 +18,12 @@ import { WebApp_ID } from './modules/webapp';
 import { WebCompro_ID } from './modules/web-compro';
 import { WebStore_ID } from './modules/web-store';
 import { Fnb_ID } from './modules/fnb';
+import { ServiceBusiness_ID } from './modules/service-business';
+import { Health_ID } from './modules/health';
+import { Education_ID } from './modules/education';
+import { Government_ID } from './modules/government';
+import { Corporate_ID } from './modules/corporate';
+import { Franchise_ID } from './modules/franchise';
 
 export const ID_DICTIONARY: Translation = {
   ...Hero_ID,
@@ -40,4 +46,10 @@ export const ID_DICTIONARY: Translation = {
   ...WebCompro_ID,
   ...WebStore_ID,
   ...Fnb_ID,
+  ...ServiceBusiness_ID,
+  ...Health_ID,
+  ...Education_ID,
+  ...Government_ID,
+  ...Corporate_ID,
+  ...Franchise_ID,
 };

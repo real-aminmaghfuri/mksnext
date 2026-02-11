@@ -18,6 +18,12 @@ import { WebApp_EN } from './modules/webapp';
 import { WebCompro_EN } from './modules/web-compro';
 import { WebStore_EN } from './modules/web-store';
 import { Fnb_EN } from './modules/fnb';
+import { ServiceBusiness_EN } from './modules/service-business';
+import { Health_EN } from './modules/health';
+import { Education_EN } from './modules/education';
+import { Government_EN } from './modules/government';
+import { Corporate_EN } from './modules/corporate';
+import { Franchise_EN } from './modules/franchise';
 
 export const EN_DICTIONARY: Translation = {
   ...Hero_EN,
@@ -40,4 +46,10 @@ export const EN_DICTIONARY: Translation = {
   ...WebCompro_EN,
   ...WebStore_EN,
   ...Fnb_EN,
+  ...ServiceBusiness_EN,
+  ...Health_EN,
+  ...Education_EN,
+  ...Government_EN,
+  ...Corporate_EN,
+  ...Franchise_EN,
 };
