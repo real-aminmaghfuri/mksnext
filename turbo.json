@@ -1,9 +1,11 @@
+
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
+      "inputs": ["app/**", "components/**", "lib/**", "public/**", "package.json", "next.config.js", "tsconfig.json"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
     "lint": {},
