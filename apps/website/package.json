@@ -4,15 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run ignore-build",
-    "ignore-build": "NEXT_IGNORE_ESLINT=1 NEXT_IGNORE_TYPECHECK=1 next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "latest",
+    "next": "15.1.7",
     "lucide-react": "^0.563.0",
     "shared": "*",
     "ui": "*"
@@ -26,6 +25,6 @@
     "tailwindcss": "^3.4.0",
     "autoprefixer": "^10.0.0",
     "eslint": "^9.0.0",
-    "eslint-config-next": "latest"
+    "eslint-config-next": "15.1.7"
   }
 }
