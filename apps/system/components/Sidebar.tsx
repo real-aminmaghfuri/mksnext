@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useConfig, Logo } from 'ui';
 import { DICTIONARY } from 'shared';
-import { LayoutDashboard, Package, Settings, LogOut } from 'lucide-react';
+import { LayoutDashboard, Package, Settings, LogOut, PenTool } from 'lucide-react';
 
 export const Sidebar: React.FC<{ collapsed?: boolean }> = ({ collapsed = false }) => {
   const { language } = useConfig();
@@ -16,6 +16,8 @@ export const Sidebar: React.FC<{ collapsed?: boolean }> = ({ collapsed = false }
   const menuItems = [
     { icon: LayoutDashboard, label: text.navDashboard, path: '/' },
     { icon: Package, label: text.navInventory, path: '/inventory' },
+    // New Menu Item
+    { icon: PenTool, label: 'AI Writer', path: '/writer' },
     { icon: Settings, label: text.navSettings, path: '/settings' },
   ];
 
