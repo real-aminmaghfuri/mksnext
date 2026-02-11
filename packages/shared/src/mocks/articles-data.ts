@@ -12,6 +12,18 @@ export const AUTHORS = {
 
 export const DATA_SOURCE = [
   {
+    id: 14,
+    slug: "forensik-keuangan-ritel",
+    title: "Forensik Keuangan Ritel: Melacak Kebocoran Duit yang Bikin Lo Miskin Pelan-Pelan",
+    excerpt: "Duit masuk kenceng tapi saldo kosong? Gue bongkar cara audit forensik buat nangkep tuyul digital, kasir nakal, dan kebocoran gudang.",
+    category: ARTICLE_CATEGORIES.MANAJEMEN,
+    date: "05 Nov 2024",
+    author: AUTHORS.FOUNDER,
+    readTime: "20 MIN READ",
+    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=800",
+    isFeatured: true
+  },
+  {
     id: 13,
     slug: "blue-print-ritel-barbar",
     title: "Blue-Print Ritel Barbar: Kitab Suci Manajemen Toko Modern 2025",
