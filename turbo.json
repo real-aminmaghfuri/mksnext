@@ -5,7 +5,21 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "inputs": ["app/**", "components/**", "lib/**", "public/**", "package.json", "next.config.js", "tsconfig.json"],
+      "inputs": [
+        "app/**",
+        "components/**",
+        "lib/**",
+        "utils/**",
+        "hooks/**",
+        "contexts/**",
+        "public/**",
+        "package.json",
+        "next.config.js",
+        "tsconfig.json",
+        "tailwind.config.ts",
+        "postcss.config.js",
+        ".eslintrc.json"
+      ],
       "outputs": [".next/**", "!.next/cache/**"]
     },
     "lint": {},
