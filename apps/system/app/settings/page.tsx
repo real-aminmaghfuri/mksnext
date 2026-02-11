@@ -16,15 +16,18 @@ import {
   ShoppingBag, 
   LayoutGrid, 
   Map, 
-  Pin 
+  Pin,
+  AlertOctagon,
+  Power
 } from 'lucide-react';
 
 export default function SettingsPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   
-  // State Simulation (In real app, fetch this from DB)
-  const [visibility, setVisibility] = useState('PUBLIC'); // PUBLIC or STEALTH
+  // State Simulation (Real app fetches this from DB/Edge Config)
+  const [maintenanceMode, setMaintenanceMode] = useState(false); 
+  const [visibility, setVisibility] = useState('PUBLIC'); 
   const [config, setConfig] = useState({
     gsc: '',
     ga4: '',
@@ -42,10 +45,10 @@ export default function SettingsPage() {
 
   const handleSave = () => {
     setIsSaving(true);
-    // Simulate API Call
+    // Simulate API Call to update Env Var or DB
     setTimeout(() => {
       setIsSaving(false);
-      alert("Konfigurasi Protokol Berhasil Diperbarui!");
+      alert(maintenanceMode ? "LOCKDOWN PROTOCOL ACTIVATED!" : "SYSTEM ONLINE. PUBLIC ACCESS GRANTED.");
     }, 1500);
   };
 
@@ -69,11 +72,54 @@ export default function SettingsPage() {
             
             <div className="max-w-5xl mx-auto space-y-8">
                 
-                {/* 1. VISIBILITY CONTROL (THE CLOAKING DEVICE) */}
+                {/* 0. EMERGENCY LOCKDOWN (MAINTENANCE) */}
+                <section className="p-1 rounded-3xl bg-gradient-to-r from-red-600 to-orange-600 shadow-2xl">
+                    <div className="bg-zinc-900 rounded-[22px] p-6 md:p-8 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 p-8 opacity-10">
+                            <AlertOctagon size={120} className="text-red-500" />
+                        </div>
+                        
+                        <div className="flex flex-col md:flex-row items-start md:items-center justify-between relative z-10 gap-6">
+                            <div>
+                                <h3 className="text-2xl font-black text-white uppercase tracking-tighter flex items-center gap-3">
+                                    <AlertOctagon className="text-red-500" /> Lockdown Protocol
+                                </h3>
+                                <p className="text-zinc-400 mt-2 max-w-xl text-sm leading-relaxed">
+                                    Aktifkan mode ini untuk menutup akses publik ke website (apps/website). 
+                                    Pengunjung akan dialihkan ke halaman <strong>Maintenance</strong>. 
+                                    Gunakan saat deploy fitur besar atau perbaikan bug kritis.
+                                </p>
+                            </div>
+
+                            <div className="flex items-center gap-4 bg-black/40 p-2 rounded-2xl border border-white/5">
+                                <span className={`text-xs font-black uppercase tracking-widest ${maintenanceMode ? 'text-zinc-500' : 'text-emerald-500'}`}>
+                                    {maintenanceMode ? 'OFFLINE' : 'ONLINE'}
+                                </span>
+                                <button 
+                                    onClick={() => setMaintenanceMode(!maintenanceMode)}
+                                    className={`relative w-16 h-8 rounded-full transition-colors duration-300 flex items-center px-1 shadow-inner
+                                        ${maintenanceMode ? 'bg-red-600' : 'bg-zinc-700'}
+                                    `}
+                                >
+                                    <div className={`w-6 h-6 rounded-full bg-white shadow-lg transition-transform duration-300 flex items-center justify-center
+                                        ${maintenanceMode ? 'translate-x-8' : 'translate-x-0'}
+                                    `}>
+                                        <Power size={12} className={maintenanceMode ? 'text-red-600' : 'text-zinc-900'} strokeWidth={3} />
+                                    </div>
+                                </button>
+                                <span className={`text-xs font-black uppercase tracking-widest ${maintenanceMode ? 'text-red-500 animate-pulse' : 'text-zinc-500'}`}>
+                                    {maintenanceMode ? 'MAINTENANCE' : 'STANDBY'}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* 1. VISIBILITY CONTROL (SEO) */}
                 <section>
                     <div className="flex items-center gap-3 mb-4">
                         <Globe size={20} className="text-brand-600" />
-                        <h3 className="text-sm font-black uppercase tracking-widest text-zinc-500">Global Visibility Status</h3>
+                        <h3 className="text-sm font-black uppercase tracking-widest text-zinc-500">SEO Visibility Status</h3>
                     </div>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -90,7 +136,7 @@ export default function SettingsPage() {
                                 {visibility === 'PUBLIC' && <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_10px_#10b981]" />}
                             </div>
                             <h4 className={`text-lg font-black uppercase tracking-tight mb-1 ${visibility === 'PUBLIC' ? 'text-emerald-600 dark:text-emerald-400' : 'text-zinc-600 dark:text-zinc-400'}`}>
-                                Live Operations
+                                Indexing On
                             </h4>
                             <p className="text-xs font-medium text-zinc-500">
                                 Website terlihat oleh semua mesin pencari (Google, Bing, dll). Robots.txt: Allow All.
@@ -262,7 +308,7 @@ export default function SettingsPage() {
                         className="w-full md:w-auto shadow-2xl shadow-brand-500/40 font-black tracking-widest uppercase"
                         disabled={isSaving}
                     >
-                        {isSaving ? 'UPLOADING CONFIG...' : <><Save size={18} className="mr-2" /> SIMPAN KONFIGURASI</>}
+                        {isSaving ? 'UPLOADING...' : <><Save size={18} className="mr-2" /> UPDATE PROTOKOL</>}
                     </Button>
                 </div>
 
