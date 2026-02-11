@@ -7,8 +7,8 @@ import { MobileNav } from '../../components/MobileNav';
 import { DashboardHeaderAtom } from '../../components/Dashboard/atoms/DashboardHeaderAtom';
 import { GoogleGenAI } from "@google/genai";
 import { AI_SYSTEM_PROMPT } from 'shared';
-import { Button, GlassCard } from 'ui';
-import { Sparkles, Copy, Check, Terminal } from 'lucide-react';
+import { Button } from 'ui';
+import { Sparkles, Copy, Check, Terminal, AlertTriangle } from 'lucide-react';
 
 export default function WriterPage() {
   const [topic, setTopic] = useState('');
@@ -25,12 +25,14 @@ export default function WriterPage() {
   const handleGenerate = async () => {
     if (!topic) return;
     setIsGenerating(true);
-    setGeneratedHtml(''); // Reset previous
+    setGeneratedHtml(''); 
 
     try {
-      // Initialize Gemini Client
-      // Note: In production, API Key should be handled securely (e.g. Server Action)
-      // Here we assume environment access for the demo scope
+      // Use process.env.API_KEY which is mapped from GEMINI_API_KEY_1 in next.config.js
+      if (!process.env.API_KEY) {
+        throw new Error("Kunci Jawaban (API KEY) belum dipasang di Vercel, Bos!");
+      }
+
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       
       const response = await ai.models.generateContent({
@@ -42,17 +44,17 @@ export default function WriterPage() {
             }
         ],
         config: {
-            systemInstruction: AI_SYSTEM_PROMPT, // THE BRAIN: Injecting our Standard
-            temperature: 0.8, // High creativity for "Barbar" style
+            systemInstruction: AI_SYSTEM_PROMPT, 
+            temperature: 0.8, 
         }
       });
 
       if (response.response.text()) {
         setGeneratedHtml(response.response.text());
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("AI Error:", error);
-      setGeneratedHtml("<p class='text-red-500 font-bold'>Error connecting to Neural Network. Check API Key or Signal.</p>");
+      setGeneratedHtml(`<div class="p-4 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-xl font-bold flex items-center gap-3"><AlertTriangle/> ERROR: ${error.message || "Gagal connect ke neural network."}</div>`);
     } finally {
       setIsGenerating(false);
     }
@@ -70,7 +72,6 @@ export default function WriterPage() {
   return (
     <div className="flex h-screen bg-zinc-50 dark:bg-luxury-dark text-zinc-900 dark:text-white overflow-hidden">
       
-      {/* Main Area */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
          <DashboardHeaderAtom 
             title="AI INTEL WRITER"
