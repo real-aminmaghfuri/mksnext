@@ -1,3 +1,4 @@
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   transpilePackages: ["ui", "shared"],
@@ -11,9 +12,6 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
   },
   typescript: {
     ignoreBuildErrors: true,
