@@ -71,14 +71,13 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ article, processed
              */}
              <div className="grid grid-cols-1 lg:grid-cols-[18fr_64fr_18fr] gap-8 xl:gap-12">
                 
-                {/* LEFT SIDEBAR: TOC + SUBSCRIBE */}
+                {/* LEFT SIDEBAR: TOC Only */}
                 <div className="hidden lg:block">
                    <div className="sticky top-32 space-y-10">
                       <ArticleTocAtom 
                         items={toc} 
                         activeId={activeSectionId} 
                       />
-                      <ArticleSubscribeWidget />
                    </div>
                 </div>
 
@@ -105,14 +104,17 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({ article, processed
                    </div>
                 </div>
 
-                {/* RIGHT SIDEBAR: Search + Categories + Related */}
+                {/* RIGHT SIDEBAR: Related Articles + Subscribe */}
                 <div className="hidden lg:block">
-                   <div className="sticky top-32">
+                   <div className="sticky top-32 space-y-8">
                       <ArticleRightSidebarAtom 
                           text={text}
                           currentCategory={article.category}
                           relatedArticles={relatedArticles}
                       />
+                      
+                      {/* Moved Subscribe Widget Here */}
+                      <ArticleSubscribeWidget />
                    </div>
                 </div>
 
