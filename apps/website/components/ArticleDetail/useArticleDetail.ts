@@ -29,7 +29,7 @@ export const useArticleDetail = (
   const relatedArticles = useMemo(() => {
     return MOCK_ARTICLES
       .filter(a => a.id !== article.id)
-      .slice(0, 5); // CHANGED: Increased to 5 articles
+      .slice(0, 4); // CHANGED: Reduced to 4 articles as requested
   }, [article.id]);
 
   // 2. States
