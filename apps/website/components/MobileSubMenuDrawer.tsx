@@ -24,7 +24,7 @@ interface GridItemProps {
 
 const GridItem: React.FC<GridItemProps> = ({ item, onClose, index }) => {
   const Icon = item.icon;
-  // Pick color based on index modulus
+  // Pick color based on index modulus to cycle through palette
   const themeClass = colorPalette[index % colorPalette.length];
 
   return (
@@ -99,8 +99,12 @@ export const MobileSubMenuDrawer: React.FC<MobileSubMenuDrawerProps> = ({ isOpen
                                     </h4>
                                 </div>
                                 
-                                {/* Responsive Grid: 4 cols mobile, 5 cols tablet (sm+) */}
-                                <div className="grid grid-cols-4 sm:grid-cols-5 gap-4">
+                                {/* 
+                                   GRID LOGIC UPDATE:
+                                   - Mobile default: 4 cols
+                                   - Min width 500px (Small Tablet Portrait): 5 cols
+                                */}
+                                <div className="grid grid-cols-4 min-[500px]:grid-cols-5 gap-4">
                                     {col.items.map((item, iIdx) => (
                                         <GridItem key={iIdx} item={item} onClose={onClose} index={iIdx + (idx * 10)} />
                                     ))}
@@ -110,8 +114,7 @@ export const MobileSubMenuDrawer: React.FC<MobileSubMenuDrawerProps> = ({ isOpen
                     </div>
                 ) : (
                     /* Layout 2: Flat List (Standard) */
-                    // Responsive Grid: 4 cols mobile, 5 cols tablet (sm+)
-                    <div className="grid grid-cols-4 sm:grid-cols-5 gap-4">
+                    <div className="grid grid-cols-4 min-[500px]:grid-cols-5 gap-4">
                         {menuItem.items?.map((item, iIdx) => (
                             <GridItem key={iIdx} item={item} onClose={onClose} index={iIdx} />
                         ))}
