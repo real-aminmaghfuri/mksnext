@@ -36,10 +36,16 @@ export const ActionButtonsAtom: React.FC<ActionProps> = ({ isDark, toggleTheme, 
         </Button>
       </Link>
 
-      {/* Hamburger Menu (New): Visible on Mobile/Tablet (lg:hidden) */}
+      {/* 
+         Hamburger Menu Logic Update:
+         - hidden: Default hidden (Mobile Portrait).
+         - landscape:flex: Show on Mobile Landscape.
+         - md:flex: Show on Tablets (Portrait/Landscape).
+         - lg:hidden: Hide on Desktop (Menu is visible).
+      */}
       <button 
         onClick={onOpenMenu}
-        className="w-9 h-9 md:w-10 md:h-10 lg:hidden flex items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white transition-colors"
+        className="hidden landscape:flex md:flex lg:hidden w-9 h-9 md:w-10 md:h-10 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white transition-colors"
       >
         <Menu size={20} />
       </button>

@@ -7,31 +7,17 @@ import { getMenuStructure } from './Navigation/data';
 import { LogoAtom } from './Navigation/atoms/LogoAtom';
 import { DesktopMenuAtom } from './Navigation/atoms/DesktopMenuAtom';
 import { ActionButtonsAtom } from './Navigation/atoms/ActionButtonsAtom';
-import { MobileSubMenuDrawer } from './MobileSubMenuDrawer';
-import { MenuItem, SubMenuItem } from './Navigation/types';
-import { Grid } from 'lucide-react';
+import { LandscapeSidebar } from './Navigation/LandscapeSidebar';
 
 export const Navbar: React.FC = () => {
   // 1. Hook for Logic
   const logic = useNavbar();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+  // State for Landscape Sidebar (triggered by Hamburger)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   
   // 2. Data Generator
   const menuStructure = getMenuStructure(logic.text);
-
-  // 3. Transform Top-Level Menus into Grid Items for the Drawer
-  // This creates a synthetic "Main Menu" object that contains all top-level items as children
-  const mainMenuGrid: MenuItem = {
-    label: "MAIN MENU",
-    path: "#",
-    hasDropdown: true,
-    items: menuStructure.map((item) => ({
-        label: item.label,
-        path: item.path,
-        icon: item.icon || Grid, // Fallback icon
-        desc: "" // No description needed for top level grid
-    } as SubMenuItem))
-  };
 
   // 3. Render Composition
   return (
@@ -42,29 +28,32 @@ export const Navbar: React.FC = () => {
           {/* Particle: Brand Logo */}
           <LogoAtom />
 
-          {/* Particle: Desktop Navigation */}
+          {/* Particle: Desktop Navigation (Hidden on Tablet/Mobile) */}
           <DesktopMenuAtom 
             structure={menuStructure} 
             currentPath={logic.pathname} 
           />
 
-          {/* Particle: User Actions */}
+          {/* Particle: User Actions (Includes Hamburger Trigger) */}
           <ActionButtonsAtom 
             isDark={logic.isDark}
             language={logic.language}
             toggleTheme={logic.toggleTheme}
             toggleLang={logic.toggleLang}
-            onOpenMenu={() => setIsMobileMenuOpen(true)}
+            onOpenMenu={() => setIsSidebarOpen(true)}
           />
 
         </div>
       </nav>
 
-      {/* Mobile Main Menu Drawer (Grid Style) */}
-      <MobileSubMenuDrawer 
-        isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
-        menuItem={mainMenuGrid}
+      {/* 
+         NEW: Landscape Sidebar Component 
+         Handles navigation for Tablets & Mobile Landscape 
+      */}
+      <LandscapeSidebar 
+        isOpen={isSidebarOpen} 
+        onClose={() => setIsSidebarOpen(false)}
+        menuStructure={menuStructure}
       />
     </>
   );
