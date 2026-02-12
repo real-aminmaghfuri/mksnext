@@ -56,12 +56,12 @@ export const MobileSubMenuDrawer: React.FC<MobileSubMenuDrawerProps> = ({ isOpen
     <>
       {/* 
          Backdrop 
-         z-[60]: Sits below Nav Bar (z-70) and Drawer Content (z-65).
-         landscape:right-[80px]: Prevents covering the Right Sidebar.
+         z-[80]: High Z-Index to cover everything below (Navbar z-50, etc)
+         landscape:right-[80px]: Prevents covering the Right Sidebar (which is z-[100])
       */}
       <div 
         className={`
-            fixed inset-0 bg-black/60 z-[60] backdrop-blur-sm transition-opacity duration-300
+            fixed inset-0 bg-black/60 z-[80] backdrop-blur-sm transition-opacity duration-300
             landscape:right-[80px]
             ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}
         `}
@@ -70,11 +70,11 @@ export const MobileSubMenuDrawer: React.FC<MobileSubMenuDrawerProps> = ({ isOpen
 
       {/* 
          === PORTRAIT DRAWER (Bottom Sheet) ===
-         Visible only in portrait
+         z-[90]: Above Backdrop (80) but below Sidebar (100)
       */}
       <div 
         className={`
-            fixed z-[65] bg-white dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800 shadow-2xl transition-transform duration-300 ease-out
+            fixed z-[90] bg-white dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800 shadow-2xl transition-transform duration-300 ease-out
             bottom-0 left-0 w-full rounded-t-[32px] landscape:hidden
             ${isOpen ? 'translate-y-0' : 'translate-y-full'}
         `}
@@ -100,13 +100,11 @@ export const MobileSubMenuDrawer: React.FC<MobileSubMenuDrawerProps> = ({ isOpen
 
       {/* 
          === LANDSCAPE DRAWER (Split Side Panel) ===
-         Visible only in landscape.
-         Constraint: Full Height, 2 Columns (Header Left, Grid Right)
-         Z-Index: z-[65] to sit ABOVE the Backdrop (z-[60]).
+         z-[90]: Sits side-by-side with Sidebar (100).
       */}
       <div 
         className={`
-            fixed z-[65] top-0 right-[80px] bottom-0 w-[400px] max-w-[calc(100vw-80px)]
+            fixed z-[90] top-0 right-[80px] bottom-0 w-[400px] max-w-[calc(100vw-80px)]
             bg-white dark:bg-zinc-950 shadow-2xl border-l border-zinc-200 dark:border-zinc-800
             transition-transform duration-300 ease-out
             hidden landscape:flex flex-row overflow-hidden

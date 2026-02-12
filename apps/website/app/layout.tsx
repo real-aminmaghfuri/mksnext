@@ -10,7 +10,6 @@ import "./globals.css";
 
 const font = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
-// Updated SVG Icon Data URI with new path and MKS text
 const faviconSvg = `data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23f97316' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M 18 25 Q 50 12 82 25 L 82 48 Q 82 75 50 92 Q 18 75 18 48 Z' /%3E%3Cg transform='translate(0, 2)'%3E%3Cpath d='M 28 35 L 62 35 L 68 50 L 55 50 L 50 55 L 44 75 L 34 72 L 40 55 L 32 55 C 25 55 25 35 35 35 Z' /%3E%3Cpath d='M 35 42 L 55 42 L 52 47 L 35 47 Z' stroke-width='3' /%3E%3Cpath d='M 64 38 L 68 47' stroke-width='3' /%3E%3Cpath d='M 70 38 L 74 47' stroke-width='3' /%3E%3Cpath d='M 46 58 L 48 62' stroke-width='3' /%3E%3Ctext x='61' y='55' font-family='Arial, sans-serif' font-size='10' font-weight='bold' fill='%23f97316' stroke='none'%3EMKS%3C/text%3E%3C/g%3E%3C/svg%3E`;
 
 export const metadata: Metadata = {
@@ -28,8 +27,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // SCHEMA MARKUP (JURUS BAYANGAN)
-  // Data ini tidak terlihat user, tapi dibaca robot Google.
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -107,18 +104,19 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       {/* 
-         LAYOUT ADJUSTMENT:
-         - pb-[72px]: Default for Mobile Portrait (Space for Bottom Nav)
-         - landscape:pb-0: Reset bottom padding in landscape
-         - landscape:pr-[80px]: Add right padding in landscape (Space for Right Nav)
-         - lg:pb-0 lg:pr-0: Reset all padding for Desktop (No fixed mobile navs)
+         LAYOUT PADDING RULES (CRITICAL):
+         - Default (Portrait Mobile): pb-[72px] (Bottom Nav Space)
+         - Landscape Mobile/Tablet: pr-[80px] pb-0 (Right Sidebar Space)
+         - Desktop (XL+): pr-0 pb-0 (No Sidebar, No Bottom Nav)
+         
+         Note: xl:landscape:pr-0 is essential to reset landscape padding on big screens.
       */}
       <body className={`
         ${font.className} 
         bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white transition-colors duration-500
-        pb-[72px] landscape:pb-0 landscape:pr-[80px] lg:pb-0 lg:pr-0
+        pb-[72px] landscape:pb-0 landscape:pr-[80px] 
+        xl:pb-0 xl:pr-0 xl:landscape:pr-0
       `}>
-        {/* INJECTION SUCCESSFUL */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
