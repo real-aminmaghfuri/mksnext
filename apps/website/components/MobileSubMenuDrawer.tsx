@@ -99,8 +99,8 @@ export const MobileSubMenuDrawer: React.FC<MobileSubMenuDrawerProps> = ({ isOpen
                                     </h4>
                                 </div>
                                 
-                                {/* Responsive Grid: 4 cols mobile, 5 cols tablet (md) */}
-                                <div className="grid grid-cols-4 md:grid-cols-5 gap-4">
+                                {/* Responsive Grid: 4 cols mobile, 5 cols tablet (sm+) */}
+                                <div className="grid grid-cols-4 sm:grid-cols-5 gap-4">
                                     {col.items.map((item, iIdx) => (
                                         <GridItem key={iIdx} item={item} onClose={onClose} index={iIdx + (idx * 10)} />
                                     ))}
@@ -110,8 +110,8 @@ export const MobileSubMenuDrawer: React.FC<MobileSubMenuDrawerProps> = ({ isOpen
                     </div>
                 ) : (
                     /* Layout 2: Flat List (Standard) */
-                    // Responsive Grid: 4 cols mobile, 5 cols tablet (md)
-                    <div className="grid grid-cols-4 md:grid-cols-5 gap-4">
+                    // Responsive Grid: 4 cols mobile, 5 cols tablet (sm+)
+                    <div className="grid grid-cols-4 sm:grid-cols-5 gap-4">
                         {menuItem.items?.map((item, iIdx) => (
                             <GridItem key={iIdx} item={item} onClose={onClose} index={iIdx} />
                         ))}
