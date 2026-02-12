@@ -106,7 +106,18 @@ export default function RootLayout({
 
   return (
     <html lang="en" className="dark">
-      <body className={`${font.className} bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white transition-colors duration-500`}>
+      {/* 
+         LAYOUT ADJUSTMENT:
+         - pb-[72px]: Default for Mobile Portrait (Space for Bottom Nav)
+         - landscape:pb-0: Reset bottom padding in landscape
+         - landscape:pr-[80px]: Add right padding in landscape (Space for Right Nav)
+         - lg:pb-0 lg:pr-0: Reset all padding for Desktop (No fixed mobile navs)
+      */}
+      <body className={`
+        ${font.className} 
+        bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white transition-colors duration-500
+        pb-[72px] landscape:pb-0 landscape:pr-[80px] lg:pb-0 lg:pr-0
+      `}>
         {/* INJECTION SUCCESSFUL */}
         <script
           type="application/ld+json"

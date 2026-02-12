@@ -46,14 +46,15 @@ export const WebsiteMobileNav: React.FC = () => {
          RESPONSIVE CONTAINER:
          - Portrait: Fixed Bottom, Full Width, Height 72px
          - Landscape: Fixed RIGHT, Full Height, Width 80px. NO SCROLL.
-         - Desktop (md+): Hidden
+         - Desktop (lg+): Hidden
+         - Z-Index: 70 (Must be higher than Drawer Backdrop at 60)
       */}
       <nav className="
-        fixed z-[60] bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md border-zinc-200 dark:border-zinc-800 transition-all duration-300 shadow-2xl
+        fixed z-[70] bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md border-zinc-200 dark:border-zinc-800 transition-all duration-300 shadow-2xl
         
         /* PORTRAIT STYLES */
         bottom-0 left-0 w-full h-[72px] border-t
-        md:hidden
+        lg:hidden
         
         /* LANDSCAPE STYLES (Right Sidebar) */
         landscape:top-0 landscape:right-0 landscape:left-auto landscape:bottom-auto 
