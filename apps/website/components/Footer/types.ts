@@ -18,5 +18,5 @@ export interface FooterContent {
   col2Title: string;
   contactItems: ContactItem[];
   copyright: string;
-  legalLinks: string[];
+  legalLinks: LinkItem[]; // Changed from string[] to LinkItem[]
 }

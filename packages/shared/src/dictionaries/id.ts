@@ -24,6 +24,7 @@ import { Education_ID } from './modules/education';
 import { Government_ID } from './modules/government';
 import { Corporate_ID } from './modules/corporate';
 import { Franchise_ID } from './modules/franchise';
+import { LegalPage_ID } from './modules/legal-pages';
 
 export const ID_DICTIONARY: Translation = {
   ...Hero_ID,
@@ -52,4 +53,5 @@ export const ID_DICTIONARY: Translation = {
   ...Government_ID,
   ...Corporate_ID,
   ...Franchise_ID,
+  ...LegalPage_ID,
 };

@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { X, ChevronRight, ChevronLeft, ArrowRight } from 'lucide-react';
+import { X, ChevronRight, ChevronLeft, ArrowRight, LayoutGrid, Circle } from 'lucide-react';
 import { MenuItem, SubMenuItem } from './types';
 
 interface LandscapeSidebarProps {
@@ -13,39 +13,43 @@ interface LandscapeSidebarProps {
 }
 
 export const LandscapeSidebar: React.FC<LandscapeSidebarProps> = ({ isOpen, onClose, menuStructure }) => {
-  // Navigation Stack for "Slide" Effect
-  // [] = Main Menu
-  // [Item] = Submenu of Item
+  // Navigation Stack: [] = Root, [Item] = Submenu
   const [navStack, setNavStack] = useState<MenuItem[]>([]);
+  const [direction, setDirection] = useState<'forward' | 'backward'>('forward');
   const [isClosing, setIsClosing] = useState(false);
 
-  // Reset stack when opening/closing
+  // Reset state when menu opens
   useEffect(() => {
     if (isOpen) {
       setNavStack([]);
+      setDirection('forward');
       setIsClosing(false);
+      // Lock body scroll
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
     }
+    return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
 
   const handleClose = () => {
     setIsClosing(true);
-    setTimeout(onClose, 300); // Wait for animation
+    setTimeout(onClose, 300);
   };
 
   const pushMenu = (item: MenuItem) => {
+    setDirection('forward');
     setNavStack([...navStack, item]);
   };
 
   const popMenu = () => {
+    setDirection('backward');
     const newStack = [...navStack];
     newStack.pop();
     setNavStack(newStack);
   };
 
-  // Determine current items to display
-  const currentParent = navStack.length > 0 ? navStack[navStack.length - 1] : null;
-  
-  // Helper to extract flat list of subitems from either 'items' or 'columns'
+  // Helper to get flattened items
   const getSubItems = (item: MenuItem): SubMenuItem[] => {
     if (item.items) return item.items;
     if (item.columns) {
@@ -54,148 +58,170 @@ export const LandscapeSidebar: React.FC<LandscapeSidebarProps> = ({ isOpen, onCl
     return [];
   };
 
+  const currentParent = navStack.length > 0 ? navStack[navStack.length - 1] : null;
+
   if (!isOpen && !isClosing) return null;
 
   return (
-    <>
-      {/* Backdrop */}
-      <div 
-        className={`fixed inset-0 bg-black/60 z-[60] backdrop-blur-sm transition-opacity duration-300 ${isClosing ? 'opacity-0' : 'opacity-100'}`}
-        onClick={handleClose}
-      />
-
-      {/* Sidebar Panel - Right Side */}
-      <div 
-        className={`fixed top-0 right-0 h-full w-[350px] max-w-[90vw] bg-zinc-50 dark:bg-black border-l border-zinc-200 dark:border-zinc-800 z-[70] shadow-2xl transition-transform duration-300 ease-out flex flex-col ${isClosing ? 'translate-x-full' : 'translate-x-0'}`}
-      >
+    <div className={`fixed inset-0 z-[100] bg-zinc-50 dark:bg-black transition-opacity duration-300 flex flex-col ${isClosing ? 'opacity-0' : 'opacity-100'}`}>
+      
+      {/* --- HEADER BAR (Sticky Top) --- */}
+      <div className="h-20 px-6 md:px-12 flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md shrink-0 relative z-20">
         
-        {/* Header Area */}
-        <div className="flex items-center justify-between p-6 border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shrink-0 h-20">
+        {/* Left: Branding or Back Button */}
+        <div className="flex items-center">
             {currentParent ? (
                 <button 
                     onClick={popMenu}
-                    className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-zinc-500 hover:text-brand-600 dark:hover:text-brand-500 transition-colors"
+                    className="group flex items-center gap-2 pr-4 py-2 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
                 >
-                    <ChevronLeft size={16} /> KEMBALI
+                    <div className="w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                        <ChevronLeft size={20} />
+                    </div>
+                    <div className="flex flex-col items-start">
+                        <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest leading-none">KEMBALI</span>
+                        <span className="text-sm font-bold text-zinc-900 dark:text-white leading-none mt-1">MAIN MENU</span>
+                    </div>
                 </button>
             ) : (
-                <span className="text-sm font-black uppercase tracking-widest text-zinc-400">
-                    MAIN MENU
-                </span>
+                <div className="flex items-center gap-3">
+                    <div className="p-2 bg-brand-600 rounded-lg text-white">
+                        <LayoutGrid size={20} />
+                    </div>
+                    <span className="text-lg font-black text-zinc-900 dark:text-white tracking-tighter uppercase">
+                        NAVIGASI <span className="text-brand-600">PUSAT</span>
+                    </span>
+                </div>
             )}
-            
-            <button 
-                onClick={handleClose}
-                className="p-2 bg-zinc-100 dark:bg-zinc-800 rounded-full hover:bg-red-100 dark:hover:bg-red-900/30 hover:text-red-600 transition-colors"
-            >
-                <X size={20} />
-            </button>
         </div>
 
-        {/* Content Area with Slide Animation */}
-        <div className="flex-1 overflow-x-hidden relative bg-zinc-50 dark:bg-zinc-950">
-            
-            {/* View Container */}
-            <div className="absolute inset-0 overflow-y-auto custom-scrollbar p-4 space-y-3">
-                
-                {/* 
-                    LOGIC: If currentParent exists, show its children.
-                    If null, show Main Menu roots.
-                */}
+        {/* Right: Close Button */}
+        <button 
+            onClick={handleClose}
+            className="w-10 h-10 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center justify-center transition-all active:scale-90"
+        >
+            <X size={24} />
+        </button>
+      </div>
+
+      {/* --- CONTENT AREA (Scrollable) --- */}
+      <div className="flex-1 overflow-hidden relative bg-zinc-50 dark:bg-black">
+        
+        {/* ANIMATION CONTAINER */}
+        <div 
+            key={currentParent ? currentParent.label : 'root'}
+            className={`absolute inset-0 overflow-y-auto custom-scrollbar p-6 md:p-12 animate-in duration-300 ease-out fill-mode-forwards
+                ${direction === 'forward' ? 'slide-in-from-right-10 fade-in-0' : 'slide-in-from-left-10 fade-in-0'}
+            `}
+        >
+            <div className="max-w-7xl mx-auto">
                 
                 {!currentParent ? (
-                    // --- ROOT MENU LIST ---
-                    <div className="space-y-3 animate-in slide-in-from-left-10 duration-300">
+                    /* === LEVEL 0: ROOT MENU (GRID LAYOUT) === */
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
                         {menuStructure.map((item, idx) => {
                             const Icon = item.icon;
-                            return (
-                                <div 
-                                    key={idx}
-                                    onClick={() => item.hasDropdown ? pushMenu(item) : handleClose()}
-                                    className="block"
-                                >
-                                    {/* If link, wrap content. If dropdown, div acts as button */}
-                                    {item.hasDropdown ? (
-                                        <div className="group cursor-pointer bg-white dark:bg-zinc-900 p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:border-brand-500/50 transition-all active:scale-[0.98] shadow-sm flex items-center justify-between">
-                                            <div className="flex items-center gap-4">
-                                                <div className="w-10 h-10 rounded-lg bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-500 dark:text-zinc-400 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">
-                                                    {Icon && <Icon size={20} strokeWidth={2} />}
-                                                </div>
-                                                <span className="font-bold text-zinc-800 dark:text-zinc-200 uppercase tracking-tight text-sm">
-                                                    {item.label}
-                                                </span>
+                            const isAction = item.hasDropdown;
+
+                            // Card Content
+                            const content = (
+                                <div className="h-full group relative overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-6 hover:border-brand-500/50 hover:shadow-xl dark:hover:shadow-brand-900/10 transition-all duration-300 active:scale-[0.98]">
+                                    <div className="flex flex-col h-full justify-between gap-4">
+                                        {/* Header Icon */}
+                                        <div className="flex justify-between items-start">
+                                            <div className="w-12 h-12 rounded-2xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-500 group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300">
+                                                {Icon && <Icon size={24} strokeWidth={2} />}
                                             </div>
-                                            <ChevronRight size={18} className="text-zinc-400 group-hover:text-brand-500 group-hover:translate-x-1 transition-all" />
+                                            {isAction ? (
+                                                <div className="w-8 h-8 rounded-full border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-zinc-400 group-hover:border-brand-500 group-hover:text-brand-500 transition-colors">
+                                                    <ChevronRight size={16} />
+                                                </div>
+                                            ) : (
+                                                <div className="w-8 h-8 rounded-full border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-zinc-400 group-hover:border-brand-500 group-hover:text-brand-500 transition-colors -rotate-45 group-hover:rotate-0">
+                                                    <ArrowRight size={16} />
+                                                </div>
+                                            )}
                                         </div>
-                                    ) : (
-                                        <Link href={item.path} onClick={handleClose}>
-                                            <div className="group cursor-pointer bg-white dark:bg-zinc-900 p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:border-brand-500/50 transition-all active:scale-[0.98] shadow-sm flex items-center justify-between">
-                                                <div className="flex items-center gap-4">
-                                                    <div className="w-10 h-10 rounded-lg bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-500 dark:text-zinc-400 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">
-                                                        {Icon && <Icon size={20} strokeWidth={2} />}
-                                                    </div>
-                                                    <span className="font-bold text-zinc-800 dark:text-zinc-200 uppercase tracking-tight text-sm">
-                                                        {item.label}
-                                                    </span>
-                                                </div>
-                                                <ArrowRight size={18} className="text-zinc-400 group-hover:text-brand-500 -rotate-45 group-hover:rotate-0 transition-all" />
-                                            </div>
-                                        </Link>
-                                    )}
+
+                                        {/* Text */}
+                                        <div>
+                                            <h3 className="text-xl font-black text-zinc-900 dark:text-white uppercase tracking-tight leading-none mb-2">
+                                                {item.label}
+                                            </h3>
+                                            <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">
+                                                {isAction ? 'Lihat Opsi' : 'Akses Langsung'}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
+                            );
+
+                            return isAction ? (
+                                <div key={idx} onClick={() => pushMenu(item)} className="h-full cursor-pointer">
+                                    {content}
+                                </div>
+                            ) : (
+                                <Link key={idx} href={item.path} onClick={handleClose} className="h-full block">
+                                    {content}
+                                </Link>
                             );
                         })}
                     </div>
                 ) : (
-                    // --- SUB MENU LIST ---
-                    <div className="space-y-3 animate-in slide-in-from-right-10 duration-300">
-                        
-                        <div className="mb-6 px-2">
-                            <h3 className="text-xl font-black text-brand-600 dark:text-brand-500 uppercase tracking-tighter leading-none mb-1">
+                    /* === LEVEL 1: SUB MENU (LIST LAYOUT) === */
+                    <div>
+                        <div className="mb-8">
+                            <h2 className="text-4xl md:text-5xl font-black text-zinc-900 dark:text-white uppercase tracking-tighter mb-2">
                                 {currentParent.label}
-                            </h3>
-                            <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">
-                                Select Option
-                            </p>
+                            </h2>
+                            <p className="text-zinc-500 text-lg">Pilih tujuan operasi lo.</p>
                         </div>
 
-                        {getSubItems(currentParent).map((subItem, sIdx) => {
-                            const Icon = subItem.icon;
-                            return (
-                                <Link 
-                                    key={sIdx} 
-                                    href={subItem.path}
-                                    onClick={handleClose}
-                                    className="block group"
-                                >
-                                    <div className="bg-white dark:bg-zinc-900/50 p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:border-brand-500/50 active:scale-[0.98] transition-all flex items-start gap-4">
-                                        <div className="shrink-0 mt-1 text-brand-500">
-                                            <Icon size={18} />
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {getSubItems(currentParent).map((subItem, sIdx) => {
+                                const Icon = subItem.icon;
+                                return (
+                                    <Link 
+                                        key={sIdx} 
+                                        href={subItem.path}
+                                        onClick={handleClose}
+                                        className="group block"
+                                    >
+                                        <div className="flex items-center gap-6 p-6 bg-white dark:bg-zinc-900 rounded-3xl border border-zinc-200 dark:border-zinc-800 hover:border-brand-500/50 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-all duration-200 active:scale-[0.99]">
+                                            <div className="w-14 h-14 shrink-0 rounded-2xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-500 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">
+                                                <Icon size={28} strokeWidth={1.5} />
+                                            </div>
+                                            <div className="flex-1 min-w-0">
+                                                <h4 className="text-lg font-bold text-zinc-900 dark:text-white mb-1 group-hover:text-brand-600 transition-colors">
+                                                    {subItem.label}
+                                                </h4>
+                                                <p className="text-xs text-zinc-500 line-clamp-1">
+                                                    {subItem.desc}
+                                                </p>
+                                            </div>
+                                            <div className="w-8 h-8 flex items-center justify-center text-zinc-300 group-hover:text-brand-500 transition-colors">
+                                                <ArrowRight size={20} />
+                                            </div>
                                         </div>
-                                        <div>
-                                            <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-brand-600 transition-colors">
-                                                {subItem.label}
-                                            </h4>
-                                            <p className="text-[10px] text-zinc-500 leading-tight mt-1 line-clamp-2">
-                                                {subItem.desc}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </Link>
-                            );
-                        })}
+                                    </Link>
+                                );
+                            })}
+                        </div>
                     </div>
                 )}
 
             </div>
         </div>
-
-        {/* Footer Info */}
-        <div className="p-4 bg-white dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800 text-[10px] text-zinc-400 text-center font-mono uppercase tracking-widest shrink-0">
-            System v2.0 &bull; Secure Connection
-        </div>
-
       </div>
-    </>
+
+      {/* --- FOOTER STATUS --- */}
+      <div className="h-12 bg-white dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-center shrink-0 gap-3">
+         <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+         <span className="text-[10px] font-mono font-black text-zinc-400 uppercase tracking-[0.2em]">
+            System Online &bull; v2.0.5
+         </span>
+      </div>
+
+    </div>
   );
 };

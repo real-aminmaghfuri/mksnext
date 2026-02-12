@@ -544,6 +544,18 @@ export interface FranchiseDictionary {
   franCtaBtn: string;
 }
 
+export interface LegalPageDictionary {
+  termsTitle: string;
+  termsSub: string;
+  termsContent: string; // HTML String
+  privacyTitle: string;
+  privacySub: string;
+  privacyContent: string; // HTML String
+  faqTitle: string;
+  faqSub: string;
+  faqItems: QnaItem[];
+}
+
 export interface Translation extends 
   HeroDictionary,
   DashboardDictionary,
@@ -570,5 +582,6 @@ export interface Translation extends
   EducationDictionary,
   GovernmentDictionary,
   CorporateDictionary,
-  FranchiseDictionary
+  FranchiseDictionary,
+  LegalPageDictionary
 {}

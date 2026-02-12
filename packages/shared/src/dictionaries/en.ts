@@ -24,6 +24,7 @@ import { Education_EN } from './modules/education';
 import { Government_EN } from './modules/government';
 import { Corporate_EN } from './modules/corporate';
 import { Franchise_EN } from './modules/franchise';
+import { LegalPage_EN } from './modules/legal-pages';
 
 export const EN_DICTIONARY: Translation = {
   ...Hero_EN,
@@ -52,4 +53,5 @@ export const EN_DICTIONARY: Translation = {
   ...Government_EN,
   ...Corporate_EN,
   ...Franchise_EN,
+  ...LegalPage_EN,
 };
