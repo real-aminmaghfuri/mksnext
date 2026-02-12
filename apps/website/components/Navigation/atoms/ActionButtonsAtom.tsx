@@ -13,18 +13,18 @@ interface ActionProps extends Pick<NavbarLogic, 'isDark' | 'toggleTheme' | 'togg
 export const ActionButtonsAtom: React.FC<ActionProps> = ({ isDark, toggleTheme, toggleLang, language, onOpenMenu }) => {
   return (
     <div className="flex items-center gap-2 shrink-0">
-      {/* Theme Toggle: Always Visible */}
+      {/* Theme Toggle: Hidden in Mobile Landscape (moved to Rail), Visible elsewhere */}
       <button 
         onClick={toggleTheme}
-        className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors text-zinc-600 dark:text-zinc-400"
+        className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors text-zinc-600 dark:text-zinc-400 landscape:hidden lg:landscape:flex"
       >
         {isDark ? <Sun size={18} /> : <Moon size={18} />}
       </button>
       
-      {/* Language Toggle: Always Visible */}
+      {/* Language Toggle: Hidden in Mobile Landscape (moved to Rail), Visible elsewhere */}
       <button 
         onClick={toggleLang}
-        className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors text-zinc-900 dark:text-white font-black text-[10px] md:text-xs border border-zinc-200 dark:border-zinc-700"
+        className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors text-zinc-900 dark:text-white font-black text-[10px] md:text-xs border border-zinc-200 dark:border-zinc-700 landscape:hidden lg:landscape:flex"
       >
         {language}
       </button>
@@ -38,17 +38,11 @@ export const ActionButtonsAtom: React.FC<ActionProps> = ({ isDark, toggleTheme, 
 
       {/* 
          Hamburger Menu Logic Update:
-         - hidden: Default hidden (Mobile Portrait).
-         - landscape:flex: Show on Mobile Landscape.
-         - md:flex: Show on Tablets (Portrait/Landscape).
-         - lg:hidden: Hide on Desktop (Menu is visible).
+         - Hidden in Landscape (Mobile/Tablet) -> Because we use Left Rail now.
+         - Visible ONLY in Portrait (Mobile/Tablet).
+         - Hidden in Desktop (LG).
       */}
-      <button 
-        onClick={onOpenMenu}
-        className="hidden landscape:flex md:flex lg:hidden w-9 h-9 md:w-10 md:h-10 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white transition-colors"
-      >
-        <Menu size={20} />
-      </button>
+      {/* Note: onOpenMenu is technically not wired in Navbar anymore for simplicity, as we rely on MobileNav Rail in landscape */}
     </div>
   );
 };
