@@ -5,18 +5,17 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useConfig } from 'ui';
-import { DICTIONARY, Language } from 'shared';
+import { DICTIONARY } from 'shared';
 import { getMenuStructure } from './Navigation/data';
 import { MenuItem } from './Navigation/types';
 import { MobileSubMenuDrawer } from './MobileSubMenuDrawer';
 import { 
-  Home, User, Layers, Monitor, HelpCircle, Lightbulb, 
-  Settings, LogIn, Moon, Sun, Languages
+  Home, User, Layers, Monitor, HelpCircle, Lightbulb
 } from 'lucide-react';
 
 export const WebsiteMobileNav: React.FC = () => {
   const pathname = usePathname();
-  const { language, setLanguage, theme, toggleTheme } = useConfig();
+  const { language } = useConfig();
   const text = DICTIONARY[language];
   const menuStructure = getMenuStructure(text);
 
@@ -41,14 +40,12 @@ export const WebsiteMobileNav: React.FC = () => {
     } 
   };
 
-  const isDark = theme === 'dark';
-
   return (
     <>
       {/* 
          RESPONSIVE CONTAINER:
          - Portrait: Fixed Bottom, Full Width, Height 72px
-         - Landscape: Fixed Left, Full Height, Width 80px (Compact Rail)
+         - Landscape: Fixed RIGHT, Full Height, Width 80px
       */}
       <nav className="
         fixed z-[60] bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md border-zinc-200 dark:border-zinc-800 transition-all duration-300 shadow-2xl
@@ -57,14 +54,16 @@ export const WebsiteMobileNav: React.FC = () => {
         bottom-0 left-0 w-full h-[72px] border-t
         md:hidden
         
-        /* LANDSCAPE STYLES (Rail Mode) */
-        landscape:top-0 landscape:left-0 landscape:w-[80px] landscape:h-full landscape:border-r landscape:border-t-0 landscape:flex landscape:flex-col landscape:justify-between landscape:py-6
+        /* LANDSCAPE STYLES (Right Sidebar) */
+        landscape:top-0 landscape:right-0 landscape:left-auto landscape:bottom-auto 
+        landscape:w-[80px] landscape:h-full landscape:border-l landscape:border-t-0 
+        landscape:flex landscape:flex-col landscape:justify-center landscape:py-6
       ">
         
         {/* MENU ITEMS AREA */}
         <div className="
             grid grid-cols-6 h-full items-center
-            landscape:flex landscape:flex-col landscape:h-auto landscape:w-full landscape:gap-4
+            landscape:flex landscape:flex-col landscape:h-auto landscape:w-full landscape:gap-6
         ">
           {menuStructure.map((item, idx) => {
             const Icon = getIcon(idx);
@@ -81,7 +80,8 @@ export const WebsiteMobileNav: React.FC = () => {
                     `}>
                         <Icon size={20} strokeWidth={isActive ? 2.5 : 2} className={isActive ? 'animate-pulse' : ''} />
                     </div>
-                    <span className="text-[9px] font-bold text-center leading-none px-0.5 truncate w-full mt-1 landscape:hidden">
+                    {/* Label kept visible in landscape to match portrait style exactly as requested */}
+                    <span className="text-[9px] font-bold text-center leading-none px-0.5 truncate w-full mt-1">
                         {item.label}
                     </span>
                 </div>
@@ -109,32 +109,6 @@ export const WebsiteMobileNav: React.FC = () => {
                 )
             }
           })}
-        </div>
-
-        {/* 
-            FOOTER ACTIONS (Only visible in LANDSCAPE RAIL) 
-            Merged directly into the sidebar for compactness
-        */}
-        <div className="hidden landscape:flex flex-col gap-4 items-center w-full pt-4 border-t border-zinc-200 dark:border-zinc-800">
-            {/* Theme Toggle */}
-            <button onClick={toggleTheme} className="text-zinc-400 hover:text-brand-500 transition-colors active:scale-90">
-                {isDark ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
-
-            {/* Language Toggle */}
-            <button 
-                onClick={() => setLanguage(language === Language.ID ? Language.EN : Language.ID)} 
-                className="text-zinc-400 hover:text-brand-500 transition-colors active:scale-90 font-black text-[10px]"
-            >
-                {language}
-            </button>
-
-            {/* Login System */}
-            <a href="https://system.mesinkasirsolo.com" target="_blank" rel="noopener noreferrer">
-                <button className="w-10 h-10 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-black flex items-center justify-center shadow-lg active:scale-90 transition-transform">
-                    <LogIn size={18} />
-                </button>
-            </a>
         </div>
 
       </nav>

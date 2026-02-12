@@ -3,7 +3,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { X, ChevronRight } from 'lucide-react';
+import { X } from 'lucide-react';
 import { MenuItem, SubMenuItem } from './Navigation/types';
 
 // Color Palette for "Lively" Icons (App Drawer Style)
@@ -74,7 +74,7 @@ export const MobileSubMenuDrawer: React.FC<MobileSubMenuDrawerProps> = ({ isOpen
       {/* 
          ADAPTIVE DRAWER PANEL:
          - Portrait: Bottom Sheet (Rounded Top, Slide Up)
-         - Landscape: Left Sidebar Extension (Rounded Right, Slide Right)
+         - Landscape: Right Sidebar Extension (Rounded Left, Slide from Right, next to Nav)
       */}
       <div 
         className={`
@@ -85,8 +85,10 @@ export const MobileSubMenuDrawer: React.FC<MobileSubMenuDrawerProps> = ({ isOpen
             ${isOpen ? 'translate-y-0' : 'translate-y-full'}
             
             /* LANDSCAPE MODE */
-            landscape:top-0 landscape:left-[80px] landscape:h-full landscape:w-[320px] landscape:rounded-r-[32px] landscape:rounded-l-none landscape:border-r landscape:border-t-0
-            landscape:${isOpen ? 'translate-x-0' : '-translate-x-full'}
+            /* Positioned at right: 80px (width of nav) to accommodate the nav bar on the far right */
+            landscape:top-0 landscape:right-[80px] landscape:left-auto landscape:bottom-auto
+            landscape:h-full landscape:w-[320px] landscape:rounded-l-[32px] landscape:rounded-r-none landscape:border-l landscape:border-t-0
+            landscape:${isOpen ? 'translate-x-0' : 'translate-x-full'}
         `}
         style={{ maxHeight: '85vh', height: 'auto' }}
       >
