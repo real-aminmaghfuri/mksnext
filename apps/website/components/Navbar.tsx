@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavbar } from './Navigation/useNavbar';
 import { getMenuStructure } from './Navigation/data';
 import { LogoAtom } from './Navigation/atoms/LogoAtom';
@@ -16,6 +16,11 @@ export const Navbar: React.FC = () => {
   // State for Landscape Sidebar (triggered by Hamburger)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   
+  // FIX: Close sidebar automatically when path changes (Navigation occurred)
+  useEffect(() => {
+    setIsSidebarOpen(false);
+  }, [logic.pathname]);
+
   // 2. Data Generator
   const menuStructure = getMenuStructure(logic.text);
 

@@ -34,7 +34,12 @@ export const LandscapeSidebar: React.FC<LandscapeSidebarProps> = ({ isOpen, onCl
 
   const handleClose = () => {
     setIsClosing(true);
-    setTimeout(onClose, 300);
+    setTimeout(() => {
+        onClose();
+        // Optional: Reset local closing state after parent closes to be clean, 
+        // though unmounting handles visuals.
+        setIsClosing(false); 
+    }, 300);
   };
 
   const pushMenu = (item: MenuItem) => {
@@ -60,7 +65,10 @@ export const LandscapeSidebar: React.FC<LandscapeSidebarProps> = ({ isOpen, onCl
 
   const currentParent = navStack.length > 0 ? navStack[navStack.length - 1] : null;
 
-  if (!isOpen && !isClosing) return null;
+  // FIX: Logic changed from (!isOpen && !isClosing) to just (!isOpen).
+  // When parent sets isOpen=false, we must unmount immediately to remove the blocking overlay.
+  // The closing animation is handled by handleClose() keeping isOpen=true for 300ms while setting isClosing=true.
+  if (!isOpen) return null;
 
   return (
     <div className={`fixed inset-0 z-[100] bg-zinc-50 dark:bg-black transition-opacity duration-300 flex flex-col ${isClosing ? 'opacity-0' : 'opacity-100'}`}>
