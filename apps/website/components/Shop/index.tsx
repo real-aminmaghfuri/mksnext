@@ -32,7 +32,13 @@ export const Shop: React.FC = () => {
 
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
         {products.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          /* 
+             GRID LOGIC UPDATE:
+             - Mobile (<500px): 1 Column
+             - Tablet/Phablet (min-500px): 2 Columns
+             - Desktop (lg): 3 Columns
+          */
+          <div className="grid grid-cols-1 min-[500px]:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {products.map((product) => (
               <ProductCardAtom 
                 key={product.id} 

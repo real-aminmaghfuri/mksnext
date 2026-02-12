@@ -2,9 +2,13 @@
 "use client";
 import React from 'react';
 import Link from 'next/link';
-import { Logo } from 'ui';
+import { Logo, useConfig } from 'ui';
+import { DICTIONARY } from 'shared';
 
 export const LogoAtom: React.FC = () => {
+  const { language } = useConfig();
+  const text = DICTIONARY[language];
+
   return (
     <Link href="/" className="flex items-center gap-3 cursor-pointer group shrink-0">
       <div className="group-hover:scale-110 transition-transform duration-300 drop-shadow-lg shadow-brand-500/50">
@@ -15,7 +19,7 @@ export const LogoAtom: React.FC = () => {
           MESIN KASIR <span className="text-brand-500">SOLO</span>
         </span>
         <span className="text-[8px] md:text-[10px] font-bold text-zinc-500 tracking-[0.2em] uppercase leading-tight mt-0.5">
-          Digital Solutions Partner
+          {text.navTagline}
         </span>
       </div>
     </Link>

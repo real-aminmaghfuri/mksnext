@@ -5,7 +5,8 @@ import {
   Activity, School, Building2, Factory, LayoutGrid, 
   Package, Tablet, Monitor, Calculator, Scan, Scroll, 
   Inbox, Armchair, Grid, Mouse, FileText, Lock, 
-  HelpCircle, Download, Truck, AlertTriangle, Network
+  HelpCircle, Download, Truck, AlertTriangle, Network,
+  Layers, Wrench
 } from 'lucide-react';
 import { Translation } from 'shared';
 import { MenuItem } from './types';
@@ -14,6 +15,7 @@ export const getAboutMenu = (text: Translation): MenuItem => ({
   label: text.navAbout,
   path: '#',
   hasDropdown: true,
+  icon: User,
   columns: [
     {
        title: text.navAboutCompany,
@@ -41,6 +43,7 @@ export const getServicesMenu = (text: Translation): MenuItem => ({
   label: text.navLayanan,
   path: '#',
   hasDropdown: true,
+  icon: Layers,
   columns: [
     {
       title: text.navTechHeader,
@@ -73,6 +76,7 @@ export const getHardwareMenu = (text: Translation): MenuItem => ({
   label: text.navSolutions,
   path: '#',
   hasDropdown: true,
+  icon: Monitor,
   items: [
     { label: text.navHwBundle, path: '/shop', icon: Package, desc: "Paket Siap Pakai (All-in-One)" },
     { label: text.navHwAndroid, path: '/shop', icon: Tablet, desc: "Cash Register, Android, Komputer" },
@@ -91,6 +95,7 @@ export const getSupportMenu = (text: Translation): MenuItem => ({
   label: text.navHelp,
   path: '#',
   hasDropdown: true,
+  icon: HelpCircle,
   columns: [
       {
           title: text.navSupLegalHeader,

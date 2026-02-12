@@ -2,6 +2,8 @@
 import { NavDictionary } from '../../types';
 
 export const Navigation_EN: NavDictionary = {
+  navTagline: "YOUR BUSINESS PARTNER",
+
   navHome: "HOME",
   navAbout: "PROFILE", 
   navAboutCompany: "COMPANY",
@@ -12,7 +14,7 @@ export const Navigation_EN: NavDictionary = {
   navContact: "Contact Me",
   navCareer: "Join Corps",
   
-  navInnoHeader: "INNOVATION",
+  navInnoHeader: "INOVATION",
   navInnoSibos: "SIBOS ERP",
   navInnoQalam: "QALAM",
 

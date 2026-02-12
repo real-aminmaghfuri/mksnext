@@ -2,6 +2,9 @@
 import { Translation } from 'shared';
 import { MenuItem } from './types';
 import { 
+  Home, Lightbulb 
+} from 'lucide-react';
+import { 
   getAboutMenu, 
   getServicesMenu, 
   getHardwareMenu, 
@@ -13,13 +16,15 @@ import {
 const getHomeMenu = (text: Translation): MenuItem => ({
   label: text.navHome,
   path: '/',
-  hasDropdown: false
+  hasDropdown: false,
+  icon: Home
 });
 
 const getInsightsMenu = (text: Translation): MenuItem => ({
   label: text.navInsights,
   path: '/articles',
-  hasDropdown: false
+  hasDropdown: false,
+  icon: Lightbulb
 });
 
 // --- MAIN ORCHESTRATOR ---

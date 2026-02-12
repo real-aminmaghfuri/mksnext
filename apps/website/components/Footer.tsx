@@ -12,7 +12,13 @@ export const Footer: React.FC = () => {
   const content = useFooter();
 
   return (
-    <footer className="bg-zinc-50 dark:bg-black border-t border-zinc-200 dark:border-zinc-800 pt-20 pb-24 md:pb-10">
+    /* 
+       LOGIC UPDATE:
+       - `hidden`: Hidden by default (Mobile Portrait & Landscape).
+       - `md:block`: Visible only on Desktop/Tablet (min-width: 768px).
+       - Removed `pb-24` because mobile padding is no longer needed.
+    */
+    <footer className="hidden md:block bg-zinc-50 dark:bg-black border-t border-zinc-200 dark:border-zinc-800 pt-20 pb-10">
       <div className="w-full px-6 md:px-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           

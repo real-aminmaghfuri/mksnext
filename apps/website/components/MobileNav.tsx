@@ -45,7 +45,12 @@ export const WebsiteMobileNav: React.FC = () => {
 
   return (
     <>
-      <nav className="fixed bottom-0 left-0 w-full bg-white dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800 z-50 md:hidden safe-area-bottom shadow-[0_-5px_20px_rgba(0,0,0,0.05)]">
+      {/* 
+         ADDED CLASS: `landscape:hidden` 
+         This hides the bottom bar when device is in landscape mode 
+         to prevent clutter, forcing user to use the Navbar Hamburger instead.
+      */}
+      <nav className="fixed bottom-0 left-0 w-full bg-white dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800 z-50 md:hidden safe-area-bottom shadow-[0_-5px_20px_rgba(0,0,0,0.05)] landscape:hidden">
         <div className="grid grid-cols-6 h-[72px]">
           {menuStructure.map((item, idx) => {
             const Icon = getIcon(idx);

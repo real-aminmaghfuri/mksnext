@@ -50,6 +50,19 @@ interface MobileSubMenuDrawerProps {
 }
 
 export const MobileSubMenuDrawer: React.FC<MobileSubMenuDrawerProps> = ({ isOpen, onClose, menuItem }) => {
+  
+  // Logic: Get Provocative Tagline based on Menu Label Keyword
+  const getTagline = (label: string = "") => {
+    const l = label.toUpperCase();
+    if (l.includes("MAIN") || l.includes("MENU")) return "PUSAT KOMANDO. PILIH SENJATA LO.";
+    if (l.includes("PROFIL") || l.includes("ABOUT") || l.includes("PROFILE")) return "BUKAN DONGENG. INI KRONIK PERANG KITA.";
+    if (l.includes("LAYANAN") || l.includes("SERVICES")) return "JASA TEMPUR DIGITAL. BIAR GAK MATI KONYOL.";
+    if (l.includes("SOLUSI") || l.includes("SOLUTION") || l.includes("KASIR")) return "ALAT PERANG WAJIB. JANGAN MODAL NEKAT.";
+    if (l.includes("SUPPORT") || l.includes("BANTUAN") || l.includes("HELP")) return "JALUR DARURAT. KITA GAK LARI DARI TANGGUNG JAWAB.";
+    if (l.includes("WAWASAN") || l.includes("INSIGHTS") || l.includes("BLOG")) return "INTEL JALANAN. BACA BIAR GAK DIBEGOIN.";
+    return "AKSES JALUR CEPAT.";
+  };
+
   if (!menuItem) return null;
 
   return (
@@ -62,7 +75,7 @@ export const MobileSubMenuDrawer: React.FC<MobileSubMenuDrawerProps> = ({ isOpen
 
       {/* Drawer Panel */}
       <div 
-        className={`fixed bottom-0 left-0 w-full z-[70] bg-white dark:bg-zinc-950 rounded-t-3xl border-t border-zinc-200 dark:border-zinc-800 shadow-2xl transition-transform duration-300 ease-out ${isOpen ? 'translate-y-0' : 'translate-y-full'}`}
+        className={`fixed bottom-0 left-0 w-full z-[70] bg-white dark:bg-zinc-950 rounded-t-[32px] border-t border-zinc-200 dark:border-zinc-800 shadow-2xl transition-transform duration-300 ease-out ${isOpen ? 'translate-y-0' : 'translate-y-full'}`}
         style={{ maxHeight: '85vh', height: 'auto' }}
       >
         {/* Handle Bar */}
@@ -71,14 +84,19 @@ export const MobileSubMenuDrawer: React.FC<MobileSubMenuDrawerProps> = ({ isOpen
         </div>
 
         <div className="p-6 pt-2 h-full flex flex-col">
-            {/* Header */}
-            <div className="flex justify-between items-center mb-6 border-b border-zinc-100 dark:border-zinc-800 pb-4 shrink-0">
-                <h3 className="text-xl font-black uppercase tracking-tight text-zinc-900 dark:text-white">
-                    {menuItem.label}
-                </h3>
+            {/* Header with Provocative Tagline */}
+            <div className="flex justify-between items-start mb-8 border-b border-zinc-100 dark:border-zinc-800 pb-6 shrink-0">
+                <div className="flex flex-col pr-4">
+                    <h3 className="text-2xl font-black uppercase tracking-tight text-zinc-900 dark:text-white leading-none mb-2">
+                        {menuItem.label}
+                    </h3>
+                    <p className="text-[10px] font-bold text-brand-600 dark:text-brand-500 uppercase tracking-widest leading-relaxed">
+                        {getTagline(menuItem.label)}
+                    </p>
+                </div>
                 <button 
                     onClick={onClose}
-                    className="p-2 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors"
+                    className="p-2 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors mt-1"
                 >
                     <X size={20} />
                 </button>

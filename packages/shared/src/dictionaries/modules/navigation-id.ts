@@ -2,6 +2,8 @@
 import { NavDictionary } from '../../types';
 
 export const Navigation_ID: NavDictionary = {
+  navTagline: "PARTNER BISNIS LO",
+
   navHome: "BERANDA",
   navAbout: "PROFIL", 
   navAboutCompany: "PERUSAHAAN",

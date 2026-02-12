@@ -1,5 +1,8 @@
 
 export interface NavDictionary {
+  // Brand Tagline
+  navTagline: string;
+
   // Website Nav
   navHome: string;
   navAbout: string; 
