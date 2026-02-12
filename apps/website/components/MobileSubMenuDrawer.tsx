@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from 'react';
@@ -5,24 +6,37 @@ import Link from 'next/link';
 import { X } from 'lucide-react';
 import { MenuItem, SubMenuItem } from './Navigation/types';
 
-// Helper component for grid items to ensure consistency
+// Color Palette for "Lively" Icons (App Drawer Style)
+const colorPalette = [
+  "text-blue-600 bg-blue-50 dark:bg-blue-900/20 border-blue-100 dark:border-blue-800",
+  "text-orange-600 bg-orange-50 dark:bg-orange-900/20 border-orange-100 dark:border-orange-800",
+  "text-emerald-600 bg-emerald-50 dark:bg-emerald-900/20 border-emerald-100 dark:border-emerald-800",
+  "text-purple-600 bg-purple-50 dark:bg-purple-900/20 border-purple-100 dark:border-purple-800",
+  "text-rose-600 bg-rose-50 dark:bg-rose-900/20 border-rose-100 dark:border-rose-800",
+  "text-cyan-600 bg-cyan-50 dark:bg-cyan-900/20 border-cyan-100 dark:border-cyan-800",
+];
+
 interface GridItemProps {
   item: SubMenuItem;
   onClose: () => void;
+  index: number;
 }
 
-const GridItem: React.FC<GridItemProps> = ({ item, onClose }) => {
+const GridItem: React.FC<GridItemProps> = ({ item, onClose, index }) => {
   const Icon = item.icon;
+  // Pick color based on index modulus
+  const themeClass = colorPalette[index % colorPalette.length];
+
   return (
     <Link 
       href={item.path}
       onClick={onClose}
       className="flex flex-col items-center text-center gap-2 group active:scale-95 transition-transform duration-200"
     >
-      <div className="w-14 h-14 rounded-2xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-zinc-600 dark:text-zinc-400 group-active:border-brand-500 group-active:text-brand-500 group-active:bg-brand-50 dark:group-active:bg-brand-900/20 shadow-sm transition-colors">
-          <Icon size={24} strokeWidth={1.5} />
+      <div className={`w-14 h-14 rounded-2xl border flex items-center justify-center shadow-sm transition-colors ${themeClass}`}>
+          <Icon size={24} strokeWidth={2} />
       </div>
-      <span className="text-[10px] font-bold text-zinc-700 dark:text-zinc-300 leading-tight line-clamp-2 max-w-[60px]">
+      <span className="text-[10px] font-bold text-zinc-700 dark:text-zinc-300 leading-tight line-clamp-2 max-w-[64px]">
           {item.label}
       </span>
     </Link>
@@ -85,10 +99,10 @@ export const MobileSubMenuDrawer: React.FC<MobileSubMenuDrawerProps> = ({ isOpen
                                     </h4>
                                 </div>
                                 
-                                {/* 4 Grid Layout */}
-                                <div className="grid grid-cols-4 gap-4">
+                                {/* Responsive Grid: 4 cols mobile, 5 cols tablet (md) */}
+                                <div className="grid grid-cols-4 md:grid-cols-5 gap-4">
                                     {col.items.map((item, iIdx) => (
-                                        <GridItem key={iIdx} item={item} onClose={onClose} />
+                                        <GridItem key={iIdx} item={item} onClose={onClose} index={iIdx + (idx * 10)} />
                                     ))}
                                 </div>
                             </div>
@@ -96,9 +110,10 @@ export const MobileSubMenuDrawer: React.FC<MobileSubMenuDrawerProps> = ({ isOpen
                     </div>
                 ) : (
                     /* Layout 2: Flat List (Standard) */
-                    <div className="grid grid-cols-4 gap-4">
+                    // Responsive Grid: 4 cols mobile, 5 cols tablet (md)
+                    <div className="grid grid-cols-4 md:grid-cols-5 gap-4">
                         {menuItem.items?.map((item, iIdx) => (
-                            <GridItem key={iIdx} item={item} onClose={onClose} />
+                            <GridItem key={iIdx} item={item} onClose={onClose} index={iIdx} />
                         ))}
                     </div>
                 )}
