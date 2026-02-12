@@ -17,11 +17,11 @@ export const Navbar: React.FC = () => {
       <nav className="fixed top-0 w-full z-50 transition-all duration-300 bg-white/95 dark:bg-black/90 backdrop-blur-xl border-b border-zinc-200/50 dark:border-white/10 shadow-sm">
         {/* 
             PADDING LOGIC UPDATE:
-            - Default: px-6
-            - Mobile Landscape: pr-24 (80px sidebar + 16px buffer) to prevent overlap
-            - Desktop (lg): px-12 (Sidebar is hidden, so standard padding)
+            - Default (Portrait Mobile/Tablet): px-6
+            - Landscape Mobile/Tablet: pr-28 (112px) to clear 80px sidebar.
+            - Desktop (XL+): Reset to standard px-12. Sidebar is hidden here.
         */}
-        <div className="w-full h-20 flex items-center justify-between px-6 landscape:pr-24 lg:landscape:pr-12 lg:px-12 transition-all">
+        <div className="w-full h-20 flex items-center justify-between px-6 landscape:pr-28 xl:px-12 xl:landscape:pr-12 transition-all">
           
           {/* Particle: Brand Logo */}
           <LogoAtom />

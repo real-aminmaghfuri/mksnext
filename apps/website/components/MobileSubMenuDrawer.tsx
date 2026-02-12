@@ -54,9 +54,18 @@ export const MobileSubMenuDrawer: React.FC<MobileSubMenuDrawerProps> = ({ isOpen
 
   return (
     <>
-      {/* Backdrop */}
+      {/* 
+         Backdrop 
+         CRITICAL FIX: In landscape, right is set to 80px. 
+         This prevents the backdrop from covering the Right Sidebar, 
+         solving the "Transparent Layer" issue.
+      */}
       <div 
-        className={`fixed inset-0 bg-black/60 z-[60] backdrop-blur-sm transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        className={`
+            fixed inset-0 bg-black/60 z-[60] backdrop-blur-sm transition-opacity duration-300
+            landscape:right-[80px]
+            ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}
+        `}
         onClick={onClose}
       />
 

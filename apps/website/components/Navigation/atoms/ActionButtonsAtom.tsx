@@ -29,12 +29,14 @@ export const ActionButtonsAtom: React.FC<ActionProps> = ({ isDark, toggleTheme, 
         {language}
       </button>
 
-      {/* CTA Button: Hidden on Mobile */}
+      {/* CTA Button: Hidden on Mobile, Visible on Tablet+ */}
       <Link href="/contact" className="hidden md:block">
         <Button size="md" variant="primary" className="font-bold shadow-brand-500/20 hover:shadow-brand-500/50">
           HUBUNGI GUE <MessageCircle size={18} className="ml-2" />
         </Button>
       </Link>
+      
+      {/* Hamburger Menu REMOVED: Navigation is now handled by Bottom Bar (Portrait) or Right Sidebar (Landscape) for all mobile/tablet devices. */}
     </div>
   );
 };

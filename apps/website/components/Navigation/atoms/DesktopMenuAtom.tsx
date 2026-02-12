@@ -39,8 +39,9 @@ export const DesktopMenuAtom: React.FC<DesktopMenuAtomProps> = ({ structure, cur
     };
   }, []);
 
+  // Update: hidden until XL (1280px). Tablets use Side/Bottom Nav.
   return (
-    <div className="hidden lg:flex items-center gap-1 xl:gap-2">
+    <div className="hidden xl:flex items-center gap-1 xl:gap-2">
       {structure.map((menu, idx) => {
         const isActive = currentPath === menu.path;
         const isOpen = activeMenuIndex === idx;
