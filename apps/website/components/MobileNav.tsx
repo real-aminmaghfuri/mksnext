@@ -45,7 +45,8 @@ export const WebsiteMobileNav: React.FC = () => {
       {/* 
          RESPONSIVE CONTAINER:
          - Portrait: Fixed Bottom, Full Width, Height 72px
-         - Landscape: Fixed RIGHT, Full Height, Width 80px
+         - Landscape: Fixed RIGHT, Full Height, Width 80px. NO SCROLL.
+         - Desktop (md+): Hidden
       */}
       <nav className="
         fixed z-[60] bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md border-zinc-200 dark:border-zinc-800 transition-all duration-300 shadow-2xl
@@ -57,13 +58,17 @@ export const WebsiteMobileNav: React.FC = () => {
         /* LANDSCAPE STYLES (Right Sidebar) */
         landscape:top-0 landscape:right-0 landscape:left-auto landscape:bottom-auto 
         landscape:w-[80px] landscape:h-full landscape:border-l landscape:border-t-0 
-        landscape:flex landscape:flex-col landscape:justify-center landscape:py-6
+        landscape:flex landscape:flex-col landscape:justify-center
+        
+        /* Constraint: No Scroll on Nav Bar */
+        landscape:overflow-hidden
       ">
         
         {/* MENU ITEMS AREA */}
         <div className="
             grid grid-cols-6 h-full items-center
-            landscape:flex landscape:flex-col landscape:h-auto landscape:w-full landscape:gap-6
+            /* Landscape: Vertical Stack, Distributed Evenly */
+            landscape:flex landscape:flex-col landscape:h-full landscape:w-full landscape:justify-evenly landscape:py-4
         ">
           {menuStructure.map((item, idx) => {
             const Icon = getIcon(idx);
@@ -71,7 +76,7 @@ export const WebsiteMobileNav: React.FC = () => {
             
             const content = (
                 <div className={`
-                    flex flex-col items-center justify-center transition-all duration-200 group
+                    flex flex-col items-center justify-center transition-all duration-200 group w-full
                     ${isActive ? 'text-brand-600 dark:text-brand-500' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'}
                 `}>
                     <div className={`
@@ -80,7 +85,7 @@ export const WebsiteMobileNav: React.FC = () => {
                     `}>
                         <Icon size={20} strokeWidth={isActive ? 2.5 : 2} className={isActive ? 'animate-pulse' : ''} />
                     </div>
-                    {/* Label kept visible in landscape to match portrait style exactly as requested */}
+                    
                     <span className="text-[9px] font-bold text-center leading-none px-0.5 truncate w-full mt-1">
                         {item.label}
                     </span>
