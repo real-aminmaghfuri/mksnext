@@ -56,9 +56,8 @@ export const MobileSubMenuDrawer: React.FC<MobileSubMenuDrawerProps> = ({ isOpen
     <>
       {/* 
          Backdrop 
-         CRITICAL FIX: In landscape, right is set to 80px. 
-         This prevents the backdrop from covering the Right Sidebar, 
-         solving the "Transparent Layer" issue.
+         z-[60]: Sits below Nav Bar (z-70) and Drawer Content (z-65).
+         landscape:right-[80px]: Prevents covering the Right Sidebar.
       */}
       <div 
         className={`
@@ -103,10 +102,11 @@ export const MobileSubMenuDrawer: React.FC<MobileSubMenuDrawerProps> = ({ isOpen
          === LANDSCAPE DRAWER (Split Side Panel) ===
          Visible only in landscape.
          Constraint: Full Height, 2 Columns (Header Left, Grid Right)
+         Z-Index: z-[65] to sit ABOVE the Backdrop (z-[60]).
       */}
       <div 
         className={`
-            fixed z-[55] top-0 right-[80px] bottom-0 w-[400px] max-w-[calc(100vw-80px)]
+            fixed z-[65] top-0 right-[80px] bottom-0 w-[400px] max-w-[calc(100vw-80px)]
             bg-white dark:bg-zinc-950 shadow-2xl border-l border-zinc-200 dark:border-zinc-800
             transition-transform duration-300 ease-out
             hidden landscape:flex flex-row overflow-hidden

@@ -39,9 +39,9 @@ export const DesktopMenuAtom: React.FC<DesktopMenuAtomProps> = ({ structure, cur
     };
   }, []);
 
-  // Update: hidden until XL (1280px). Tablets use Side/Bottom Nav.
+  // Update: Visible from LG (1024px) upwards. Matches MobileNav hiding logic.
   return (
-    <div className="hidden xl:flex items-center gap-1 xl:gap-2">
+    <div className="hidden lg:flex items-center gap-1 xl:gap-2">
       {structure.map((menu, idx) => {
         const isActive = currentPath === menu.path;
         const isOpen = activeMenuIndex === idx;
@@ -49,13 +49,13 @@ export const DesktopMenuAtom: React.FC<DesktopMenuAtomProps> = ({ structure, cur
         return (
           <div 
             key={idx} 
-            className="relative px-3 py-6"
+            className="relative px-2 xl:px-3 py-6"
             onMouseEnter={() => handleMouseEnter(idx)}
             onMouseLeave={handleMouseLeave}
           >
             <Link 
               href={menu.path} 
-              className={`flex items-center gap-1.5 text-[13px] font-bold tracking-wider uppercase transition-colors select-none py-2
+              className={`flex items-center gap-1 text-[11px] xl:text-[13px] font-bold tracking-wider uppercase transition-colors select-none py-2
                 ${isActive
                   ? 'text-brand-600 dark:text-brand-500' 
                   : isOpen 
@@ -66,7 +66,7 @@ export const DesktopMenuAtom: React.FC<DesktopMenuAtomProps> = ({ structure, cur
               {menu.label}
               {menu.hasDropdown && (
                 <ChevronDown 
-                  size={14} 
+                  size={12} 
                   className={`transition-transform duration-300 ${isOpen ? '-rotate-180' : ''}`} 
                 />
               )}

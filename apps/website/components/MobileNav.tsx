@@ -46,7 +46,7 @@ export const WebsiteMobileNav: React.FC = () => {
          RESPONSIVE CONTAINER:
          - Portrait: Fixed Bottom, Full Width, Height 72px
          - Landscape: Fixed RIGHT, Full Height, Width 80px. NO SCROLL.
-         - Desktop (xl+): Hidden (Strictly for 1280px and up)
+         - Desktop (lg+): Hidden (Strictly for 1024px and up)
          - Z-Index: 70 (Highest priority UI)
       */}
       <nav className="
@@ -55,10 +55,10 @@ export const WebsiteMobileNav: React.FC = () => {
         /* PORTRAIT STYLES */
         bottom-0 left-0 w-full h-[72px] border-t
         
-        /* BREAKPOINT: Hide on XL (Desktop), Show on LG (Tablet Landscape) */
-        xl:hidden
+        /* BREAKPOINT: Hide on LG (Desktop/Laptop), Show only on Mobile/Tablet Portrait */
+        lg:hidden
         
-        /* LANDSCAPE STYLES (Right Sidebar for Mobile/Tablet) */
+        /* LANDSCAPE STYLES (Right Sidebar for Mobile Landscape) */
         landscape:top-0 landscape:right-0 landscape:left-auto landscape:bottom-auto 
         landscape:w-[80px] landscape:h-full landscape:border-l landscape:border-t-0 
         landscape:flex landscape:flex-col landscape:justify-center

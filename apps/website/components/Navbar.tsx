@@ -18,10 +18,10 @@ export const Navbar: React.FC = () => {
         {/* 
             PADDING LOGIC UPDATE:
             - Default (Portrait Mobile/Tablet): px-6
-            - Landscape Mobile/Tablet: pr-28 (112px) to clear 80px sidebar.
-            - Desktop (XL+): Reset to standard px-12. Sidebar is hidden here.
+            - Landscape Mobile: pr-28 (112px) to clear 80px sidebar.
+            - Desktop (LG+): Reset to standard px-8 or px-12. Sidebar is hidden here.
         */}
-        <div className="w-full h-20 flex items-center justify-between px-6 landscape:pr-28 xl:px-12 xl:landscape:pr-12 transition-all">
+        <div className="w-full h-20 flex items-center justify-between px-6 landscape:pr-28 lg:px-8 lg:landscape:pr-8 xl:px-12 transition-all">
           
           {/* Particle: Brand Logo */}
           <LogoAtom />
