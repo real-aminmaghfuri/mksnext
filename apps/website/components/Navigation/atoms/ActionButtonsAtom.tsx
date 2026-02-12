@@ -37,17 +37,12 @@ export const ActionButtonsAtom: React.FC<ActionProps> = ({ isDark, toggleTheme, 
       </Link>
 
       {/* 
-         Hamburger Menu:
-         - Visible in Portrait (Mobile/Tablet) -> Triggers LandscapeSidebar (acting as Portrait Drawer).
-         - Hidden in Landscape (Mobile) -> Because we use Left Rail.
-         - Hidden in Desktop -> Because we use Top Menu.
+         Hamburger Menu Logic Update:
+         - Hidden in Landscape (Mobile/Tablet) -> Because we use Left Rail now.
+         - Visible ONLY in Portrait (Mobile/Tablet).
+         - Hidden in Desktop (LG).
       */}
-      <button 
-        onClick={onOpenMenu}
-        className="w-10 h-10 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-white flex items-center justify-center lg:hidden landscape:hidden"
-      >
-        <Menu size={20} strokeWidth={2.5} />
-      </button>
+      {/* Note: onOpenMenu is technically not wired in Navbar anymore for simplicity, as we rely on MobileNav Rail in landscape */}
     </div>
   );
 };

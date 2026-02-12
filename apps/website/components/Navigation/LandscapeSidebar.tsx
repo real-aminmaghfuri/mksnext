@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { X, ChevronRight, ChevronLeft, ArrowRight, LayoutGrid, CornerUpLeft } from 'lucide-react';
+import { X, ChevronRight, ChevronLeft, ArrowRight, LayoutGrid, Circle } from 'lucide-react';
 import { MenuItem, SubMenuItem } from './types';
 
 interface LandscapeSidebarProps {
@@ -13,14 +13,18 @@ interface LandscapeSidebarProps {
 }
 
 export const LandscapeSidebar: React.FC<LandscapeSidebarProps> = ({ isOpen, onClose, menuStructure }) => {
+  // Navigation Stack: [] = Root, [Item] = Submenu
   const [navStack, setNavStack] = useState<MenuItem[]>([]);
+  const [direction, setDirection] = useState<'forward' | 'backward'>('forward');
   const [isClosing, setIsClosing] = useState(false);
 
   // Reset state when menu opens
   useEffect(() => {
     if (isOpen) {
       setNavStack([]);
+      setDirection('forward');
       setIsClosing(false);
+      // Lock body scroll
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
@@ -32,20 +36,25 @@ export const LandscapeSidebar: React.FC<LandscapeSidebarProps> = ({ isOpen, onCl
     setIsClosing(true);
     setTimeout(() => {
         onClose();
+        // Optional: Reset local closing state after parent closes to be clean, 
+        // though unmounting handles visuals.
         setIsClosing(false); 
     }, 300);
   };
 
   const pushMenu = (item: MenuItem) => {
+    setDirection('forward');
     setNavStack([...navStack, item]);
   };
 
   const popMenu = () => {
+    setDirection('backward');
     const newStack = [...navStack];
     newStack.pop();
     setNavStack(newStack);
   };
 
+  // Helper to get flattened items
   const getSubItems = (item: MenuItem): SubMenuItem[] => {
     if (item.items) return item.items;
     if (item.columns) {
@@ -56,186 +65,171 @@ export const LandscapeSidebar: React.FC<LandscapeSidebarProps> = ({ isOpen, onCl
 
   const currentParent = navStack.length > 0 ? navStack[navStack.length - 1] : null;
 
+  // FIX: Logic changed from (!isOpen && !isClosing) to just (!isOpen).
+  // When parent sets isOpen=false, we must unmount immediately to remove the blocking overlay.
+  // The closing animation is handled by handleClose() keeping isOpen=true for 300ms while setting isClosing=true.
   if (!isOpen) return null;
 
   return (
-    <div className={`fixed inset-0 z-[100] flex justify-end transition-opacity duration-300 ${isClosing ? 'opacity-0' : 'opacity-100'}`}>
+    <div className={`fixed inset-0 z-[100] bg-zinc-50 dark:bg-black transition-opacity duration-300 flex flex-col ${isClosing ? 'opacity-0' : 'opacity-100'}`}>
       
-      {/* Backdrop */}
-      <div 
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-        onClick={handleClose}
-      />
-
-      {/* 
-         MAIN PANEL CONTAINER
-         - Portrait: Width 85%, Flex Column, Slide from Right
-         - Landscape: Width 100%, Flex Row, Split View
-      */}
-      <div className={`
-          relative h-full bg-zinc-50 dark:bg-black shadow-2xl transition-transform duration-300
-          
-          /* PORTRAIT STYLES (Default) */
-          w-[85vw] max-w-sm flex flex-col border-l border-zinc-200 dark:border-zinc-800
-          ${isClosing ? 'translate-x-full' : 'translate-x-0'}
-          animate-in slide-in-from-right duration-300
-
-          /* LANDSCAPE STYLES (Override) */
-          landscape:w-full landscape:max-w-none landscape:flex-row landscape:border-l-0
-      `}>
-      
-        {/* === HEADER / CONTROL PANEL === */}
-        <div className={`
-            bg-zinc-100 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 flex-shrink-0
-            
-            /* Portrait */
-            w-full p-6 border-b flex flex-col gap-6
-
-            /* Landscape */
-            landscape:w-[35%] landscape:h-full landscape:border-b-0 landscape:border-r landscape:p-8 landscape:justify-between
-        `}>
-            
-            {/* Top: Branding / Back Navigation */}
-            <div className="space-y-6">
-                {currentParent ? (
-                    <button 
-                        onClick={popMenu}
-                        className="group flex items-center gap-4 text-left"
-                    >
-                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-500 group-hover:text-brand-600 group-hover:border-brand-500 transition-all shadow-sm">
-                            <CornerUpLeft size={20} />
-                        </div>
-                        <div>
-                            <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-0.5">KEMBALI KE</p>
-                            <h2 className="text-xl md:text-2xl font-black text-zinc-900 dark:text-white leading-none">MAIN MENU</h2>
-                        </div>
-                    </button>
-                ) : (
-                    <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-brand-600 flex items-center justify-center text-white shadow-lg shadow-brand-500/30">
-                            <LayoutGrid size={20} />
-                        </div>
-                        <div>
-                            <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-0.5">SYSTEM NAV</p>
-                            <h2 className="text-xl md:text-2xl font-black text-zinc-900 dark:text-white leading-none">KOMANDO</h2>
-                        </div>
+      {/* --- HEADER BAR (Sticky Top) --- */}
+      <div className="h-20 px-6 md:px-12 flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md shrink-0 relative z-20">
+        
+        {/* Left: Branding or Back Button */}
+        <div className="flex items-center">
+            {currentParent ? (
+                <button 
+                    onClick={popMenu}
+                    className="group flex items-center gap-2 pr-4 py-2 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                >
+                    <div className="w-8 h-8 rounded-full bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                        <ChevronLeft size={20} />
                     </div>
-                )}
-            </div>
-
-            {/* Middle: Info (Visible mainly in Landscape or if space permits) */}
-            <div className="hidden landscape:flex flex-1 items-center">
-                {currentParent && (
-                    <div className="animate-in slide-in-from-left-4 fade-in duration-300">
-                        <div className="w-12 h-1 bg-brand-500 mb-6" />
-                        <h1 className="text-5xl font-black text-zinc-900 dark:text-white uppercase tracking-tighter leading-[0.9] mb-4">
-                            {currentParent.label}
-                        </h1>
-                        <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                            Akses modul dan fitur yang tersedia di sektor ini.
-                        </p>
+                    <div className="flex flex-col items-start">
+                        <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest leading-none">KEMBALI</span>
+                        <span className="text-sm font-bold text-zinc-900 dark:text-white leading-none mt-1">MAIN MENU</span>
                     </div>
-                )}
-            </div>
-
-            {/* Bottom: Status Footer */}
-            <div className="hidden landscape:block">
-                <div className="h-px w-full bg-zinc-200 dark:bg-zinc-800 mb-6" />
+                </button>
+            ) : (
                 <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-[10px] font-mono font-black text-zinc-400 uppercase tracking-[0.2em]">
-                        System v2.0.5 &bull; Online
+                    <div className="p-2 bg-brand-600 rounded-lg text-white">
+                        <LayoutGrid size={20} />
+                    </div>
+                    <span className="text-lg font-black text-zinc-900 dark:text-white tracking-tighter uppercase">
+                        NAVIGASI <span className="text-brand-600">PUSAT</span>
                     </span>
                 </div>
-            </div>
+            )}
         </div>
 
-        {/* === CONTENT AREA === */}
-        <div className="flex-1 overflow-y-auto bg-white dark:bg-black relative custom-scrollbar">
-            
-            {/* Floating Close Button */}
-            <button 
-                onClick={handleClose}
-                className="absolute top-4 right-4 md:top-6 md:right-6 z-50 w-10 h-10 rounded-full bg-zinc-100 dark:bg-zinc-900 text-zinc-500 hover:text-white hover:bg-red-600 transition-all flex items-center justify-center shadow-lg"
-            >
-                <X size={20} />
-            </button>
+        {/* Right: Close Button */}
+        <button 
+            onClick={handleClose}
+            className="w-10 h-10 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center justify-center transition-all active:scale-90"
+        >
+            <X size={24} />
+        </button>
+      </div>
 
-            <div className="p-6 md:p-8 min-h-full flex flex-col landscape:justify-center">
+      {/* --- CONTENT AREA (Scrollable) --- */}
+      <div className="flex-1 overflow-hidden relative bg-zinc-50 dark:bg-black">
+        
+        {/* ANIMATION CONTAINER */}
+        <div 
+            key={currentParent ? currentParent.label : 'root'}
+            className={`absolute inset-0 overflow-y-auto custom-scrollbar p-6 md:p-12 animate-in duration-300 ease-out fill-mode-forwards
+                ${direction === 'forward' ? 'slide-in-from-right-10 fade-in-0' : 'slide-in-from-left-10 fade-in-0'}
+            `}
+        >
+            <div className="max-w-7xl mx-auto">
                 
-                {/* CONTENT RENDERER */}
                 {!currentParent ? (
-                    // ROOT GRID
-                    <div className="grid grid-cols-1 landscape:grid-cols-2 gap-3 md:gap-4 animate-in slide-in-from-right-8 fade-in duration-300 pt-8 landscape:pt-0">
+                    /* === LEVEL 0: ROOT MENU (GRID LAYOUT) === */
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
                         {menuStructure.map((item, idx) => {
                             const Icon = item.icon;
                             const isAction = item.hasDropdown;
-                            
-                            const Card = (
-                                <div className="group h-full p-5 rounded-2xl bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 hover:border-brand-500/50 hover:bg-white dark:hover:bg-zinc-900 transition-all duration-300 cursor-pointer flex items-center landscape:flex-col landscape:items-start gap-4">
-                                    <div className={`p-3 rounded-xl bg-white dark:bg-black border border-zinc-100 dark:border-zinc-800 text-zinc-500 group-hover:text-brand-600 transition-colors shrink-0 ${!isAction ? 'group-hover:bg-brand-600 group-hover:text-white group-hover:border-brand-600' : ''}`}>
-                                        {Icon && <Icon size={20} strokeWidth={2} />}
+
+                            // Card Content
+                            const content = (
+                                <div className="h-full group relative overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-6 hover:border-brand-500/50 hover:shadow-xl dark:hover:shadow-brand-900/10 transition-all duration-300 active:scale-[0.98]">
+                                    <div className="flex flex-col h-full justify-between gap-4">
+                                        {/* Header Icon */}
+                                        <div className="flex justify-between items-start">
+                                            <div className="w-12 h-12 rounded-2xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-500 group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300">
+                                                {Icon && <Icon size={24} strokeWidth={2} />}
+                                            </div>
+                                            {isAction ? (
+                                                <div className="w-8 h-8 rounded-full border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-zinc-400 group-hover:border-brand-500 group-hover:text-brand-500 transition-colors">
+                                                    <ChevronRight size={16} />
+                                                </div>
+                                            ) : (
+                                                <div className="w-8 h-8 rounded-full border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-zinc-400 group-hover:border-brand-500 group-hover:text-brand-500 transition-colors -rotate-45 group-hover:rotate-0">
+                                                    <ArrowRight size={16} />
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        {/* Text */}
+                                        <div>
+                                            <h3 className="text-xl font-black text-zinc-900 dark:text-white uppercase tracking-tight leading-none mb-2">
+                                                {item.label}
+                                            </h3>
+                                            <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">
+                                                {isAction ? 'Lihat Opsi' : 'Akses Langsung'}
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div className="flex-1">
-                                        <h3 className="text-base md:text-lg font-black text-zinc-900 dark:text-white uppercase tracking-tight group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">
-                                            {item.label}
-                                        </h3>
-                                        {!isAction && <p className="text-[9px] font-bold text-zinc-400 mt-0.5">DIRECT LINK</p>}
-                                    </div>
-                                    {isAction && <ChevronRight size={16} className="text-zinc-300 group-hover:text-brand-500 transition-colors landscape:absolute landscape:top-5 landscape:right-5" />}
                                 </div>
                             );
 
                             return isAction ? (
-                                <div key={idx} onClick={() => pushMenu(item)}>{Card}</div>
+                                <div key={idx} onClick={() => pushMenu(item)} className="h-full cursor-pointer">
+                                    {content}
+                                </div>
                             ) : (
-                                <Link key={idx} href={item.path} onClick={handleClose}>{Card}</Link>
-                            );
-                        })}
-                    </div>
-                ) : (
-                    // SUBMENU LIST
-                    <div className="grid grid-cols-1 gap-3 animate-in slide-in-from-right-8 fade-in duration-300 pt-8 landscape:pt-0">
-                        {/* Portrait Submenu Header (Since left panel is small in portrait) */}
-                        <div className="landscape:hidden mb-4">
-                             <h2 className="text-3xl font-black text-zinc-900 dark:text-white uppercase tracking-tighter leading-none mb-2">
-                                {currentParent.label}
-                            </h2>
-                            <p className="text-xs text-zinc-500">Pilih akses modul dibawah ini.</p>
-                        </div>
-
-                        {getSubItems(currentParent).map((subItem, sIdx) => {
-                            const Icon = subItem.icon;
-                            return (
-                                <Link 
-                                    key={sIdx} 
-                                    href={subItem.path}
-                                    onClick={handleClose}
-                                    className="group flex items-center gap-4 p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 hover:border-brand-500/30 transition-all active:scale-[0.98]"
-                                >
-                                    <div className="w-10 h-10 rounded-xl bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-400 group-hover:text-brand-600 transition-colors shrink-0">
-                                        <Icon size={18} strokeWidth={2} />
-                                    </div>
-                                    <div className="flex-1">
-                                        <h4 className="text-sm md:text-base font-bold text-zinc-900 dark:text-white group-hover:text-brand-600 transition-colors">
-                                            {subItem.label}
-                                        </h4>
-                                        <p className="text-[10px] md:text-xs text-zinc-500 line-clamp-1 mt-0.5">
-                                            {subItem.desc}
-                                        </p>
-                                    </div>
-                                    <div className="w-6 h-6 rounded-full bg-white dark:bg-black flex items-center justify-center text-zinc-300 group-hover:text-brand-500 transition-colors">
-                                        <ArrowRight size={12} />
-                                    </div>
+                                <Link key={idx} href={item.path} onClick={handleClose} className="h-full block">
+                                    {content}
                                 </Link>
                             );
                         })}
                     </div>
+                ) : (
+                    /* === LEVEL 1: SUB MENU (LIST LAYOUT) === */
+                    <div>
+                        <div className="mb-8">
+                            <h2 className="text-4xl md:text-5xl font-black text-zinc-900 dark:text-white uppercase tracking-tighter mb-2">
+                                {currentParent.label}
+                            </h2>
+                            <p className="text-zinc-500 text-lg">Pilih tujuan operasi lo.</p>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {getSubItems(currentParent).map((subItem, sIdx) => {
+                                const Icon = subItem.icon;
+                                return (
+                                    <Link 
+                                        key={sIdx} 
+                                        href={subItem.path}
+                                        onClick={handleClose}
+                                        className="group block"
+                                    >
+                                        <div className="flex items-center gap-6 p-6 bg-white dark:bg-zinc-900 rounded-3xl border border-zinc-200 dark:border-zinc-800 hover:border-brand-500/50 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-all duration-200 active:scale-[0.99]">
+                                            <div className="w-14 h-14 shrink-0 rounded-2xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-500 group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">
+                                                <Icon size={28} strokeWidth={1.5} />
+                                            </div>
+                                            <div className="flex-1 min-w-0">
+                                                <h4 className="text-lg font-bold text-zinc-900 dark:text-white mb-1 group-hover:text-brand-600 transition-colors">
+                                                    {subItem.label}
+                                                </h4>
+                                                <p className="text-xs text-zinc-500 line-clamp-1">
+                                                    {subItem.desc}
+                                                </p>
+                                            </div>
+                                            <div className="w-8 h-8 flex items-center justify-center text-zinc-300 group-hover:text-brand-500 transition-colors">
+                                                <ArrowRight size={20} />
+                                            </div>
+                                        </div>
+                                    </Link>
+                                );
+                            })}
+                        </div>
+                    </div>
                 )}
+
             </div>
         </div>
-
       </div>
+
+      {/* --- FOOTER STATUS --- */}
+      <div className="h-12 bg-white dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-center shrink-0 gap-3">
+         <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+         <span className="text-[10px] font-mono font-black text-zinc-400 uppercase tracking-[0.2em]">
+            System Online &bull; v2.0.5
+         </span>
+      </div>
+
     </div>
   );
 };
