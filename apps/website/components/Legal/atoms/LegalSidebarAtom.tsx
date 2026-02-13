@@ -2,7 +2,7 @@
 "use client";
 import React from 'react';
 import Link from 'next/link';
-import { ChevronRight, ShieldCheck } from 'lucide-react';
+import { ChevronRight, ShieldCheck, FileText } from 'lucide-react';
 import { LEGAL_SIDEBAR_DATA } from 'shared';
 
 interface LegalSidebarProps {
@@ -21,10 +21,10 @@ export const LegalSidebarAtom: React.FC<LegalSidebarProps> = ({ data }) => {
             </div>
             <div>
                 <h4 className="text-xs font-black text-zinc-400 uppercase tracking-widest leading-none mb-1">
-                    COVERAGE AREA
+                    LEGAL PROTOCOL
                 </h4>
                 <p className="text-sm font-bold text-zinc-900 dark:text-white leading-none">
-                    Layanan Terproteksi
+                    Daftar Isi Hukum
                 </p>
             </div>
         </div>
@@ -33,7 +33,7 @@ export const LegalSidebarAtom: React.FC<LegalSidebarProps> = ({ data }) => {
         <div className="space-y-8">
             {data.map((group, idx) => (
                 <div key={idx}>
-                    <h5 className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-3 pl-2 border-l-2 border-brand-500">
+                    <h5 className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-3 pl-2 border-l-2 border-brand-500 flex items-center gap-2">
                         {group.category}
                     </h5>
                     <div className="space-y-1">
@@ -46,7 +46,9 @@ export const LegalSidebarAtom: React.FC<LegalSidebarProps> = ({ data }) => {
                                     className="flex items-center justify-between group p-2.5 rounded-xl hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all duration-200"
                                 >
                                     <div className="flex items-center gap-3">
-                                        <Icon size={16} className="text-zinc-400 group-hover:text-brand-500 transition-colors" />
+                                        <div className="text-zinc-400 group-hover:text-brand-500 transition-colors">
+                                            <Icon size={16} />
+                                        </div>
                                         <span className="text-xs font-bold text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors">
                                             {item.label}
                                         </span>
@@ -62,9 +64,12 @@ export const LegalSidebarAtom: React.FC<LegalSidebarProps> = ({ data }) => {
 
         {/* Footer Note */}
         <div className="mt-8 pt-6 border-t border-zinc-100 dark:border-zinc-800">
-            <p className="text-[10px] text-zinc-400 font-medium leading-relaxed italic">
-                *Seluruh layanan di atas tunduk pada aturan main (TOS) yang berlaku.
-            </p>
+            <div className="flex gap-2 items-start">
+                <FileText size={14} className="text-zinc-400 mt-0.5" />
+                <p className="text-[10px] text-zinc-400 font-medium leading-relaxed italic">
+                    Dokumen ini sah dan mengikat secara hukum sejak lo menggunakan layanan MKS.
+                </p>
+            </div>
         </div>
 
       </div>
