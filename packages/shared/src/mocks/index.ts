@@ -4,3 +4,4 @@ export * from './portfolio';
 export * from './articles';
 export * from './stats';
 export * from './solutions';
+export * from './legal-nav';
