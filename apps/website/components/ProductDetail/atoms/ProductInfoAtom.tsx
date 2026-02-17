@@ -43,7 +43,8 @@ export const ProductInfoAtom: React.FC<InfoProps> = ({ product, text }) => {
 
        {/* Specs List */}
        <div>
-          <h3 className="flex items-center gap-2 text-xs font-black text-zinc-400 uppercase tracking-widest mb-6 border-b border-zinc-100 dark:border-zinc-800 pb-4">
+          {/* UPDATED: Color changed to text-brand-600 to match top section */}
+          <h3 className="flex items-center gap-2 text-xs font-black text-brand-600 uppercase tracking-widest mb-6 border-b border-zinc-100 dark:border-zinc-800 pb-4">
              <FileText size={14} /> {text.prodSpecs}
           </h3>
           <ul className="space-y-4">
@@ -58,7 +59,8 @@ export const ProductInfoAtom: React.FC<InfoProps> = ({ product, text }) => {
 
        {/* In The Box */}
        <div>
-          <h3 className="flex items-center gap-2 text-xs font-black text-zinc-400 uppercase tracking-widest mb-6 border-b border-zinc-100 dark:border-zinc-800 pb-4">
+          {/* UPDATED: Color changed to text-brand-600 to match top section */}
+          <h3 className="flex items-center gap-2 text-xs font-black text-brand-600 uppercase tracking-widest mb-6 border-b border-zinc-100 dark:border-zinc-800 pb-4">
              <Box size={14} /> {text.prodInBox}
           </h3>
           <div className="bg-zinc-50 dark:bg-zinc-900/50 rounded-2xl p-6 border border-zinc-200 dark:border-zinc-800">

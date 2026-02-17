@@ -1,7 +1,7 @@
 
 "use client";
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ProductItem } from 'shared';
 import { useProductDetail } from './useProductDetail';
 import { ProductGalleryAtom } from './atoms/ProductGalleryAtom';
@@ -23,6 +23,14 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
     generateWaLink,
     text
   } = useProductDetail(product);
+
+  // Lock Body Scroll to prevent "Global Scroll" annoyance
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
 
   return (
     <div className="fixed inset-0 z-[100] bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white overflow-hidden flex flex-col animate-fade-in-up">
