@@ -25,7 +25,8 @@ export const useFooter = (): FooterContent => {
       { icon: Phone, text: "+62 881-6566-935" },
       { icon: Mail, text: "owner.kasirsolo@gmail.com" },
     ],
-    copyright: text.footerCopy,
+    copyrightBrand: text.footerCopyBrand,
+    copyrightMsg: text.footerCopyMsg,
     legalLinks: [
       { label: text.footerLegal1, href: '/terms' },
       { label: text.footerLegal2, href: '/privacy' }

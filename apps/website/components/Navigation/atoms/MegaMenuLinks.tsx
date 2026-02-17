@@ -26,6 +26,25 @@ export const MegaMenuLinks: React.FC<MegaMenuLinksProps> = ({ parentLabel, items
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-3">
         {items.map((item, itemIdx) => {
           const Icon = item.icon;
+          
+          if (item.variant === 'highlight') {
+            return (
+              <Link 
+                key={itemIdx} 
+                href={item.path}
+                onClick={onLinkClick}
+                className="col-span-1 md:col-span-2 lg:col-span-4 mt-2 group/high"
+              >
+                 <div className="flex items-center justify-center w-full p-4 rounded-xl bg-gradient-to-r from-brand-600 to-red-600 hover:to-red-500 text-white shadow-lg shadow-brand-500/20 hover:shadow-brand-500/40 transition-all duration-300 transform hover:-translate-y-0.5">
+                    <div className="flex items-center gap-3">
+                        <Icon size={20} strokeWidth={2.5} />
+                        <span className="font-black uppercase tracking-widest text-sm">{item.label}</span>
+                    </div>
+                 </div>
+              </Link>
+            );
+          }
+
           return (
             <Link 
               key={itemIdx} 

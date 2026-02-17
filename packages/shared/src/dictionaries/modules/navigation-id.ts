@@ -10,7 +10,7 @@ export const Navigation_ID: NavDictionary = {
   navAboutProfile: "Tentang Kasir Solo", 
   navAboutTeam: "Pasukan Elite",
   navAboutVision: "Visi & Misi",
-  navAboutPortfolio: "Jejak Pertempuran",
+  navAboutPortfolio: "Jejak Perang Kasir Solo",
   navContact: "Hubungi Gue",
   navCareer: "Rekrutmen Pasukan",
   
@@ -58,6 +58,7 @@ export const Navigation_ID: NavDictionary = {
   navHwDesk: "Meja Kasir",
   navHwRack: "Rak Minimarket",
   navHwAksesoris: "Aksesoris Lainnya",
+  navHwAll: "Semua Perangkat Kasir",
 
   navHelp: "SUPPORT",
   navSupHeader: "BANTUAN",

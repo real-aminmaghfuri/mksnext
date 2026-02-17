@@ -25,6 +25,7 @@ import { Government_EN } from './modules/government';
 import { Corporate_EN } from './modules/corporate';
 import { Franchise_EN } from './modules/franchise';
 import { LegalPage_EN } from './modules/legal-pages';
+import { Assistants_EN } from './modules/assistants';
 
 export const EN_DICTIONARY: Translation = {
   ...Hero_EN,
@@ -54,4 +55,5 @@ export const EN_DICTIONARY: Translation = {
   ...Corporate_EN,
   ...Franchise_EN,
   ...LegalPage_EN,
+  ...Assistants_EN,
 };

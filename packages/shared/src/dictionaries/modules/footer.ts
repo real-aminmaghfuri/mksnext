@@ -9,7 +9,8 @@ export const Footer_ID: FooterDictionary = {
   footerLink3: "Bikin Website Killer",
   footerLink4: "Konsultan SEO 'Jahat'",
   footerCol2: "Markas Komando",
-  footerCopy: "© 2024 PT Mesin Kasir Solo. Jangan macem-macem, hak cipta dilindungi.",
+  footerCopyBrand: "© 2024 PT Mesin Kasir Solo",
+  footerCopyMsg: "Jangan macem-macem, hak cipta dilindungi.",
   footerLegal1: "Aturan Main",
   footerLegal2: "Syarat Perang",
 };
@@ -22,7 +23,8 @@ export const Footer_EN: FooterDictionary = {
   footerLink3: "Build Killer Websites",
   footerLink4: "'Evil' SEO Consulting",
   footerCol2: "Command HQ",
-  footerCopy: "© 2024 PT Mesin Kasir Solo. Don't try anything funny. All rights reserved.",
+  footerCopyBrand: "© 2024 PT Mesin Kasir Solo",
+  footerCopyMsg: "Don't try anything funny. All rights reserved.",
   footerLegal1: "Rules of Engagement",
   footerLegal2: "Terms of War",
 };

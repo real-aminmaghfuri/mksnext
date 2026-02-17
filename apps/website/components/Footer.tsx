@@ -38,9 +38,10 @@ export const Footer: React.FC = () => {
           />
         </div>
         
-        {/* Particle: Legal & Copyright */}
+        {/* Particle: Legal & Copyright (New Layout) */}
         <FooterCopyrightAtom 
-          copyright={content.copyright} 
+          copyrightBrand={content.copyrightBrand}
+          copyrightMsg={content.copyrightMsg}
           legalLinks={content.legalLinks} 
         />
       </div>

@@ -48,6 +48,16 @@ export interface ShopDictionary {
   shopSub: string;
   shopBtnOrder: string;
   shopUnit: string;
+  // New Product Detail Keys
+  prodWeight: string;
+  prodDim: string;
+  prodWorth: string;
+  prodSpecs: string;
+  prodInBox: string;
+  prodBtnBuy: string;
+  prodBtnNego: string;
+  prodPriceLabel: string;
+  prodSeeDetail: string;
 }
 
 export interface AboutDictionary {
@@ -224,7 +234,8 @@ export interface FooterDictionary {
   footerLink3: string;
   footerLink4: string;
   footerCol2: string;
-  footerCopy: string;
+  footerCopyBrand: string; // Brand Name part
+  footerCopyMsg: string;   // Warning message part
   footerLegal1: string;
   footerLegal2: string;
 }
@@ -556,6 +567,16 @@ export interface LegalPageDictionary {
   faqItems: QnaItem[];
 }
 
+export interface AssistantsDictionary {
+  fabBackTop: string;
+  fabChat: string;
+  chatPlaceholder: string;
+  chatWelcome: string;
+  chatHeader: string;
+  chatSend: string;
+  chatDisclaimer: string;
+}
+
 export interface Translation extends 
   HeroDictionary,
   DashboardDictionary,
@@ -583,5 +604,6 @@ export interface Translation extends
   GovernmentDictionary,
   CorporateDictionary,
   FranchiseDictionary,
-  LegalPageDictionary
+  LegalPageDictionary,
+  AssistantsDictionary
 {}

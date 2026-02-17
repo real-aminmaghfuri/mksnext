@@ -6,6 +6,7 @@ export interface SubMenuItem {
   path: string;
   icon: LucideIcon;
   desc: string;
+  variant?: 'default' | 'highlight';
 }
 
 export interface MegaMenuColumn {

@@ -6,6 +6,7 @@ import { ConfigProvider } from "ui";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { WebsiteMobileNav } from "../components/MobileNav";
+import { FloatingAssistants } from "../components/Global/FloatingAssistants";
 import "./globals.css";
 
 const font = Plus_Jakarta_Sans({ subsets: ["latin"] });
@@ -129,6 +130,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <WebsiteMobileNav />
+          <FloatingAssistants />
         </ConfigProvider>
       </body>
     </html>

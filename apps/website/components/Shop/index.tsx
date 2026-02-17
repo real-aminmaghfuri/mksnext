@@ -45,6 +45,7 @@ export const Shop: React.FC = () => {
                 product={product}
                 formattedPrice={formatPrice(product.price)}
                 btnText={text.shopBtnOrder}
+                viewText={text.prodSeeDetail}
                 waLink={generateWaLink(product.name)}
               />
             ))}

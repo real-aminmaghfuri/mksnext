@@ -3,10 +3,16 @@ export interface ProductItem {
   id: number;
   name: string;
   price: number;
-  image: string;
-  desc: string;
+  image: string; // Thumbnail
+  gallery: string[]; // Multi-image support
+  desc: string; // Short desc
+  review: string; // Long narrative
+  specs: string[];
+  inBox: string[];
+  weight: string;
+  dimensions: string;
   tag?: string;
-  category: 'ANDROID' | 'PC' | 'PERIPHERALS'; // Added Category
+  category: 'ANDROID' | 'PC' | 'PERIPHERALS'; 
 }
 
 export interface PortfolioItem {

@@ -58,6 +58,7 @@ export const Navigation_EN: NavDictionary = {
   navHwDesk: "Cashier Desk",
   navHwRack: "Minimarket Rack",
   navHwAksesoris: "Other Accessories",
+  navHwAll: "All POS Devices",
 
   navHelp: "SUPPORT",
   navSupHeader: "HELP CENTER",

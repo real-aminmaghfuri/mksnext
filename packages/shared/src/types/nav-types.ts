@@ -65,6 +65,7 @@ export interface NavDictionary {
   navHwDesk: string;
   navHwRack: string;
   navHwAksesoris: string;
+  navHwAll: string; // New Key
 
   // Support Menu
   navHelp: string;

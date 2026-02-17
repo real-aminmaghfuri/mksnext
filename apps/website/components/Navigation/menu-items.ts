@@ -88,6 +88,7 @@ export const getHardwareMenu = (text: Translation): MenuItem => ({
     { label: text.navHwDesk, path: '/shop', icon: Armchair, desc: "Meja Kasir & Shelving" },
     { label: text.navHwRack, path: '/shop', icon: Grid, desc: "Rak Minimarket & Gudang" },
     { label: text.navHwAksesoris, path: '/shop', icon: Mouse, desc: "Printer, Sparepart, dll" },
+    { label: text.navHwAll, path: '/shop', icon: LayoutGrid, desc: "Cek Semua Katalog", variant: 'highlight' },
   ]
 });
 
