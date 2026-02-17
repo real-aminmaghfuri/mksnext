@@ -1,7 +1,7 @@
 
 import React from 'react';
 import type { Metadata } from 'next';
-import { Shop } from '../../components/Shop';
+import { Shop } from '../../components/Shop/index'; // Explicitly targeting the new modular component
 import { MOCK_PRODUCTS } from 'shared';
 
 export const metadata: Metadata = {
@@ -21,7 +21,6 @@ export const metadata: Metadata = {
 
 export default function ShopPage() {
   // SCHEMA MARKUP (JURUS BAYANGAN: KATALOG PRODUK)
-  // Google bakal baca ini sebagai daftar barang dagangan resmi.
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -45,7 +44,7 @@ export default function ShopPage() {
           'price': product.price.toString(),
           'priceCurrency': 'IDR',
           'availability': 'https://schema.org/InStock',
-          'url': 'https://mesinkasirsolo.com/shop', // Nanti update ke slug detail produk kalau sudah ada
+          'url': 'https://mesinkasirsolo.com/shop', 
           'itemCondition': 'https://schema.org/NewCondition'
         }
       }
@@ -54,13 +53,12 @@ export default function ShopPage() {
 
   return (
     <>
-      {/* INJECTION SUCCESSFUL: Product Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       
-      <div className="pt-20">
+      <div className="pt-0">
         <Shop />
       </div>
     </>
