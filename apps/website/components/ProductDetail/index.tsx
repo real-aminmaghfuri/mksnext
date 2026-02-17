@@ -25,43 +25,42 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
   } = useProductDetail(product);
 
   return (
-    <div className="fixed inset-0 z-[100] bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white overflow-hidden flex flex-col">
+    <div className="fixed inset-0 z-[100] bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white overflow-hidden flex flex-col animate-fade-in-up">
        
-       {/* Top Navigation Bar (Mobile Only / Global Close) */}
+       {/* Top Navigation Bar (Mobile Only) */}
        <div className="h-16 flex items-center justify-between px-6 border-b border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md z-50 shrink-0 lg:hidden">
           <Link href="/shop" className="p-2 -ml-2 text-zinc-500 hover:text-zinc-900 dark:hover:text-white">
              <ArrowLeft size={24} />
           </Link>
-          <span className="font-bold text-sm uppercase tracking-widest line-clamp-1">{product.name}</span>
+          <span className="font-bold text-xs uppercase tracking-widest line-clamp-1">{product.name}</span>
           <div className="w-8" /> 
        </div>
 
-       {/* Close Button Desktop */}
+       {/* 
+          Desktop Close Button 
+          STYLE: Lebih mencolok (Red Background, White Icon, Floating)
+       */}
        <Link 
          href="/shop" 
-         className="hidden lg:flex absolute top-6 right-6 z-50 w-12 h-12 rounded-full bg-white dark:bg-zinc-900 shadow-xl items-center justify-center text-zinc-500 hover:text-red-600 hover:rotate-90 transition-all border border-zinc-200 dark:border-zinc-800"
+         className="hidden lg:flex absolute top-6 right-6 z-[60] w-14 h-14 rounded-full bg-red-600 hover:bg-red-500 shadow-2xl items-center justify-center text-white transition-all hover:rotate-90 hover:scale-110 active:scale-95 border-4 border-white dark:border-zinc-900"
        >
-          <X size={24} />
+          <X size={28} strokeWidth={3} />
        </Link>
 
-       {/* Main Grid Content */}
-       <div className="flex-1 overflow-y-auto lg:overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-12 min-h-full">
+       {/* Main Content Area */}
+       <div className="flex-1 overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12 h-full">
              
-             {/* LEFT COLUMN (60%) - Visuals & Actions */}
-             <div className="lg:col-span-7 bg-white dark:bg-zinc-900 flex flex-col relative h-auto lg:h-full border-r border-zinc-200 dark:border-zinc-800">
+             {/* 
+                LEFT COLUMN (65%) - Visuals & Primary Info 
+                Structure: 
+                - Top: Gallery (Flex)
+                - Bottom: Info Grid & Actions (Fixed height/Auto)
+             */}
+             <div className="lg:col-span-8 bg-zinc-100 dark:bg-zinc-900/50 flex flex-col h-full relative border-r border-zinc-200 dark:border-zinc-800 overflow-y-auto lg:overflow-hidden">
                 
-                {/* Scrollable Gallery Area */}
-                <div className="flex-1 flex flex-col justify-center p-6 lg:p-12 relative">
-                   <div className="absolute top-6 left-6 lg:top-10 lg:left-10 z-10">
-                      <span className="inline-block px-3 py-1 bg-brand-600 text-white text-[10px] font-black uppercase tracking-widest rounded shadow-lg shadow-brand-600/30 mb-2">
-                         {product.category}
-                      </span>
-                      <h1 className="text-3xl md:text-5xl font-black text-zinc-900 dark:text-white uppercase tracking-tighter leading-none max-w-2xl">
-                         {product.name}
-                      </h1>
-                   </div>
-
+                {/* 1. Image Area (Standardized & Proportional) */}
+                <div className="flex-1 flex items-center justify-center p-6 lg:p-12 relative min-h-[400px]">
                    <ProductGalleryAtom 
                       images={product.gallery}
                       currentIndex={currentImageIndex}
@@ -70,16 +69,21 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
                    />
                 </div>
 
-                {/* Sticky Bottom Actions */}
+                {/* 2. Bottom Grid Area (Title, Price, Buttons) */}
                 <ProductActionsAtom 
+                   productName={product.name}
+                   category={product.category}
                    price={formatPrice(product.price)}
                    waLink={generateWaLink}
                    text={text}
                 />
              </div>
 
-             {/* RIGHT COLUMN (40%) - Info & Specs */}
-             <div className="lg:col-span-5 bg-zinc-50 dark:bg-black overflow-y-auto custom-scrollbar h-auto lg:h-full">
+             {/* 
+                RIGHT COLUMN (35%) - Narrative & Specs 
+                Behavior: Scrollable independently
+             */}
+             <div className="lg:col-span-4 bg-white dark:bg-black h-full overflow-y-auto custom-scrollbar border-t lg:border-t-0 border-zinc-200 dark:border-zinc-800 shadow-2xl lg:shadow-none relative z-10">
                 <ProductInfoAtom product={product} text={text} />
              </div>
 

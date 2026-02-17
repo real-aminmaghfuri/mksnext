@@ -2,7 +2,7 @@
 "use client";
 import React from 'react';
 import { ProductItem } from 'shared';
-import { Scale, Ruler, Box, Sparkles } from 'lucide-react';
+import { Scale, Ruler, Box, Sparkles, FileText } from 'lucide-react';
 
 interface InfoProps {
   product: ProductItem;
@@ -11,46 +11,45 @@ interface InfoProps {
 
 export const ProductInfoAtom: React.FC<InfoProps> = ({ product, text }) => {
   return (
-    <div className="p-8 lg:p-12 space-y-10">
+    <div className="p-8 lg:p-12 space-y-12">
        
-       {/* Tech Specs Bar */}
-       <div className="grid grid-cols-2 gap-4">
-          <div className="p-4 rounded-2xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-             <div className="flex items-center gap-2 text-zinc-500 mb-1">
-                <Scale size={16} /> <span className="text-[10px] font-black uppercase tracking-widest">{text.prodWeight}</span>
-             </div>
-             <p className="font-bold text-zinc-900 dark:text-white">{product.weight}</p>
-          </div>
-          <div className="p-4 rounded-2xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-             <div className="flex items-center gap-2 text-zinc-500 mb-1">
-                <Ruler size={16} /> <span className="text-[10px] font-black uppercase tracking-widest">{text.prodDim}</span>
-             </div>
-             <p className="font-bold text-zinc-900 dark:text-white">{product.dimensions}</p>
-          </div>
-       </div>
-
        {/* Narrative Review */}
        <div>
-          <h3 className="flex items-center gap-2 text-sm font-black text-brand-600 uppercase tracking-widest mb-4">
-             <Sparkles size={16} /> {text.prodWorth}
+          <h3 className="flex items-center gap-2 text-xs font-black text-brand-600 uppercase tracking-widest mb-6 border-b border-zinc-100 dark:border-zinc-800 pb-4">
+             <Sparkles size={14} /> {text.prodWorth}
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-300 leading-relaxed text-base font-medium">
-             {product.review}
-          </p>
+          <article className="prose dark:prose-invert">
+            <p className="text-zinc-600 dark:text-zinc-300 leading-loose text-base md:text-lg font-medium">
+                {product.review}
+            </p>
+          </article>
        </div>
 
-       {/* Divider */}
-       <div className="h-px bg-zinc-200 dark:bg-zinc-800 w-full" />
+       {/* Tech Specs Bar */}
+       <div className="grid grid-cols-2 gap-4">
+          <div className="p-5 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+             <div className="flex items-center gap-2 text-zinc-400 mb-2">
+                <Scale size={14} /> <span className="text-[9px] font-black uppercase tracking-widest">{text.prodWeight}</span>
+             </div>
+             <p className="font-bold text-lg text-zinc-900 dark:text-white">{product.weight}</p>
+          </div>
+          <div className="p-5 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+             <div className="flex items-center gap-2 text-zinc-400 mb-2">
+                <Ruler size={14} /> <span className="text-[9px] font-black uppercase tracking-widest">{text.prodDim}</span>
+             </div>
+             <p className="font-bold text-lg text-zinc-900 dark:text-white">{product.dimensions}</p>
+          </div>
+       </div>
 
        {/* Specs List */}
        <div>
-          <h3 className="text-sm font-black text-zinc-900 dark:text-white uppercase tracking-widest mb-4">
-             {text.prodSpecs}
+          <h3 className="flex items-center gap-2 text-xs font-black text-zinc-400 uppercase tracking-widest mb-6 border-b border-zinc-100 dark:border-zinc-800 pb-4">
+             <FileText size={14} /> {text.prodSpecs}
           </h3>
-          <ul className="space-y-3">
+          <ul className="space-y-4">
              {product.specs.map((spec, idx) => (
-                <li key={idx} className="flex items-start gap-3 text-sm text-zinc-600 dark:text-zinc-400 font-medium">
-                   <div className="w-1.5 h-1.5 rounded-full bg-brand-500 mt-2 shrink-0" />
+                <li key={idx} className="flex items-start gap-4 text-sm text-zinc-700 dark:text-zinc-300 font-bold group">
+                   <div className="w-1.5 h-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700 mt-2 shrink-0 group-hover:bg-brand-500 transition-colors" />
                    {spec}
                 </li>
              ))}
@@ -59,14 +58,14 @@ export const ProductInfoAtom: React.FC<InfoProps> = ({ product, text }) => {
 
        {/* In The Box */}
        <div>
-          <h3 className="text-sm font-black text-zinc-900 dark:text-white uppercase tracking-widest mb-4">
-             {text.prodInBox}
+          <h3 className="flex items-center gap-2 text-xs font-black text-zinc-400 uppercase tracking-widest mb-6 border-b border-zinc-100 dark:border-zinc-800 pb-4">
+             <Box size={14} /> {text.prodInBox}
           </h3>
-          <div className="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-zinc-200 dark:border-zinc-800 shadow-sm">
+          <div className="bg-zinc-50 dark:bg-zinc-900/50 rounded-2xl p-6 border border-zinc-200 dark:border-zinc-800">
              <ul className="space-y-3">
                 {product.inBox.map((item, idx) => (
                    <li key={idx} className="flex items-center gap-3 text-sm text-zinc-700 dark:text-zinc-300 font-bold">
-                      <Box size={16} className="text-brand-500" />
+                      <Box size={14} className="text-brand-500" />
                       {item}
                    </li>
                 ))}
@@ -74,8 +73,8 @@ export const ProductInfoAtom: React.FC<InfoProps> = ({ product, text }) => {
           </div>
        </div>
 
-       {/* Bottom Spacer for Mobile Scroll */}
-       <div className="h-24 lg:hidden" />
+       {/* Mobile Bottom Spacer */}
+       <div className="h-10 lg:hidden" />
     </div>
   );
 };
