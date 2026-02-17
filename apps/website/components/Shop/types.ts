@@ -1,5 +1,5 @@
 
-import { ProductItem } from 'shared';
+import { ProductItem, PortfolioItem } from 'shared';
 
 export type ShopCategory = 'ALL' | 'ANDROID' | 'PC' | 'PERIPHERALS';
 
@@ -10,4 +10,10 @@ export interface ShopLogic {
   activeCategory: ShopCategory;
   setCategory: (cat: ShopCategory) => void;
   generateWaLink: (productName: string) => string;
+  // Pagination
+  currentPage: number;
+  totalPages: number;
+  setPage: (page: number) => void;
+  // Related Portfolio
+  hardwareProjects: PortfolioItem[];
 }
