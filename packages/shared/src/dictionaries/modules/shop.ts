@@ -14,7 +14,7 @@ export const Shop_ID: ShopDictionary = {
   prodInBox: "ISI PAKET",
   prodBtnBuy: "Beli Sekarang",
   prodBtnNego: "Nego Harga",
-  prodPriceLabel: "HARGA PER UNIT",
+  prodPriceLabel: "PER UNIT",
   prodSeeDetail: "LIHAT DETAIL",
 };
 
@@ -31,6 +31,6 @@ export const Shop_EN: ShopDictionary = {
   prodInBox: "IN THE BOX",
   prodBtnBuy: "Buy Now",
   prodBtnNego: "Negotiate Price",
-  prodPriceLabel: "PRICE PER UNIT",
+  prodPriceLabel: "PER UNIT",
   prodSeeDetail: "VIEW DETAIL",
 };
