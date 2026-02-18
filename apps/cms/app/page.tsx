@@ -10,7 +10,7 @@ import { Eye, ThumbsUp, TrendingUp, FileText } from 'lucide-react';
 export default function CMSDashboard() {
   return (
     <div className="flex h-screen bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white overflow-hidden">
-      <Sidebar />
+      {/* Main Content First */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
          <Header title="Content Overview" />
          <main className="flex-1 overflow-y-auto p-6 md:p-8 custom-scrollbar relative z-10">
@@ -42,6 +42,8 @@ export default function CMSDashboard() {
 
          </main>
       </div>
+      {/* Sidebar Second (Right Side) */}
+      <Sidebar />
     </div>
   );
 }

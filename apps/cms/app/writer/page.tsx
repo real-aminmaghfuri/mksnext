@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState } from 'react';
@@ -61,7 +62,7 @@ export default function WriterPage() {
 
   return (
     <div className="flex h-screen bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white overflow-hidden">
-      <Sidebar />
+      {/* Main Content First */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
          <Header title="AI INTEL WRITER" />
 
@@ -136,6 +137,8 @@ export default function WriterPage() {
             </div>
          </main>
       </div>
+      {/* Sidebar Second (Right Side) */}
+      <Sidebar />
     </div>
   );
 }

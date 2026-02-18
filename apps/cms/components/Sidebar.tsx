@@ -17,8 +17,9 @@ export const Sidebar: React.FC<{ collapsed?: boolean }> = ({ collapsed = false }
     { icon: Image, label: 'Media Library', path: '/media' },
   ];
 
+  // Changed border-r to border-l
   return (
-    <aside className={`hidden lg:flex h-screen flex-col bg-white dark:bg-zinc-950 border-r border-zinc-200 dark:border-zinc-800 transition-all duration-500 ${collapsed ? 'w-16' : 'w-64'}`}>
+    <aside className={`hidden lg:flex h-screen flex-col bg-white dark:bg-zinc-950 border-l border-zinc-200 dark:border-zinc-800 transition-all duration-500 ${collapsed ? 'w-16' : 'w-64'}`}>
       <div className="h-16 flex items-center px-6 border-b border-zinc-100 dark:border-zinc-900">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 flex items-center justify-center">
