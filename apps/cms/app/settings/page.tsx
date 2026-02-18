@@ -51,9 +51,8 @@ export default function CMSSettingsPage() {
 
   return (
     <div className="flex h-screen bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white overflow-hidden">
-      <Sidebar />
       
-      {/* Main Area */}
+      {/* 1. Main Area (Left) */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
          <Header title="WEB PROTOCOLS" />
 
@@ -304,6 +303,9 @@ export default function CMSSettingsPage() {
             </div>
          </main>
       </div>
+
+      {/* 2. Sidebar (Right) */}
+      <Sidebar />
     </div>
   );
 }

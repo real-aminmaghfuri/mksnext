@@ -78,8 +78,8 @@ export default function MediaPage() {
 
   return (
     <div className="flex h-screen bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white overflow-hidden">
-      <Sidebar />
       
+      {/* 1. Main Content Area (Left) */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
          <Header title="MEDIA COMMAND" />
 
@@ -174,6 +174,9 @@ export default function MediaPage() {
 
          </main>
       </div>
+
+      {/* 2. Sidebar (Right) */}
+      <Sidebar />
     </div>
   );
 }

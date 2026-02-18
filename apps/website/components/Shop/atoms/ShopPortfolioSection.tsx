@@ -3,7 +3,7 @@
 import React from 'react';
 import { PortfolioItem } from 'shared';
 import { GlassCard, Button } from 'ui';
-import { HardDrive, ArrowRight, FolderOpen } from 'lucide-react';
+import { HardDrive, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -40,26 +40,28 @@ export const ShopPortfolioSection: React.FC<ShopPortfolioProps> = ({ projects })
             {/* Grid 3 Columns */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
                 {projects.map((item) => (
-                    <GlassCard key={item.id} variant="solid" className="group bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 overflow-hidden hover:-translate-y-1 transition-transform duration-300">
-                        <div className="relative aspect-video overflow-hidden">
-                            <Image 
-                                src={item.image} 
-                                alt={item.title}
-                                fill
-                                sizes="(max-width: 768px) 100vw, 33vw"
-                                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
-                        </div>
-                        <div className="p-6">
-                            <h4 className="font-bold text-zinc-900 dark:text-white mb-2 line-clamp-2 leading-tight group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">
-                                {item.title}
-                            </h4>
-                            <span className="text-[10px] font-bold px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500 uppercase tracking-wide">
-                                {item.tag}
-                            </span>
-                        </div>
-                    </GlassCard>
+                    <Link href={`/portfolio/${item.id}`} key={item.id} className="block h-full">
+                        <GlassCard variant="solid" className="group bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 overflow-hidden hover:-translate-y-1 transition-transform duration-300 h-full">
+                            <div className="relative aspect-video overflow-hidden">
+                                <Image 
+                                    src={item.image} 
+                                    alt={item.title}
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, 33vw"
+                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                />
+                                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
+                            </div>
+                            <div className="p-6">
+                                <h4 className="font-bold text-zinc-900 dark:text-white mb-2 line-clamp-2 leading-tight group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">
+                                    {item.title}
+                                </h4>
+                                <span className="text-[10px] font-bold px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-500 uppercase tracking-wide">
+                                    {item.tag}
+                                </span>
+                            </div>
+                        </GlassCard>
+                    </Link>
                 ))}
             </div>
 

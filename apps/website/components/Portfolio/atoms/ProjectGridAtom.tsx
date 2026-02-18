@@ -5,6 +5,7 @@ import { GlassCard } from 'ui';
 import { PortfolioItem } from 'shared';
 import { ArrowRight, Monitor, Box } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface ProjectGridProps {
   items: PortfolioItem[];
@@ -16,42 +17,50 @@ export const ProjectGridAtom: React.FC<ProjectGridProps> = ({ items, viewText })
     <div className="container mx-auto px-6 mb-24 relative z-10">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {items.map((item) => (
-          <GlassCard key={item.id} variant="solid" className="group bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 overflow-hidden flex flex-col h-full hover:border-brand-500/50 dark:hover:border-brand-900/50 transition-all duration-500 shadow-md dark:shadow-none">
-            
-            {/* Image Container */}
-            <div className="relative aspect-video overflow-hidden bg-zinc-100 dark:bg-zinc-800">
-                <div className="absolute inset-0 bg-black/10 dark:bg-zinc-900/20 group-hover:bg-transparent transition-colors z-10" />
-                <Image 
-                    src={item.image} 
-                    alt={item.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute top-4 left-4 z-20">
-                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-white/90 dark:bg-black/80 backdrop-blur text-[10px] font-bold text-zinc-900 dark:text-white uppercase tracking-wider border border-zinc-200 dark:border-white/10 shadow-sm">
-                        {item.category === 'DIGITAL' ? <Monitor size={10} /> : <Box size={10} />}
-                        {item.tag}
-                    </span>
-                </div>
-            </div>
+          <Link href={`/portfolio/${item.id}`} key={item.id} className="block h-full">
+            <GlassCard variant="solid" className="group bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 overflow-hidden flex flex-col h-full hover:border-brand-500/50 dark:hover:border-brand-900/50 transition-all duration-500 shadow-md dark:shadow-none hover:-translate-y-2">
+              
+              {/* Image Container */}
+              <div className="relative aspect-video overflow-hidden bg-zinc-100 dark:bg-zinc-800 border-b border-zinc-100 dark:border-zinc-800">
+                  <div className="absolute inset-0 bg-black/10 dark:bg-zinc-900/20 group-hover:bg-transparent transition-colors z-10 pointer-events-none" />
+                  
+                  <Image 
+                      src={item.image} 
+                      alt={item.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className={`object-cover ${
+                        item.category === 'DIGITAL' 
+                          ? 'object-top transition-all duration-[5000ms] ease-in-out group-hover:object-bottom' 
+                          : 'transition-transform duration-700 group-hover:scale-110'
+                      }`}
+                  />
+                  
+                  <div className="absolute top-4 left-4 z-20">
+                      <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-white/90 dark:bg-black/80 backdrop-blur text-[10px] font-bold text-zinc-900 dark:text-white uppercase tracking-wider border border-zinc-200 dark:border-white/10 shadow-sm">
+                          {item.category === 'DIGITAL' ? <Monitor size={10} /> : <Box size={10} />}
+                          {item.tag}
+                      </span>
+                  </div>
+              </div>
 
-            {/* Content */}
-            <div className="p-6 flex flex-col flex-1">
-                <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3 line-clamp-2 leading-tight group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">
-                    {item.title}
-                </h3>
-                <p className="text-sm text-zinc-600 dark:text-zinc-500 mb-6 flex-1 leading-relaxed">
-                    {item.desc}
-                </p>
-                <div className="pt-4 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
-                    <button className="text-xs font-bold text-brand-600 uppercase tracking-widest flex items-center gap-2 group/btn">
-                        {viewText} <ArrowRight size={14} className="transition-transform group-hover/btn:translate-x-1" />
-                    </button>
-                </div>
-            </div>
+              {/* Content */}
+              <div className="p-6 flex flex-col flex-1">
+                  <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3 line-clamp-2 leading-tight group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors">
+                      {item.title}
+                  </h3>
+                  <p className="text-sm text-zinc-600 dark:text-zinc-500 mb-6 flex-1 leading-relaxed line-clamp-3">
+                      {item.desc}
+                  </p>
+                  <div className="pt-4 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
+                      <button className="text-xs font-bold text-brand-600 uppercase tracking-widest flex items-center gap-2 group/btn">
+                          {viewText} <ArrowRight size={14} className="transition-transform group-hover/btn:translate-x-1" />
+                      </button>
+                  </div>
+              </div>
 
-          </GlassCard>
+            </GlassCard>
+          </Link>
         ))}
       </div>
     </div>
