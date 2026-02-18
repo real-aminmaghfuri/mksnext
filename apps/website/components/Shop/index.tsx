@@ -15,10 +15,10 @@ export const Shop: React.FC = () => {
     products, 
     formatPrice, 
     activeCategory, 
-    setCategory,
+    setCategory, 
     generateWaLink,
-    currentPage,
-    totalPages,
+    currentPage, 
+    totalPages, 
     setPage,
     hardwareProjects
   } = useShop();
@@ -36,16 +36,23 @@ export const Shop: React.FC = () => {
         onFilterChange={setCategory} 
       />
 
-      <div className="container mx-auto px-4 sm:px-6 max-w-7xl pb-24">
+      {/* 
+          FULL WIDTH CONTAINER 
+          Removed 'container' and 'max-w-*' constraints to use full screen width.
+          Added proper padding for edge spacing.
+      */}
+      <div className="w-full px-4 md:px-8 pb-24">
         {products.length > 0 ? (
           <>
             {/* 
-               GRID LOGIC UPDATE:
-               - Mobile (<500px): 1 Column
-               - Tablet/Phablet (min-500px): 2 Columns
-               - Desktop (lg): 4 Columns (Updated from 3)
+               GRID LOGIC UPDATE (Requested):
+               - HP (Base): 2 Columns
+               - Tablet Kecil (sm): 3 Columns
+               - Tablet Besar/Laptop (md/lg): 4 Columns
+               - Monitor Lebar (xl): 5 Columns
+               - Monitor Sultan (2xl): 6 Columns
             */}
-            <div className="grid grid-cols-1 min-[500px]:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-6 mb-16">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3 md:gap-6 mb-16">
               {products.map((product) => (
                 <ProductCardAtom 
                   key={product.id} 
