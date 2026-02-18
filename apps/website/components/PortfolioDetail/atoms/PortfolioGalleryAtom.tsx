@@ -1,6 +1,6 @@
 
 "use client";
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, Maximize2, X, Monitor, Box } from 'lucide-react';
 
@@ -21,21 +21,36 @@ export const PortfolioGalleryAtom: React.FC<GalleryProps> = ({
     isLightboxOpen, onOpenLightbox, onCloseLightbox, category
 }) => {
   
-  // Update Button Style: Outline Orange -> Solid Orange on Hover
-  const navBtnClass = "absolute top-1/2 -translate-y-1/2 p-3 rounded-full border-2 border-brand-500 text-brand-500 bg-transparent hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-xl opacity-0 group-hover:opacity-100 z-10 duration-300";
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Auto-center logic for thumbnails (Pseudo Looping Effect)
+  useEffect(() => {
+    if (scrollRef.current) {
+        const container = scrollRef.current;
+        const activeItem = container.children[currentIndex] as HTMLElement;
+        if (activeItem) {
+            // Calculate center position
+            const scrollLeft = activeItem.offsetLeft - (container.clientWidth / 2) + (activeItem.clientWidth / 2);
+            container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+        }
+    }
+  }, [currentIndex]);
+
+  // BUTTON STYLE: Outline Orange (Normal) -> Solid Orange (Hover)
+  const navBtnClass = "absolute top-1/2 -translate-y-1/2 p-3 rounded-full border-2 border-brand-500 text-brand-500 bg-transparent hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all duration-300 shadow-xl z-20";
 
   return (
     <>
         {/* MAIN VIEW AREA */}
-        <div className="flex-1 flex flex-col items-center justify-center p-6 lg:p-12 relative min-h-[400px] group">
+        <div className="flex-1 flex flex-col items-center justify-center p-6 lg:p-12 relative min-h-[400px] group w-full">
             
             {/* Main Image */}
-            <div className="relative w-full h-full max-h-[600px] shadow-2xl rounded-xl overflow-hidden cursor-zoom-in" onClick={onOpenLightbox}>
+            <div className="relative w-full h-full max-h-[600px] shadow-2xl rounded-xl overflow-hidden cursor-zoom-in bg-zinc-100 dark:bg-zinc-800" onClick={onOpenLightbox}>
                 <Image 
                     src={images[currentIndex]} 
                     alt="Project Documentation"
                     fill
-                    className="object-contain bg-zinc-100 dark:bg-zinc-800"
+                    className="object-contain"
                     sizes="(max-width: 768px) 100vw, 70vw"
                     priority
                 />
@@ -54,29 +69,38 @@ export const PortfolioGalleryAtom: React.FC<GalleryProps> = ({
                 </div>
             </div>
 
-            {/* Thumbnail Strip - No Scroll, Wrap, Centered */}
-            <div className="mt-8 flex gap-3 flex-wrap justify-center w-full">
-                {images.map((img, idx) => (
-                    <button 
-                        key={idx}
-                        onClick={() => onSelect(idx)}
-                        className={`relative w-20 h-14 rounded-lg overflow-hidden border-2 transition-all shrink-0 ${idx === currentIndex ? 'border-brand-500 scale-105 shadow-lg' : 'border-transparent opacity-60 hover:opacity-100'}`}
-                    >
-                        <Image src={img} alt={`Thumb ${idx}`} fill className="object-cover" />
-                    </button>
-                ))}
+            {/* Thumbnail Strip - Hidden Scrollbar + Auto Center */}
+            <div className="mt-8 w-full max-w-2xl relative">
+                <div 
+                    ref={scrollRef}
+                    className="flex gap-3 overflow-hidden w-full justify-center px-4"
+                >
+                    {images.map((img, idx) => (
+                        <button 
+                            key={idx}
+                            onClick={() => onSelect(idx)}
+                            className={`relative w-20 h-14 rounded-lg overflow-hidden border-2 transition-all shrink-0 
+                                ${idx === currentIndex 
+                                    ? 'border-brand-500 scale-110 shadow-lg opacity-100' 
+                                    : 'border-transparent opacity-50 hover:opacity-100 hover:scale-105'
+                                }`}
+                        >
+                            <Image src={img} alt={`Thumb ${idx}`} fill className="object-cover" />
+                        </button>
+                    ))}
+                </div>
             </div>
 
-            {/* Nav Arrows (Desktop) */}
+            {/* Nav Arrows (Desktop) - Visible on Group Hover */}
             <button 
                 onClick={(e) => { e.stopPropagation(); onPrev(); }}
-                className={`${navBtnClass} left-4 -translate-x-4 group-hover:translate-x-0`}
+                className={`${navBtnClass} left-4 opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0`}
             >
                 <ChevronLeft size={24} strokeWidth={2.5} />
             </button>
             <button 
                 onClick={(e) => { e.stopPropagation(); onNext(); }}
-                className={`${navBtnClass} right-4 translate-x-4 group-hover:translate-x-0`}
+                className={`${navBtnClass} right-4 opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0`}
             >
                 <ChevronRight size={24} strokeWidth={2.5} />
             </button>
