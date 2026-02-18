@@ -16,7 +16,7 @@ export const Shop: React.FC = () => {
     formatPrice, 
     activeCategory, 
     setCategory, 
-    generateWaLink,
+    generateWaLink, 
     currentPage, 
     totalPages, 
     setPage,
@@ -45,14 +45,12 @@ export const Shop: React.FC = () => {
         {products.length > 0 ? (
           <>
             {/* 
-               GRID LOGIC UPDATE (Requested):
+               GRID LOGIC UPDATE (Max 4 Columns):
                - HP (Base): 2 Columns
                - Tablet Kecil (sm): 3 Columns
-               - Tablet Besar/Laptop (md/lg): 4 Columns
-               - Monitor Lebar (xl): 5 Columns
-               - Monitor Sultan (2xl): 6 Columns
+               - Tablet Besar & Monitor (md+): 4 Columns (Capped here for premium look)
             */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3 md:gap-6 mb-16">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-6 mb-16">
               {products.map((product) => (
                 <ProductCardAtom 
                   key={product.id} 
