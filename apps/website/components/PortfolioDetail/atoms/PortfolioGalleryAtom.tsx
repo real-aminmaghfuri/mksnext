@@ -21,6 +21,9 @@ export const PortfolioGalleryAtom: React.FC<GalleryProps> = ({
     isLightboxOpen, onOpenLightbox, onCloseLightbox, category
 }) => {
   
+  // Update Button Style: Outline Orange -> Solid Orange on Hover
+  const navBtnClass = "absolute top-1/2 -translate-y-1/2 p-3 rounded-full border-2 border-brand-500 text-brand-500 bg-transparent hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-xl opacity-0 group-hover:opacity-100 z-10 duration-300";
+
   return (
     <>
         {/* MAIN VIEW AREA */}
@@ -51,8 +54,8 @@ export const PortfolioGalleryAtom: React.FC<GalleryProps> = ({
                 </div>
             </div>
 
-            {/* Thumbnail Strip */}
-            <div className="mt-8 flex gap-3 overflow-x-auto max-w-full pb-2">
+            {/* Thumbnail Strip - No Scroll, Wrap, Centered */}
+            <div className="mt-8 flex gap-3 flex-wrap justify-center w-full">
                 {images.map((img, idx) => (
                     <button 
                         key={idx}
@@ -67,15 +70,15 @@ export const PortfolioGalleryAtom: React.FC<GalleryProps> = ({
             {/* Nav Arrows (Desktop) */}
             <button 
                 onClick={(e) => { e.stopPropagation(); onPrev(); }}
-                className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-700 hover:scale-110 transition-all shadow-xl opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 z-10"
+                className={`${navBtnClass} left-4 -translate-x-4 group-hover:translate-x-0`}
             >
-                <ChevronLeft size={24} />
+                <ChevronLeft size={24} strokeWidth={2.5} />
             </button>
             <button 
                 onClick={(e) => { e.stopPropagation(); onNext(); }}
-                className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-700 hover:scale-110 transition-all shadow-xl opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 z-10"
+                className={`${navBtnClass} right-4 translate-x-4 group-hover:translate-x-0`}
             >
-                <ChevronRight size={24} />
+                <ChevronRight size={24} strokeWidth={2.5} />
             </button>
         </div>
 

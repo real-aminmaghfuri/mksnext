@@ -3,7 +3,7 @@
 import React from 'react';
 import { PortfolioItem } from 'shared';
 import { Button } from 'ui';
-import { MessageCircle, CheckCircle2, Calendar, FileText } from 'lucide-react';
+import { MessageCircle, CheckCircle2, Calendar, FileText, Cpu, Layers } from 'lucide-react';
 
 interface InfoProps {
   item: PortfolioItem;
@@ -11,10 +11,17 @@ interface InfoProps {
 }
 
 export const PortfolioInfoAtom: React.FC<InfoProps> = ({ item, waLink }) => {
-  // Simulasi Scope of Work berdasarkan kategori (karena di mock belum ada)
-  const scopeOfWork = item.category === 'DIGITAL' 
+  const isDigital = item.category === 'DIGITAL';
+
+  // Simulasi Scope of Work
+  const scopeOfWork = isDigital 
     ? ['UI/UX Design Strategy', 'Full Stack Development', 'SEO Optimization', 'Server Deployment']
     : ['Hardware Installation', 'Network Cabling', 'Staff Training', 'System Calibration'];
+
+  // Simulasi Tech Specs
+  const techSpecs = isDigital
+    ? ['Next.js Framework', 'TypeScript', 'Tailwind CSS', 'Supabase DB', 'Vercel Cloud']
+    : ['Android POS Terminal', 'Thermal Printer 80mm', 'Laser Scanner 2D', 'Cash Drawer RJ11', 'Local Server'];
 
   return (
     <div className="p-8 lg:p-12 space-y-10">
@@ -40,9 +47,6 @@ export const PortfolioInfoAtom: React.FC<InfoProps> = ({ item, waLink }) => {
           <p className="text-zinc-600 dark:text-zinc-300 leading-relaxed text-base font-medium">
              {item.desc}
           </p>
-          <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-4">
-             Tantangan utama dalam proyek ini adalah memastikan integrasi sistem berjalan mulus tanpa mengganggu operasional harian klien. Tim MKS melakukan pendekatan taktis untuk eksekusi cepat dan presisi.
-          </p>
        </article>
 
        {/* Scope of Work Box */}
@@ -58,6 +62,21 @@ export const PortfolioInfoAtom: React.FC<InfoProps> = ({ item, waLink }) => {
                 </li>
              ))}
           </ul>
+       </div>
+
+       {/* Tech Specs Section */}
+       <div>
+          <h3 className="flex items-center gap-2 text-xs font-black text-zinc-900 dark:text-white uppercase tracking-widest mb-4">
+             <Cpu size={14} className="text-brand-600" /> {isDigital ? 'TECH STACK' : 'HARDWARE SPECS'}
+          </h3>
+          <div className="flex flex-wrap gap-2">
+             {techSpecs.map((tech, idx) => (
+                <div key={idx} className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black shadow-sm text-xs font-bold text-zinc-600 dark:text-zinc-400">
+                   <Layers size={12} className="text-zinc-400" />
+                   {tech}
+                </div>
+             ))}
+          </div>
        </div>
 
        {/* Actions */}
