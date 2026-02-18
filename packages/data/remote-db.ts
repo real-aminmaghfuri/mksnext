@@ -1,16 +1,31 @@
+
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { DataConfig } from './types';
 
 let supabase: SupabaseClient | null = null;
 
-export const initSupabase = (config: DataConfig) => {
-  if (config.useSupabase && config.supabaseUrl && config.supabaseKey) {
-    supabase = createClient(config.supabaseUrl, config.supabaseKey);
+// Initialize automatically using Environment Variables
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+if (supabaseUrl && supabaseKey) {
+  try {
+    supabase = createClient(supabaseUrl, supabaseKey);
+    // Console log for debugging (Safe to remove in production later)
+    if (typeof window !== 'undefined') {
+        console.log("🔥 [MKS DATABASE] Supabase Client Initialized via Integration.");
+    }
+  } catch (e) {
+    console.error("❌ [MKS DATABASE] Failed to initialize Supabase:", e);
   }
-  return supabase;
-};
+} else {
+    if (typeof window !== 'undefined') {
+        console.warn("⚠️ [MKS DATABASE] Supabase Keys missing. Running in Offline/Mock Mode.");
+    }
+}
 
 export const getSupabase = () => supabase;
 
-// Helper to check connection (mocked for now)
-export const isOnline = () => navigator.onLine;
+// Helper to check connection status (Basic Check)
+export const isOnline = () => {
+  return typeof navigator !== 'undefined' && navigator.onLine && !!supabase;
+};
