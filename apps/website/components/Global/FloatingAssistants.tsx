@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -81,7 +80,7 @@ export const FloatingAssistants: React.FC = () => {
             ]
         });
 
-        const reply = response.response.text();
+        const reply = response.text || "Maaf, saya tidak dapat menjawab saat ini.";
         setMessages(prev => [...prev, { role: 'model', text: reply }]);
 
     } catch (error) {
