@@ -4,10 +4,17 @@ const nextConfig = {
   transpilePackages: ["ui", "shared"],
   reactStrictMode: true,
   images: {
+    formats: ['image/avif', 'image/webp'], // Priority: AVIF first, then WebP
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
         port: '',
         pathname: '/**',
       },
@@ -17,8 +24,11 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   env: {
-    // Mapping Vercel Variable (GEMINI_API_KEY_1) to App Standard (API_KEY)
-    API_KEY: process.env.GEMINI_API_KEY_1
+    API_KEY: process.env.GEMINI_API_KEY_1,
+    NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+    CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
+    CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
+    NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET: process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
   }
 };
 

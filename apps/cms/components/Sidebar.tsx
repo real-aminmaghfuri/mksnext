@@ -5,7 +5,7 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Logo } from 'ui';
-import { LayoutDashboard, FileText, PenTool, Image, LogOut, Globe } from 'lucide-react';
+import { LayoutDashboard, FileText, PenTool, Image, LogOut, Globe, Settings } from 'lucide-react';
 
 export const Sidebar: React.FC<{ collapsed?: boolean }> = ({ collapsed = false }) => {
   const pathname = usePathname();
@@ -13,11 +13,11 @@ export const Sidebar: React.FC<{ collapsed?: boolean }> = ({ collapsed = false }
   const menuItems = [
     { icon: LayoutDashboard, label: 'Overview', path: '/' },
     { icon: FileText, label: 'All Articles', path: '/articles' },
-    { icon: PenTool, label: 'AI Writer', path: '/writer' }, // AI Writer moved here
+    { icon: PenTool, label: 'AI Writer', path: '/writer' },
     { icon: Image, label: 'Media Library', path: '/media' },
+    { icon: Settings, label: 'Web Protocols', path: '/settings' }, // New settings link
   ];
 
-  // Changed border-r to border-l
   return (
     <aside className={`hidden lg:flex h-screen flex-col bg-white dark:bg-zinc-950 border-l border-zinc-200 dark:border-zinc-800 transition-all duration-500 ${collapsed ? 'w-16' : 'w-64'}`}>
       <div className="h-16 flex items-center px-6 border-b border-zinc-100 dark:border-zinc-900">
@@ -61,7 +61,7 @@ export const Sidebar: React.FC<{ collapsed?: boolean }> = ({ collapsed = false }
         
         <div className="mt-8 border-t border-zinc-100 dark:border-zinc-800 pt-4">
              <Link
-              href="http://localhost:3000" // Link back to main site
+              href="http://localhost:3000"
               target="_blank"
               className="w-full flex items-center p-3 rounded-xl text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
             >
