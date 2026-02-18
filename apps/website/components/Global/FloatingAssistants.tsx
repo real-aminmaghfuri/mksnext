@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -53,9 +54,9 @@ export const FloatingAssistants: React.FC = () => {
     if (messages.length === 0) {
         setMessages([{ role: 'model', text: text.chatWelcome }]);
     }
-  }, [text.chatWelcome]); // Reset if language changes, optional
+  }, [text.chatWelcome]); 
 
-  // 5. Send Message to Gemini
+  // 5. Send Message to Gemini with Load Balancing
   const handleSend = async () => {
     if (!input.trim()) return;
     
@@ -65,13 +66,28 @@ export const FloatingAssistants: React.FC = () => {
     setIsTyping(true);
 
     try {
-        if (!process.env.API_KEY) {
-            throw new Error("API Key Missing");
+        // LOAD BALANCING LOGIC: Pick one random key from the available pool
+        const apiKeys = [
+            process.env.GEMINI_API_KEY_1,
+            process.env.GEMINI_API_KEY_2,
+            process.env.GEMINI_API_KEY_3,
+            process.env.GEMINI_API_KEY_4,
+            process.env.GEMINI_API_KEY_5,
+            process.env.GEMINI_API_KEY_6,
+            process.env.API_KEY // Fallback
+        ].filter(Boolean); // Remove undefined/null keys
+
+        if (apiKeys.length === 0) {
+            throw new Error("No API Keys Available");
         }
 
-        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+        const randomKey = apiKeys[Math.floor(Math.random() * apiKeys.length)];
+        
+        // Initialize with the selected random key
+        const ai = new GoogleGenAI({ apiKey: randomKey as string });
+        
         const response = await ai.models.generateContent({
-            model: "gemini-2.5-flash-lite-latest",
+            model: "gemini-2.5-flash-lite-latest", // Fast model for chat
             contents: [
                 {
                     role: "user",
@@ -84,6 +100,7 @@ export const FloatingAssistants: React.FC = () => {
         setMessages(prev => [...prev, { role: 'model', text: reply }]);
 
     } catch (error) {
+        console.error(error);
         setMessages(prev => [...prev, { role: 'model', text: "Maaf, koneksi ke markas terputus (API Error). Coba lagi nanti." }]);
     } finally {
         setIsTyping(false);
@@ -93,7 +110,6 @@ export const FloatingAssistants: React.FC = () => {
   return (
     <>
       {/* Container: Bottom Right */}
-      {/* Logic: Mobile has bottom nav (72px), so we lift higher (bottom-24). Desktop uses bottom-8 */}
       <div className="fixed bottom-24 right-6 md:bottom-8 md:right-8 z-40 flex items-end gap-3">
          
          {/* LEFT: BACK TO TOP (Conditional) */}
@@ -141,7 +157,7 @@ export const FloatingAssistants: React.FC = () => {
                   <h3 className="text-white font-black text-sm uppercase tracking-wider">{text.chatHeader}</h3>
                   <div className="flex items-center gap-1.5">
                       <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                      <span className="text-[10px] text-white/80 font-bold">Online</span>
+                      <span className="text-[10px] text-white/80 font-bold">Online (V2.0)</span>
                   </div>
               </div>
           </div>

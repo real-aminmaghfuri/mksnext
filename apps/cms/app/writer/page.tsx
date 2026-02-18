@@ -21,11 +21,25 @@ export default function WriterPage() {
     setGeneratedHtml(''); 
 
     try {
-      if (!process.env.API_KEY) {
-        throw new Error("API KEY Missing in CMS Environment.");
+      // LOAD BALANCING ROTATION
+      const apiKeys = [
+          process.env.GEMINI_API_KEY_1,
+          process.env.GEMINI_API_KEY_2,
+          process.env.GEMINI_API_KEY_3,
+          process.env.GEMINI_API_KEY_4,
+          process.env.GEMINI_API_KEY_5,
+          process.env.GEMINI_API_KEY_6,
+          process.env.API_KEY
+      ].filter(Boolean);
+
+      if (apiKeys.length === 0) {
+        throw new Error("API KEY Missing in CMS Environment. Please configure at least one GEMINI_API_KEY.");
       }
 
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      // Select random key to distribute load
+      const randomKey = apiKeys[Math.floor(Math.random() * apiKeys.length)];
+
+      const ai = new GoogleGenAI({ apiKey: randomKey as string });
       
       const response = await ai.models.generateContent({
         model: "gemini-2.5-flash",
