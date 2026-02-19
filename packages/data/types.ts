@@ -51,20 +51,22 @@ export interface CompanyIdentity {
   
   addressLegal: string;
   addressOps: string;
-  mapEmbedUrl: string; // New: Google Maps Embed URL
-  operatingHours: string; // New: Operational Hours Text
+  
+  mapLegalUrl: string; // New: Map for Legal Office
+  mapOpsUrl: string;   // New: Map for Ops Office
+  
+  operatingHours: string;
   
   nib: string;
   skKemenkumham: string;
   npwp: string;
   
-  bankAccounts: BankAccount[]; // Changed: Array of banks
+  bankAccounts: BankAccount[];
   
   whatsapp: string;
   email: string;
 }
 
-// Configuration for Environment switching
 export interface DataConfig {
   useSupabase: boolean;
   supabaseUrl?: string;

@@ -49,7 +49,8 @@ export const useContact = (identity: CompanyIdentity): ContactContent => {
     maps: {
       title: text.contactMapsTitle,
       desc: text.contactMapsDesc,
-      embedUrl: identity.mapEmbedUrl // Pass the embed URL
+      mapLegalUrl: identity.mapLegalUrl,
+      mapOpsUrl: identity.mapOpsUrl
     }
   };
 };

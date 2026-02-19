@@ -96,7 +96,8 @@ export class Repository {
         brandName: "MKS",
         addressLegal: "Perum Graha Tiara 2 B1, Gumpang 07/01, Kartasura, Jawa Tengah 57169",
         addressOps: "Gumiring 04/04, Sidomulyo, Banjarejo, Blora, Jawa Tengah 58253",
-        mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.127690623274!2d110.85257327476537!3d-7.561021792452899",
+        mapLegalUrl: "",
+        mapOpsUrl: "",
         operatingHours: "Senin - Sabtu: 08:00 - 17:00 WIB",
         nib: "1226000711085",
         skKemenkumham: "AHU-006097.AH.01.30.Tahun 2021",
@@ -112,7 +113,6 @@ export class Repository {
         try {
             const { data, error } = await supabase.from('settings').select('value').eq('key', 'company_identity').single();
             if (data?.value) {
-                // Merge defaults to handle missing fields in DB structure updates
                 return { ...defaults, ...data.value };
             }
         } catch (e) { console.error("Failed to fetch identity", e); }

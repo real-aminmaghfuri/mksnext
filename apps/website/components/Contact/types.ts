@@ -41,7 +41,8 @@ export interface FormData {
 export interface ContactMapsData {
   title: string;
   desc: string;
-  embedUrl?: string; // New
+  mapLegalUrl?: string; // Updated
+  mapOpsUrl?: string;   // Updated
 }
 
 export interface ContactQnaData {

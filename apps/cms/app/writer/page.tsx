@@ -7,7 +7,7 @@ import { Header } from '../../components/Header';
 import { GoogleGenAI } from "@google/genai";
 import { AI_SYSTEM_PROMPT } from 'shared';
 import { Button } from 'ui';
-import { Sparkles, Copy, Check, Terminal, AlertTriangle } from 'lucide-react';
+import { Sparkles, Copy, Check, Terminal, AlertTriangle, FileCode } from 'lucide-react';
 
 export default function WriterPage() {
   const [topic, setTopic] = useState('');
@@ -33,12 +33,10 @@ export default function WriterPage() {
       ].filter(Boolean);
 
       if (apiKeys.length === 0) {
-        throw new Error("API KEY Missing in CMS Environment. Please configure at least one GEMINI_API_KEY.");
+        throw new Error("API KEY Missing in CMS Environment.");
       }
 
-      // Select random key to distribute load
       const randomKey = apiKeys[Math.floor(Math.random() * apiKeys.length)];
-
       const ai = new GoogleGenAI({ apiKey: randomKey as string });
       
       const response = await ai.models.generateContent({
@@ -60,7 +58,7 @@ export default function WriterPage() {
       }
     } catch (error: any) {
       console.error("AI Error:", error);
-      setGeneratedHtml(`<div class="p-4 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-xl font-bold flex items-center gap-3"><AlertTriangle/> ERROR: ${error.message || "Gagal connect ke neural network."}</div>`);
+      setGeneratedHtml(`<div class="p-6 bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-900/50 rounded-xl text-red-600 dark:text-red-400 font-bold flex flex-col items-center gap-2"><AlertTriangle size={32}/> <p>CONNECTION SEVERED: ${error.message}</p></div>`);
     } finally {
       setIsGenerating(false);
     }
@@ -76,32 +74,35 @@ export default function WriterPage() {
 
   return (
     <div className="flex h-screen bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white overflow-hidden">
-      {/* Main Content First */}
+      
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
          <Header title="AI INTEL WRITER" />
 
          <main className="flex-1 overflow-hidden relative z-10 flex flex-col md:flex-row">
-            {/* LEFT: CONTROL PANEL */}
+            
+            {/* LEFT: COMMAND CENTER */}
             <div className="w-full md:w-1/3 p-6 border-r border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 flex flex-col overflow-y-auto">
-                <div className="mb-8">
+                <div className="mb-8 p-4 bg-zinc-50 dark:bg-zinc-900 rounded-2xl border border-zinc-100 dark:border-zinc-800">
                     <div className="flex items-center gap-2 mb-2 text-brand-600">
                         <Terminal size={20} />
-                        <span className="text-xs font-black uppercase tracking-widest">Command Input</span>
+                        <span className="text-xs font-black uppercase tracking-widest">PROPAGANDA MACHINE</span>
                     </div>
-                    <h2 className="text-2xl font-black uppercase tracking-tight mb-2">Deploy Propaganda</h2>
-                    <p className="text-sm text-zinc-500">
-                        System automatically injects <strong>'MKS Typography Standard'</strong> instructions.
+                    <h2 className="text-2xl font-black uppercase tracking-tight mb-2 leading-none">Create Content</h2>
+                    <p className="text-xs text-zinc-500 font-medium">
+                        System automatically injects <strong>'MKS Typography Standard'</strong> & <strong>'Street Smart'</strong> persona.
                     </p>
                 </div>
 
                 <div className="space-y-4 flex-1">
                     <div>
-                        <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest ml-1">Topik Artikel</label>
+                        <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest ml-1 flex items-center gap-2">
+                            <FileCode size={12}/> Target Topic
+                        </label>
                         <textarea 
                             value={topic}
                             onChange={(e) => setTopic(e.target.value)}
-                            placeholder="Contoh: Cara mengelola stok opname tanpa tutup toko..."
-                            className="w-full h-32 mt-2 bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 rounded-xl p-4 text-sm font-bold focus:ring-2 focus:ring-brand-500 outline-none resize-none transition-all placeholder:text-zinc-400"
+                            placeholder="Contoh: Bongkar rahasia markup harga supplier nakal..."
+                            className="w-full h-40 mt-2 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 text-sm font-bold focus:ring-2 focus:ring-brand-500 outline-none resize-none transition-all placeholder:text-zinc-400 custom-scrollbar"
                         />
                     </div>
                 </div>
@@ -111,39 +112,47 @@ export default function WriterPage() {
                     disabled={isGenerating || !topic}
                     fullWidth 
                     size="lg" 
-                    className="mt-6 shadow-xl shadow-brand-500/20 bg-brand-600 hover:bg-brand-500"
+                    className="mt-6 shadow-2xl shadow-brand-500/20 bg-gradient-to-r from-brand-600 to-red-600 hover:to-red-500 border-none font-black tracking-widest"
                 >
                     {isGenerating ? (
-                        <span className="animate-pulse">PROCESSING DATA...</span>
+                        <span className="animate-pulse">GENERATING INTEL...</span>
                     ) : (
-                        <><Sparkles size={18} className="mr-2" /> GENERATE INTEL</>
+                        <><Sparkles size={18} className="mr-2" /> EXECUTE</>
                     )}
                 </Button>
             </div>
 
             {/* RIGHT: PREVIEW AREA */}
             <div className="w-full md:w-2/3 bg-zinc-50 dark:bg-black relative flex flex-col">
-                <div className="h-14 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-center px-6 bg-white/50 dark:bg-zinc-900/50 backdrop-blur relative">
-                    <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">LIVE RENDER PREVIEW</span>
+                <div className="h-14 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between px-6 bg-white/80 dark:bg-zinc-900/80 backdrop-blur relative z-20">
+                    <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest flex items-center gap-2">
+                        <span className={`w-2 h-2 rounded-full ${generatedHtml ? 'bg-emerald-500' : 'bg-zinc-300'}`} />
+                        RENDER PREVIEW
+                    </span>
                     {generatedHtml && (
                         <button 
                             onClick={handleCopy}
-                            className="absolute right-6 flex items-center gap-2 text-xs font-bold text-zinc-500 hover:text-brand-600 transition-colors"
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-xs font-bold text-zinc-600 dark:text-zinc-400 hover:text-brand-600 dark:hover:text-white transition-all hover:scale-105"
                         >
-                            {isCopied ? <Check size={14} /> : <Copy size={14} />}
-                            {isCopied ? 'COPIED' : 'COPY HTML'}
+                            {isCopied ? <Check size={14} className="text-emerald-500" /> : <Copy size={14} />}
+                            {isCopied ? 'COPIED TO CLIPBOARD' : 'COPY HTML CODE'}
                         </button>
                     )}
                 </div>
 
-                <div className="flex-1 overflow-y-auto p-8 md:p-12 custom-scrollbar">
+                <div className="flex-1 overflow-y-auto p-8 md:p-12 custom-scrollbar bg-white dark:bg-black relative">
+                    {/* Grid Background */}
+                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+
                     {generatedHtml ? (
-                        <div className="max-w-3xl mx-auto">
+                        <div className="max-w-3xl mx-auto relative z-10 animate-fade-in-up">
                             <article className={typoClass} dangerouslySetInnerHTML={{ __html: generatedHtml }} />
                         </div>
                     ) : (
-                        <div className="h-full flex flex-col items-center justify-center text-zinc-300 dark:text-zinc-700 opacity-50">
-                            <Sparkles size={64} strokeWidth={1} className="mb-4" />
+                        <div className="h-full flex flex-col items-center justify-center text-zinc-300 dark:text-zinc-800 opacity-50">
+                            <div className="w-20 h-20 border-4 border-zinc-200 dark:border-zinc-800 border-dashed rounded-full flex items-center justify-center mb-4">
+                                <Sparkles size={32} strokeWidth={1} />
+                            </div>
                             <p className="font-black uppercase tracking-widest text-sm">Awaiting Input Data</p>
                         </div>
                     )}
@@ -151,7 +160,7 @@ export default function WriterPage() {
             </div>
          </main>
       </div>
-      {/* Sidebar Second (Right Side) */}
+      
       <Sidebar />
     </div>
   );

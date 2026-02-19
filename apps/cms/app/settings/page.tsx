@@ -8,19 +8,21 @@ import { Button, GlassCard } from 'ui';
 import { Repository, CompanyIdentity, BankAccount } from 'data';
 import { SITE_CONFIG } from 'shared'; 
 import { 
-  Globe, Save, Search, BarChart3, 
-  Map, AlertOctagon, Power, User, Building2, 
-  CreditCard, Phone, ShieldCheck, Quote, UploadCloud, Plus, Trash2, Clock
+  Globe, Save, User, Building2, CreditCard, Phone, 
+  ShieldCheck, Quote, UploadCloud, Plus, Trash2, Clock, MapPin, 
+  ScanEye, Cpu, CheckCircle2 
 } from 'lucide-react';
 import Image from 'next/image';
+import { analyzeImageForSEO } from '../../utils/ai-services';
 
 export default function CMSSettingsPage() {
   const [activeTab, setActiveTab] = useState<'IDENTITY' | 'PROTOCOLS'>('IDENTITY');
   const [isSaving, setIsSaving] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [isUploading, setIsUploading] = useState(false);
   
-  const displayDomain = SITE_CONFIG.domain;
+  // AI Upload State
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadStep, setUploadStep] = useState<string>(''); // For UI Feedback: "Scanning...", "Renaming..."
 
   // WEB PROTOCOLS STATE
   const [maintenanceMode, setMaintenanceMode] = useState(false); 
@@ -33,7 +35,7 @@ export default function CMSSettingsPage() {
   const [identity, setIdentity] = useState<CompanyIdentity>({
     founderName: '', founderRole: '', founderPhoto: '', founderQuote: '',
     companyName: '', brandName: '', addressLegal: '', addressOps: '',
-    mapEmbedUrl: '', operatingHours: '',
+    mapLegalUrl: '', mapOpsUrl: '', operatingHours: '',
     nib: '', skKemenkumham: '', npwp: '',
     bankAccounts: [],
     whatsapp: '', email: ''
@@ -61,7 +63,7 @@ export default function CMSSettingsPage() {
                 pinterest: protocols.pinterest || ''
             });
 
-            // Set Identity (Ensure bankAccounts is initialized)
+            // Set Identity
             setIdentity({
                 ...idData,
                 bankAccounts: idData.bankAccounts || [] 
@@ -107,33 +109,59 @@ export default function CMSSettingsPage() {
     setIdentity({ ...identity, [e.target.name]: e.target.value });
   };
 
-  // Image Upload Logic
+  // NEW: AI-POWERED UPLOAD PIPELINE
   const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || e.target.files.length === 0) return;
     const file = e.target.files[0];
+    
     setIsUploading(true);
-
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || 'mks_preset');
-    formData.append('folder', 'mks_founder');
+    setUploadStep('INITIALIZING AI VISION...');
 
     try {
+        // 1. AI Analysis
+        setUploadStep('SCANNING & OPTIMIZING SEO...');
+        const seoData = await analyzeImageForSEO(file, "Founder Profile Picture of PT Mesin Kasir Solo");
+        console.log("AI SEO Result:", seoData);
+
+        // 2. Rename File Object
+        setUploadStep('INJECTING METADATA...');
+        const ext = file.name.split('.').pop();
+        const newFileName = `${seoData.filename}.${ext}`;
+        const renamedFile = new File([file], newFileName, { type: file.type });
+
+        // 3. Cloudinary Upload with Context
+        setUploadStep('UPLOADING TO CLOUD...');
+        const formData = new FormData();
+        formData.append('file', renamedFile);
+        formData.append('upload_preset', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || 'mks_preset');
+        formData.append('folder', 'mks_founder');
+        // Inject metadata into Cloudinary Context (Alt Text & Caption)
+        formData.append('context', `alt=${seoData.alt_text}|caption=${seoData.caption}`);
+
         const res = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`, {
             method: 'POST', body: formData
         });
+        
         const data = await res.json();
+        
         if (data.secure_url) {
-            setIdentity({ ...identity, founderPhoto: data.secure_url });
+            // Use AVIF/WebP Auto format
+            const optimizedUrl = data.secure_url.replace('/upload/', '/upload/f_auto,q_auto/');
+            setIdentity({ ...identity, founderPhoto: optimizedUrl });
+            setUploadStep('DONE');
+        } else {
+            throw new Error(data.error?.message || 'Upload failed');
         }
-    } catch (err) {
-        alert("Upload Failed. Cek koneksi atau Preset Cloudinary.");
+
+    } catch (err: any) {
+        console.error(err);
+        alert(`Upload Failed: ${err.message}`);
     } finally {
         setIsUploading(false);
+        setUploadStep('');
     }
   };
 
-  // Bank Account Logic
   const addBankAccount = () => {
     setIdentity({
         ...identity,
@@ -196,7 +224,7 @@ export default function CMSSettingsPage() {
                                 <GlassCard variant="solid" className="p-6 md:p-8">
                                     <div className="flex flex-col md:flex-row gap-8">
                                         <div className="w-full md:w-1/4 flex flex-col gap-4">
-                                            {/* Photo Preview & Upload */}
+                                            {/* Photo Upload Area */}
                                             <div className="relative aspect-square rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 group">
                                                 {identity.founderPhoto ? (
                                                     <Image src={identity.founderPhoto} alt="Founder" fill className="object-cover" />
@@ -204,25 +232,30 @@ export default function CMSSettingsPage() {
                                                     <div className="flex items-center justify-center h-full text-zinc-400"><User size={48}/></div>
                                                 )}
                                                 
-                                                {/* Overlay Upload Button */}
-                                                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                                    <label className="cursor-pointer flex flex-col items-center text-white">
-                                                        <UploadCloud size={24} className="mb-2" />
-                                                        <span className="text-[10px] font-bold uppercase tracking-wider">{isUploading ? 'UPLOADING...' : 'CHANGE PHOTO'}</span>
-                                                        <input type="file" accept="image/*" onChange={handlePhotoUpload} className="hidden" disabled={isUploading} />
-                                                    </label>
+                                                {/* Upload Overlay */}
+                                                <div className={`absolute inset-0 bg-black/80 transition-opacity flex flex-col items-center justify-center text-white ${isUploading ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}>
+                                                    {isUploading ? (
+                                                        <>
+                                                            <Cpu size={32} className="mb-2 text-brand-500 animate-pulse" />
+                                                            <span className="text-[10px] font-black uppercase tracking-widest animate-pulse text-center px-4">
+                                                                {uploadStep}
+                                                            </span>
+                                                        </>
+                                                    ) : (
+                                                        <label className="cursor-pointer flex flex-col items-center">
+                                                            <ScanEye size={32} className="mb-2 text-brand-500" />
+                                                            <span className="text-[10px] font-bold uppercase tracking-wider">AI SMART UPLOAD</span>
+                                                            <input type="file" accept="image/*" onChange={handlePhotoUpload} className="hidden" disabled={isUploading} />
+                                                        </label>
+                                                    )}
                                                 </div>
                                             </div>
                                             
-                                            <input 
-                                                type="text" 
-                                                name="founderPhoto" 
-                                                value={identity.founderPhoto} 
-                                                onChange={handleIdentityChange}
-                                                placeholder="Or paste URL here..." 
-                                                className="w-full bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-3 py-2 text-xs"
-                                            />
+                                            <div className="text-[9px] text-zinc-400 text-center px-2">
+                                                *Auto-generates SEO Filename & Alt Text via Gemini AI
+                                            </div>
                                         </div>
+
                                         <div className="w-full md:w-3/4 space-y-4">
                                             <div className="grid grid-cols-2 gap-4">
                                                 <div>
@@ -277,7 +310,7 @@ export default function CMSSettingsPage() {
                                 </GlassCard>
                             </section>
 
-                            {/* FINANCE (MULTI-BANK) */}
+                            {/* FINANCE */}
                             <section>
                                 <div className="flex items-center gap-3 mb-4 justify-between">
                                     <div className="flex items-center gap-3">
@@ -288,95 +321,75 @@ export default function CMSSettingsPage() {
                                         <Plus size={14} className="mr-1"/> Add Bank
                                     </Button>
                                 </div>
-                                
                                 <div className="space-y-4">
                                     {identity.bankAccounts.map((bank, idx) => (
                                         <GlassCard key={idx} variant="solid" className="p-4 md:p-6 bg-gradient-to-br from-white to-zinc-50 dark:from-zinc-900 dark:to-black relative group">
-                                            <button 
-                                                onClick={() => removeBankAccount(idx)} 
-                                                className="absolute top-4 right-4 text-zinc-400 hover:text-red-500 transition-colors"
-                                            >
-                                                <Trash2 size={16} />
-                                            </button>
+                                            <button onClick={() => removeBankAccount(idx)} className="absolute top-4 right-4 text-zinc-400 hover:text-red-500 transition-colors"><Trash2 size={16} /></button>
                                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                                 <div>
                                                     <label className="text-[10px] font-bold text-zinc-500 uppercase">Bank Name</label>
-                                                    <input 
-                                                        type="text" 
-                                                        value={bank.bankName} 
-                                                        onChange={(e) => updateBankAccount(idx, 'bankName', e.target.value)} 
-                                                        className="w-full mt-1 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-4 py-2.5 text-sm font-bold" 
-                                                    />
+                                                    <input type="text" value={bank.bankName} onChange={(e) => updateBankAccount(idx, 'bankName', e.target.value)} className="w-full mt-1 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-4 py-2.5 text-sm font-bold" />
                                                 </div>
                                                 <div>
                                                     <label className="text-[10px] font-bold text-zinc-500 uppercase">Account Number</label>
-                                                    <input 
-                                                        type="text" 
-                                                        value={bank.accountNumber} 
-                                                        onChange={(e) => updateBankAccount(idx, 'accountNumber', e.target.value)} 
-                                                        className="w-full mt-1 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-4 py-2.5 text-lg font-mono font-black text-brand-600" 
-                                                    />
+                                                    <input type="text" value={bank.accountNumber} onChange={(e) => updateBankAccount(idx, 'accountNumber', e.target.value)} className="w-full mt-1 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-4 py-2.5 text-lg font-mono font-black text-brand-600" />
                                                 </div>
                                                 <div>
                                                     <label className="text-[10px] font-bold text-zinc-500 uppercase">Account Holder</label>
-                                                    <input 
-                                                        type="text" 
-                                                        value={bank.accountHolder} 
-                                                        onChange={(e) => updateBankAccount(idx, 'accountHolder', e.target.value)} 
-                                                        className="w-full mt-1 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-4 py-2.5 text-sm font-bold" 
-                                                    />
+                                                    <input type="text" value={bank.accountHolder} onChange={(e) => updateBankAccount(idx, 'accountHolder', e.target.value)} className="w-full mt-1 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-4 py-2.5 text-sm font-bold" />
                                                 </div>
                                             </div>
                                         </GlassCard>
                                     ))}
-                                    {identity.bankAccounts.length === 0 && (
-                                        <div className="text-center py-8 text-zinc-500 text-sm italic border-2 border-dashed border-zinc-200 dark:border-zinc-800 rounded-xl">
-                                            No bank accounts added.
-                                        </div>
-                                    )}
                                 </div>
                             </section>
 
                             {/* ADDRESS & MAPS */}
                             <section>
                                 <div className="flex items-center gap-3 mb-4">
-                                    <Map size={20} className="text-brand-600" />
-                                    <h3 className="text-sm font-black uppercase tracking-widest text-zinc-500">Locations & Map</h3>
+                                    <MapPin size={20} className="text-brand-600" />
+                                    <h3 className="text-sm font-black uppercase tracking-widest text-zinc-500">Locations & Maps</h3>
                                 </div>
-                                <GlassCard variant="solid" className="p-6 md:p-8 space-y-4">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div>
-                                            <label className="text-[10px] font-bold text-zinc-500 uppercase">Legal Office Address</label>
-                                            <textarea name="addressLegal" rows={3} value={identity.addressLegal} onChange={handleIdentityChange} className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-medium resize-none" />
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    {/* LEGAL OFFICE */}
+                                    <GlassCard variant="solid" className="p-6 space-y-4">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <div className="w-2 h-2 rounded-full bg-blue-500" />
+                                            <h4 className="text-xs font-black uppercase tracking-widest text-zinc-900 dark:text-white">Legal Office</h4>
                                         </div>
+                                        <textarea name="addressLegal" rows={3} value={identity.addressLegal} onChange={handleIdentityChange} className="w-full bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-medium resize-none" placeholder="Address..." />
                                         <div>
-                                            <label className="text-[10px] font-bold text-zinc-500 uppercase">Operational HQ Address</label>
-                                            <textarea name="addressOps" rows={3} value={identity.addressOps} onChange={handleIdentityChange} className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-medium resize-none" />
+                                            <label className="text-[10px] font-bold text-zinc-500 uppercase">Map Embed URL (SRC Only)</label>
+                                            <input type="text" name="mapLegalUrl" value={identity.mapLegalUrl} onChange={handleIdentityChange} className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-mono text-zinc-600 dark:text-zinc-400" />
                                         </div>
-                                    </div>
-                                    
-                                    <div>
-                                        <label className="text-[10px] font-bold text-zinc-500 uppercase flex items-center gap-2"><Map size={12}/> Google Maps Embed URL (SRC only)</label>
-                                        <input 
-                                            type="text" 
-                                            name="mapEmbedUrl" 
-                                            value={identity.mapEmbedUrl} 
-                                            onChange={handleIdentityChange}
-                                            placeholder="https://www.google.com/maps/embed?pb=..." 
-                                            className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-mono text-zinc-600 dark:text-zinc-400" 
-                                        />
-                                    </div>
+                                        {identity.mapLegalUrl && (
+                                            <div className="w-full h-32 bg-zinc-100 rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-800">
+                                                <iframe src={identity.mapLegalUrl} width="100%" height="100%" style={{border:0}} loading="lazy" />
+                                            </div>
+                                        )}
+                                    </GlassCard>
 
-                                    {/* MAP PREVIEW */}
-                                    {identity.mapEmbedUrl && (
-                                        <div className="w-full h-48 bg-zinc-100 rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 mt-4">
-                                            <iframe src={identity.mapEmbedUrl} width="100%" height="100%" style={{border:0}} loading="lazy" />
+                                    {/* OPS OFFICE */}
+                                    <GlassCard variant="solid" className="p-6 space-y-4">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <div className="w-2 h-2 rounded-full bg-brand-500" />
+                                            <h4 className="text-xs font-black uppercase tracking-widest text-zinc-900 dark:text-white">Operational HQ</h4>
                                         </div>
-                                    )}
-                                </GlassCard>
+                                        <textarea name="addressOps" rows={3} value={identity.addressOps} onChange={handleIdentityChange} className="w-full bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-medium resize-none" placeholder="Address..." />
+                                        <div>
+                                            <label className="text-[10px] font-bold text-zinc-500 uppercase">Map Embed URL (SRC Only)</label>
+                                            <input type="text" name="mapOpsUrl" value={identity.mapOpsUrl} onChange={handleIdentityChange} className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-mono text-zinc-600 dark:text-zinc-400" />
+                                        </div>
+                                        {identity.mapOpsUrl && (
+                                            <div className="w-full h-32 bg-zinc-100 rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-800">
+                                                <iframe src={identity.mapOpsUrl} width="100%" height="100%" style={{border:0}} loading="lazy" />
+                                            </div>
+                                        )}
+                                    </GlassCard>
+                                </div>
                             </section>
 
-                            {/* CONTACT & HOURS */}
+                            {/* CONTACT */}
                             <section>
                                 <div className="flex items-center gap-3 mb-4">
                                     <Phone size={20} className="text-brand-600" />
@@ -395,63 +408,11 @@ export default function CMSSettingsPage() {
                                     </div>
                                     <div>
                                         <label className="text-[10px] font-bold text-zinc-500 uppercase flex items-center gap-2"><Clock size={12}/> Operating Hours</label>
-                                        <textarea 
-                                            name="operatingHours" 
-                                            rows={2} 
-                                            value={identity.operatingHours} 
-                                            onChange={handleIdentityChange} 
-                                            placeholder="Senin - Sabtu: 08:00 - 17:00..."
-                                            className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-sm font-medium resize-none" 
-                                        />
+                                        <textarea name="operatingHours" rows={2} value={identity.operatingHours} onChange={handleIdentityChange} className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-sm font-medium resize-none" />
                                     </div>
                                 </GlassCard>
                             </section>
                         </>
-                    )}
-
-                    {/* === PROTOCOLS TAB === */}
-                    {activeTab === 'PROTOCOLS' && (
-                        <div className="space-y-8">
-                             <section className="p-1 rounded-3xl bg-gradient-to-r from-red-600 to-rose-600 shadow-2xl">
-                                <div className="bg-zinc-900 rounded-[22px] p-6 md:p-8 relative overflow-hidden">
-                                    <div className="absolute top-0 right-0 p-8 opacity-10">
-                                        <AlertOctagon size={120} className="text-red-500" />
-                                    </div>
-                                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between relative z-10 gap-6">
-                                        <div>
-                                            <h3 className="text-2xl font-black text-white uppercase tracking-tighter flex items-center gap-3">
-                                                <AlertOctagon className="text-red-500" /> Website Lockdown
-                                            </h3>
-                                            <p className="text-zinc-400 mt-2 max-w-xl text-sm leading-relaxed">
-                                                Aktifkan mode ini untuk menutup akses publik ke <strong>{displayDomain}</strong>. 
-                                            </p>
-                                        </div>
-                                        <div className="flex items-center gap-4 bg-black/40 p-2 rounded-2xl border border-white/5">
-                                            <span className={`text-xs font-black uppercase tracking-widest ${maintenanceMode ? 'text-zinc-500' : 'text-emerald-500'}`}>
-                                                {maintenanceMode ? 'OFFLINE' : 'LIVE'}
-                                            </span>
-                                            <button 
-                                                onClick={() => setMaintenanceMode(!maintenanceMode)}
-                                                className={`relative w-16 h-8 rounded-full transition-colors duration-300 flex items-center px-1 shadow-inner ${maintenanceMode ? 'bg-red-600' : 'bg-zinc-700'}`}
-                                            >
-                                                <div className={`w-6 h-6 rounded-full bg-white shadow-lg transition-transform duration-300 flex items-center justify-center ${maintenanceMode ? 'translate-x-8' : 'translate-x-0'}`}>
-                                                    <Power size={12} className={maintenanceMode ? 'text-red-600' : 'text-zinc-900'} strokeWidth={3} />
-                                                </div>
-                                            </button>
-                                            <span className={`text-xs font-black uppercase tracking-widest ${maintenanceMode ? 'text-red-500 animate-pulse' : 'text-zinc-500'}`}>
-                                                MAINTENANCE
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <GlassCard variant="solid" className="p-6 space-y-4">
-                                 <h4 className="font-bold">SEO Verification</h4>
-                                 <input type="text" name="gsc" value={webConfig.gsc} onChange={handleWebChange} placeholder="Google Search Console" className="w-full p-2 border rounded" />
-                                 <input type="text" name="ga4" value={webConfig.ga4} onChange={handleWebChange} placeholder="Google Analytics 4" className="w-full p-2 border rounded" />
-                             </GlassCard>
-                        </div>
                     )}
 
                     {/* SAVE ACTION */}
