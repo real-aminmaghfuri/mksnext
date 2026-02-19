@@ -1,7 +1,7 @@
 
 import { localDB } from './local-db';
 import { getSupabase, isOnline } from './remote-db';
-import { DashboardStats, Transaction, Product, WebProtocols, CompanyIdentity } from './types';
+import { DashboardStats, Transaction, Product, WebProtocols, CompanyIdentity, MediaAsset } from './types';
 
 export class Repository {
   
@@ -124,6 +124,35 @@ export class Repository {
     const supabase = getSupabase();
     if (!supabase) throw new Error("Supabase Client not initialized.");
     const { error } = await supabase.from('settings').upsert({ key: 'company_identity', value: identity }, { onConflict: 'key' });
+    if (error) throw new Error(error.message);
+  }
+
+  // --- MEDIA LIBRARY (PERSISTENT) ---
+  static async getMediaLibrary(): Promise<MediaAsset[]> {
+    const supabase = getSupabase();
+    if (isOnline() && supabase) {
+        try {
+            const { data, error } = await supabase.from('settings').select('value').eq('key', 'media_library').single();
+            if (data?.value && Array.isArray(data.value)) {
+                return data.value as MediaAsset[];
+            }
+        } catch (e) { console.error("Failed to fetch media", e); }
+    }
+    return [];
+  }
+
+  static async saveMediaToLibrary(asset: MediaAsset): Promise<void> {
+    const supabase = getSupabase();
+    if (!supabase) throw new Error("Supabase Client not initialized.");
+    
+    // 1. Get current list
+    const current = await this.getMediaLibrary();
+    
+    // 2. Prepend new asset (Newest first)
+    const updated = [asset, ...current];
+    
+    // 3. Save back
+    const { error } = await supabase.from('settings').upsert({ key: 'media_library', value: updated }, { onConflict: 'key' });
     if (error) throw new Error(error.message);
   }
 }

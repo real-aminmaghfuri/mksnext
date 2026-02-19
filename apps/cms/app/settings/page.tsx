@@ -143,14 +143,12 @@ export default function CMSSettingsPage() {
         
         // STRATEGY: Append Timestamp to ensure uniqueness while keeping SEO keywords
         const timestamp = Date.now();
-        const finalPublicId = `${seoData.filename}-${timestamp}`;
+        const cleanSlug = seoData.filename.replace(/[^a-z0-9-]/gi, '-').toLowerCase();
+        const finalPublicId = `${cleanSlug}-${timestamp}`;
 
-        // FIX: Only send public_id. Cloudinary blocks 'use_filename' and 'unique_filename' in unsigned mode.
         formData.append('public_id', finalPublicId); 
         
-        // INJECT METADATA (Context & Tags)
-        formData.append('context', `alt=${seoData.alt_text}|caption=${seoData.caption}`);
-        formData.append('tags', `founder,mks,${seoData.filename}`);
+        // NOTE: Context injection often fails on unsigned uploads, so we optimize URL instead
 
         // 3. Upload
         setUploadStep('UPLOADING TO CLOUD...');
@@ -161,7 +159,7 @@ export default function CMSSettingsPage() {
         const data = await res.json();
         
         if (data.secure_url) {
-            // Optimize URL format
+            // FORCE OPTIMIZATION: Inject f_auto,q_auto into URL
             const optimizedUrl = data.secure_url.replace('/upload/', '/upload/f_auto,q_auto/');
             
             // 4. AUTO SAVE TO DATABASE

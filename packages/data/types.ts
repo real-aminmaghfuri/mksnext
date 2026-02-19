@@ -67,6 +67,18 @@ export interface CompanyIdentity {
   email: string;
 }
 
+export interface MediaAsset {
+  id: string; // Public ID from Cloudinary
+  url: string; // Optimized URL
+  originalUrl: string; // Raw URL
+  filename: string;
+  format: string;
+  size: number;
+  alt: string; // Stored in DB, not Cloudinary
+  caption: string; // Stored in DB
+  uploadedAt: string;
+}
+
 export interface DataConfig {
   useSupabase: boolean;
   supabaseUrl?: string;
