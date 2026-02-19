@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import { analyzeImageForSEO } from '../../utils/ai-services';
+import { uploadToCloudinary } from '../actions/upload'; // Use Server Action
 
 export default function CMSSettingsPage() {
   const [activeTab, setActiveTab] = useState<'IDENTITY' | 'PROTOCOLS'>('IDENTITY');
@@ -138,7 +139,6 @@ export default function CMSSettingsPage() {
         // Construct the FormData
         const formData = new FormData();
         formData.append('file', file);
-        formData.append('upload_preset', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || 'mks_preset');
         formData.append('folder', 'mks_founder');
         
         // STRATEGY: Append Timestamp to ensure uniqueness while keeping SEO keywords
@@ -147,31 +147,27 @@ export default function CMSSettingsPage() {
         const finalPublicId = `${cleanSlug}-${timestamp}`;
 
         formData.append('public_id', finalPublicId); 
-        
-        // NOTE: Context injection often fails on unsigned uploads, so we optimize URL instead
+        formData.append('alt', seoData.alt_text);
+        formData.append('caption', seoData.caption);
 
-        // 3. Upload
-        setUploadStep('UPLOADING TO CLOUD...');
-        const res = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`, {
-            method: 'POST', body: formData
-        });
+        // 3. Upload (Server-Side)
+        setUploadStep('COOKING ON SERVER...');
         
-        const data = await res.json();
+        // Use Server Action
+        const result: any = await uploadToCloudinary(formData);
         
-        if (data.secure_url) {
-            // FORCE OPTIMIZATION: Inject f_auto,q_auto into URL
-            const optimizedUrl = data.secure_url.replace('/upload/', '/upload/f_auto,q_auto/');
+        if (result && result.secure_url) {
             
             // 4. AUTO SAVE TO DATABASE
-            const updatedIdentity = { ...identity, founderPhoto: optimizedUrl };
+            const updatedIdentity = { ...identity, founderPhoto: result.secure_url };
             setIdentity(updatedIdentity);
             
             await Repository.saveCompanyIdentity(updatedIdentity);
             
             setUploadStep('DONE');
-            alert(`✅ Foto Terupload & Tersimpan!\nSEO ID: ${finalPublicId}`);
+            alert(`✅ Foto Terupload Mateng!\nFormat: ${result.format}\nSEO ID: ${finalPublicId}`);
         } else {
-            throw new Error(data.error?.message || 'Upload failed');
+            throw new Error('Upload failed on server.');
         }
 
     } catch (err: any) {

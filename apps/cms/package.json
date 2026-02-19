@@ -17,7 +17,8 @@
     "shared": "*",
     "ui": "*",
     "data": "*",
-    "@google/genai": "^0.2.0"
+    "@google/genai": "^0.2.0",
+    "cloudinary": "^2.0.1"
   },
   "devDependencies": {
     "turbo": "latest",

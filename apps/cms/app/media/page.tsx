@@ -8,6 +8,7 @@ import { UploadCloud, Image as ImageIcon, Copy, FileType, Zap, ScanEye, Edit3, T
 import Image from 'next/image';
 import { analyzeImageForSEO } from '../../utils/ai-services';
 import { Repository, MediaAsset } from 'data';
+import { uploadToCloudinary } from '../actions/upload'; // Import Server Action
 
 interface AnalysisResult {
   filename: string;
@@ -27,10 +28,6 @@ export default function MediaPage() {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  // ENV
-  const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
-  const UPLOAD_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || 'mks_preset';
 
   // LOAD DATA
   useEffect(() => {
@@ -74,45 +71,36 @@ export default function MediaPage() {
     }
   };
 
-  // 2. ACTION: Final Upload
+  // 2. ACTION: Final Upload (Server-Side)
   const handleUpload = async () => {
     if (!selectedFile || !analysis) return;
     setUploading(true);
 
     try {
       // CLEAN FILENAME: Ensure strict SEO friendly format
-      const timestamp = Date.now();
+      // We append a short random string to avoid collision but keep the SEO slug
+      const timestamp = Date.now().toString().slice(-4); 
       const cleanSlug = analysis.filename.replace(/[^a-z0-9-]/gi, '-').toLowerCase();
       const finalPublicId = `${cleanSlug}-${timestamp}`;
 
       const formData = new FormData();
       formData.append('file', selectedFile);
-      formData.append('upload_preset', UPLOAD_PRESET);
+      formData.append('public_id', finalPublicId);
+      formData.append('alt', analysis.alt_text);
+      formData.append('caption', analysis.caption);
       formData.append('folder', 'mks_assets');
-      formData.append('public_id', finalPublicId); 
 
-      // NOTE: We do NOT rely on Cloudinary context for unsigned uploads as it's often blocked.
-      // We store metadata in OUR database instead.
+      // CALL SERVER ACTION
+      const result: any = await uploadToCloudinary(formData);
 
-      const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, {
-        method: 'POST',
-        body: formData,
-      });
-      const data = await res.json();
-
-      if (data.secure_url) {
-        // FORCE OPTIMIZATION: Inject f_auto,q_auto into URL
-        // Cloudinary returns: .../upload/v123...
-        // We want: .../upload/f_auto,q_auto/v123...
-        const originalUrl = data.secure_url;
-        const optimizedUrl = originalUrl.replace('/upload/', '/upload/f_auto,q_auto/');
-
+      if (result && result.secure_url) {
+        
         const newItem: MediaAsset = {
-          id: data.public_id,
-          url: optimizedUrl, // This is the AVIF/WebP ready URL
-          originalUrl: originalUrl,
-          format: data.format,
-          size: data.bytes,
+          id: result.public_id,
+          url: result.secure_url, // This is already WebP and Optimized from Server
+          originalUrl: result.secure_url,
+          format: result.format,
+          size: result.bytes,
           filename: finalPublicId,
           alt: analysis.alt_text,
           caption: analysis.caption,
@@ -131,14 +119,14 @@ export default function MediaPage() {
         setAnalysis(null);
         if (fileInputRef.current) fileInputRef.current.value = '';
         
-        alert("✅ Upload Berhasil! Aset tersimpan di Database.");
+        alert("✅ Upload Sukses! File Mateng (WebP + Metadata).");
 
       } else {
-        alert('Upload failed: ' + (data.error?.message || 'Unknown error'));
+        throw new Error("Invalid response from server");
       }
     } catch (err: any) {
       console.error(err);
-      alert('Network error: ' + err.message);
+      alert('Server Error: ' + err.message);
     } finally {
       setUploading(false);
     }
@@ -184,7 +172,7 @@ export default function MediaPage() {
                             )}
 
                             <h3 className="text-xl font-black uppercase tracking-tight mb-2">
-                                {analyzing ? 'SCANNING PIXELS...' : uploading ? 'UPLOADING...' : previewUrl ? 'CHANGE FILE' : 'DROP ASSET HERE'}
+                                {analyzing ? 'SCANNING PIXELS...' : uploading ? 'UPLOADING TO SERVER...' : previewUrl ? 'CHANGE FILE' : 'DROP ASSET HERE'}
                             </h3>
                             
                             {analyzing && (
@@ -226,7 +214,7 @@ export default function MediaPage() {
                                         </div>
                                         <div>
                                             <label className="text-[10px] font-bold text-zinc-500 uppercase flex items-center gap-2 mb-1">
-                                                <Type size={12} /> Alt Text (DB Stored)
+                                                <Type size={12} /> Alt Text (Injected to Cloudinary)
                                             </label>
                                             <input 
                                                 type="text" 
@@ -237,7 +225,7 @@ export default function MediaPage() {
                                         </div>
                                         <div>
                                             <label className="text-[10px] font-bold text-zinc-500 uppercase flex items-center gap-2 mb-1">
-                                                <Edit3 size={12} /> Caption
+                                                <Edit3 size={12} /> Caption (Injected to Cloudinary)
                                             </label>
                                             <textarea 
                                                 rows={2}
@@ -255,7 +243,7 @@ export default function MediaPage() {
                                         disabled={uploading}
                                         className="mt-4 bg-brand-600 hover:bg-brand-500 shadow-xl shadow-brand-500/30"
                                     >
-                                        {uploading ? 'PUSHING TO CLOUD...' : <><Save size={18} className="mr-2" /> EXECUTE UPLOAD</>}
+                                        {uploading ? 'COOKING FILE...' : <><Save size={18} className="mr-2" /> EXECUTE SERVER UPLOAD</>}
                                     </Button>
                                 </div>
                             )}
@@ -291,11 +279,11 @@ export default function MediaPage() {
                                         alt={item.alt}
                                         fill
                                         className="object-cover"
-                                        unoptimized // Handle external URL
+                                        unoptimized 
                                     />
                                     <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                                         <span className="px-2 py-1 bg-black/80 backdrop-blur text-white text-[9px] font-black uppercase rounded">
-                                            AUTO
+                                            {item.format.toUpperCase()}
                                         </span>
                                     </div>
                                 </div>
@@ -319,13 +307,6 @@ export default function MediaPage() {
                                 </div>
                             </GlassCard>
                         ))}
-                        
-                        {mediaList.length === 0 && (
-                            <div className="col-span-full py-20 text-center border-2 border-dashed border-zinc-200 dark:border-zinc-800 rounded-3xl">
-                                <ImageIcon size={48} className="text-zinc-300 dark:text-zinc-700 mx-auto mb-4" />
-                                <p className="font-black uppercase tracking-widest text-zinc-400">No Assets Deployed</p>
-                            </div>
-                        )}
                     </div>
                 )}
             </div>
