@@ -1,7 +1,7 @@
 
 import { localDB } from './local-db';
 import { getSupabase, isOnline } from './remote-db';
-import { DashboardStats, Transaction, Product } from './types';
+import { DashboardStats, Transaction, Product, WebProtocols } from './types';
 
 export class Repository {
   
@@ -104,5 +104,57 @@ export class Repository {
         const { id, ...payload } = product; 
         await supabase.from('products').insert([payload]);
     }
+  }
+
+  // --- SETTINGS (WEB PROTOCOLS) ---
+  static async getWebProtocols(): Promise<WebProtocols> {
+    const supabase = getSupabase();
+    const defaults: WebProtocols = {
+        maintenanceMode: false,
+        visibility: 'PUBLIC',
+        gsc: '', ga4: '', gMerchant: '', bing: '', yandex: '', pinterest: ''
+    };
+
+    if (isOnline() && supabase) {
+        try {
+            // Assumes a table 'settings' with columns: key (text), value (jsonb)
+            const { data, error } = await supabase
+                .from('settings')
+                .select('value')
+                .eq('key', 'web_protocols')
+                .single();
+            
+            if (!error && data?.value) {
+                return { ...defaults, ...data.value };
+            }
+        } catch (e) {
+            console.error("Failed to fetch settings from Supabase", e);
+        }
+    }
+    return defaults;
+  }
+
+  static async saveWebProtocols(protocols: WebProtocols): Promise<boolean> {
+    const supabase = getSupabase();
+    if (isOnline() && supabase) {
+        try {
+            const { error } = await supabase
+                .from('settings')
+                .upsert(
+                    { key: 'web_protocols', value: protocols }, 
+                    { onConflict: 'key' }
+                );
+            
+            if (error) {
+                console.error("Supabase Save Error:", error);
+                throw error;
+            }
+            return true;
+        } catch (e) {
+            console.error("Failed to save settings", e);
+            return false;
+        }
+    }
+    return false;
   }
 }

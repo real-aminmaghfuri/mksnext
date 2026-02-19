@@ -1,3 +1,4 @@
+
 export interface Transaction {
   id?: number; // Dexie uses number, Supabase UUID (string). We handle mapping in repo.
   uuid?: string;
@@ -20,6 +21,17 @@ export interface DashboardStats {
   revenue: number;
   orders: number;
   activePos: number;
+}
+
+export interface WebProtocols {
+  maintenanceMode: boolean;
+  visibility: 'PUBLIC' | 'STEALTH';
+  gsc: string;
+  ga4: string;
+  gMerchant: string;
+  bing: string;
+  yandex: string;
+  pinterest: string;
 }
 
 // Configuration for Environment switching
