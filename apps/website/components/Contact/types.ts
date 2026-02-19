@@ -12,7 +12,7 @@ export interface ContactInfoItem {
 }
 
 export interface ContactInfoData {
-  infoTitle: string; // New title field
+  infoTitle: string; 
   officeLegal: string;
   officeLegalAddress: string;
   officeOps: string;
@@ -20,6 +20,10 @@ export interface ContactInfoData {
   labelWa: string;
   labelEmail: string;
   labelHours: string;
+  // Dynamic fields
+  dynamicWa: string;
+  dynamicEmail: string;
+  dynamicHours: string;
 }
 
 export interface FormData {
@@ -37,6 +41,7 @@ export interface FormData {
 export interface ContactMapsData {
   title: string;
   desc: string;
+  embedUrl?: string; // New
 }
 
 export interface ContactQnaData {

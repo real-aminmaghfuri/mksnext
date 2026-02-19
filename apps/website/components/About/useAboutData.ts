@@ -1,29 +1,63 @@
+
 "use client";
 
 import { useConfig } from 'ui';
-import { DICTIONARY, Language } from 'shared';
+import { DICTIONARY, Language, CompanyIdentity } from 'shared';
 import { Footprints, Users, Code, Skull, Zap } from 'lucide-react';
 
-export const useAboutData = () => {
+export const useAboutData = (identity: CompanyIdentity) => {
   const { language } = useConfig();
   const text = DICTIONARY[language];
 
   // Logic: Quote Parsing
   const parseQuote = () => {
+    const rawQuote = identity.founderQuote || text.aboutFounderQuote;
     const quoteHeading = language === Language.ID ? "Jujur-jujuran aja..." : "To be honest...";
-    const quoteBody = text.aboutFounderQuote.replace(quoteHeading, "").trim();
-    const emphasisTrigger = language === Language.ID ? 'Bisnis tanpa sistem' : 'Business without a strong system';
+    const quoteBody = rawQuote.replace(quoteHeading, "").trim();
+    // Simple split for design
+    const parts = quoteBody.split('.');
     
-    const parts = quoteBody.split(emphasisTrigger);
     return {
       heading: quoteHeading,
-      bodyPrefix: parts[0] || "",
-      emphasis: emphasisTrigger,
-      bodySuffix: parts[1] || ""
+      bodyPrefix: parts[0] + '.',
+      emphasis: parts.slice(1).join('. '), // The rest is emphasized in the design box
+      bodySuffix: ""
     };
   };
 
-  // Logic: Turning Point Parsing
+  // Use Dynamic Identity for Founder Section
+  const founderData = {
+      name: identity.founderName,
+      role: identity.founderRole,
+      photo: identity.founderPhoto,
+      quote: parseQuote()
+  };
+
+  // Logic: Legality Data (Merged with DB)
+  const legality = {
+    title: text.legalTitle,
+    desc: text.legalDesc,
+    labelEntity: text.legalLabelEntity,
+    valueEntity: identity.companyName,
+    labelNIB: text.legalLabelNIB,
+    labelSK: text.legalLabelSK,
+    labelNPWP: text.legalLabelNPWP,
+    labelBank: text.legalLabelBank,
+    ctaTitle: text.legalCtaTitle,
+    ctaDesc: text.legalCtaDesc,
+    ctaBtn: text.legalCtaBtn,
+    footerNote: text.legalFooterNote,
+    values: {
+      nib: identity.nib,
+      sk: identity.skKemenkumham,
+      npwp: identity.npwp,
+      // Use first bank account for main display or join them
+      bank: identity.bankAccounts?.[0]?.accountNumber || "-",
+      bankName: identity.bankAccounts?.[0]?.accountHolder || "-"
+    }
+  };
+
+  // Turning Point & Timeline (Static for now, but could be dynamic later)
   const turningPoint = {
     title: text.aboutTurnTitle,
     p1: text.aboutTurnP1,
@@ -36,7 +70,6 @@ export const useAboutData = () => {
     p2Italic2: text.aboutTurnP2Italic2,
   };
 
-  // Logic: Timeline Mapping
   const timeline = [
     { year: '2015', title: text.hist2015Title, desc: text.hist2015Desc, icon: Footprints, color: 'text-zinc-500 bg-zinc-100 dark:bg-zinc-800' },
     { year: '2018', title: text.hist2018Title, desc: text.hist2018Desc, icon: Users, color: 'text-blue-600 bg-blue-100 dark:bg-blue-900/20' },
@@ -45,32 +78,9 @@ export const useAboutData = () => {
     { year: '2025', title: text.hist2025Title, desc: text.hist2025Desc, icon: Zap, color: 'text-yellow-500 bg-yellow-100 dark:bg-yellow-900/20' },
   ];
 
-  // Logic: Legality Data
-  const legality = {
-    title: text.legalTitle,
-    desc: text.legalDesc,
-    labelEntity: text.legalLabelEntity,
-    valueEntity: text.legalValueEntity,
-    labelNIB: text.legalLabelNIB,
-    labelSK: text.legalLabelSK,
-    labelNPWP: text.legalLabelNPWP,
-    labelBank: text.legalLabelBank,
-    ctaTitle: text.legalCtaTitle,
-    ctaDesc: text.legalCtaDesc,
-    ctaBtn: text.legalCtaBtn,
-    footerNote: text.legalFooterNote,
-    values: {
-      nib: "1226000711085",
-      sk: "AHU-006097.AH.01.30.Tahun 2021",
-      npwp: "53.494.885.6-532.000",
-      bank: "5859459406740414",
-      bankName: "A.N PT MESIN KASIR SOLO"
-    }
-  };
-
   return {
     text,
-    quote: parseQuote(),
+    founderData,
     turningPoint,
     timeline,
     legality

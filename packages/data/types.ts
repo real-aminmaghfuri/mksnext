@@ -1,6 +1,6 @@
 
 export interface Transaction {
-  id?: number; // Dexie uses number, Supabase UUID (string). We handle mapping in repo.
+  id?: number; 
   uuid?: string;
   total: number;
   status: 'COMPLETED' | 'PENDING' | 'CANCELLED';
@@ -34,21 +34,32 @@ export interface WebProtocols {
   pinterest: string;
 }
 
+export interface BankAccount {
+  bankName: string;
+  accountNumber: string;
+  accountHolder: string;
+}
+
 export interface CompanyIdentity {
   founderName: string;
   founderRole: string;
   founderPhoto: string;
   founderQuote: string;
+  
   companyName: string;
   brandName: string;
+  
   addressLegal: string;
   addressOps: string;
+  mapEmbedUrl: string; // New: Google Maps Embed URL
+  operatingHours: string; // New: Operational Hours Text
+  
   nib: string;
   skKemenkumham: string;
   npwp: string;
-  bankName: string;
-  bankAccount: string;
-  bankHolder: string;
+  
+  bankAccounts: BankAccount[]; // Changed: Array of banks
+  
   whatsapp: string;
   email: string;
 }

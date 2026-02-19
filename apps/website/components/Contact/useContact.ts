@@ -2,10 +2,10 @@
 "use client";
 
 import { useConfig } from 'ui';
-import { DICTIONARY } from 'shared';
+import { DICTIONARY, CompanyIdentity } from 'shared';
 import { ContactContent } from './types';
 
-export const useContact = (): ContactContent => {
+export const useContact = (identity: CompanyIdentity): ContactContent => {
   const { language } = useConfig();
   const text = DICTIONARY[language];
 
@@ -19,12 +19,16 @@ export const useContact = (): ContactContent => {
     info: {
         infoTitle: text.contactInfoTitle,
         officeLegal: text.contactOfficeLegalTitle,
-        officeLegalAddress: text.contactOfficeLegalAddress,
+        officeLegalAddress: identity.addressLegal || text.contactOfficeLegalAddress,
         officeOps: text.contactOfficeOpsTitle,
-        officeOpsAddress: text.contactOfficeOpsAddress,
+        officeOpsAddress: identity.addressOps || text.contactOfficeOpsAddress,
         labelWa: text.contactLabelWa,
         labelEmail: text.contactLabelEmail,
-        labelHours: text.contactLabelHours
+        labelHours: text.contactLabelHours,
+        // New Dynamic Data passed to UI
+        dynamicWa: identity.whatsapp,
+        dynamicEmail: identity.email,
+        dynamicHours: identity.operatingHours || "Senin - Sabtu: 09:00 - 17:00"
     },
     form: {
       title: text.contactFormTitle,
@@ -44,7 +48,8 @@ export const useContact = (): ContactContent => {
     },
     maps: {
       title: text.contactMapsTitle,
-      desc: text.contactMapsDesc
+      desc: text.contactMapsDesc,
+      embedUrl: identity.mapEmbedUrl // Pass the embed URL
     }
   };
 };

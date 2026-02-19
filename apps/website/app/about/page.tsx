@@ -1,13 +1,16 @@
-"use client";
 
 import React from 'react';
-// Explicitly pointing to the modular folder structure
 import { About } from '../../components/About/index';
+import { Repository } from 'data';
 
-export default function AboutPage() {
+// This is a Server Component. It fetches data directly from the DB/API.
+export default async function AboutPage() {
+  // Fetch Identity Data (Single Source of Truth)
+  const identity = await Repository.getCompanyIdentity();
+
   return (
     <div className="pt-20">
-      <About />
+      <About identity={identity} />
     </div>
   );
 }

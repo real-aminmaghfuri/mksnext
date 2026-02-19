@@ -1,3 +1,4 @@
+
 "use client";
 import React from 'react';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
@@ -48,13 +49,13 @@ export const ContactInfoCard: React.FC<ContactInfoCardProps> = ({ info }) => {
                 <div>
                     <p className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider mb-1">{info.labelWa}</p>
                     <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300 flex items-center gap-2">
-                      <Phone size={18} className="text-brand-600 dark:text-brand-500" /> 0881-6566-935
+                      <Phone size={18} className="text-brand-600 dark:text-brand-500" /> {info.dynamicWa}
                     </p>
                 </div>
                 <div>
                     <p className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider mb-1">{info.labelEmail}</p>
                     <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300 flex items-center gap-2">
-                      <Mail size={18} className="text-zinc-500" /> owner.kasirsolo@gmail.com
+                      <Mail size={18} className="text-zinc-500" /> {info.dynamicEmail}
                     </p>
                 </div>
                 <div>
@@ -62,8 +63,9 @@ export const ContactInfoCard: React.FC<ContactInfoCardProps> = ({ info }) => {
                     <div className="flex items-start gap-3">
                       <Clock size={18} className="text-zinc-500 mt-0.5" /> 
                       <div className="flex flex-col">
-                          <span className="text-sm font-bold text-zinc-900 dark:text-white">Senin - Sabtu</span>
-                          <span className="text-sm font-medium text-zinc-500 dark:text-zinc-400">09:00 - 17:00 WIB</span>
+                          <span className="text-sm font-medium text-zinc-500 dark:text-zinc-400 whitespace-pre-line">
+                            {info.dynamicHours}
+                          </span>
                       </div>
                     </div>
                 </div>
