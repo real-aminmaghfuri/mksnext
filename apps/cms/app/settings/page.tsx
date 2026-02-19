@@ -6,11 +6,10 @@ import { Sidebar } from '../../components/Sidebar';
 import { Header } from '../../components/Header';
 import { Button, GlassCard } from 'ui';
 import { Repository, CompanyIdentity, BankAccount } from 'data';
-import { SITE_CONFIG } from 'shared'; 
 import { 
   Globe, Save, User, Building2, CreditCard, Phone, 
   ShieldCheck, Quote, UploadCloud, Plus, Trash2, Clock, MapPin, 
-  ScanEye, Cpu, CheckCircle2 
+  ScanEye, Cpu, CheckCircle2, XCircle
 } from 'lucide-react';
 import Image from 'next/image';
 import { analyzeImageForSEO } from '../../utils/ai-services';
@@ -22,11 +21,9 @@ export default function CMSSettingsPage() {
   
   // AI Upload State
   const [isUploading, setIsUploading] = useState(false);
-  const [uploadStep, setUploadStep] = useState<string>(''); // For UI Feedback: "Scanning...", "Renaming..."
+  const [uploadStep, setUploadStep] = useState<string>(''); 
 
   // WEB PROTOCOLS STATE
-  const [maintenanceMode, setMaintenanceMode] = useState(false); 
-  const [visibility, setVisibility] = useState<'PUBLIC' | 'STEALTH'>('PUBLIC'); 
   const [webConfig, setWebConfig] = useState({
     gsc: '', ga4: '', gMerchant: '', bing: '', yandex: '', pinterest: ''
   });
@@ -52,8 +49,6 @@ export default function CMSSettingsPage() {
             ]);
             
             // Set Protocols
-            setMaintenanceMode(protocols.maintenanceMode);
-            setVisibility(protocols.visibility);
             setWebConfig({
                 gsc: protocols.gsc || '',
                 ga4: protocols.ga4 || '',
@@ -83,8 +78,8 @@ export default function CMSSettingsPage() {
     try {
         if (activeTab === 'PROTOCOLS') {
             await Repository.saveWebProtocols({
-                maintenanceMode,
-                visibility,
+                maintenanceMode: false, // Defaulting
+                visibility: 'PUBLIC', // Defaulting
                 ...webConfig
             });
         } else {
@@ -101,15 +96,31 @@ export default function CMSSettingsPage() {
 
   // --- HANDLERS ---
 
-  const handleWebChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setWebConfig({ ...webConfig, [e.target.name]: e.target.value });
-  };
-
   const handleIdentityChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setIdentity({ ...identity, [e.target.name]: e.target.value });
   };
 
-  // NEW: AI-POWERED UPLOAD PIPELINE
+  // --- DELETE PHOTO FUNCTION ---
+  const handleRemovePhoto = async () => {
+    if(!confirm("Yakin mau hapus foto founder? Tampilan di web bakal kosong.")) return;
+    
+    setIsSaving(true);
+    try {
+        // 1. Update State
+        const updatedIdentity = { ...identity, founderPhoto: '' };
+        setIdentity(updatedIdentity);
+        
+        // 2. Auto Save to DB
+        await Repository.saveCompanyIdentity(updatedIdentity);
+        alert("Foto berhasil dihapus dari database.");
+    } catch (e: any) {
+        alert("Gagal hapus: " + e.message);
+    } finally {
+        setIsSaving(false);
+    }
+  };
+
+  // --- AI-POWERED UPLOAD PIPELINE ---
   const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || e.target.files.length === 0) return;
     const file = e.target.files[0];
@@ -121,23 +132,29 @@ export default function CMSSettingsPage() {
         // 1. AI Analysis
         setUploadStep('SCANNING & OPTIMIZING SEO...');
         const seoData = await analyzeImageForSEO(file, "Founder Profile Picture of PT Mesin Kasir Solo");
-        console.log("AI SEO Result:", seoData);
-
-        // 2. Rename File Object
+        
+        // 2. Prepare Payload
         setUploadStep('INJECTING METADATA...');
-        const ext = file.name.split('.').pop();
-        const newFileName = `${seoData.filename}.${ext}`;
-        const renamedFile = new File([file], newFileName, { type: file.type });
-
-        // 3. Cloudinary Upload with Context
-        setUploadStep('UPLOADING TO CLOUD...');
+        
+        // Construct the FormData
         const formData = new FormData();
-        formData.append('file', renamedFile);
+        formData.append('file', file); // Send original file, we overwrite name via params
         formData.append('upload_preset', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || 'mks_preset');
         formData.append('folder', 'mks_founder');
-        // Inject metadata into Cloudinary Context (Alt Text & Caption)
-        formData.append('context', `alt=${seoData.alt_text}|caption=${seoData.caption}`);
+        
+        // FORCE SEO FILENAME (public_id)
+        // Cloudinary will use this as the filename. 
+        formData.append('public_id', seoData.filename); 
+        formData.append('use_filename', 'true');
+        formData.append('unique_filename', 'false'); // Don't add random chars
+        formData.append('overwrite', 'true');
 
+        // INJECT METADATA (Context & Tags)
+        formData.append('context', `alt=${seoData.alt_text}|caption=${seoData.caption}`);
+        formData.append('tags', `founder,mks,${seoData.filename}`);
+
+        // 3. Upload
+        setUploadStep('UPLOADING TO CLOUD...');
         const res = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`, {
             method: 'POST', body: formData
         });
@@ -145,10 +162,18 @@ export default function CMSSettingsPage() {
         const data = await res.json();
         
         if (data.secure_url) {
-            // Use AVIF/WebP Auto format
+            // Optimize URL format
             const optimizedUrl = data.secure_url.replace('/upload/', '/upload/f_auto,q_auto/');
-            setIdentity({ ...identity, founderPhoto: optimizedUrl });
+            
+            // 4. AUTO SAVE TO DATABASE (CRITICAL FIX)
+            // Don't wait for user to click "Save"
+            const updatedIdentity = { ...identity, founderPhoto: optimizedUrl };
+            setIdentity(updatedIdentity);
+            
+            await Repository.saveCompanyIdentity(updatedIdentity);
+            
             setUploadStep('DONE');
+            alert(`✅ Foto Terupload & Tersimpan!\nSEO Filename: ${seoData.filename}`);
         } else {
             throw new Error(data.error?.message || 'Upload failed');
         }
@@ -227,13 +252,26 @@ export default function CMSSettingsPage() {
                                             {/* Photo Upload Area */}
                                             <div className="relative aspect-square rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 group">
                                                 {identity.founderPhoto ? (
-                                                    <Image src={identity.founderPhoto} alt="Founder" fill className="object-cover" />
+                                                    <>
+                                                        <Image src={identity.founderPhoto} alt="Founder" fill className="object-cover" />
+                                                        {/* Delete Overlay */}
+                                                        <button 
+                                                            onClick={handleRemovePhoto}
+                                                            className="absolute top-2 right-2 p-2 bg-red-600 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-20 hover:scale-110 shadow-lg"
+                                                            title="Hapus Foto"
+                                                        >
+                                                            <Trash2 size={14} />
+                                                        </button>
+                                                    </>
                                                 ) : (
-                                                    <div className="flex items-center justify-center h-full text-zinc-400"><User size={48}/></div>
+                                                    <div className="flex items-center justify-center h-full text-zinc-400 flex-col gap-2">
+                                                        <User size={48} className="opacity-20"/>
+                                                        <span className="text-[9px] font-bold uppercase text-zinc-500">No Photo</span>
+                                                    </div>
                                                 )}
                                                 
                                                 {/* Upload Overlay */}
-                                                <div className={`absolute inset-0 bg-black/80 transition-opacity flex flex-col items-center justify-center text-white ${isUploading ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}>
+                                                <div className={`absolute inset-0 bg-black/80 transition-opacity flex flex-col items-center justify-center text-white ${isUploading ? 'opacity-100 z-30' : 'opacity-0 group-hover:opacity-100 z-10'}`}>
                                                     {isUploading ? (
                                                         <>
                                                             <Cpu size={32} className="mb-2 text-brand-500 animate-pulse" />
@@ -242,9 +280,11 @@ export default function CMSSettingsPage() {
                                                             </span>
                                                         </>
                                                     ) : (
-                                                        <label className="cursor-pointer flex flex-col items-center">
+                                                        <label className="cursor-pointer flex flex-col items-center w-full h-full justify-center">
                                                             <ScanEye size={32} className="mb-2 text-brand-500" />
-                                                            <span className="text-[10px] font-bold uppercase tracking-wider">AI SMART UPLOAD</span>
+                                                            <span className="text-[10px] font-bold uppercase tracking-wider">
+                                                                {identity.founderPhoto ? 'GANTI FOTO' : 'UPLOAD BARU'}
+                                                            </span>
                                                             <input type="file" accept="image/*" onChange={handlePhotoUpload} className="hidden" disabled={isUploading} />
                                                         </label>
                                                     )}
@@ -252,7 +292,7 @@ export default function CMSSettingsPage() {
                                             </div>
                                             
                                             <div className="text-[9px] text-zinc-400 text-center px-2">
-                                                *Auto-generates SEO Filename & Alt Text via Gemini AI
+                                                *Otomatis SEO (Rename, Metadata & Resize).
                                             </div>
                                         </div>
 
