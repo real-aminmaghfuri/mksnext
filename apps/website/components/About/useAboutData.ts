@@ -11,32 +11,26 @@ export const useAboutData = (identity: CompanyIdentity) => {
 
   // Logic: Quote Parsing - Made Robust for Empty/Different formats
   const parseQuote = () => {
-    const rawQuote = identity.founderQuote || text.aboutFounderQuote;
-    
-    // Check if rawQuote is empty
-    if (!rawQuote) {
-        return {
-            heading: "Jujur-jujuran aja...",
-            bodyPrefix: "Bisnis tanpa sistem yang kuat cuma nunggu waktu buat meledak.",
-            emphasis: "",
-            bodySuffix: ""
-        };
+    // 1. Get Content: Use Identity if available and not empty, otherwise fallback to Dictionary
+    let rawQuote = identity.founderQuote;
+    if (!rawQuote || rawQuote.trim() === "") {
+        rawQuote = text.aboutFounderQuote;
     }
 
     const quoteHeading = language === Language.ID ? "Jujur-jujuran aja..." : "To be honest...";
     
-    // Attempt to remove the heading if it exists in the raw text
+    // 2. Remove Heading if present (to avoid duplication)
     let quoteBody = rawQuote;
-    if (rawQuote.includes(quoteHeading)) {
-        quoteBody = rawQuote.replace(quoteHeading, "").trim();
+    if (quoteBody.includes(quoteHeading)) {
+        quoteBody = quoteBody.replace(quoteHeading, "").trim();
     }
 
-    // Safe Split: Use the first sentence as bodyPrefix, rest as emphasis
-    // Matches the first period, exclamation, or question mark followed by space
+    // 3. Smart Split: Attempt to split into "Hook" (Prefix) and "Main Point" (Emphasis)
+    // We look for the first sentence ending (. ? !)
     const splitMatch = quoteBody.match(/([.?!])\s/);
     
     if (splitMatch && splitMatch.index) {
-        const splitIndex = splitMatch.index + 1; // Include the punctuation
+        const splitIndex = splitMatch.index + 1;
         return {
             heading: quoteHeading,
             bodyPrefix: quoteBody.substring(0, splitIndex),
@@ -45,11 +39,11 @@ export const useAboutData = (identity: CompanyIdentity) => {
         };
     }
 
-    // Fallback if no sentence structure found
+    // 4. Fallback: If no split possible, put everything in Emphasis for impact
     return {
       heading: quoteHeading,
-      bodyPrefix: "", // Empty prefix
-      emphasis: quoteBody, // Put everything in the box
+      bodyPrefix: "", 
+      emphasis: quoteBody,
       bodySuffix: ""
     };
   };
@@ -58,12 +52,12 @@ export const useAboutData = (identity: CompanyIdentity) => {
   const founderData = {
       name: identity.founderName || "AMIN MAGHFURI",
       role: identity.founderRole || "COMMANDING OFFICER",
-      photo: identity.founderPhoto, // Pass through, component handles fallback
+      // Fallback photo if identity photo is missing
+      photo: identity.founderPhoto || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800",
       quote: parseQuote()
   };
 
   // Logic: Legality Data (Merged with DB)
-  // Passing the full bankAccounts array to the component instead of just one
   const legality = {
     title: text.legalTitle,
     desc: text.legalDesc,
@@ -81,11 +75,11 @@ export const useAboutData = (identity: CompanyIdentity) => {
       nib: identity.nib || "-",
       sk: identity.skKemenkumham || "-",
       npwp: identity.npwp || "-",
-      bankAccounts: identity.bankAccounts || [] // Pass array
+      bankAccounts: identity.bankAccounts || [] 
     }
   };
 
-  // Turning Point & Timeline (Static for now, but could be dynamic later)
+  // Turning Point & Timeline
   const turningPoint = {
     title: text.aboutTurnTitle,
     p1: text.aboutTurnP1,

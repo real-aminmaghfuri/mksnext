@@ -3,37 +3,45 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 let supabase: SupabaseClient | null = null;
 
-// Initialize automatically using Environment Variables
-// Note: On client side Next.js inlines NEXT_PUBLIC vars. 
-// On server side, we rely on process.env being populated.
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
+// Lazy Initialization Helper
+// This ensures process.env is fully populated before we try to read keys
+export const getSupabase = () => {
+  if (supabase) return supabase;
 
-if (supabaseUrl && supabaseKey) {
-  try {
-    supabase = createClient(supabaseUrl, supabaseKey);
-    if (typeof window !== 'undefined') {
-        console.log("🔥 [MKS DATABASE] Supabase Client Initialized.");
+  // Initialize automatically using Environment Variables
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
+
+  if (supabaseUrl && supabaseKey) {
+    try {
+      supabase = createClient(supabaseUrl, supabaseKey);
+      if (typeof window !== 'undefined') {
+          console.log("🔥 [MKS DATABASE] Supabase Client Initialized (Client).");
+      } else {
+          console.log("🔥 [MKS DATABASE] Supabase Client Initialized (Server).");
+      }
+    } catch (e) {
+      console.error("❌ [MKS DATABASE] Failed to initialize Supabase:", e);
     }
-  } catch (e) {
-    console.error("❌ [MKS DATABASE] Failed to initialize Supabase:", e);
+  } else {
+      // Only warn if we are trying to use it and it fails
+      if (typeof window !== 'undefined') {
+          console.warn("⚠️ [MKS DATABASE] Supabase Keys missing. Running in Offline/Mock Mode.");
+      }
   }
-} else {
-    if (typeof window !== 'undefined') {
-        console.warn("⚠️ [MKS DATABASE] Supabase Keys missing. Running in Offline/Mock Mode.");
-    }
-}
-
-export const getSupabase = () => supabase;
+  return supabase;
+};
 
 // Helper to check connection status
-// FIX: Previously failed on Server because `navigator` is undefined in Node.js
+// FIX: Robust check for both Server and Client environments
 export const isOnline = () => {
-  // If we are on the server (window is undefined), we assume connectivity if the client is initialized.
+  const client = getSupabase(); // Trigger lazy init
+  
+  // If we are on the server (window is undefined), we rely on the client existence
   if (typeof window === 'undefined') {
-    return !!supabase;
+    return !!client;
   }
   
-  // If we are on the client, we check the browser's online status
-  return typeof navigator !== 'undefined' && navigator.onLine && !!supabase;
+  // If we are on the client, we check the browser's online status AND client existence
+  return typeof navigator !== 'undefined' && navigator.onLine && !!client;
 };
