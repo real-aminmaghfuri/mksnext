@@ -28,7 +28,7 @@ export const useContact = (identity: CompanyIdentity): ContactContent => {
         // New Dynamic Data passed to UI
         dynamicWa: identity.whatsapp,
         dynamicEmail: identity.email,
-        dynamicHours: identity.operatingHours || "Senin - Sabtu: 09:00 - 17:00"
+        dynamicHours: identity.operatingHours || "Senin - Sabtu: 08:00 - 17:00"
     },
     form: {
       title: text.contactFormTitle,

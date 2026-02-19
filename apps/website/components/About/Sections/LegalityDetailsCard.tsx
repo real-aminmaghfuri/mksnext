@@ -1,7 +1,9 @@
+
 "use client";
 
 import React from 'react';
 import { CheckCircle2 } from 'lucide-react';
+import { BankAccount } from 'data';
 
 // Define the shape of data required for this specific card
 export interface LegalityDetailsContent {
@@ -16,8 +18,7 @@ export interface LegalityDetailsContent {
     nib: string;
     sk: string;
     npwp: string;
-    bank: string;
-    bankName: string;
+    bankAccounts: BankAccount[];
   }
 }
 
@@ -56,12 +57,16 @@ export const LegalityDetailsCard: React.FC<LegalityDetailsCardProps> = ({ conten
             <span className="text-zinc-900 dark:text-white font-mono font-black mt-2 md:mt-0">{content.values.npwp}</span>
         </div>
 
-        {/* Bank Row */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between py-4">
-            <span className="text-zinc-800 dark:text-zinc-200 font-bold">{content.labelBank}</span>
-            <div className="text-right mt-2 md:mt-0">
-                <p className="text-zinc-900 dark:text-white font-mono font-black text-lg">{content.values.bank}</p>
-                <p className="text-zinc-900 dark:text-zinc-300 font-bold uppercase text-[10px]">{content.values.bankName}</p>
+        {/* Bank Row - Multi Account */}
+        <div className="flex flex-col md:flex-row md:items-start justify-between py-4">
+            <span className="text-zinc-800 dark:text-zinc-200 font-bold mb-2 md:mb-0">{content.labelBank}</span>
+            <div className="text-right space-y-4">
+                {content.values.bankAccounts.map((acc, idx) => (
+                    <div key={idx}>
+                        <p className="text-zinc-900 dark:text-white font-mono font-black text-lg">{acc.accountNumber}</p>
+                        <p className="text-zinc-900 dark:text-zinc-300 font-bold uppercase text-[10px]">{acc.bankName} - {acc.accountHolder}</p>
+                    </div>
+                ))}
             </div>
         </div>
 

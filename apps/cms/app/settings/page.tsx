@@ -8,8 +8,8 @@ import { Button, GlassCard } from 'ui';
 import { Repository, CompanyIdentity, BankAccount } from 'data';
 import { SITE_CONFIG } from 'shared'; 
 import { 
-  Globe, Eye, EyeOff, Save, Search, BarChart3, 
-  Map, Pin, AlertOctagon, Power, User, Building2, 
+  Globe, Save, Search, BarChart3, 
+  Map, AlertOctagon, Power, User, Building2, 
   CreditCard, Phone, ShieldCheck, Quote, UploadCloud, Plus, Trash2, Clock
 } from 'lucide-react';
 import Image from 'next/image';
@@ -20,6 +20,8 @@ export default function CMSSettingsPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isUploading, setIsUploading] = useState(false);
   
+  const displayDomain = SITE_CONFIG.domain;
+
   // WEB PROTOCOLS STATE
   const [maintenanceMode, setMaintenanceMode] = useState(false); 
   const [visibility, setVisibility] = useState<'PUBLIC' | 'STEALTH'>('PUBLIC'); 
@@ -150,8 +152,6 @@ export default function CMSSettingsPage() {
     newBanks[idx] = { ...newBanks[idx], [field]: value };
     setIdentity({ ...identity, bankAccounts: newBanks });
   };
-
-  const displayDomain = SITE_CONFIG.domain.replace(/(^\w+:|^)\/\//, '');
 
   return (
     <div className="flex h-screen bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white overflow-hidden">
@@ -409,30 +409,44 @@ export default function CMSSettingsPage() {
                         </>
                     )}
 
-                    {/* ... PROTOCOLS TAB ... (Unchanged logic, just ensure it renders if active) */}
+                    {/* === PROTOCOLS TAB === */}
                     {activeTab === 'PROTOCOLS' && (
-                        /* Re-using existing structure for Protocols from previous file version */
                         <div className="space-y-8">
-                             {/* ... Protocol Content Here (Same as before) ... */}
-                             {/* For brevity in this diff, reusing the exact same blocks as previous response for protocols */}
                              <section className="p-1 rounded-3xl bg-gradient-to-r from-red-600 to-rose-600 shadow-2xl">
-                                {/* ... Lockdown UI ... */}
                                 <div className="bg-zinc-900 rounded-[22px] p-6 md:p-8 relative overflow-hidden">
-                                    {/* ... content ... */}
-                                    <div className="flex justify-between items-center relative z-10">
-                                        <h3 className="text-white font-black text-2xl">WEBSITE LOCKDOWN</h3>
-                                        <div className="flex items-center gap-4">
-                                            <span className="text-zinc-400 text-xs font-bold">{maintenanceMode ? 'ACTIVE' : 'INACTIVE'}</span>
-                                            <button onClick={() => setMaintenanceMode(!maintenanceMode)} className={`w-12 h-6 rounded-full transition-colors ${maintenanceMode ? 'bg-red-500' : 'bg-zinc-700'}`}>
-                                                <div className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${maintenanceMode ? 'translate-x-7' : 'translate-x-1'}`} />
+                                    <div className="absolute top-0 right-0 p-8 opacity-10">
+                                        <AlertOctagon size={120} className="text-red-500" />
+                                    </div>
+                                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between relative z-10 gap-6">
+                                        <div>
+                                            <h3 className="text-2xl font-black text-white uppercase tracking-tighter flex items-center gap-3">
+                                                <AlertOctagon className="text-red-500" /> Website Lockdown
+                                            </h3>
+                                            <p className="text-zinc-400 mt-2 max-w-xl text-sm leading-relaxed">
+                                                Aktifkan mode ini untuk menutup akses publik ke <strong>{displayDomain}</strong>. 
+                                            </p>
+                                        </div>
+                                        <div className="flex items-center gap-4 bg-black/40 p-2 rounded-2xl border border-white/5">
+                                            <span className={`text-xs font-black uppercase tracking-widest ${maintenanceMode ? 'text-zinc-500' : 'text-emerald-500'}`}>
+                                                {maintenanceMode ? 'OFFLINE' : 'LIVE'}
+                                            </span>
+                                            <button 
+                                                onClick={() => setMaintenanceMode(!maintenanceMode)}
+                                                className={`relative w-16 h-8 rounded-full transition-colors duration-300 flex items-center px-1 shadow-inner ${maintenanceMode ? 'bg-red-600' : 'bg-zinc-700'}`}
+                                            >
+                                                <div className={`w-6 h-6 rounded-full bg-white shadow-lg transition-transform duration-300 flex items-center justify-center ${maintenanceMode ? 'translate-x-8' : 'translate-x-0'}`}>
+                                                    <Power size={12} className={maintenanceMode ? 'text-red-600' : 'text-zinc-900'} strokeWidth={3} />
+                                                </div>
                                             </button>
+                                            <span className={`text-xs font-black uppercase tracking-widest ${maintenanceMode ? 'text-red-500 animate-pulse' : 'text-zinc-500'}`}>
+                                                MAINTENANCE
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
-                             </section>
-                             
-                             {/* Simple Inputs for SEO */}
-                             <GlassCard variant="solid" className="p-6 space-y-4">
+                            </section>
+
+                            <GlassCard variant="solid" className="p-6 space-y-4">
                                  <h4 className="font-bold">SEO Verification</h4>
                                  <input type="text" name="gsc" value={webConfig.gsc} onChange={handleWebChange} placeholder="Google Search Console" className="w-full p-2 border rounded" />
                                  <input type="text" name="ga4" value={webConfig.ga4} onChange={handleWebChange} placeholder="Google Analytics 4" className="w-full p-2 border rounded" />

@@ -34,6 +34,7 @@ export const useAboutData = (identity: CompanyIdentity) => {
   };
 
   // Logic: Legality Data (Merged with DB)
+  // Passing the full bankAccounts array to the component instead of just one
   const legality = {
     title: text.legalTitle,
     desc: text.legalDesc,
@@ -51,9 +52,7 @@ export const useAboutData = (identity: CompanyIdentity) => {
       nib: identity.nib,
       sk: identity.skKemenkumham,
       npwp: identity.npwp,
-      // Use first bank account for main display or join them
-      bank: identity.bankAccounts?.[0]?.accountNumber || "-",
-      bankName: identity.bankAccounts?.[0]?.accountHolder || "-"
+      bankAccounts: identity.bankAccounts || [] // Pass array
     }
   };
 
