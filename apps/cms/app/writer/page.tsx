@@ -4,10 +4,10 @@
 import React, { useState } from 'react';
 import { Sidebar } from '../../components/Sidebar';
 import { Header } from '../../components/Header';
-import { GoogleGenAI } from "@google/genai";
 import { AI_SYSTEM_PROMPT } from 'shared';
 import { Button } from 'ui';
 import { Sparkles, Copy, Check, Terminal, AlertTriangle, FileCode } from 'lucide-react';
+import { generateWriterAction } from '../actions/gemini';
 
 export default function WriterPage() {
   const [topic, setTopic] = useState('');
@@ -21,40 +21,11 @@ export default function WriterPage() {
     setGeneratedHtml(''); 
 
     try {
-      // LOAD BALANCING ROTATION
-      const apiKeys = [
-          process.env.GEMINI_API_KEY_1,
-          process.env.GEMINI_API_KEY_2,
-          process.env.GEMINI_API_KEY_3,
-          process.env.GEMINI_API_KEY_4,
-          process.env.GEMINI_API_KEY_5,
-          process.env.GEMINI_API_KEY_6,
-          process.env.API_KEY
-      ].filter(Boolean);
-
-      if (apiKeys.length === 0) {
-        throw new Error("API KEY Missing in CMS Environment.");
-      }
-
-      const randomKey = apiKeys[Math.floor(Math.random() * apiKeys.length)];
-      const ai = new GoogleGenAI({ apiKey: randomKey as string });
+      // Execute via Server Action (Secure)
+      const content = await generateWriterAction(topic, AI_SYSTEM_PROMPT);
       
-      const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
-        contents: [
-            {
-                role: "user",
-                parts: [{ text: `Topic: ${topic}` }]
-            }
-        ],
-        config: {
-            systemInstruction: AI_SYSTEM_PROMPT, 
-            temperature: 0.8, 
-        }
-      });
-
-      if (response.text) {
-        setGeneratedHtml(response.text);
+      if (content) {
+        setGeneratedHtml(content);
       }
     } catch (error: any) {
       console.error("AI Error:", error);
