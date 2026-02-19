@@ -6,6 +6,7 @@ import { Sidebar } from '../../components/Sidebar';
 import { Header } from '../../components/Header';
 import { Button, GlassCard } from 'ui';
 import { Repository } from 'data';
+import { SITE_CONFIG } from 'shared'; // Import Config
 import { 
   Globe, 
   Eye, 
@@ -42,7 +43,6 @@ export default function CMSSettingsPage() {
     const fetchData = async () => {
         setIsLoading(true);
         try {
-            // Using shared Repository to fetch from Supabase
             const data = await Repository.getWebProtocols();
             
             setMaintenanceMode(data.maintenanceMode);
@@ -74,14 +74,18 @@ export default function CMSSettingsPage() {
             ...config
         };
 
-        // Now returns void or throws error
         await Repository.saveWebProtocols(payload);
-        alert("✅ WEBSITE PROTOCOLS UPDATED & SYNCED TO CLOUD.");
+        alert("✅ SUKSES! Konfigurasi Website berhasil disimpan.");
 
     } catch (e: any) {
         console.error("Save Error:", e);
-        // Display the ACTUAL error from Supabase
-        alert(`❌ SYNC FAILED: ${e.message || "Unknown Error"}. \n\nTip: Pastikan tabel 'settings' sudah dibuat di Supabase.`);
+        
+        // Smart Error Handling
+        if (e.message && e.message.includes('relation "settings" does not exist')) {
+             alert("⚠️ ERROR: TABEL DATABASE BELUM DIBUAT.\n\nBos, lo harus buka Supabase > SQL Editor, terus jalanin perintah 'CREATE TABLE settings' dulu.");
+        } else {
+             alert(`❌ GAGAL SIMPAN: ${e.message || "Unknown Error"}`);
+        }
     } finally {
         setIsSaving(false);
     }
@@ -90,6 +94,9 @@ export default function CMSSettingsPage() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setConfig({ ...config, [e.target.name]: e.target.value });
   };
+
+  // Remove protocol from domain for display purposes (e.g., https://mks.com -> mks.com)
+  const displayDomain = SITE_CONFIG.domain.replace(/(^\w+:|^)\/\//, '');
 
   return (
     <div className="flex h-screen bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white overflow-hidden">
@@ -121,7 +128,7 @@ export default function CMSSettingsPage() {
                                         <AlertOctagon className="text-red-500" /> Website Lockdown
                                     </h3>
                                     <p className="text-zinc-400 mt-2 max-w-xl text-sm leading-relaxed">
-                                        Aktifkan mode ini untuk menutup akses publik ke <strong>mesinkasirsolo.com</strong>. 
+                                        Aktifkan mode ini untuk menutup akses publik ke <strong>{displayDomain}</strong>. 
                                         Traffic dialihkan ke halaman 'Under Maintenance'. 
                                         Gunakan saat deploy konten besar.
                                     </p>

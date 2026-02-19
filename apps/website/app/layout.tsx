@@ -81,14 +81,6 @@ export default function RootLayout({
 
   return (
     <html lang="en" className="dark">
-      {/* 
-         LAYOUT PADDING RULES (CRITICAL):
-         - Default (Portrait Mobile): pb-[72px] (Bottom Nav Space)
-         - Landscape Mobile/Tablet: pr-[80px] pb-0 (Right Sidebar Space)
-         - Desktop (XL+): pr-0 pb-0 (No Sidebar, No Bottom Nav)
-         
-         Note: xl:landscape:pr-0 is essential to reset landscape padding on big screens.
-      */}
       <body className={`
         ${font.className} 
         bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white transition-colors duration-500

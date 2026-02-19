@@ -17,9 +17,6 @@ export class Repository {
     // 1. Try Online (Supabase)
     if (isOnline() && supabase) {
       try {
-        // Example: Aggregate query via Supabase RPC or simple fetch
-        // For simplicity, we fetch recent txs to calc stats manually in client for now
-        // In prod, use .rpc('get_dashboard_stats')
         const { data: txs, error } = await supabase
           .from('transactions')
           .select('total, status')
@@ -30,7 +27,7 @@ export class Repository {
           return {
             revenue,
             orders: txs.length,
-            activePos: 24 // Dummy for active nodes
+            activePos: 24 
           };
         }
       } catch (e) {
@@ -62,7 +59,6 @@ export class Repository {
         .limit(10);
       
       if (!error && data) {
-        // Map Supabase snake_case to CamelCase if necessary, or ensure Types match
         return data.map((d: any) => ({
             ...d,
             createdAt: new Date(d.created_at),
@@ -95,12 +91,10 @@ export class Repository {
   }
 
   static async addProduct(product: Product): Promise<void> {
-    // Dual Write Strategy: Write to Local, then Sync to Cloud
     await localDB.products.add(product);
     
     const supabase = getSupabase();
     if (isOnline() && supabase) {
-        // Remove ID to let Postgres Auto-increment
         const { id, ...payload } = product; 
         await supabase.from('products').insert([payload]);
     }
@@ -117,14 +111,14 @@ export class Repository {
 
     if (isOnline() && supabase) {
         try {
-            // Assumes a table 'settings' with columns: key (text), value (jsonb)
             const { data, error } = await supabase
                 .from('settings')
                 .select('value')
                 .eq('key', 'web_protocols')
                 .single();
             
-            if (error && error.code !== 'PGRST116') { // Ignore "Row not found" error
+            // PGRST116 means no rows returned (first time setup), which is fine.
+            if (error && error.code !== 'PGRST116') { 
                  console.error("Supabase Error:", error.message);
             }
 
@@ -154,6 +148,7 @@ export class Repository {
     
     if (error) {
         console.error("Supabase Write Error:", error);
+        // Throw the ACTUAL error message from Supabase so the UI knows what happened
         throw new Error(error.message);
     }
   }
