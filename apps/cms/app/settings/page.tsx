@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -141,10 +142,12 @@ export default function CMSSettingsPage() {
         formData.append('file', file);
         formData.append('folder', 'mks_founder');
         
-        // STRATEGY: Append Timestamp to ensure uniqueness while keeping SEO keywords
-        const timestamp = Date.now();
+        // STRATEGY: Use clean SEO slug derived from AI or File Name
+        // We REMOVE timestamp to ensure strict SEO naming (e.g. founder-amin-maghfuri-mks.webp)
         const cleanSlug = seoData.filename.replace(/[^a-z0-9-]/gi, '-').toLowerCase();
-        const finalPublicId = `${cleanSlug}-${timestamp}`;
+        
+        // Ensure not empty
+        const finalPublicId = cleanSlug.length > 3 ? cleanSlug : 'founder-profile-mks';
 
         formData.append('public_id', finalPublicId); 
         formData.append('alt', seoData.alt_text);
@@ -159,6 +162,7 @@ export default function CMSSettingsPage() {
         if (result && result.secure_url) {
             
             // 4. AUTO SAVE TO DATABASE
+            // FORCE UPDATE: Sometimes React batching causes issues, we set state and call repo directly
             const updatedIdentity = { ...identity, founderPhoto: result.secure_url };
             setIdentity(updatedIdentity);
             

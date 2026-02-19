@@ -1,3 +1,4 @@
+
 "use server";
 
 import { v2 as cloudinary } from 'cloudinary';
@@ -28,7 +29,9 @@ export async function uploadToCloudinary(formData: FormData) {
   return new Promise((resolve, reject) => {
     cloudinary.uploader.upload_stream({
       folder: folder,
-      public_id: filename, // Force custom filename
+      public_id: filename, // STRICTLY use this name
+      use_filename: true,  // Use the supplied filename
+      unique_filename: false, // DISABLE random characters appending
       resource_type: 'auto',
       
       // OPTIMIZATION (THE "COOKING" PROCESS)
@@ -41,8 +44,8 @@ export async function uploadToCloudinary(formData: FormData) {
       // Tags for easier searching in Cloudinary Dashboard
       tags: ['mks_system', 'seo_optimized'],
       
-      // Overwrite if same name exists (optional, keeping it false for safety)
-      overwrite: false,
+      // Overwrite if same name exists to ensure we update the asset
+      overwrite: true,
     }, (error, result) => {
       if (error) {
         console.error("Cloudinary Error:", error);

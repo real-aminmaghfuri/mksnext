@@ -9,27 +9,56 @@ export const useAboutData = (identity: CompanyIdentity) => {
   const { language } = useConfig();
   const text = DICTIONARY[language];
 
-  // Logic: Quote Parsing
+  // Logic: Quote Parsing - Made Robust for Empty/Different formats
   const parseQuote = () => {
     const rawQuote = identity.founderQuote || text.aboutFounderQuote;
-    const quoteHeading = language === Language.ID ? "Jujur-jujuran aja..." : "To be honest...";
-    const quoteBody = rawQuote.replace(quoteHeading, "").trim();
-    // Simple split for design
-    const parts = quoteBody.split('.');
     
+    // Check if rawQuote is empty
+    if (!rawQuote) {
+        return {
+            heading: "Jujur-jujuran aja...",
+            bodyPrefix: "Bisnis tanpa sistem yang kuat cuma nunggu waktu buat meledak.",
+            emphasis: "",
+            bodySuffix: ""
+        };
+    }
+
+    const quoteHeading = language === Language.ID ? "Jujur-jujuran aja..." : "To be honest...";
+    
+    // Attempt to remove the heading if it exists in the raw text
+    let quoteBody = rawQuote;
+    if (rawQuote.includes(quoteHeading)) {
+        quoteBody = rawQuote.replace(quoteHeading, "").trim();
+    }
+
+    // Safe Split: Use the first sentence as bodyPrefix, rest as emphasis
+    // Matches the first period, exclamation, or question mark followed by space
+    const splitMatch = quoteBody.match(/([.?!])\s/);
+    
+    if (splitMatch && splitMatch.index) {
+        const splitIndex = splitMatch.index + 1; // Include the punctuation
+        return {
+            heading: quoteHeading,
+            bodyPrefix: quoteBody.substring(0, splitIndex),
+            emphasis: quoteBody.substring(splitIndex).trim(),
+            bodySuffix: ""
+        };
+    }
+
+    // Fallback if no sentence structure found
     return {
       heading: quoteHeading,
-      bodyPrefix: parts[0] + '.',
-      emphasis: parts.slice(1).join('. '), // The rest is emphasized in the design box
+      bodyPrefix: "", // Empty prefix
+      emphasis: quoteBody, // Put everything in the box
       bodySuffix: ""
     };
   };
 
   // Use Dynamic Identity for Founder Section
   const founderData = {
-      name: identity.founderName,
-      role: identity.founderRole,
-      photo: identity.founderPhoto,
+      name: identity.founderName || "AMIN MAGHFURI",
+      role: identity.founderRole || "COMMANDING OFFICER",
+      photo: identity.founderPhoto, // Pass through, component handles fallback
       quote: parseQuote()
   };
 
@@ -39,7 +68,7 @@ export const useAboutData = (identity: CompanyIdentity) => {
     title: text.legalTitle,
     desc: text.legalDesc,
     labelEntity: text.legalLabelEntity,
-    valueEntity: identity.companyName,
+    valueEntity: identity.companyName || "PT MESIN KASIR SOLO",
     labelNIB: text.legalLabelNIB,
     labelSK: text.legalLabelSK,
     labelNPWP: text.legalLabelNPWP,
@@ -49,9 +78,9 @@ export const useAboutData = (identity: CompanyIdentity) => {
     ctaBtn: text.legalCtaBtn,
     footerNote: text.legalFooterNote,
     values: {
-      nib: identity.nib,
-      sk: identity.skKemenkumham,
-      npwp: identity.npwp,
+      nib: identity.nib || "-",
+      sk: identity.skKemenkumham || "-",
+      npwp: identity.npwp || "-",
       bankAccounts: identity.bankAccounts || [] // Pass array
     }
   };
