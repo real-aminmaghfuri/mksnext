@@ -2,7 +2,7 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import type { Metadata, ResolvingMetadata } from 'next';
-import { MOCK_ARTICLES } from 'shared';
+import { MOCK_ARTICLES, SITE_CONFIG, absoluteUrl } from 'shared';
 import { ArticleDetail } from '../../../components/ArticleDetail';
 import { processArticleContent } from '../../../utils/contentProcessor'; // The Brain Utility
 
@@ -35,17 +35,16 @@ export async function generateMetadata(
     };
   }
 
-  const baseUrl = 'https://mesinkasirsolo.com'; 
   const ogImage = article.image; 
 
   return {
-    title: `${article.title} | MKS Intel`,
+    title: `${article.title} | ${SITE_CONFIG.shortName} Intel`,
     description: article.excerpt,
     openGraph: {
       title: article.title,
       description: article.excerpt,
-      url: `${baseUrl}/articles/${article.slug}`,
-      siteName: 'PT Mesin Kasir Solo',
+      url: absoluteUrl(`/articles/${article.slug}`),
+      siteName: SITE_CONFIG.name,
       images: [{ url: ogImage, width: 1200, height: 630, alt: article.title }],
       locale: 'id_ID',
       type: 'article',
@@ -60,7 +59,7 @@ export async function generateMetadata(
       creator: '@kasirsolo',
     },
     alternates: {
-      canonical: `${baseUrl}/articles/${article.slug}`,
+      canonical: absoluteUrl(`/articles/${article.slug}`),
     },
     robots: { index: true, follow: true },
   };
@@ -94,19 +93,19 @@ export default async function ArticleDetailPage({ params }: Props) {
     author: {
       '@type': 'Person',
       name: article.author,
-      url: 'https://mesinkasirsolo.com/about'
+      url: absoluteUrl('/about')
     },
     publisher: {
       '@type': 'Organization',
-      name: 'PT Mesin Kasir Solo',
+      name: SITE_CONFIG.name,
       logo: {
         '@type': 'ImageObject',
-        url: 'https://mesinkasirsolo.com/logo.png'
+        url: absoluteUrl('/logo.png')
       }
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://mesinkasirsolo.com/articles/${article.slug}`
+      '@id': absoluteUrl(`/articles/${article.slug}`)
     }
   };
 

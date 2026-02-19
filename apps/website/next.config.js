@@ -24,6 +24,9 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   env: {
+    // Configurable Domain
+    NEXT_PUBLIC_SITE_DOMAIN: process.env.NEXT_PUBLIC_SITE_DOMAIN, 
+
     // Primary Fallback
     API_KEY: process.env.GEMINI_API_KEY_1,
     // Rotation Pool
