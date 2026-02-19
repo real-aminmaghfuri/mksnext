@@ -1,7 +1,7 @@
 
 import { localDB } from './local-db';
 import { getSupabase, isOnline } from './remote-db';
-import { DashboardStats, Transaction, Product, WebProtocols } from './types';
+import { DashboardStats, Transaction, Product, WebProtocols, CompanyIdentity } from './types';
 
 export class Repository {
   
@@ -117,7 +117,6 @@ export class Repository {
                 .eq('key', 'web_protocols')
                 .single();
             
-            // PGRST116 means no rows returned (first time setup), which is fine.
             if (error && error.code !== 'PGRST116') { 
                  console.error("Supabase Error:", error.message);
             }
@@ -134,22 +133,69 @@ export class Repository {
 
   static async saveWebProtocols(protocols: WebProtocols): Promise<void> {
     const supabase = getSupabase();
-    
-    if (!supabase) {
-        throw new Error("Supabase Client not initialized. Check Env Vars.");
-    }
+    if (!supabase) throw new Error("Supabase Client not initialized.");
 
     const { error } = await supabase
         .from('settings')
-        .upsert(
-            { key: 'web_protocols', value: protocols }, 
-            { onConflict: 'key' }
-        );
+        .upsert({ key: 'web_protocols', value: protocols }, { onConflict: 'key' });
     
-    if (error) {
-        console.error("Supabase Write Error:", error);
-        // Throw the ACTUAL error message from Supabase so the UI knows what happened
-        throw new Error(error.message);
+    if (error) throw new Error(error.message);
+  }
+
+  // --- COMPANY IDENTITY (PROFILE & LEGAL) ---
+  static async getCompanyIdentity(): Promise<CompanyIdentity> {
+    const supabase = getSupabase();
+    
+    // Default Data (Hardcoded from your current About Page)
+    const defaults: CompanyIdentity = {
+        founderName: "Amin Maghfuri",
+        founderRole: "Commanding Officer",
+        founderPhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800",
+        founderQuote: "Jujur-jujuran aja... Tahun 2022, gue pernah 'mati suri'. Aset digital ilang, domain diambil orang. Bisnis tanpa sistem yang kuat cuma nunggu waktu buat meledak.",
+        
+        companyName: "PT MESIN KASIR SOLO",
+        brandName: "MKS",
+        addressLegal: "Perum Graha Tiara 2 B1, Gumpang 07/01, Kartasura, Jawa Tengah 57169",
+        addressOps: "Gumiring 04/04, Sidomulyo, Banjarejo, Blora, Jawa Tengah 58253",
+        
+        nib: "1226000711085",
+        skKemenkumham: "AHU-006097.AH.01.30.Tahun 2021",
+        npwp: "53.494.885.6-532.000",
+        
+        bankName: "Bank BNC (Neo Commerce)",
+        bankAccount: "5859459406740414",
+        bankHolder: "PT MESIN KASIR SOLO",
+        
+        whatsapp: "628816566935",
+        email: "owner.kasirsolo@gmail.com"
+    };
+
+    if (isOnline() && supabase) {
+        try {
+            const { data, error } = await supabase
+                .from('settings')
+                .select('value')
+                .eq('key', 'company_identity')
+                .single();
+            
+            if (data?.value) {
+                return { ...defaults, ...data.value };
+            }
+        } catch (e) {
+            console.error("Failed to fetch identity", e);
+        }
     }
+    return defaults;
+  }
+
+  static async saveCompanyIdentity(identity: CompanyIdentity): Promise<void> {
+    const supabase = getSupabase();
+    if (!supabase) throw new Error("Supabase Client not initialized.");
+
+    const { error } = await supabase
+        .from('settings')
+        .upsert({ key: 'company_identity', value: identity }, { onConflict: 'key' });
+    
+    if (error) throw new Error(error.message);
   }
 }

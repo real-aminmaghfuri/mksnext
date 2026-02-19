@@ -34,6 +34,25 @@ export interface WebProtocols {
   pinterest: string;
 }
 
+export interface CompanyIdentity {
+  founderName: string;
+  founderRole: string;
+  founderPhoto: string;
+  founderQuote: string;
+  companyName: string;
+  brandName: string;
+  addressLegal: string;
+  addressOps: string;
+  nib: string;
+  skKemenkumham: string;
+  npwp: string;
+  bankName: string;
+  bankAccount: string;
+  bankHolder: string;
+  whatsapp: string;
+  email: string;
+}
+
 // Configuration for Environment switching
 export interface DataConfig {
   useSupabase: boolean;
