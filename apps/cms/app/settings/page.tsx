@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -138,17 +137,19 @@ export default function CMSSettingsPage() {
         
         // Construct the FormData
         const formData = new FormData();
-        formData.append('file', file); // Send original file, we overwrite name via params
+        formData.append('file', file);
         formData.append('upload_preset', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || 'mks_preset');
         formData.append('folder', 'mks_founder');
         
-        // FORCE SEO FILENAME (public_id)
-        // Cloudinary will use this as the filename. 
-        formData.append('public_id', seoData.filename); 
-        formData.append('use_filename', 'true');
-        formData.append('unique_filename', 'false'); // Don't add random chars
-        formData.append('overwrite', 'true');
+        // STRATEGY: Append Timestamp to ensure uniqueness while keeping SEO keywords
+        // This avoids "Overwrite not allowed" error on unsigned uploads
+        const timestamp = Date.now();
+        const finalPublicId = `${seoData.filename}-${timestamp}`;
 
+        formData.append('public_id', finalPublicId); 
+        formData.append('use_filename', 'true');
+        formData.append('unique_filename', 'false'); // We handle uniqueness manually with timestamp
+        
         // INJECT METADATA (Context & Tags)
         formData.append('context', `alt=${seoData.alt_text}|caption=${seoData.caption}`);
         formData.append('tags', `founder,mks,${seoData.filename}`);
@@ -165,15 +166,14 @@ export default function CMSSettingsPage() {
             // Optimize URL format
             const optimizedUrl = data.secure_url.replace('/upload/', '/upload/f_auto,q_auto/');
             
-            // 4. AUTO SAVE TO DATABASE (CRITICAL FIX)
-            // Don't wait for user to click "Save"
+            // 4. AUTO SAVE TO DATABASE
             const updatedIdentity = { ...identity, founderPhoto: optimizedUrl };
             setIdentity(updatedIdentity);
             
             await Repository.saveCompanyIdentity(updatedIdentity);
             
             setUploadStep('DONE');
-            alert(`✅ Foto Terupload & Tersimpan!\nSEO Filename: ${seoData.filename}`);
+            alert(`✅ Foto Terupload & Tersimpan!\nSEO ID: ${finalPublicId}`);
         } else {
             throw new Error(data.error?.message || 'Upload failed');
         }

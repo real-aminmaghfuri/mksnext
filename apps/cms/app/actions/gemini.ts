@@ -1,4 +1,3 @@
-
 "use server";
 
 import { GoogleGenAI } from "@google/genai";
@@ -31,8 +30,7 @@ const getSecureGeminiClient = () => {
 export async function generateImageSEOAction(base64Data: string, mimeType: string, context: string) {
   try {
     const ai = getSecureGeminiClient();
-    const model = ai.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
-
+    
     const prompt = `
         Role: Senior SEO Specialist for PT Mesin Kasir Solo (MKS).
         Task: Analyze this image for the context: "${context}".
@@ -45,7 +43,8 @@ export async function generateImageSEOAction(base64Data: string, mimeType: strin
         Return ONLY raw JSON string. No markdown formatting.
     `;
 
-    const result = await model.generateContent({
+    const response = await ai.models.generateContent({
+      model: 'gemini-2.0-flash-exp', // Ensure model supports vision
       contents: [
         {
           role: "user",
@@ -57,7 +56,9 @@ export async function generateImageSEOAction(base64Data: string, mimeType: strin
       ]
     });
 
-    const responseText = result.response.text();
+    const responseText = response.text;
+    if (!responseText) throw new Error("Empty response from AI");
+
     const cleanJson = responseText.replace(/```json|```/g, '').trim();
     return JSON.parse(cleanJson);
 
@@ -73,24 +74,22 @@ export async function generateImageSEOAction(base64Data: string, mimeType: strin
 export async function generateWriterAction(topic: string, systemPrompt: string) {
   try {
     const ai = getSecureGeminiClient();
-    const model = ai.getGenerativeModel({ 
-        model: "gemini-2.5-flash",
-        systemInstruction: systemPrompt
-    });
-
-    const result = await model.generateContent({
+    
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      config: {
+        systemInstruction: systemPrompt,
+        temperature: 0.8,
+      },
       contents: [
         {
           role: "user",
           parts: [{ text: `Topic: ${topic}` }]
         }
-      ],
-      config: {
-        temperature: 0.8,
-      }
+      ]
     });
 
-    return result.response.text();
+    return response.text;
 
   } catch (error: any) {
     console.error("Server Action Error (Writer):", error);

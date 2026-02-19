@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useRef } from 'react';
@@ -75,15 +74,25 @@ export default function MediaPage() {
     setUploading(true);
 
     try {
-      // RENAME FILE: Create a new File object with the AI-suggested name
+      // STRATEGY: Append Timestamp to filename to avoid overwriting issues
+      // and ensure unique SEO friendly URL.
+      const timestamp = Date.now();
+      const finalFileName = `${analysis.filename}-${timestamp}`;
       const ext = selectedFile.name.split('.').pop();
-      const newFileName = `${analysis.filename}.${ext}`;
-      const renamedFile = new File([selectedFile], newFileName, { type: selectedFile.type });
+      const newFileObjName = `${finalFileName}.${ext}`;
+      
+      const renamedFile = new File([selectedFile], newFileObjName, { type: selectedFile.type });
 
       const formData = new FormData();
       formData.append('file', renamedFile);
       formData.append('upload_preset', UPLOAD_PRESET);
       formData.append('folder', 'mks_assets');
+      
+      // Explicit Public ID to control filename in Cloudinary
+      formData.append('public_id', finalFileName);
+      formData.append('use_filename', 'true');
+      formData.append('unique_filename', 'false'); // Controlled uniqueness via timestamp above
+
       // Inject metadata into Cloudinary Context
       formData.append('context', `alt=${analysis.alt_text}|caption=${analysis.caption}`);
 
