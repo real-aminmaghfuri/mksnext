@@ -124,7 +124,11 @@ export class Repository {
                 .eq('key', 'web_protocols')
                 .single();
             
-            if (!error && data?.value) {
+            if (error && error.code !== 'PGRST116') { // Ignore "Row not found" error
+                 console.error("Supabase Error:", error.message);
+            }
+
+            if (data?.value) {
                 return { ...defaults, ...data.value };
             }
         } catch (e) {
@@ -134,27 +138,23 @@ export class Repository {
     return defaults;
   }
 
-  static async saveWebProtocols(protocols: WebProtocols): Promise<boolean> {
+  static async saveWebProtocols(protocols: WebProtocols): Promise<void> {
     const supabase = getSupabase();
-    if (isOnline() && supabase) {
-        try {
-            const { error } = await supabase
-                .from('settings')
-                .upsert(
-                    { key: 'web_protocols', value: protocols }, 
-                    { onConflict: 'key' }
-                );
-            
-            if (error) {
-                console.error("Supabase Save Error:", error);
-                throw error;
-            }
-            return true;
-        } catch (e) {
-            console.error("Failed to save settings", e);
-            return false;
-        }
+    
+    if (!supabase) {
+        throw new Error("Supabase Client not initialized. Check Env Vars.");
     }
-    return false;
+
+    const { error } = await supabase
+        .from('settings')
+        .upsert(
+            { key: 'web_protocols', value: protocols }, 
+            { onConflict: 'key' }
+        );
+    
+    if (error) {
+        console.error("Supabase Write Error:", error);
+        throw new Error(error.message);
+    }
   }
 }

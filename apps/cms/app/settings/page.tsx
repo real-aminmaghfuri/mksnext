@@ -74,15 +74,14 @@ export default function CMSSettingsPage() {
             ...config
         };
 
-        const success = await Repository.saveWebProtocols(payload);
+        // Now returns void or throws error
+        await Repository.saveWebProtocols(payload);
+        alert("✅ WEBSITE PROTOCOLS UPDATED & SYNCED TO CLOUD.");
 
-        if (success) {
-            alert("WEBSITE PROTOCOLS UPDATED & SYNCED TO CLOUD.");
-        } else {
-            alert("SYNC FAILED. Check connection or permissions.");
-        }
-    } catch (e) {
-        alert("CRITICAL ERROR during save.");
+    } catch (e: any) {
+        console.error("Save Error:", e);
+        // Display the ACTUAL error from Supabase
+        alert(`❌ SYNC FAILED: ${e.message || "Unknown Error"}. \n\nTip: Pastikan tabel 'settings' sudah dibuat di Supabase.`);
     } finally {
         setIsSaving(false);
     }
