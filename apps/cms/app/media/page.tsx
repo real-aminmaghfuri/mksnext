@@ -88,10 +88,8 @@ export default function MediaPage() {
       formData.append('upload_preset', UPLOAD_PRESET);
       formData.append('folder', 'mks_assets');
       
-      // Explicit Public ID to control filename in Cloudinary
+      // FIX: Only send public_id. Cloudinary blocks 'use_filename' and 'unique_filename' in unsigned mode.
       formData.append('public_id', finalFileName);
-      formData.append('use_filename', 'true');
-      formData.append('unique_filename', 'false'); // Controlled uniqueness via timestamp above
 
       // Inject metadata into Cloudinary Context
       formData.append('context', `alt=${analysis.alt_text}|caption=${analysis.caption}`);

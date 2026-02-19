@@ -142,13 +142,11 @@ export default function CMSSettingsPage() {
         formData.append('folder', 'mks_founder');
         
         // STRATEGY: Append Timestamp to ensure uniqueness while keeping SEO keywords
-        // This avoids "Overwrite not allowed" error on unsigned uploads
         const timestamp = Date.now();
         const finalPublicId = `${seoData.filename}-${timestamp}`;
 
+        // FIX: Only send public_id. Cloudinary blocks 'use_filename' and 'unique_filename' in unsigned mode.
         formData.append('public_id', finalPublicId); 
-        formData.append('use_filename', 'true');
-        formData.append('unique_filename', 'false'); // We handle uniqueness manually with timestamp
         
         // INJECT METADATA (Context & Tags)
         formData.append('context', `alt=${seoData.alt_text}|caption=${seoData.caption}`);
