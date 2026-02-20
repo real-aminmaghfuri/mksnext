@@ -91,7 +91,7 @@ export const MobileSubMenuDrawer: React.FC<MobileSubMenuDrawerProps> = ({ isOpen
             {/* Portrait Grid Content Reused Logic */}
              <div className="grid grid-cols-4 gap-2">
                 {menuItem.columns ? 
-                    menuItem.columns.flatMap((col, idx) => col.items.map((item, i) => <GridItem key={i} item={item} onClose={onClose} index={idx + i} />)) 
+                    menuItem.columns.flatMap((col, idx) => col.items.map((item, i) => <GridItem key={`${idx}-${i}`} item={item} onClose={onClose} index={idx * 10 + i} />)) 
                     : menuItem.items?.map((item, i) => <GridItem key={i} item={item} onClose={onClose} index={i} />)
                 }
              </div>
