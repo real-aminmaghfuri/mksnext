@@ -29,14 +29,15 @@ export async function uploadToCloudinary(formData: FormData) {
   return new Promise((resolve, reject) => {
     cloudinary.uploader.upload_stream({
       folder: folder,
-      public_id: filename, // STRICTLY use this name
-      use_filename: true,  // Use the supplied filename
-      unique_filename: false, // DISABLE random characters appending
+      public_id: filename, // WE ARE STRICTLY USING THIS NAME FROM CLIENT
+      use_filename: false, // Don't use original filename, use public_id
+      unique_filename: false, // STRICTLY NO RANDOM CHARACTERS
       resource_type: 'auto',
       
-      // OPTIMIZATION (THE "COOKING" PROCESS)
-      format: 'webp', // Force convert to WebP
-      quality: 'auto', // Smart compression
+      // OPTIMIZATION: 
+      // Even though client sends WebP, we ensure Cloudinary treats it as such or auto-formats if needed by delivery
+      // but 'format: webp' ensures storage is webp.
+      format: 'webp', 
       
       // METADATA INJECTION (SEO)
       context: `alt=${alt}|caption=${caption}`, 
@@ -44,8 +45,9 @@ export async function uploadToCloudinary(formData: FormData) {
       // Tags for easier searching in Cloudinary Dashboard
       tags: ['mks_system', 'seo_optimized'],
       
-      // Overwrite if same name exists to ensure we update the asset
+      // Overwrite if same name exists to ensure we update the asset (important for re-uploading founder photo)
       overwrite: true,
+      invalidate: true, // Clear CDN cache for this URL
     }, (error, result) => {
       if (error) {
         console.error("Cloudinary Error:", error);

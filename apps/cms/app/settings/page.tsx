@@ -9,11 +9,12 @@ import { Repository, CompanyIdentity, BankAccount } from 'data';
 import { 
   Globe, Save, User, Building2, CreditCard, Phone, 
   ShieldCheck, Quote, UploadCloud, Plus, Trash2, Clock, MapPin, 
-  ScanEye, Cpu, CheckCircle2, XCircle
+  ScanEye, Cpu, CheckCircle2, XCircle, Hammer
 } from 'lucide-react';
 import Image from 'next/image';
 import { analyzeImageForSEO } from '../../utils/ai-services';
-import { uploadToCloudinary } from '../actions/upload'; // Use Server Action
+import { processImageLocally } from '../../utils/image-processor';
+import { uploadToCloudinary } from '../actions/upload'; 
 
 export default function CMSSettingsPage() {
   const [activeTab, setActiveTab] = useState<'IDENTITY' | 'PROTOCOLS'>('IDENTITY');
@@ -79,8 +80,8 @@ export default function CMSSettingsPage() {
     try {
         if (activeTab === 'PROTOCOLS') {
             await Repository.saveWebProtocols({
-                maintenanceMode: false, // Defaulting
-                visibility: 'PUBLIC', // Defaulting
+                maintenanceMode: false, 
+                visibility: 'PUBLIC', 
                 ...webConfig
             });
         } else {
@@ -107,11 +108,8 @@ export default function CMSSettingsPage() {
     
     setIsSaving(true);
     try {
-        // 1. Update State
         const updatedIdentity = { ...identity, founderPhoto: '' };
         setIdentity(updatedIdentity);
-        
-        // 2. Auto Save to DB
         await Repository.saveCompanyIdentity(updatedIdentity);
         alert("Foto berhasil dihapus dari database.");
     } catch (e: any) {
@@ -121,55 +119,49 @@ export default function CMSSettingsPage() {
     }
   };
 
-  // --- AI-POWERED UPLOAD PIPELINE ---
+  // --- AI & LOCAL OPTIMIZATION PIPELINE ---
   const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || e.target.files.length === 0) return;
-    const file = e.target.files[0];
+    const originalFile = e.target.files[0];
     
     setIsUploading(true);
     setUploadStep('INITIALIZING AI VISION...');
 
     try {
-        // 1. AI Analysis
-        setUploadStep('SCANNING & OPTIMIZING SEO...');
-        const seoData = await analyzeImageForSEO(file, "Founder Profile Picture of PT Mesin Kasir Solo");
+        // 1. AI Analysis (Get Context & Keywords)
+        setUploadStep('SCANNING & GENERATING SEO NAME...');
+        const seoData = await analyzeImageForSEO(originalFile, "Founder Profile Picture of PT Mesin Kasir Solo");
         
-        // 2. Prepare Payload
-        setUploadStep('INJECTING METADATA...');
-        
-        // Construct the FormData
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('folder', 'mks_founder');
-        
-        // STRATEGY: Use clean SEO slug derived from AI or File Name
-        // We REMOVE timestamp to ensure strict SEO naming (e.g. founder-amin-maghfuri-mks.webp)
+        // SEO Clean Filename
         const cleanSlug = seoData.filename.replace(/[^a-z0-9-]/gi, '-').toLowerCase();
-        
-        // Ensure not empty
-        const finalPublicId = cleanSlug.length > 3 ? cleanSlug : 'founder-profile-mks';
+        const finalPublicId = cleanSlug.length > 3 ? cleanSlug : 'founder-profile-mks-solo';
 
+        // 2. LOCAL PROCESSING (Resize, Convert WebP, Rename)
+        setUploadStep('LOCAL CONVERSION (WEBP)...');
+        const optimizedFile = await processImageLocally(originalFile, finalPublicId);
+
+        // 3. Prepare Payload
+        setUploadStep('UPLOADING TO CLOUD...');
+        const formData = new FormData();
+        formData.append('file', optimizedFile);
+        formData.append('folder', 'mks_founder');
         formData.append('public_id', finalPublicId); 
         formData.append('alt', seoData.alt_text);
         formData.append('caption', seoData.caption);
 
-        // 3. Upload (Server-Side)
-        setUploadStep('COOKING ON SERVER...');
-        
-        // Use Server Action
+        // 4. Upload (Server-Side)
         const result: any = await uploadToCloudinary(formData);
         
         if (result && result.secure_url) {
-            
-            // 4. AUTO SAVE TO DATABASE
-            // FORCE UPDATE: Sometimes React batching causes issues, we set state and call repo directly
+            // 5. AUTO SAVE TO DATABASE
+            setUploadStep('SYNCING SUPABASE...');
             const updatedIdentity = { ...identity, founderPhoto: result.secure_url };
             setIdentity(updatedIdentity);
             
             await Repository.saveCompanyIdentity(updatedIdentity);
             
             setUploadStep('DONE');
-            alert(`✅ Foto Terupload Mateng!\nFormat: ${result.format}\nSEO ID: ${finalPublicId}`);
+            alert(`✅ Foto Mateng Terupload!\nFile: ${finalPublicId}.webp\nURL: ${result.secure_url}`);
         } else {
             throw new Error('Upload failed on server.');
         }
@@ -246,7 +238,7 @@ export default function CMSSettingsPage() {
                                     <div className="flex flex-col md:flex-row gap-8">
                                         <div className="w-full md:w-1/4 flex flex-col gap-4">
                                             {/* Photo Upload Area */}
-                                            <div className="relative aspect-square rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 group">
+                                            <div className="relative aspect-square rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 group shadow-inner">
                                                 {identity.founderPhoto ? (
                                                     <>
                                                         <Image src={identity.founderPhoto} alt="Founder" fill className="object-cover" />
@@ -267,20 +259,21 @@ export default function CMSSettingsPage() {
                                                 )}
                                                 
                                                 {/* Upload Overlay */}
-                                                <div className={`absolute inset-0 bg-black/80 transition-opacity flex flex-col items-center justify-center text-white ${isUploading ? 'opacity-100 z-30' : 'opacity-0 group-hover:opacity-100 z-10'}`}>
+                                                <div className={`absolute inset-0 bg-black/90 transition-opacity flex flex-col items-center justify-center text-white ${isUploading ? 'opacity-100 z-30' : 'opacity-0 group-hover:opacity-100 z-10'}`}>
                                                     {isUploading ? (
                                                         <>
-                                                            <Cpu size={32} className="mb-2 text-brand-500 animate-pulse" />
-                                                            <span className="text-[10px] font-black uppercase tracking-widest animate-pulse text-center px-4">
+                                                            <Hammer size={32} className="mb-2 text-brand-500 animate-bounce" />
+                                                            <span className="text-[10px] font-black uppercase tracking-widest animate-pulse text-center px-4 leading-relaxed">
                                                                 {uploadStep}
                                                             </span>
                                                         </>
                                                     ) : (
-                                                        <label className="cursor-pointer flex flex-col items-center w-full h-full justify-center">
+                                                        <label className="cursor-pointer flex flex-col items-center w-full h-full justify-center hover:bg-white/5 transition-colors">
                                                             <ScanEye size={32} className="mb-2 text-brand-500" />
                                                             <span className="text-[10px] font-bold uppercase tracking-wider">
                                                                 {identity.founderPhoto ? 'GANTI FOTO' : 'UPLOAD BARU'}
                                                             </span>
+                                                            <span className="text-[8px] text-zinc-400 mt-1">Auto: SEO Rename + WebP</span>
                                                             <input type="file" accept="image/*" onChange={handlePhotoUpload} className="hidden" disabled={isUploading} />
                                                         </label>
                                                     )}
@@ -288,7 +281,7 @@ export default function CMSSettingsPage() {
                                             </div>
                                             
                                             <div className="text-[9px] text-zinc-400 text-center px-2">
-                                                *Otomatis SEO (Rename, Metadata & Resize).
+                                                *Sistem otomatis konversi ke WebP & Rename file sesuai SEO sebelum upload.
                                             </div>
                                         </div>
 
