@@ -43,8 +43,8 @@ export async function generateImageSEOAction(base64Data: string, mimeType: strin
         Return ONLY raw JSON string. No markdown formatting.
     `;
 
-    const response = await ai.models.generateContent({
-      model: 'gemini-2.0-flash-exp', // Ensure model supports vision
+  const response = await ai.models.generateContent({
+      model: 'gemini-2.5-flash-latest', // Updated to stable flash model
       contents: [
         {
           role: "user",
@@ -76,7 +76,7 @@ export async function generateWriterAction(topic: string, systemPrompt: string) 
     const ai = getSecureGeminiClient();
     
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-3.1-pro-preview",
       config: {
         systemInstruction: systemPrompt,
         temperature: 0.8,
