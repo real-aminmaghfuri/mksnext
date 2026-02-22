@@ -444,6 +444,90 @@ export default function CMSSettingsPage() {
                         </>
                     )}
 
+                    {/* === PROTOCOLS TAB === */}
+                    {activeTab === 'PROTOCOLS' && (
+                        <section className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                            <div className="flex items-center gap-3 mb-4">
+                                <Globe size={20} className="text-brand-600" />
+                                <h3 className="text-sm font-black uppercase tracking-widest text-zinc-500">SEO & Analytics Protocols</h3>
+                            </div>
+
+                            <GlassCard variant="solid" className="p-6 md:p-8 space-y-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    {/* Google Ecosystem */}
+                                    <div className="space-y-4">
+                                        <h4 className="text-xs font-black uppercase tracking-widest text-zinc-900 dark:text-white border-b border-zinc-100 dark:border-zinc-800 pb-2 mb-4">
+                                            Google Ecosystem
+                                        </h4>
+                                        <div>
+                                            <label className="text-[10px] font-bold text-zinc-500 uppercase">Google Search Console (HTML Tag)</label>
+                                            <input 
+                                                type="text" 
+                                                value={webConfig.gsc} 
+                                                onChange={(e) => setWebConfig({...webConfig, gsc: e.target.value})}
+                                                placeholder="content='...'"
+                                                className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-mono" 
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="text-[10px] font-bold text-zinc-500 uppercase">Google Analytics 4 (Measurement ID)</label>
+                                            <input 
+                                                type="text" 
+                                                value={webConfig.ga4} 
+                                                onChange={(e) => setWebConfig({...webConfig, ga4: e.target.value})}
+                                                placeholder="G-XXXXXXXXXX"
+                                                className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-mono" 
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="text-[10px] font-bold text-zinc-500 uppercase">Google Merchant Center (Verification)</label>
+                                            <input 
+                                                type="text" 
+                                                value={webConfig.gMerchant} 
+                                                onChange={(e) => setWebConfig({...webConfig, gMerchant: e.target.value})}
+                                                className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-mono" 
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* Other Search Engines */}
+                                    <div className="space-y-4">
+                                        <h4 className="text-xs font-black uppercase tracking-widest text-zinc-900 dark:text-white border-b border-zinc-100 dark:border-zinc-800 pb-2 mb-4">
+                                            Global Search Engines
+                                        </h4>
+                                        <div>
+                                            <label className="text-[10px] font-bold text-zinc-500 uppercase">Bing Webmaster Tools</label>
+                                            <input 
+                                                type="text" 
+                                                value={webConfig.bing} 
+                                                onChange={(e) => setWebConfig({...webConfig, bing: e.target.value})}
+                                                className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-mono" 
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="text-[10px] font-bold text-zinc-500 uppercase">Yandex Webmaster</label>
+                                            <input 
+                                                type="text" 
+                                                value={webConfig.yandex} 
+                                                onChange={(e) => setWebConfig({...webConfig, yandex: e.target.value})}
+                                                className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-mono" 
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="text-[10px] font-bold text-zinc-500 uppercase">Pinterest Verification</label>
+                                            <input 
+                                                type="text" 
+                                                value={webConfig.pinterest} 
+                                                onChange={(e) => setWebConfig({...webConfig, pinterest: e.target.value})}
+                                                className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-mono" 
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </GlassCard>
+                        </section>
+                    )}
+
                     {/* SAVE ACTION */}
                     <div className="fixed bottom-0 md:bottom-6 left-0 md:left-auto right-0 md:right-6 p-4 md:p-0 z-50">
                         <Button 
