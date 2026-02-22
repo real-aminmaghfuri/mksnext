@@ -465,7 +465,7 @@ export default function CMSSettingsPage() {
                                                 type="text" 
                                                 value={webConfig.gsc} 
                                                 onChange={(e) => setWebConfig({...webConfig, gsc: e.target.value})}
-                                                placeholder="content='...'"
+                                                placeholder="e.g. content='...'"
                                                 className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-mono" 
                                             />
                                         </div>
