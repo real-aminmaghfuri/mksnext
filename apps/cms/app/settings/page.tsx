@@ -1,198 +1,30 @@
 
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { Sidebar } from '../../components/Sidebar';
-import { Header } from '../../components/Header';
-import { Button, GlassCard } from 'ui';
-import { Repository, CompanyIdentity, BankAccount } from 'data';
-import { 
-  Globe, Save, User, Building2, CreditCard, Phone, 
-  ShieldCheck, Quote, UploadCloud, Plus, Trash2, Clock, MapPin, 
-  ScanEye, Cpu, CheckCircle2, XCircle, Hammer
-} from 'lucide-react';
-import Image from 'next/image';
-import { analyzeImageForSEO } from '../../utils/ai-services';
-import { processImageLocally } from '../../utils/image-processor';
-import { uploadToCloudinary } from '../actions/upload'; 
+import { useSettingsData } from './hooks/useSettingsData';
+import { usePhotoUpload } from './hooks/usePhotoUpload';
+import { IdentityTabOrganism } from './components/organisms/IdentityTabOrganism';
+import { ProtocolsTabOrganism } from './components/organisms/ProtocolsTabOrganism';
+import { TabButtonAtom } from './components/atoms/TabButtonAtom';
+import { Globe, User, Save } from 'lucide-react'; 
 
 export default function CMSSettingsPage() {
   const [activeTab, setActiveTab] = useState<'IDENTITY' | 'PROTOCOLS'>('IDENTITY');
-  const [isSaving, setIsSaving] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  
-  // AI Upload State
-  const [isUploading, setIsUploading] = useState(false);
-  const [uploadStep, setUploadStep] = useState<string>(''); 
 
-  // WEB PROTOCOLS STATE
-  const [webConfig, setWebConfig] = useState({
-    gsc: '', ga4: '', gMerchant: '', bing: '', yandex: '', pinterest: ''
-  });
+  const { 
+    identity, setIdentity, 
+    webConfig, setWebConfig, 
+    isLoading, isSaving, 
+    handleSave, handleIdentityChange, 
+    addBankAccount, removeBankAccount, updateBankAccount 
+  } = useSettingsData();
 
-  // IDENTITY STATE
-  const [identity, setIdentity] = useState<CompanyIdentity>({
-    founderName: '', founderRole: '', founderPhoto: '', founderQuote: '',
-    companyName: '', brandName: '', addressLegal: '', addressOps: '',
-    mapLegalUrl: '', mapOpsUrl: '', operatingHours: '',
-    nib: '', skKemenkumham: '', npwp: '',
-    bankAccounts: [],
-    whatsapp: '', email: ''
-  });
-
-  // FETCH DATA
-  useEffect(() => {
-    const fetchData = async () => {
-        setIsLoading(true);
-        try {
-            const [protocols, idData] = await Promise.all([
-                Repository.getWebProtocols(),
-                Repository.getCompanyIdentity()
-            ]);
-            
-            // Set Protocols
-            setWebConfig({
-                gsc: protocols.gsc || '',
-                ga4: protocols.ga4 || '',
-                gMerchant: protocols.gMerchant || '',
-                bing: protocols.bing || '',
-                yandex: protocols.yandex || '',
-                pinterest: protocols.pinterest || ''
-            });
-
-            // Set Identity
-            setIdentity({
-                ...idData,
-                bankAccounts: idData.bankAccounts || [] 
-            });
-
-        } catch (e) {
-            console.error("Failed to load settings", e);
-        } finally {
-            setIsLoading(false);
-        }
-    };
-    fetchData();
-  }, []);
-
-  const handleSave = async () => {
-    setIsSaving(true);
-    try {
-        if (activeTab === 'PROTOCOLS') {
-            await Repository.saveWebProtocols({
-                maintenanceMode: false, 
-                visibility: 'PUBLIC', 
-                ...webConfig
-            });
-        } else {
-            await Repository.saveCompanyIdentity(identity);
-        }
-        alert(`✅ SUKSES! ${activeTab} Updated.`);
-    } catch (e: any) {
-        console.error("Save Error:", e);
-        alert(`❌ GAGAL: ${e.message}`);
-    } finally {
-        setIsSaving(false);
-    }
-  };
-
-  // --- HANDLERS ---
-
-  const handleIdentityChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setIdentity({ ...identity, [e.target.name]: e.target.value });
-  };
-
-  // --- DELETE PHOTO FUNCTION ---
-  const handleRemovePhoto = async () => {
-    if(!confirm("Yakin mau hapus foto founder? Tampilan di web bakal kosong.")) return;
-    
-    setIsSaving(true);
-    try {
-        const updatedIdentity = { ...identity, founderPhoto: '' };
-        setIdentity(updatedIdentity);
-        await Repository.saveCompanyIdentity(updatedIdentity);
-        alert("Foto berhasil dihapus dari database.");
-    } catch (e: any) {
-        alert("Gagal hapus: " + e.message);
-    } finally {
-        setIsSaving(false);
-    }
-  };
-
-  // --- AI & LOCAL OPTIMIZATION PIPELINE ---
-  const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files || e.target.files.length === 0) return;
-    const originalFile = e.target.files[0];
-    
-    setIsUploading(true);
-    setUploadStep('INITIALIZING AI VISION...');
-
-    try {
-        // 1. AI Analysis (Get Context & Keywords)
-        setUploadStep('SCANNING & GENERATING SEO NAME...');
-        const seoData = await analyzeImageForSEO(originalFile, "Founder Profile Picture of PT Mesin Kasir Solo");
-        
-        // SEO Clean Filename
-        const cleanSlug = seoData.filename.replace(/[^a-z0-9-]/gi, '-').toLowerCase();
-        const finalPublicId = cleanSlug.length > 3 ? cleanSlug : 'founder-profile-mks-solo';
-
-        // 2. LOCAL PROCESSING (Resize, Convert WebP, Rename)
-        setUploadStep('LOCAL CONVERSION (WEBP)...');
-        const optimizedFile = await processImageLocally(originalFile, finalPublicId);
-
-        // 3. Prepare Payload
-        setUploadStep('UPLOADING TO CLOUD...');
-        const formData = new FormData();
-        formData.append('file', optimizedFile);
-        formData.append('folder', 'mks_founder');
-        formData.append('public_id', finalPublicId); 
-        formData.append('alt', seoData.alt_text);
-        formData.append('caption', seoData.caption);
-
-        // 4. Upload (Server-Side)
-        const result: any = await uploadToCloudinary(formData);
-        
-        if (result && result.secure_url) {
-            // 5. AUTO SAVE TO DATABASE
-            setUploadStep('SYNCING SUPABASE...');
-            const updatedIdentity = { ...identity, founderPhoto: result.secure_url };
-            setIdentity(updatedIdentity);
-            
-            await Repository.saveCompanyIdentity(updatedIdentity);
-            
-            setUploadStep('DONE');
-            alert(`✅ Foto Mateng Terupload!\nFile: ${finalPublicId}.webp\nURL: ${result.secure_url}`);
-        } else {
-            throw new Error('Upload failed on server.');
-        }
-
-    } catch (err: any) {
-        console.error(err);
-        alert(`Upload Failed: ${err.message}`);
-    } finally {
-        setIsUploading(false);
-        setUploadStep('');
-    }
-  };
-
-  const addBankAccount = () => {
-    setIdentity({
-        ...identity,
-        bankAccounts: [...identity.bankAccounts, { bankName: '', accountNumber: '', accountHolder: '' }]
-    });
-  };
-
-  const removeBankAccount = (idx: number) => {
-    const newBanks = [...identity.bankAccounts];
-    newBanks.splice(idx, 1);
-    setIdentity({ ...identity, bankAccounts: newBanks });
-  };
-
-  const updateBankAccount = (idx: number, field: keyof BankAccount, value: string) => {
-    const newBanks = [...identity.bankAccounts];
-    newBanks[idx] = { ...newBanks[idx], [field]: value };
-    setIdentity({ ...identity, bankAccounts: newBanks });
-  };
+  const { 
+    isUploading, 
+    uploadStep, 
+    handlePhotoUpload, 
+    handleRemovePhoto 
+  } = usePhotoUpload({ identity, setIdentity });
 
   return (
     <div className="flex h-screen bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white overflow-hidden">
