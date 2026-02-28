@@ -3,6 +3,9 @@
 const nextConfig = {
   transpilePackages: ["ui", "shared", "data"],
   reactStrictMode: true,
+  turbopack: {
+    root: '../../',
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [

@@ -1,6 +1,10 @@
 
 "use client";
 
+import { useState } from 'react';
+import { Sidebar } from '../../components/Sidebar';
+import { Header } from '../../components/Header';
+import { Button } from 'ui';
 import { useSettingsData } from './hooks/useSettingsData';
 import { usePhotoUpload } from './hooks/usePhotoUpload';
 import { IdentityTabOrganism } from './components/organisms/IdentityTabOrganism';
@@ -32,20 +36,20 @@ export default function CMSSettingsPage() {
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
          <Header title="SYSTEM CONFIGURATION" />
 
-         <div className="flex border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 px-6 pt-2">
-            <button 
-                onClick={() => setActiveTab('IDENTITY')}
-                className={`px-6 py-4 text-xs font-black uppercase tracking-widest border-b-2 transition-colors flex items-center gap-2 ${activeTab === 'IDENTITY' ? 'border-brand-600 text-brand-600' : 'border-transparent text-zinc-500 hover:text-zinc-900 dark:hover:text-white'}`}
-            >
-                <User size={16} /> Corporate Identity
-            </button>
-            <button 
-                onClick={() => setActiveTab('PROTOCOLS')}
-                className={`px-6 py-4 text-xs font-black uppercase tracking-widest border-b-2 transition-colors flex items-center gap-2 ${activeTab === 'PROTOCOLS' ? 'border-brand-600 text-brand-600' : 'border-transparent text-zinc-500 hover:text-zinc-900 dark:hover:text-white'}`}
-            >
-                <Globe size={16} /> Web Protocols
-            </button>
-         </div>
+        <div className="flex border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 px-6 pt-2">
+          <TabButtonAtom
+            label="Corporate Identity"
+            icon={User}
+            isActive={activeTab === 'IDENTITY'}
+            onClick={() => setActiveTab('IDENTITY')}
+          />
+          <TabButtonAtom
+            label="Web Protocols"
+            icon={Globe}
+            isActive={activeTab === 'PROTOCOLS'}
+            onClick={() => setActiveTab('PROTOCOLS')}
+          />
+        </div>
 
          <main className="flex-1 overflow-y-auto p-6 md:p-8 custom-scrollbar relative z-10 pb-24">
             
@@ -55,323 +59,40 @@ export default function CMSSettingsPage() {
                     <p className="text-xs font-black uppercase tracking-widest">Fetching Data...</p>
                 </div>
             ) : (
-                <div className="max-w-5xl mx-auto space-y-8 animate-fade-in-up">
-                    
-                    {/* === IDENTITY TAB === */}
-                    {activeTab === 'IDENTITY' && (
-                        <>
-                            {/* FOUNDER PROFILE */}
-                            <section>
-                                <div className="flex items-center gap-3 mb-4">
-                                    <User size={20} className="text-brand-600" />
-                                    <h3 className="text-sm font-black uppercase tracking-widest text-zinc-500">Founder Profile</h3>
-                                </div>
-                                <GlassCard variant="solid" className="p-6 md:p-8">
-                                    <div className="flex flex-col md:flex-row gap-8">
-                                        <div className="w-full md:w-1/4 flex flex-col gap-4">
-                                            {/* Photo Upload Area */}
-                                            <div className="relative aspect-square rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 group shadow-inner">
-                                                {identity.founderPhoto ? (
-                                                    <>
-                                                        <Image src={identity.founderPhoto} alt="Founder" fill className="object-cover" />
-                                                        {/* Delete Overlay */}
-                                                        <button 
-                                                            onClick={handleRemovePhoto}
-                                                            className="absolute top-2 right-2 p-2 bg-red-600 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-20 hover:scale-110 shadow-lg"
-                                                            title="Hapus Foto"
-                                                        >
-                                                            <Trash2 size={14} />
-                                                        </button>
-                                                    </>
-                                                ) : (
-                                                    <div className="flex items-center justify-center h-full text-zinc-400 flex-col gap-2">
-                                                        <User size={48} className="opacity-20"/>
-                                                        <span className="text-[9px] font-bold uppercase text-zinc-500">No Photo</span>
-                                                    </div>
-                                                )}
-                                                
-                                                {/* Upload Overlay */}
-                                                <div className={`absolute inset-0 bg-black/90 transition-opacity flex flex-col items-center justify-center text-white ${isUploading ? 'opacity-100 z-30' : 'opacity-0 group-hover:opacity-100 z-10'}`}>
-                                                    {isUploading ? (
-                                                        <>
-                                                            <Hammer size={32} className="mb-2 text-brand-500 animate-bounce" />
-                                                            <span className="text-[10px] font-black uppercase tracking-widest animate-pulse text-center px-4 leading-relaxed">
-                                                                {uploadStep}
-                                                            </span>
-                                                        </>
-                                                    ) : (
-                                                        <label className="cursor-pointer flex flex-col items-center w-full h-full justify-center hover:bg-white/5 transition-colors">
-                                                            <ScanEye size={32} className="mb-2 text-brand-500" />
-                                                            <span className="text-[10px] font-bold uppercase tracking-wider">
-                                                                {identity.founderPhoto ? 'GANTI FOTO' : 'UPLOAD BARU'}
-                                                            </span>
-                                                            <span className="text-[8px] text-zinc-400 mt-1">Auto: SEO Rename + WebP</span>
-                                                            <input type="file" accept="image/*" onChange={handlePhotoUpload} className="hidden" disabled={isUploading} />
-                                                        </label>
-                                                    )}
-                                                </div>
-                                            </div>
-                                            
-                                            <div className="text-[9px] text-zinc-400 text-center px-2">
-                                                *Sistem otomatis konversi ke WebP & Rename file sesuai SEO sebelum upload.
-                                            </div>
-                                        </div>
+            <div className="max-w-5xl mx-auto space-y-8">
+              {activeTab === 'IDENTITY' && (
+                <IdentityTabOrganism
+                  identity={identity}
+                  handleIdentityChange={handleIdentityChange}
+                  addBankAccount={addBankAccount}
+                  removeBankAccount={removeBankAccount}
+                  updateBankAccount={updateBankAccount}
+                  isUploading={isUploading}
+                  uploadStep={uploadStep}
+                  handlePhotoUpload={handlePhotoUpload}
+                  handleRemovePhoto={handleRemovePhoto}
+                />
+              )}
 
-                                        <div className="w-full md:w-3/4 space-y-4">
-                                            <div className="grid grid-cols-2 gap-4">
-                                                <div>
-                                                    <label className="text-[10px] font-bold text-zinc-500 uppercase">Founder Name</label>
-                                                    <input type="text" name="founderName" value={identity.founderName} onChange={handleIdentityChange} className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-sm font-bold" />
-                                                </div>
-                                                <div>
-                                                    <label className="text-[10px] font-bold text-zinc-500 uppercase">Role / Title</label>
-                                                    <input type="text" name="founderRole" value={identity.founderRole} onChange={handleIdentityChange} className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-sm font-bold" />
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <label className="text-[10px] font-bold text-zinc-500 uppercase flex items-center gap-2"><Quote size={12}/> The Quote</label>
-                                                <textarea name="founderQuote" rows={4} value={identity.founderQuote} onChange={handleIdentityChange} className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-3 text-sm font-medium resize-none" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </GlassCard>
-                            </section>
+              {activeTab === 'PROTOCOLS' && (
+                <ProtocolsTabOrganism
+                  webConfig={webConfig}
+                  setWebConfig={setWebConfig}
+                />
+              )}
 
-                            {/* COMPANY & LEGALITY */}
-                            <section>
-                                <div className="flex items-center gap-3 mb-4">
-                                    <Building2 size={20} className="text-brand-600" />
-                                    <h3 className="text-sm font-black uppercase tracking-widest text-zinc-500">Legal Entity</h3>
-                                </div>
-                                <GlassCard variant="solid" className="p-6 md:p-8 space-y-4">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div>
-                                            <label className="text-[10px] font-bold text-zinc-500 uppercase">Official PT Name</label>
-                                            <input type="text" name="companyName" value={identity.companyName} onChange={handleIdentityChange} className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-sm font-bold" />
-                                        </div>
-                                        <div>
-                                            <label className="text-[10px] font-bold text-zinc-500 uppercase">Brand Short Name</label>
-                                            <input type="text" name="brandName" value={identity.brandName} onChange={handleIdentityChange} className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-sm font-bold" />
-                                        </div>
-                                    </div>
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-                                        <div>
-                                            <label className="text-[10px] font-bold text-zinc-500 uppercase flex items-center gap-1"><ShieldCheck size={12}/> NIB</label>
-                                            <input type="text" name="nib" value={identity.nib} onChange={handleIdentityChange} className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-mono font-bold" />
-                                        </div>
-                                        <div>
-                                            <label className="text-[10px] font-bold text-zinc-500 uppercase flex items-center gap-1"><ShieldCheck size={12}/> SK KEMENKUMHAM</label>
-                                            <input type="text" name="skKemenkumham" value={identity.skKemenkumham} onChange={handleIdentityChange} className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-mono font-bold" />
-                                        </div>
-                                        <div>
-                                            <label className="text-[10px] font-bold text-zinc-500 uppercase flex items-center gap-1"><ShieldCheck size={12}/> NPWP</label>
-                                            <input type="text" name="npwp" value={identity.npwp} onChange={handleIdentityChange} className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-mono font-bold" />
-                                        </div>
-                                    </div>
-                                </GlassCard>
-                            </section>
-
-                            {/* FINANCE */}
-                            <section>
-                                <div className="flex items-center gap-3 mb-4 justify-between">
-                                    <div className="flex items-center gap-3">
-                                        <CreditCard size={20} className="text-brand-600" />
-                                        <h3 className="text-sm font-black uppercase tracking-widest text-zinc-500">Official Bank Accounts</h3>
-                                    </div>
-                                    <Button size="sm" onClick={addBankAccount} className="h-8 text-xs font-bold bg-zinc-800 hover:bg-zinc-700">
-                                        <Plus size={14} className="mr-1"/> Add Bank
-                                    </Button>
-                                </div>
-                                <div className="space-y-4">
-                                    {identity.bankAccounts.map((bank, idx) => (
-                                        <GlassCard key={idx} variant="solid" className="p-4 md:p-6 bg-gradient-to-br from-white to-zinc-50 dark:from-zinc-900 dark:to-black relative group">
-                                            <button onClick={() => removeBankAccount(idx)} className="absolute top-4 right-4 text-zinc-400 hover:text-red-500 transition-colors"><Trash2 size={16} /></button>
-                                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                                <div>
-                                                    <label className="text-[10px] font-bold text-zinc-500 uppercase">Bank Name</label>
-                                                    <input type="text" value={bank.bankName} onChange={(e) => updateBankAccount(idx, 'bankName', e.target.value)} className="w-full mt-1 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-4 py-2.5 text-sm font-bold" />
-                                                </div>
-                                                <div>
-                                                    <label className="text-[10px] font-bold text-zinc-500 uppercase">Account Number</label>
-                                                    <input type="text" value={bank.accountNumber} onChange={(e) => updateBankAccount(idx, 'accountNumber', e.target.value)} className="w-full mt-1 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-4 py-2.5 text-lg font-mono font-black text-brand-600" />
-                                                </div>
-                                                <div>
-                                                    <label className="text-[10px] font-bold text-zinc-500 uppercase">Account Holder</label>
-                                                    <input type="text" value={bank.accountHolder} onChange={(e) => updateBankAccount(idx, 'accountHolder', e.target.value)} className="w-full mt-1 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-4 py-2.5 text-sm font-bold" />
-                                                </div>
-                                            </div>
-                                        </GlassCard>
-                                    ))}
-                                </div>
-                            </section>
-
-                            {/* ADDRESS & MAPS */}
-                            <section>
-                                <div className="flex items-center gap-3 mb-4">
-                                    <MapPin size={20} className="text-brand-600" />
-                                    <h3 className="text-sm font-black uppercase tracking-widest text-zinc-500">Locations & Maps</h3>
-                                </div>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    {/* LEGAL OFFICE */}
-                                    <GlassCard variant="solid" className="p-6 space-y-4">
-                                        <div className="flex items-center gap-2 mb-2">
-                                            <div className="w-2 h-2 rounded-full bg-blue-500" />
-                                            <h4 className="text-xs font-black uppercase tracking-widest text-zinc-900 dark:text-white">Legal Office</h4>
-                                        </div>
-                                        <textarea name="addressLegal" rows={3} value={identity.addressLegal} onChange={handleIdentityChange} className="w-full bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-medium resize-none" placeholder="Address..." />
-                                        <div>
-                                            <label className="text-[10px] font-bold text-zinc-500 uppercase">Map Embed URL (SRC Only)</label>
-                                            <input type="text" name="mapLegalUrl" value={identity.mapLegalUrl} onChange={handleIdentityChange} className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-mono text-zinc-600 dark:text-zinc-400" />
-                                        </div>
-                                        {identity.mapLegalUrl && (
-                                            <div className="w-full h-32 bg-zinc-100 rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-800">
-                                                <iframe src={identity.mapLegalUrl} width="100%" height="100%" style={{border:0}} loading="lazy" />
-                                            </div>
-                                        )}
-                                    </GlassCard>
-
-                                    {/* OPS OFFICE */}
-                                    <GlassCard variant="solid" className="p-6 space-y-4">
-                                        <div className="flex items-center gap-2 mb-2">
-                                            <div className="w-2 h-2 rounded-full bg-brand-500" />
-                                            <h4 className="text-xs font-black uppercase tracking-widest text-zinc-900 dark:text-white">Operational HQ</h4>
-                                        </div>
-                                        <textarea name="addressOps" rows={3} value={identity.addressOps} onChange={handleIdentityChange} className="w-full bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-medium resize-none" placeholder="Address..." />
-                                        <div>
-                                            <label className="text-[10px] font-bold text-zinc-500 uppercase">Map Embed URL (SRC Only)</label>
-                                            <input type="text" name="mapOpsUrl" value={identity.mapOpsUrl} onChange={handleIdentityChange} className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-mono text-zinc-600 dark:text-zinc-400" />
-                                        </div>
-                                        {identity.mapOpsUrl && (
-                                            <div className="w-full h-32 bg-zinc-100 rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-800">
-                                                <iframe src={identity.mapOpsUrl} width="100%" height="100%" style={{border:0}} loading="lazy" />
-                                            </div>
-                                        )}
-                                    </GlassCard>
-                                </div>
-                            </section>
-
-                            {/* CONTACT */}
-                            <section>
-                                <div className="flex items-center gap-3 mb-4">
-                                    <Phone size={20} className="text-brand-600" />
-                                    <h3 className="text-sm font-black uppercase tracking-widest text-zinc-500">Contacts & Hours</h3>
-                                </div>
-                                <GlassCard variant="solid" className="p-6 md:p-8 space-y-4">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div>
-                                            <label className="text-[10px] font-bold text-zinc-500 uppercase flex items-center gap-2"><Phone size={12}/> WhatsApp (No +)</label>
-                                            <input type="text" name="whatsapp" value={identity.whatsapp} onChange={handleIdentityChange} className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-sm font-bold" />
-                                        </div>
-                                        <div>
-                                            <label className="text-[10px] font-bold text-zinc-500 uppercase flex items-center gap-2"><Globe size={12}/> Email</label>
-                                            <input type="text" name="email" value={identity.email} onChange={handleIdentityChange} className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-sm font-bold" />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label className="text-[10px] font-bold text-zinc-500 uppercase flex items-center gap-2"><Clock size={12}/> Operating Hours</label>
-                                        <textarea name="operatingHours" rows={2} value={identity.operatingHours} onChange={handleIdentityChange} className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-sm font-medium resize-none" />
-                                    </div>
-                                </GlassCard>
-                            </section>
-                        </>
-                    )}
-
-                    {/* === PROTOCOLS TAB === */}
-                    {activeTab === 'PROTOCOLS' && (
-                        <section className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                            <div className="flex items-center gap-3 mb-4">
-                                <Globe size={20} className="text-brand-600" />
-                                <h3 className="text-sm font-black uppercase tracking-widest text-zinc-500">SEO & Analytics Protocols</h3>
-                            </div>
-
-                            <GlassCard variant="solid" className="p-6 md:p-8 space-y-6">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    {/* Google Ecosystem */}
-                                    <div className="space-y-4">
-                                        <h4 className="text-xs font-black uppercase tracking-widest text-zinc-900 dark:text-white border-b border-zinc-100 dark:border-zinc-800 pb-2 mb-4">
-                                            Google Ecosystem
-                                        </h4>
-                                        <div>
-                                            <label className="text-[10px] font-bold text-zinc-500 uppercase">Google Search Console (HTML Tag)</label>
-                                            <input 
-                                                type="text" 
-                                                value={webConfig.gsc} 
-                                                onChange={(e) => setWebConfig({...webConfig, gsc: e.target.value})}
-                                                placeholder="e.g. content='...'"
-                                                className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-mono" 
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="text-[10px] font-bold text-zinc-500 uppercase">Google Analytics 4 (Measurement ID)</label>
-                                            <input 
-                                                type="text" 
-                                                value={webConfig.ga4} 
-                                                onChange={(e) => setWebConfig({...webConfig, ga4: e.target.value})}
-                                                placeholder="G-XXXXXXXXXX"
-                                                className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-mono" 
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="text-[10px] font-bold text-zinc-500 uppercase">Google Merchant Center (Verification)</label>
-                                            <input 
-                                                type="text" 
-                                                value={webConfig.gMerchant} 
-                                                onChange={(e) => setWebConfig({...webConfig, gMerchant: e.target.value})}
-                                                className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-mono" 
-                                            />
-                                        </div>
-                                    </div>
-
-                                    {/* Other Search Engines */}
-                                    <div className="space-y-4">
-                                        <h4 className="text-xs font-black uppercase tracking-widest text-zinc-900 dark:text-white border-b border-zinc-100 dark:border-zinc-800 pb-2 mb-4">
-                                            Global Search Engines
-                                        </h4>
-                                        <div>
-                                            <label className="text-[10px] font-bold text-zinc-500 uppercase">Bing Webmaster Tools</label>
-                                            <input 
-                                                type="text" 
-                                                value={webConfig.bing} 
-                                                onChange={(e) => setWebConfig({...webConfig, bing: e.target.value})}
-                                                className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-mono" 
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="text-[10px] font-bold text-zinc-500 uppercase">Yandex Webmaster</label>
-                                            <input 
-                                                type="text" 
-                                                value={webConfig.yandex} 
-                                                onChange={(e) => setWebConfig({...webConfig, yandex: e.target.value})}
-                                                className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-mono" 
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="text-[10px] font-bold text-zinc-500 uppercase">Pinterest Verification</label>
-                                            <input 
-                                                type="text" 
-                                                value={webConfig.pinterest} 
-                                                onChange={(e) => setWebConfig({...webConfig, pinterest: e.target.value})}
-                                                className="w-full mt-1 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded-lg px-4 py-2.5 text-xs font-mono" 
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                            </GlassCard>
-                        </section>
-                    )}
-
-                    {/* SAVE ACTION */}
-                    <div className="fixed bottom-0 md:bottom-6 left-0 md:left-auto right-0 md:right-6 p-4 md:p-0 z-50">
-                        <Button 
-                            size="lg" 
-                            onClick={handleSave}
-                            className="w-full md:w-auto bg-brand-600 hover:bg-brand-500 shadow-2xl shadow-brand-500/40 font-black tracking-widest uppercase"
-                            disabled={isSaving}
-                        >
-                            {isSaving ? 'SYNCING TO CLOUD...' : <><Save size={18} className="mr-2" /> UPDATE CONFIG</>}
-                        </Button>
-                    </div>
-                </div>
+              {/* SAVE ACTION */}
+              <div className="fixed bottom-0 md:bottom-6 left-0 md:left-auto right-0 md:right-6 p-4 md:p-0 z-50">
+                <Button
+                  size="lg"
+                  onClick={() => handleSave(activeTab)}
+                  className="w-full md:w-auto bg-brand-600 hover:bg-brand-500 shadow-2xl shadow-brand-500/40 font-black tracking-widest uppercase"
+                  disabled={isSaving}
+                >
+                  {isSaving ? 'SYNCING TO CLOUD...' : <><Save size={18} className="mr-2" /> UPDATE CONFIG</>}
+                </Button>
+              </div>
+            </div>
             )}
          </main>
       </div>
