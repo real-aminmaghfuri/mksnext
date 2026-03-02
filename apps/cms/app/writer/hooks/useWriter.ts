@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { AI_SYSTEM_PROMPT } from 'shared';
-import { generateWriterAction } from '../actions/gemini';
+import { generateWriterAction } from '../../actions/gemini';
 
 export function useWriter() {
   const [topic, setTopic] = useState('');
