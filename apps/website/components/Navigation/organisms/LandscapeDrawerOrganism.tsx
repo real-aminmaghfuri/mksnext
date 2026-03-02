@@ -67,42 +67,48 @@ export const LandscapeDrawerOrganism: React.FC<LandscapeDrawerOrganismProps> = (
                     {col.title}
                   </h4>
                   <div className="grid grid-cols-2 gap-3">
-                    {col.items.map((item, iIdx) => (
-                      <Link 
-                        key={iIdx} 
-                        href={item.path}
-                        onClick={onClose}
-                        className="flex items-center gap-3 p-3 rounded-xl border border-zinc-100 dark:border-zinc-800 hover:border-brand-500/30 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-all group"
-                      >
-                        <div className="text-zinc-400 group-hover:text-brand-500 transition-colors">
-                          <item.icon size={18} />
-                        </div>
-                        <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300 leading-tight">
-                          {item.label}
-                        </span>
-                      </Link>
-                    ))}
+                    {col.items.map((item, iIdx) => {
+                      const Icon = item.icon;
+                      return (
+                        <Link 
+                          key={iIdx} 
+                          href={item.path}
+                          onClick={onClose}
+                          className="flex items-center gap-3 p-3 rounded-xl border border-zinc-100 dark:border-zinc-800 hover:border-brand-500/30 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-all group"
+                        >
+                          <div className="text-zinc-400 group-hover:text-brand-500 transition-colors">
+                            <Icon size={18} />
+                          </div>
+                          <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300 leading-tight">
+                            {item.label}
+                          </span>
+                        </Link>
+                      );
+                    })}
                   </div>
                 </div>
               ))}
             </div>
           ) : (
             <div className="grid grid-cols-2 gap-3">
-              {menuItem.items?.map((item, iIdx) => (
-                <Link 
-                  key={iIdx} 
-                  href={item.path}
-                  onClick={onClose}
-                  className="flex items-center gap-3 p-3 rounded-xl border border-zinc-100 dark:border-zinc-800 hover:border-brand-500/30 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-all group"
-                >
-                  <div className="text-zinc-400 group-hover:text-brand-500 transition-colors">
-                    <item.icon size={18} />
-                  </div>
-                  <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300 leading-tight">
-                    {item.label}
-                  </span>
-                </Link>
-              ))}
+              {menuItem.items?.map((item, iIdx) => {
+                const Icon = item.icon;
+                return (
+                  <Link 
+                    key={iIdx} 
+                    href={item.path}
+                    onClick={onClose}
+                    className="flex items-center gap-3 p-3 rounded-xl border border-zinc-100 dark:border-zinc-800 hover:border-brand-500/30 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-all group"
+                  >
+                    <div className="text-zinc-400 group-hover:text-brand-500 transition-colors">
+                      <Icon size={18} />
+                    </div>
+                    <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300 leading-tight">
+                      {item.label}
+                    </span>
+                  </Link>
+                );
+              })}
             </div>
           )}
         </div>
