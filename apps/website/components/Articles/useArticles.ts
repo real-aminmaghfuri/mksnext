@@ -33,6 +33,7 @@ export const useArticles = (): ArticleLogic => {
   const text = DICTIONARY[language];
 
   const [activeCategory, setActiveCategory] = useState('ALL');
+  const [searchQuery, setSearchQuery] = useState('');
   const [page, setPage] = useState(1);
   
   // CONFIGURATION
@@ -46,9 +47,24 @@ export const useArticles = (): ArticleLogic => {
 
   // Filter Articles
   const filteredArticles = useMemo(() => {
-    if (activeCategory === 'ALL') return MOCK_ARTICLES;
-    return MOCK_ARTICLES.filter(a => a.category === activeCategory);
-  }, [activeCategory]);
+    let result = MOCK_ARTICLES;
+    
+    // Category Filter
+    if (activeCategory !== 'ALL') {
+      result = result.filter(a => a.category === activeCategory);
+    }
+    
+    // Search Filter
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      result = result.filter(a => 
+        a.title.toLowerCase().includes(q) || 
+        a.excerpt.toLowerCase().includes(q)
+      );
+    }
+    
+    return result;
+  }, [activeCategory, searchQuery]);
 
   // Featured Article (Always the newest one / first one)
   const heroArticle = filteredArticles[0];
@@ -112,6 +128,8 @@ export const useArticles = (): ArticleLogic => {
     categories,
     activeCategory,
     setActiveCategory,
+    searchQuery,
+    setSearchQuery,
     loadMore,
     hasMore,
     sidebarProducts: MOCK_PRODUCTS.slice(0, 2)

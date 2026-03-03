@@ -17,6 +17,8 @@ export const Articles: React.FC = () => {
       categories, 
       activeCategory, 
       setActiveCategory,
+      searchQuery,
+      setSearchQuery,
       loadMore,
       hasMore,
       sidebarProducts 
@@ -73,6 +75,8 @@ export const Articles: React.FC = () => {
                     categories={categories}
                     activeCategory={activeCategory}
                     onCategoryChange={setActiveCategory}
+                    searchQuery={searchQuery}
+                    onSearchChange={setSearchQuery}
                     products={sidebarProducts}
                     text={{
                        searchPlaceholder: text.searchPlaceholder,

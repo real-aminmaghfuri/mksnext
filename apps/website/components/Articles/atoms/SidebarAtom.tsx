@@ -11,6 +11,8 @@ interface SidebarProps {
   categories: string[];
   activeCategory: string;
   onCategoryChange: (cat: string) => void;
+  searchQuery: string;
+  onSearchChange: (query: string) => void;
   products: ProductItem[];
   text: {
     searchPlaceholder: string;
@@ -22,7 +24,15 @@ interface SidebarProps {
   };
 }
 
-export const SidebarAtom: React.FC<SidebarProps> = ({ activeCategory, onCategoryChange, products, text }) => {
+export const SidebarAtom: React.FC<SidebarProps> = ({ 
+  categories, 
+  activeCategory, 
+  onCategoryChange, 
+  searchQuery,
+  onSearchChange,
+  products, 
+  text 
+}) => {
   return (
     <div className="space-y-8 sticky top-24">
        {/* Search */}
@@ -30,6 +40,8 @@ export const SidebarAtom: React.FC<SidebarProps> = ({ activeCategory, onCategory
           <input 
              type="text" 
              placeholder={text.searchPlaceholder}
+             value={searchQuery}
+             onChange={(e) => onSearchChange(e.target.value)}
              className="w-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 pl-11 text-sm font-bold focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all text-zinc-900 dark:text-white placeholder:text-zinc-400"
           />
           <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" />
@@ -41,6 +53,7 @@ export const SidebarAtom: React.FC<SidebarProps> = ({ activeCategory, onCategory
              <Tag size={14} /> {text.sidebarTitle}
           </h4>
           <SidebarCategories 
+            categories={categories}
             text={text}
             activeCategory={activeCategory}
             onCategoryChange={onCategoryChange}

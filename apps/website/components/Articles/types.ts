@@ -31,6 +31,8 @@ export interface ArticleLogic {
   categories: string[];
   activeCategory: string;
   setActiveCategory: (cat: string) => void;
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
   loadMore: () => void;
   hasMore: boolean;
   sidebarProducts: ProductItem[];

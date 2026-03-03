@@ -4,6 +4,7 @@ import React, { useState, useMemo } from 'react';
 import { Tag, ChevronDown, ChevronRight, Layers, Cpu, Briefcase } from 'lucide-react';
 
 interface SidebarCategoriesProps {
+  categories: string[];
   text: {
     sidebarTitle: string;
     catAll: string;
@@ -14,7 +15,7 @@ interface SidebarCategoriesProps {
   onCategoryChange: (cat: string) => void;
 }
 
-export const SidebarCategories: React.FC<SidebarCategoriesProps> = ({ text, activeCategory, onCategoryChange }) => {
+export const SidebarCategories: React.FC<SidebarCategoriesProps> = ({ categories, text, activeCategory, onCategoryChange }) => {
   const categoryTree = useMemo(() => [
     {
       id: 'MAIN_ALL',
@@ -26,15 +27,15 @@ export const SidebarCategories: React.FC<SidebarCategoriesProps> = ({ text, acti
       id: 'MAIN_BIZ',
       label: text.catBiz,
       icon: Briefcase,
-      subs: ['MARKETING', 'MANAJEMEN']
+      subs: ['MARKETING', 'MANAJEMEN'].filter(c => categories.includes(c))
     },
     {
       id: 'MAIN_TECH',
       label: text.catTech,
       icon: Cpu,
-      subs: ['TEKNIS']
+      subs: ['TEKNIS'].filter(c => categories.includes(c))
     }
-  ], [text]);
+  ], [text, categories]);
 
   const [expandedSection, setExpandedSection] = useState<string | null>('MAIN_BIZ');
 
