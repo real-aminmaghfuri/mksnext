@@ -16,7 +16,7 @@ export const DEFAULT_COMPANY_IDENTITY: CompanyIdentity = {
   founderName: "Amin Maghfuri",
   founderRole: "Commanding Officer",
   founderPhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d",
-  founderQuote: "Jujur-jujuran aja... Bisnis tanpa sistem yang kuat cuma nunggu waktu buat meledak.",
+  founderQuote: "Jujur-jujuran aja... Gue pernah ngerasain hancur lebur di tahun 2022. Bisnis tanpa sistem yang kokoh itu cuma nunggu waktu buat meledak. Makanya gue bangun SIBOS, asuransi buat bisnis lo.",
   companyName: "PT MESIN KASIR SOLO",
   brandName: "MKS",
   addressLegal: "Perum Graha Tiara 2 B1, Gumpang 07/01, Kartasura, Sukoharjo, Jawa Tengah 57169",

@@ -28,7 +28,7 @@ interface LegalityDetailsCardProps {
 
 export const LegalityDetailsCard: React.FC<LegalityDetailsCardProps> = ({ content }) => {
   return (
-    <div className="lg:col-span-8 p-6 md:p-10 space-y-6 md:space-y-0 bg-blue-600/15 backdrop-blur-md">
+    <div className="lg:col-span-8 p-6 md:p-10 space-y-6 md:space-y-0 bg-blue-50/80 dark:bg-blue-900/10 backdrop-blur-md">
                 
         {/* Entity Row */}
         <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-black/10 dark:border-white/10 border-dashed">

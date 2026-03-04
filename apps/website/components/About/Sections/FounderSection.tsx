@@ -61,9 +61,11 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ name, role, phot
               </h3>
               
               <div className="space-y-8">
-                <p className="text-base md:text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium tracking-tight">
-                  {quote.bodyPrefix}
-                </p>
+                {quote.bodyPrefix && (
+                  <p className="text-base md:text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium tracking-tight">
+                    {quote.bodyPrefix}
+                  </p>
+                )}
                 
                 <div className="p-6 md:px-10 md:py-8 rounded-2xl bg-orange-500/15 border-l-[6px] border-brand-600 shadow-sm backdrop-blur-md">
                   <p className="text-lg md:text-xl font-black text-zinc-900 dark:text-white italic tracking-tight leading-snug">

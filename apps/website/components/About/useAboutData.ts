@@ -25,6 +25,17 @@ export const useAboutData = (identity: CompanyIdentity) => {
         quoteBody = quoteBody.replace(quoteHeading, "").trim();
     }
 
+    // 2.1 Additional Cleanup: Remove common placeholder/gibberish patterns
+    // Remove "Jujur-jujuran aja Bos..." if it's redundant
+    quoteBody = quoteBody.replace(/Jujur-jujuran aja Bos[. ]*/gi, "").trim();
+    // Remove random gibberish like "sdefhskdhshdkf"
+    quoteBody = quoteBody.replace(/[a-z]{10,}/gi, (match) => {
+        // If it's not a common word (very simple check), remove it
+        const commonWords = ['perusahaan', 'kemenkumham', 'digitalisasi', 'transparansi'];
+        if (commonWords.includes(match.toLowerCase())) return match;
+        return "";
+    }).trim();
+
     // 3. Smart Split: Attempt to split into "Hook" (Prefix) and "Main Point" (Emphasis)
     // We look for the first sentence ending (. ? !)
     const splitMatch = quoteBody.match(/([.?!])\s/);

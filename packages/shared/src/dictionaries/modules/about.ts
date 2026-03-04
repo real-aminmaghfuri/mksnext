@@ -4,7 +4,7 @@ import { AboutDictionary, HistoryDictionary, LegalDictionary } from '../../types
 export const About_ID: AboutDictionary = {
   aboutHeading: "Dibangun Dari Luka & Aspal Panas.",
   aboutTagline: "Story gue bukan dongeng motivasi basi. Ini kronik berdarah-darah, jalan kaki nawarin alat, dan penolakan yang bikin mental gue sekeras baja.",
-  aboutFounderQuote: "Jujur-jujuran aja... Tahun 2022, gue pernah 'mati suri'. Aset digital ilang, domain diambil orang, profil google bisnis disuspend. Pernah juga dikadalin sama karyawan. Sistem berantakan gara-gara gue terlalu percaya sama 'manusia' tanpa sistem kontrol. Saat itu gue belajar satu hal mahal: Bisnis tanpa sistem yang kuat cuma nunggu waktu buat meledak.",
+  aboutFounderQuote: "Jujur-jujuran aja... Gue pernah ngerasain hancur lebur di tahun 2022. Aset ilang, tim bubar, dan sistem berantakan cuma gara-gara gue terlalu percaya sama 'manusia' tanpa sistem kontrol yang kuat. Di situ gue sadar: Bisnis tanpa sistem yang kokoh itu cuma nunggu waktu buat meledak. Makanya gue bangun SIBOS, asuransi buat bisnis lo.",
   
   aboutTurnTitle: "Titik Balik (The Turn)",
   aboutTurnP1: "Dari kehancuran itu, gue bangun ulang semuanya sendirian. Bukan buat bales dendam, tapi buat mastiin ",
@@ -75,15 +75,15 @@ export const History_EN: HistoryDictionary = {
 
 export const Legal_ID: LegalDictionary = {
   legalTitle: "Gue Main Bersih",
-  legalDesc: "Business is trust. I won't ruin the name I rebuilt from zero. Here is the proof I am legal.",
-  legalLabelEntity: "Legal Entity",
+  legalDesc: "Bisnis itu soal kepercayaan. Gue gak bakal ngerusak nama yang udah gue bangun capek-capek dari nol. Ini bukti kalo gue legal.",
+  legalLabelEntity: "Badan Hukum",
   legalValueEntity: "PT MESIN KASIR SOLO",
   legalLabelNIB: "NIB (Izin Usaha)",
   legalLabelSK: "SK Kemenkumham",
   legalLabelNPWP: "NPWP Perusahaan",
   legalLabelBank: "Rekening Sah (BNC)",
   legalCtaTitle: "CEK VALIDITAS",
-  legalCtaDesc: "Lo bisa cek sendiri data perusahaan gue di web pemerintah biar yakin.",
+  legalCtaDesc: "Lo bisa cek sendiri data perusahaan gue di web pemerintah biar makin yakin.",
   legalCtaBtn: "Buka OSS.GO.ID",
   legalFooterNote: "*Buat lo yang butuh dokumen asli buat vendor list atau tender, chat admin gue. Kita transparan.",
 };
