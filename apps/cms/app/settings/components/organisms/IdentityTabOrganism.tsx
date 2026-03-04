@@ -64,15 +64,26 @@ export const IdentityTabOrganism: React.FC<IdentityTabOrganismProps> = ({
                   onChange={handleIdentityChange}
                 />
               </div>
-              <SettingInputAtom
-                label="The Quote"
-                icon={Quote}
-                isTextarea
-                rows={4}
-                name="founderQuote"
-                value={identity.founderQuote}
-                onChange={handleIdentityChange}
-              />
+              <div className="grid grid-cols-1 gap-4">
+                <SettingInputAtom
+                  label="Quote Hook (The Story)"
+                  icon={Quote}
+                  isTextarea
+                  rows={3}
+                  name="founderQuoteHook"
+                  value={identity.founderQuoteHook}
+                  onChange={handleIdentityChange}
+                />
+                <SettingInputAtom
+                  label="Quote Emphasis (The Lesson)"
+                  icon={Quote}
+                  isTextarea
+                  rows={2}
+                  name="founderQuoteEmphasis"
+                  value={identity.founderQuoteEmphasis}
+                  onChange={handleIdentityChange}
+                />
+              </div>
             </div>
           </div>
         </GlassCard>

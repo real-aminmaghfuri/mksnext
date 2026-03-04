@@ -44,7 +44,8 @@ export interface CompanyIdentity {
   founderName: string;
   founderRole: string;
   founderPhoto: string;
-  founderQuote: string;
+  founderQuoteHook: string; // New: First part of the quote
+  founderQuoteEmphasis: string; // New: Second part of the quote
   
   companyName: string;
   brandName: string;

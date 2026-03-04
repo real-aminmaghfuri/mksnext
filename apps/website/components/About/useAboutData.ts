@@ -9,52 +9,29 @@ export const useAboutData = (identity: CompanyIdentity) => {
   const { language } = useConfig();
   const text = DICTIONARY[language];
 
-  // Logic: Quote Parsing - Made Robust for Empty/Different formats
+  // Logic: Quote Parsing - Now uses split fields from Identity
   const parseQuote = () => {
-    // 1. Get Content: Use Identity if available and not empty, otherwise fallback to Dictionary
-    let rawQuote = identity.founderQuote;
-    if (!rawQuote || rawQuote.trim() === "") {
-        rawQuote = text.aboutFounderQuote;
-    }
-
     const quoteHeading = language === Language.ID ? "Jujur-jujuran aja..." : "To be honest...";
     
-    // 2. Remove Heading if present (to avoid duplication)
-    let quoteBody = rawQuote;
-    if (quoteBody.includes(quoteHeading)) {
-        quoteBody = quoteBody.replace(quoteHeading, "").trim();
-    }
+    // Use split fields if available, otherwise fallback to parsing the old field (if it existed) or dictionary
+    const hook = identity.founderQuoteHook || "";
+    const emphasis = identity.founderQuoteEmphasis || "";
 
-    // 2.1 Additional Cleanup: Remove common placeholder/gibberish patterns
-    // Remove "Jujur-jujuran aja Bos..." if it's redundant
-    quoteBody = quoteBody.replace(/Jujur-jujuran aja Bos[. ]*/gi, "").trim();
-    // Remove random gibberish like "sdefhskdhshdkf"
-    quoteBody = quoteBody.replace(/[a-z]{10,}/gi, (match) => {
-        // If it's not a common word (very simple check), remove it
-        const commonWords = ['perusahaan', 'kemenkumham', 'digitalisasi', 'transparansi'];
-        if (commonWords.includes(match.toLowerCase())) return match;
-        return "";
-    }).trim();
-
-    // 3. Smart Split: Attempt to split into "Hook" (Prefix) and "Main Point" (Emphasis)
-    // We look for the first sentence ending (. ? !)
-    const splitMatch = quoteBody.match(/([.?!])\s/);
-    
-    if (splitMatch && splitMatch.index) {
-        const splitIndex = splitMatch.index + 1;
+    if (hook || emphasis) {
         return {
             heading: quoteHeading,
-            bodyPrefix: quoteBody.substring(0, splitIndex),
-            emphasis: quoteBody.substring(splitIndex).trim(),
+            bodyPrefix: hook,
+            emphasis: emphasis,
             bodySuffix: ""
         };
     }
 
-    // 4. Fallback: If no split possible, put everything in Emphasis for impact
+    // Fallback to dictionary if both are empty
+    const rawQuote = text.aboutFounderQuote;
     return {
       heading: quoteHeading,
       bodyPrefix: "", 
-      emphasis: quoteBody,
+      emphasis: rawQuote.replace(quoteHeading, "").trim(),
       bodySuffix: ""
     };
   };

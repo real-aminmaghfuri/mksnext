@@ -10,7 +10,8 @@ export const useSettingsData = () => {
   });
 
   const [identity, setIdentity] = useState<CompanyIdentity>({
-    founderName: '', founderRole: '', founderPhoto: '', founderQuote: '',
+    founderName: '', founderRole: '', founderPhoto: '', 
+    founderQuoteHook: '', founderQuoteEmphasis: '',
     companyName: '', brandName: '', addressLegal: '', addressOps: '',
     mapLegalUrl: '', mapOpsUrl: '', operatingHours: '',
     nib: '', skKemenkumham: '', npwp: '',
