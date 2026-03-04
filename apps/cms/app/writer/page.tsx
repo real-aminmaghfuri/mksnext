@@ -3,6 +3,7 @@
 import React from 'react';
 import { Sidebar } from '../../components/Sidebar';
 import { Header } from '../../components/Header';
+import { MobileNav } from '../../components/MobileNav';
 import { useWriter } from './hooks/useWriter';
 import { CommandCenterOrganism } from './components/organisms/CommandCenterOrganism';
 import { PreviewAreaOrganism } from './components/organisms/PreviewAreaOrganism';
@@ -45,6 +46,7 @@ export default function WriterPage() {
       </div>
       
       <Sidebar />
+      <MobileNav />
     </div>
   );
 }

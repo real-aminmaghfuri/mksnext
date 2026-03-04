@@ -65,7 +65,7 @@ export function useChatAssistant({ welcomeMessage, language }: UseChatAssistantP
       const ai = new GoogleGenAI({ apiKey: randomKey as string });
       
       const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash-lite-latest",
+        model: "gemini-3-flash-preview",
         contents: [
           {
             role: "user",

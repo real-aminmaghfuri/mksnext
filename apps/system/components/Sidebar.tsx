@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useConfig, Logo } from 'ui';
 import { DICTIONARY } from 'shared';
-import { LayoutDashboard, Package, Settings, LogOut } from 'lucide-react';
+import { LayoutDashboard, Package, Settings, LogOut, ShoppingCart } from 'lucide-react';
 
 export const Sidebar: React.FC<{ collapsed?: boolean }> = ({ collapsed = false }) => {
   const { language } = useConfig();
@@ -15,6 +15,7 @@ export const Sidebar: React.FC<{ collapsed?: boolean }> = ({ collapsed = false }
   
   const menuItems = [
     { icon: LayoutDashboard, label: text.navDashboard, path: '/' },
+    { icon: ShoppingCart, label: 'Terminal Kasir', path: '/pos' },
     { icon: Package, label: text.navInventory, path: '/inventory' },
     // Removed AI Writer - It is now in apps/cms
     { icon: Settings, label: text.navSettings, path: '/settings' },

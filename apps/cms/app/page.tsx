@@ -4,6 +4,7 @@
 import React from 'react';
 import { Sidebar } from '../components/Sidebar';
 import { Header } from '../components/Header';
+import { MobileNav } from '../components/MobileNav';
 import { GlassCard } from 'ui';
 import { Eye, ThumbsUp, TrendingUp, FileText } from 'lucide-react';
 
@@ -47,6 +48,7 @@ export default function CMSDashboard() {
       </div>
       {/* Sidebar Second (Right Side) */}
       <Sidebar />
+      <MobileNav />
     </div>
   );
 }

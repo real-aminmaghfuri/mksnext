@@ -1,7 +1,13 @@
 
 import React from 'react';
+import type { Metadata } from 'next';
 import { About } from '../../components/About/index';
 import { Repository } from 'data';
+
+export const metadata: Metadata = {
+  title: 'Kisah Berdarah di Balik MKS | PT Mesin Kasir Solo',
+  description: 'Gue gak jualan mimpi. Gue jualan sistem yang lahir dari trauma bangkrut dan aspal panas jalanan Solo.',
+};
 
 // FORCE DYNAMIC: Matikan caching statis.
 // Halaman ini akan dirender ulang setiap request untuk menampilkan data terbaru (Foto/Teks).

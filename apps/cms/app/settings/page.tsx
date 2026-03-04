@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import { Sidebar } from '../../components/Sidebar';
 import { Header } from '../../components/Header';
+import { MobileNav } from '../../components/MobileNav';
 import { Button } from 'ui';
 import { useSettingsData } from './hooks/useSettingsData';
 import { usePhotoUpload } from './hooks/usePhotoUpload';
@@ -98,6 +99,7 @@ export default function CMSSettingsPage() {
       </div>
 
       <Sidebar />
+      <MobileNav />
     </div>
   );
 }

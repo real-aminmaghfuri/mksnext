@@ -12,7 +12,10 @@ export class LocalDatabase extends Dexie {
     // Define schema
     (this as any).version(1).stores({
       transactions: '++id, uuid, status, createdAt',
-      products: '++id, sku, category'
+      products: '++id, sku, category',
+      customers: '++id, name, phone, email',
+      suppliers: '++id, name, phone',
+      inventory_logs: '++id, productId, type, createdAt'
     });
   }
 

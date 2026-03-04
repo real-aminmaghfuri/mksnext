@@ -5,6 +5,7 @@ import { InventoryRepository } from './repositories/inventory';
 import { SettingsRepository } from './repositories/settings';
 import { IdentityRepository } from './repositories/identity';
 import { MediaRepository } from './repositories/media';
+import { POSRepository } from './repositories/pos';
 import { DashboardStats, Transaction, Product, WebProtocols, CompanyIdentity, MediaAsset } from './types';
 
 export class Repository {
@@ -20,6 +21,11 @@ export class Repository {
 
   static getRecentTransactions(): Promise<Transaction[]> {
     return DashboardRepository.getRecentTransactions();
+  }
+
+  // --- POS ---
+  static saveTransaction(transaction: Transaction): Promise<void> {
+    return POSRepository.saveTransaction(transaction);
   }
 
   // --- INVENTORY ---

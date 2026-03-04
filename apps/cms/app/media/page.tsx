@@ -3,6 +3,7 @@
 import React from 'react';
 import { Sidebar } from '../../components/Sidebar';
 import { Header } from '../../components/Header';
+import { MobileNav } from '../../components/MobileNav';
 import { useMediaLibrary } from './hooks/useMediaLibrary';
 import { useMediaUpload } from './hooks/useMediaUpload';
 import { UploadSectionOrganism } from './components/organisms/UploadSectionOrganism';
@@ -67,6 +68,7 @@ export default function MediaPage() {
       </div>
 
       <Sidebar />
+      <MobileNav />
     </div>
   );
 }
