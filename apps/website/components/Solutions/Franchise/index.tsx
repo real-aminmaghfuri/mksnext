@@ -6,6 +6,8 @@ import { useFranchise } from './useFranchise';
 import { FranchiseHeroAtom } from './atoms/FranchiseHeroAtom';
 import { FranchisePainAtom } from './atoms/FranchisePainAtom';
 import { FranchiseSystemAtom } from './atoms/FranchiseSystemAtom';
+import { PortfolioMarquee } from '../../Services/Shared/PortfolioMarquee';
+import { ProductShowcase } from '../Shared/ProductShowcase';
 import { FranchiseCtaAtom } from './atoms/FranchiseCtaAtom';
 
 export const FranchiseSolution: React.FC = () => {
@@ -16,6 +18,17 @@ export const FranchiseSolution: React.FC = () => {
       <FranchiseHeroAtom content={content.hero} />
       <FranchisePainAtom content={content.pain} />
       <FranchiseSystemAtom content={content.system} />
+      <PortfolioMarquee 
+        filterKeywords={["franchise", "cabang"]}
+        title="EKSPANSI"
+        titleAccent="MASIF"
+        subtitle="Kontrol ratusan cabang dari satu dashboard. Pantau royalti dan stok pusat secara real-time tanpa ribet."
+      />
+      <ProductShowcase 
+        category="ANDROID"
+        title="PAKET"
+        subtitle="Paket kasir Android yang ringkas dan mudah di-deploy ke seluruh cabang franchise lo."
+      />
       <FranchiseCtaAtom content={content.cta} />
     </section>
   );

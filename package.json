@@ -12,9 +12,12 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "turbo": "latest",
     "prettier": "^3.2.5",
+    "turbo": "latest",
     "typescript": "^5.3.3"
   },
-  "packageManager": "npm@10.2.4"
+  "packageManager": "npm@10.2.4",
+  "dependencies": {
+    "motion": "^12.35.0"
+  }
 }

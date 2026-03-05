@@ -7,6 +7,7 @@ import { StoreHeroAtom } from './atoms/StoreHeroAtom';
 import { StorePainPointsAtom } from './atoms/StorePainPointsAtom';
 import { StoreFeaturesAtom } from './atoms/StoreFeaturesAtom';
 import { StoreStepAtom } from './atoms/StoreStepAtom';
+import { PortfolioMarquee } from '../Shared/PortfolioMarquee';
 import { StoreCtaAtom } from './atoms/StoreCtaAtom';
 
 export const OnlineStore: React.FC = () => {
@@ -18,6 +19,12 @@ export const OnlineStore: React.FC = () => {
       <StorePainPointsAtom content={content.painPoints} />
       <StoreFeaturesAtom content={content.features} />
       <StoreStepAtom content={content.steps} />
+      <PortfolioMarquee 
+        filterKeywords={["store", "e-commerce"]}
+        title="MESIN"
+        titleAccent="UANG"
+        subtitle="Lihat gimana toko online yang gue bangun bisa kerja otomatis 24 jam buat klien-klien gue. Rapi, kenceng, dan siap jualan."
+      />
       <StoreCtaAtom content={content.cta} />
     </section>
   );

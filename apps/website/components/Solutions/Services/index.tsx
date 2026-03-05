@@ -6,6 +6,8 @@ import { useServicesSolution } from './useServicesSolution';
 import { ServicesHeroAtom } from './atoms/ServicesHeroAtom';
 import { ServicesChaosAtom } from './atoms/ServicesChaosAtom';
 import { ServicesFeaturesAtom } from './atoms/ServicesFeaturesAtom';
+import { PortfolioMarquee } from '../../Services/Shared/PortfolioMarquee';
+import { ProductShowcase } from '../Shared/ProductShowcase';
 import { ServicesCtaAtom } from './atoms/ServicesCtaAtom';
 
 export const ServicesSolution: React.FC = () => {
@@ -16,6 +18,17 @@ export const ServicesSolution: React.FC = () => {
       <ServicesHeroAtom content={content.hero} />
       <ServicesChaosAtom content={content.chaos} />
       <ServicesFeaturesAtom content={content.system} />
+      <PortfolioMarquee 
+        filterKeywords={["layanan", "jasa", "klinik", "laundry", "barbershop"]}
+        title="SOLUSI"
+        titleAccent="CERDAS"
+        subtitle="Dari barbershop sampe laundry, sistem kami bantu manage antrian dan komisi karyawan dengan transparan."
+      />
+      <ProductShowcase 
+        category="ANDROID"
+        title="HARDWARE"
+        subtitle="Tablet POS yang stylish buat meja kasir bisnis jasa lo biar makin kelihatan profesional."
+      />
       <ServicesCtaAtom content={content.cta} />
     </section>
   );

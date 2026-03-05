@@ -103,5 +103,47 @@ export const MOCK_PORTFOLIO: PortfolioItem[] = [
     tag: "Solusi Bisnis",
     desc: "Optimasi SEO lokal untuk mendominasi kata kunci pencarian klinik kecantikan di area Solo Raya.",
     image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 13,
+    title: "Web Company Profile - Logistik Maju Bersama - Semarang",
+    category: "DIGITAL",
+    tag: "Solusi Bisnis",
+    desc: "Transformasi digital untuk perusahaan logistik dengan fitur tracking armada dan integrasi sistem inventaris real-time.",
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800&auto=format&fit=crop",
+    value: "Rp 18.500.000",
+    duration: "25 Hari"
+  },
+  {
+    id: 14,
+    title: "Sistem Manajemen Franchise - Ayam Geprek Juara",
+    category: "DIGITAL",
+    tag: "Solusi Bisnis",
+    desc: "Dashboard monitoring royalti dan supply chain terpusat untuk 50+ cabang di seluruh Indonesia.",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 15,
+    title: "Smart School System - SMA Negeri 1 Solo",
+    category: "DIGITAL",
+    tag: "Solusi Bisnis",
+    desc: "Digitalisasi administrasi sekolah, pembayaran SPP online, dan sistem raport digital terintegrasi.",
+    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 16,
+    title: "Sistem Informasi Desa (SID) - Desa Wisata Karanganyar",
+    category: "DIGITAL",
+    tag: "Solusi Bisnis",
+    desc: "Portal pelayanan publik desa mandiri untuk pengurusan surat menyurat dan transparansi dana desa.",
+    image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 17,
+    title: "Inventory Control System - Pabrik Tekstil Solo",
+    category: "DIGITAL",
+    tag: "Solusi Bisnis",
+    desc: "Otomasi pencatatan bahan baku dan barang jadi menggunakan sistem barcode industrial.",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop"
   }
 ];
