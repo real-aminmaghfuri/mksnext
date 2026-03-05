@@ -49,7 +49,7 @@ export const ContactInfoCard: React.FC<ContactInfoCardProps> = ({ info }) => {
                 <div>
                     <p className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider mb-1">{info.labelWa}</p>
                     <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300 flex items-center gap-2">
-                      <Phone size={18} className="text-brand-600 dark:text-brand-500" /> {info.dynamicWa}
+                      <Phone size={18} className="text-zinc-500" /> {info.dynamicWa}
                     </p>
                 </div>
                 <div>

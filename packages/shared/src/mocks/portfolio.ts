@@ -8,7 +8,9 @@ export const MOCK_PORTFOLIO: PortfolioItem[] = [
     category: "DIGITAL",
     tag: "Solusi Bisnis",
     desc: "Pengembangan website profil perusahaan yang komprehensif mengintegrasikan seluruh lini bisnis strategis untuk memvalidasi kredibilitas.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
+    value: "Rp 15.000.000",
+    duration: "21 Hari"
   },
   {
     id: 2,
@@ -16,7 +18,9 @@ export const MOCK_PORTFOLIO: PortfolioItem[] = [
     category: "DIGITAL",
     tag: "Solusi Bisnis",
     desc: "Solusi teknis yang diimplementasikan adalah pengembangan website company profile yang responsif dan teroptimasi SEO.",
-    image: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=800&auto=format&fit=crop",
+    value: "Rp 8.500.000",
+    duration: "14 Hari"
   },
   {
     id: 3,
@@ -24,7 +28,9 @@ export const MOCK_PORTFOLIO: PortfolioItem[] = [
     category: "PHYSICAL",
     tag: "Hardware & Instalasi",
     desc: "Solusi teknis dilakukan melalui penyusunan struktur kategori yang sistematis dan optimalisasi manajemen database.",
-    image: "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?q=80&w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?q=80&w=800&auto=format&fit=crop",
+    value: "Rp 12.000.000",
+    duration: "3 Hari"
   },
   {
     id: 4,

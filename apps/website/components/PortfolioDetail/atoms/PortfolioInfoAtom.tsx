@@ -3,7 +3,7 @@
 import React from 'react';
 import { PortfolioItem } from 'shared';
 import { Button } from 'ui';
-import { MessageCircle, CheckCircle2, Calendar, FileText, Cpu, Layers } from 'lucide-react';
+import { MessageCircle, CheckCircle2, Calendar, FileText, Cpu, Layers, DollarSign, Clock } from 'lucide-react';
 
 interface InfoProps {
   item: PortfolioItem;
@@ -34,10 +34,21 @@ export const PortfolioInfoAtom: React.FC<InfoProps> = ({ item, waLink }) => {
           <h1 className="text-3xl md:text-4xl font-black text-zinc-900 dark:text-white leading-[1.1] mb-6 tracking-tight">
              {item.title}
           </h1>
-          <div className="flex items-center gap-4 text-xs font-bold text-zinc-500 border-y border-zinc-100 dark:border-zinc-800 py-4">
+          <div className="flex flex-wrap items-center gap-y-4 gap-x-6 text-xs font-bold text-zinc-500 border-y border-zinc-100 dark:border-zinc-800 py-4">
              <span className="flex items-center gap-2"><Calendar size={14} /> 2024 FINISHED</span>
-             <span className="w-1 h-1 bg-zinc-300 rounded-full" />
-             <span className="uppercase text-brand-600">{item.tag}</span>
+             <span className="flex items-center gap-2 uppercase text-brand-600 tracking-wider">{item.tag}</span>
+             
+             {item.value && (
+                <span className="flex items-center gap-2 text-zinc-900 dark:text-white">
+                   <DollarSign size={14} className="text-emerald-500" /> {item.value}
+                </span>
+             )}
+             
+             {item.duration && (
+                <span className="flex items-center gap-2 text-zinc-900 dark:text-white">
+                   <Clock size={14} className="text-blue-500" /> {item.duration}
+                </span>
+             )}
           </div>
        </div>
 

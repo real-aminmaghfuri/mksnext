@@ -19,7 +19,7 @@ export const ThumbnailStripMolecule: React.FC<ThumbnailStripMoleculeProps> = ({
   const scrollRef = useGalleryAutoCenter(currentIndex);
 
   return (
-    <div className="mt-8 w-full max-w-2xl relative">
+    <div className="mt-2 w-full max-w-2xl relative pb-6">
       <div 
         ref={scrollRef}
         className="flex gap-3 overflow-hidden w-full justify-center px-4"

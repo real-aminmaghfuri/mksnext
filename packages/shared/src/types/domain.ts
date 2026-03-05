@@ -22,6 +22,8 @@ export interface PortfolioItem {
   tag: string;
   desc: string;
   image: string;
+  value?: string; // New: Project Value
+  duration?: string; // New: Project Duration
 }
 
 export interface CommentItem {

@@ -25,10 +25,10 @@ export const MainDisplayMolecule: React.FC<MainDisplayMoleculeProps> = ({
   onOpenLightbox
 }) => {
   return (
-    <div className="flex-1 flex flex-col items-center justify-center p-6 lg:p-12 relative min-h-[400px] group w-full">
-      {/* Main Image Container */}
+    <div className="flex-1 flex flex-col items-center justify-center relative min-h-[400px] group w-full">
+      {/* Main Image Container - Auto Full Width */}
       <div 
-        className="relative w-full h-full max-h-[600px] shadow-2xl rounded-xl overflow-hidden cursor-zoom-in group/img" 
+        className="relative w-full h-full max-h-[700px] overflow-hidden cursor-zoom-in group/img" 
         onClick={onOpenLightbox}
       >
         <GalleryImageAtom 
