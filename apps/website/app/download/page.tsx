@@ -1,5 +1,5 @@
 
-import { DownloadCenter } from '@/components/DownloadCenter';
+import { DownloadCenter } from '../../components/DownloadCenter';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

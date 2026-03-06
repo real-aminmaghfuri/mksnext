@@ -1,5 +1,5 @@
 
-import { WarrantyClaim } from '@/components/Warranty';
+import { WarrantyClaim } from '../../components/Warranty';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

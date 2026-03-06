@@ -1,5 +1,5 @@
 
-import { KnowledgeBase } from '@/components/KnowledgeBase';
+import { KnowledgeBase } from '../../components/KnowledgeBase';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

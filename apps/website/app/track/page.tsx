@@ -1,5 +1,5 @@
 
-import { OrderTracking } from '@/components/Track';
+import { OrderTracking } from '../../components/Track';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
