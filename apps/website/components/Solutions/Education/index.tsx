@@ -24,12 +24,12 @@ export const EducationSolution: React.FC = () => {
         titleAccent="AKADEMIK"
         subtitle="Kelola SPP, absensi, dan nilai siswa dalam satu platform terintegrasi. Transparansi buat wali murid."
       />
+      <EducationCtaAtom content={content.cta} />
       <ProductShowcase 
         category="PC"
         title="HARDWARE"
         subtitle="PC All-in-One untuk lab komputer atau administrasi sekolah yang butuh performa stabil."
       />
-      <EducationCtaAtom content={content.cta} />
     </section>
   );
 };

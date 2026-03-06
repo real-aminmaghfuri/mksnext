@@ -24,12 +24,12 @@ export const RetailSolution: React.FC = () => {
         titleAccent="NYATA"
         subtitle="Lihat gimana sistem kami mengamankan stok dan profit di berbagai toko ritel dan grosir. Gak ada lagi drama stok ghaib."
       />
+      <RetailCtaAtom content={content.cta} />
       <ProductShowcase 
         category="PC"
         title="HARDWARE"
         subtitle="Untuk ritel dan grosir, kami sarankan PC All-in-One yang tahan banting buat kerja rodi 24 jam."
       />
-      <RetailCtaAtom content={content.cta} />
     </section>
   );
 };

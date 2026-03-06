@@ -24,12 +24,12 @@ export const FnbSolution: React.FC = () => {
         titleAccent="NGEBUT"
         subtitle="Dari cafe estetik sampe resto bintang lima, sistem kami udah buktiin bisa handle rush hour tanpa pusing."
       />
+      <FnbCtaAtom content={content.cta} />
       <ProductShowcase 
         category="ANDROID"
         title="GADGET"
         subtitle="Tablet POS kenceng buat waiter lo biar gak ada lagi salah catat pesanan pelanggan."
       />
-      <FnbCtaAtom content={content.cta} />
     </section>
   );
 };

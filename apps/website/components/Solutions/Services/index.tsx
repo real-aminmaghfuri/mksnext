@@ -24,12 +24,12 @@ export const ServicesSolution: React.FC = () => {
         titleAccent="CERDAS"
         subtitle="Dari barbershop sampe laundry, sistem kami bantu manage antrian dan komisi karyawan dengan transparan."
       />
+      <ServicesCtaAtom content={content.cta} />
       <ProductShowcase 
         category="ANDROID"
         title="HARDWARE"
         subtitle="Tablet POS yang stylish buat meja kasir bisnis jasa lo biar makin kelihatan profesional."
       />
-      <ServicesCtaAtom content={content.cta} />
     </section>
   );
 };

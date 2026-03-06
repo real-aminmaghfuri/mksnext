@@ -56,23 +56,9 @@ export const PortfolioMarquee: React.FC<PortfolioMarqueeProps> = ({
       </div>
 
       <div className="relative flex overflow-hidden group">
-        <motion.div 
-          className="flex gap-6 whitespace-nowrap"
-          animate={{
-            x: ["0%", "-50%"],
-          }}
-          transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 40,
-              ease: "linear",
-            },
-          }}
+        <div 
+          className="flex gap-6 whitespace-nowrap animate-marquee"
           style={{ width: "max-content" }}
-          whileHover={{ 
-            transition: { duration: 120, ease: "linear" } 
-          }}
         >
           {marqueeItems.map((item, idx) => (
             <Link 

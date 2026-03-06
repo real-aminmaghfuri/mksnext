@@ -24,12 +24,12 @@ export const CorporateSolution: React.FC = () => {
         titleAccent="PABRIK"
         subtitle="Otomasi laporan produksi dan manajemen aset perusahaan. Efisiensi maksimal untuk profit optimal."
       />
+      <CorporateCtaAtom content={content.cta} />
       <ProductShowcase 
         category="PC"
         title="HARDWARE"
         subtitle="PC All-in-One Industrial Grade yang tahan debu dan panas untuk lingkungan pabrik lo."
       />
-      <CorporateCtaAtom content={content.cta} />
     </section>
   );
 };

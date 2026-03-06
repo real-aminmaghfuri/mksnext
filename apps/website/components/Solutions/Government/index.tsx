@@ -24,12 +24,12 @@ export const GovernmentSolution: React.FC = () => {
         titleAccent="DIGITAL"
         subtitle="Transformasi birokrasi desa jadi lebih cepat dan transparan. Pelayanan publik cuma butuh hitungan menit."
       />
+      <GovernmentCtaAtom content={content.cta} />
       <ProductShowcase 
         category="PC"
         title="HARDWARE"
         subtitle="PC All-in-One yang andal untuk mendukung operasional kantor desa dan pelayanan publik."
       />
-      <GovernmentCtaAtom content={content.cta} />
     </section>
   );
 };

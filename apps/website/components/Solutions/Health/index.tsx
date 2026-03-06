@@ -24,12 +24,12 @@ export const HealthSolution: React.FC = () => {
         titleAccent="MEDIS"
         subtitle="Digitalisasi rekam medis dan manajemen stok obat yang akurat. Pasien senang, admin tenang."
       />
+      <HealthCtaAtom content={content.cta} />
       <ProductShowcase 
         category="PC"
         title="HARDWARE"
         subtitle="PC All-in-One yang steril dan andal untuk kebutuhan administrasi klinik dan apotek lo."
       />
-      <HealthCtaAtom content={content.cta} />
     </section>
   );
 };

@@ -24,12 +24,12 @@ export const FranchiseSolution: React.FC = () => {
         titleAccent="MASIF"
         subtitle="Kontrol ratusan cabang dari satu dashboard. Pantau royalti dan stok pusat secara real-time tanpa ribet."
       />
+      <FranchiseCtaAtom content={content.cta} />
       <ProductShowcase 
         category="ANDROID"
         title="PAKET"
         subtitle="Paket kasir Android yang ringkas dan mudah di-deploy ke seluruh cabang franchise lo."
       />
-      <FranchiseCtaAtom content={content.cta} />
     </section>
   );
 };
