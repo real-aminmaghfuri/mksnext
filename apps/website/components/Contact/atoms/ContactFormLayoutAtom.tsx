@@ -16,7 +16,7 @@ export const ContactFormLayoutAtom: React.FC<ContactFormLayoutProps> = ({ info, 
   const { selectedTopic, setSelectedTopic, handleSubmit } = useContactFormLogic(form.topics[0]);
 
   return (
-    <div className="container mx-auto px-6 mb-24 relative z-10 max-w-6xl">
+    <div className="container mx-auto px-6 mt-16 mb-24 relative z-10 max-w-6xl">
        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Step 2: Static Info Component (Presentation Layer) */}
