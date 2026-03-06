@@ -91,7 +91,7 @@ export const PortfolioMarquee: React.FC<PortfolioMarqueeProps> = ({
               </div>
             </Link>
           ))}
-        </motion.div>
+        </div>
       </div>
     </div>
   );
