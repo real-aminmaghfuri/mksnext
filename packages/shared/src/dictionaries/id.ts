@@ -26,6 +26,10 @@ import { Corporate_ID } from './modules/corporate';
 import { Franchise_ID } from './modules/franchise';
 import { LegalPage_ID } from './modules/legal-pages';
 import { Assistants_ID } from './modules/assistants';
+import { Download_ID } from './modules/download';
+import { Kb_ID } from './modules/kb';
+import { Track_ID } from './modules/track';
+import { Warranty_ID } from './modules/warranty';
 
 export const ID_DICTIONARY: Translation = {
   ...Hero_ID,
@@ -56,4 +60,8 @@ export const ID_DICTIONARY: Translation = {
   ...Franchise_ID,
   ...LegalPage_ID,
   ...Assistants_ID,
+  ...Download_ID,
+  ...Kb_ID,
+  ...Track_ID,
+  ...Warranty_ID,
 };

@@ -16,6 +16,10 @@ import { RetailDictionary, FnbDictionary, ServiceBusinessDictionary, HealthDicti
 import { EducationDictionary, GovernmentDictionary, CorporateDictionary, FranchiseDictionary } from './dictionary/solutions-industry-2';
 import { LegalPageDictionary } from './dictionary/legal';
 import { AssistantsDictionary } from './dictionary/assistants';
+import { DownloadDictionary } from './dictionary/download';
+import { KbDictionary } from './dictionary/kb';
+import { TrackDictionary } from './dictionary/track';
+import { WarrantyDictionary } from './dictionary/warranty';
 
 // Re-exporting for backward compatibility
 export type { NavDictionary } from './nav-types';
@@ -36,6 +40,10 @@ export type { RetailDictionary, FnbDictionary, ServiceBusinessDictionary, Health
 export type { EducationDictionary, GovernmentDictionary, CorporateDictionary, FranchiseDictionary } from './dictionary/solutions-industry-2';
 export type { LegalPageDictionary } from './dictionary/legal';
 export type { AssistantsDictionary } from './dictionary/assistants';
+export type { DownloadDictionary, DownloadItem } from './dictionary/download';
+export type { KbDictionary, KbCategory, KbArticle } from './dictionary/kb';
+export type { TrackDictionary } from './dictionary/track';
+export type { WarrantyDictionary } from './dictionary/warranty';
 
 export interface Translation extends 
   HeroDictionary,
@@ -65,5 +73,9 @@ export interface Translation extends
   CorporateDictionary,
   FranchiseDictionary,
   LegalPageDictionary,
-  AssistantsDictionary
+  AssistantsDictionary,
+  DownloadDictionary,
+  KbDictionary,
+  TrackDictionary,
+  WarrantyDictionary
 {}

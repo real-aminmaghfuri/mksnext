@@ -23,7 +23,7 @@ export const getSupportMenu = (text: Translation): MenuItem => ({
           width: 'wide',
           items: [
             { label: text.navSupDownload, path: '/download', icon: Download, desc: "Driver & Software" },
-            { label: text.navSupKb, path: '/articles', icon: BookOpen, desc: "Tutorial & Dokumentasi" },
+            { label: text.navSupKb, path: '/kb', icon: BookOpen, desc: "Tutorial & Dokumentasi" },
             { label: text.navSupTrack, path: '/track', icon: Truck, desc: "Cek Resi Pengiriman" },
             { label: text.navSupClaim, path: '/warranty', icon: AlertTriangle, desc: "Layanan Purna Jual" },
           ]

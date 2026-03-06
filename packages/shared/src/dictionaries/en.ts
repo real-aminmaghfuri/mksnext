@@ -26,6 +26,10 @@ import { Corporate_EN } from './modules/corporate';
 import { Franchise_EN } from './modules/franchise';
 import { LegalPage_EN } from './modules/legal-pages';
 import { Assistants_EN } from './modules/assistants';
+import { Download_EN } from './modules/download';
+import { Kb_EN } from './modules/kb';
+import { Track_EN } from './modules/track';
+import { Warranty_EN } from './modules/warranty';
 
 export const EN_DICTIONARY: Translation = {
   ...Hero_EN,
@@ -56,4 +60,8 @@ export const EN_DICTIONARY: Translation = {
   ...Franchise_EN,
   ...LegalPage_EN,
   ...Assistants_EN,
+  ...Download_EN,
+  ...Kb_EN,
+  ...Track_EN,
+  ...Warranty_EN,
 };
