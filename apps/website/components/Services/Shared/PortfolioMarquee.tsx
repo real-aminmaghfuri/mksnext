@@ -2,7 +2,6 @@
 "use client";
 
 import React from 'react';
-import { motion } from 'motion/react';
 import { MOCK_PORTFOLIO } from 'shared';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
@@ -39,17 +38,15 @@ export const PortfolioMarquee: React.FC<PortfolioMarqueeProps> = ({
 
   return (
     <div className="py-24 bg-white dark:bg-zinc-900 overflow-hidden border-y border-zinc-100 dark:border-zinc-800">
-      <div className="container mx-auto px-6 mb-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div>
-            <span className="text-brand-600 dark:text-brand-500 font-black text-xs uppercase tracking-[0.2em] mb-3 block">
-              {badge}
-            </span>
-            <h2 className="text-4xl md:text-5xl font-black text-zinc-900 dark:text-white leading-tight tracking-tighter">
-              {title} <span className="text-brand-600">{titleAccent}</span> KAMI.
-            </h2>
-          </div>
-          <p className="text-zinc-500 dark:text-zinc-400 max-w-md text-sm font-medium">
+      <div className="container mx-auto px-6 mb-16">
+        <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
+          <span className="text-brand-600 dark:text-brand-500 font-black text-xs uppercase tracking-[0.2em] mb-4 block">
+            {badge}
+          </span>
+          <h2 className="text-4xl md:text-6xl font-black text-zinc-900 dark:text-white leading-tight tracking-tighter mb-6">
+            {title} <span className="text-brand-600">{titleAccent}</span> KAMI.
+          </h2>
+          <p className="text-zinc-500 dark:text-zinc-400 text-base md:text-lg font-medium leading-relaxed">
             {subtitle}
           </p>
         </div>

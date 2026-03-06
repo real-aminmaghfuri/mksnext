@@ -7,7 +7,6 @@ import { GovernmentHeroAtom } from './atoms/GovernmentHeroAtom';
 import { GovernmentPainAtom } from './atoms/GovernmentPainAtom';
 import { GovernmentSystemAtom } from './atoms/GovernmentSystemAtom';
 import { PortfolioMarquee } from '../../Services/Shared/PortfolioMarquee';
-import { ProductShowcase } from '../Shared/ProductShowcase';
 import { GovernmentCtaAtom } from './atoms/GovernmentCtaAtom';
 
 export const GovernmentSolution: React.FC = () => {
@@ -25,11 +24,6 @@ export const GovernmentSolution: React.FC = () => {
         subtitle="Transformasi birokrasi desa jadi lebih cepat dan transparan. Pelayanan publik cuma butuh hitungan menit."
       />
       <GovernmentCtaAtom content={content.cta} />
-      <ProductShowcase 
-        category="PC"
-        title="HARDWARE"
-        subtitle="PC All-in-One yang andal untuk mendukung operasional kantor desa dan pelayanan publik."
-      />
     </section>
   );
 };

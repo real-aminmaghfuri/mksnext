@@ -7,7 +7,6 @@ import { EducationHeroAtom } from './atoms/EducationHeroAtom';
 import { EducationChaosAtom } from './atoms/EducationChaosAtom';
 import { EducationSystemAtom } from './atoms/EducationSystemAtom';
 import { PortfolioMarquee } from '../../Services/Shared/PortfolioMarquee';
-import { ProductShowcase } from '../Shared/ProductShowcase';
 import { EducationCtaAtom } from './atoms/EducationCtaAtom';
 
 export const EducationSolution: React.FC = () => {
@@ -25,11 +24,6 @@ export const EducationSolution: React.FC = () => {
         subtitle="Kelola SPP, absensi, dan nilai siswa dalam satu platform terintegrasi. Transparansi buat wali murid."
       />
       <EducationCtaAtom content={content.cta} />
-      <ProductShowcase 
-        category="PC"
-        title="HARDWARE"
-        subtitle="PC All-in-One untuk lab komputer atau administrasi sekolah yang butuh performa stabil."
-      />
     </section>
   );
 };

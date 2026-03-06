@@ -6,11 +6,11 @@ import { Moon, Sun, MessageCircle } from 'lucide-react';
 import { Button } from 'ui';
 import { NavbarLogic } from '../types';
 
-interface ActionProps extends Pick<NavbarLogic, 'isDark' | 'toggleTheme' | 'toggleLang' | 'language'> {
+interface ActionProps extends Pick<NavbarLogic, 'isDark' | 'toggleTheme' | 'toggleLang' | 'language' | 'text'> {
   onOpenMenu?: () => void;
 }
 
-export const ActionButtonsAtom: React.FC<ActionProps> = ({ isDark, toggleTheme, toggleLang, language }) => {
+export const ActionButtonsAtom: React.FC<ActionProps> = ({ isDark, toggleTheme, toggleLang, language, text }) => {
   return (
     <div className="flex items-center gap-2 shrink-0">
       {/* Theme Toggle: Always Visible */}
@@ -31,8 +31,8 @@ export const ActionButtonsAtom: React.FC<ActionProps> = ({ isDark, toggleTheme, 
 
       {/* CTA Button: Hidden on Mobile, Visible on Tablet+ */}
       <Link href="/contact" className="hidden md:block">
-        <Button size="md" variant="primary" className="font-bold shadow-brand-500/20 hover:shadow-brand-500/50">
-          HUBUNGI GUE <MessageCircle size={18} className="ml-2" />
+        <Button size="md" variant="primary" className="font-bold shadow-brand-500/20 hover:shadow-brand-500/50 uppercase">
+          {text.navContact} <MessageCircle size={18} className="ml-2" />
         </Button>
       </Link>
       

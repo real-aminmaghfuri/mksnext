@@ -8,13 +8,14 @@ import { ProductGalleryAtom } from './atoms/ProductGalleryAtom';
 import { ProductInfoAtom } from './atoms/ProductInfoAtom';
 import { ProductActionsAtom } from './atoms/ProductActionsAtom';
 import { X, ArrowLeft } from 'lucide-react';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface ProductDetailProps {
   product: ProductItem;
 }
 
 export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
+  const router = useRouter();
   const { 
     currentImageIndex, 
     nextImage, 
@@ -37,9 +38,12 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
        
        {/* Top Navigation Bar (Mobile Only) */}
        <div className="h-16 flex items-center justify-between px-6 border-b border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md z-50 shrink-0 lg:hidden">
-          <Link href="/shop" className="p-2 -ml-2 text-zinc-500 hover:text-zinc-900 dark:hover:text-white">
+          <button 
+            onClick={() => router.back()} 
+            className="p-2 -ml-2 text-zinc-500 hover:text-zinc-900 dark:hover:text-white cursor-pointer"
+          >
              <ArrowLeft size={24} />
-          </Link>
+          </button>
           <span className="font-bold text-xs uppercase tracking-widest line-clamp-1">{product.name}</span>
           <div className="w-8" /> 
        </div>
@@ -48,12 +52,12 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
           Desktop Close Button 
           STYLE: Lebih mencolok (Red Background, White Icon, Floating)
        */}
-       <Link 
-         href="/shop" 
-         className="hidden lg:flex absolute top-6 right-6 z-[60] w-14 h-14 rounded-full bg-red-600 hover:bg-red-500 shadow-2xl items-center justify-center text-white transition-all hover:rotate-90 hover:scale-110 active:scale-95 border-4 border-white dark:border-zinc-900"
+       <button 
+         onClick={() => router.back()} 
+         className="hidden lg:flex absolute top-6 right-6 z-[60] w-14 h-14 rounded-full bg-red-600 hover:bg-red-500 shadow-2xl items-center justify-center text-white transition-all hover:rotate-90 hover:scale-110 active:scale-95 border-4 border-white dark:border-zinc-900 cursor-pointer"
        >
           <X size={28} strokeWidth={3} />
-       </Link>
+       </button>
 
        {/* Main Content Area */}
        <div className="flex-1 overflow-hidden">

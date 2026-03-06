@@ -23,17 +23,17 @@ export const Contact: React.FC<ContactProps> = ({ identity }) => {
         sub={content.sub}
       />
       
-      <ContactQnaAtom 
-        items={content.qna.items} 
-        title={content.qna.title}
-      />
-
       <ContactFormLayoutAtom 
         info={content.info} 
         form={content.form} 
       />
 
       <ContactMapsAtom data={content.maps} />
+
+      <ContactQnaAtom 
+        items={content.qna.items} 
+        title={content.qna.title}
+      />
     </section>
   );
 };

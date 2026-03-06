@@ -7,7 +7,6 @@ import { RetailHeroAtom } from './atoms/RetailHeroAtom';
 import { RetailPainAtom } from './atoms/RetailPainAtom';
 import { RetailSystemAtom } from './atoms/RetailSystemAtom';
 import { PortfolioMarquee } from '../../Services/Shared/PortfolioMarquee';
-import { ProductShowcase } from '../Shared/ProductShowcase';
 import { RetailCtaAtom } from './atoms/RetailCtaAtom';
 
 export const RetailSolution: React.FC = () => {
@@ -25,11 +24,6 @@ export const RetailSolution: React.FC = () => {
         subtitle="Lihat gimana sistem kami mengamankan stok dan profit di berbagai toko ritel dan grosir. Gak ada lagi drama stok ghaib."
       />
       <RetailCtaAtom content={content.cta} />
-      <ProductShowcase 
-        category="PC"
-        title="HARDWARE"
-        subtitle="Untuk ritel dan grosir, kami sarankan PC All-in-One yang tahan banting buat kerja rodi 24 jam."
-      />
     </section>
   );
 };

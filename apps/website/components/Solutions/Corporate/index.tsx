@@ -7,7 +7,6 @@ import { CorporateHeroAtom } from './atoms/CorporateHeroAtom';
 import { CorporatePainAtom } from './atoms/CorporatePainAtom';
 import { CorporateSystemAtom } from './atoms/CorporateSystemAtom';
 import { PortfolioMarquee } from '../../Services/Shared/PortfolioMarquee';
-import { ProductShowcase } from '../Shared/ProductShowcase';
 import { CorporateCtaAtom } from './atoms/CorporateCtaAtom';
 
 export const CorporateSolution: React.FC = () => {
@@ -25,11 +24,6 @@ export const CorporateSolution: React.FC = () => {
         subtitle="Otomasi laporan produksi dan manajemen aset perusahaan. Efisiensi maksimal untuk profit optimal."
       />
       <CorporateCtaAtom content={content.cta} />
-      <ProductShowcase 
-        category="PC"
-        title="HARDWARE"
-        subtitle="PC All-in-One Industrial Grade yang tahan debu dan panas untuk lingkungan pabrik lo."
-      />
     </section>
   );
 };

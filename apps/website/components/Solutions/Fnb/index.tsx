@@ -7,7 +7,6 @@ import { FnbHeroAtom } from './atoms/FnbHeroAtom';
 import { FnbPainPointsAtom } from './atoms/FnbPainPointsAtom';
 import { FnbFeaturesAtom } from './atoms/FnbFeaturesAtom';
 import { PortfolioMarquee } from '../../Services/Shared/PortfolioMarquee';
-import { ProductShowcase } from '../Shared/ProductShowcase';
 import { FnbCtaAtom } from './atoms/FnbCtaAtom';
 
 export const FnbSolution: React.FC = () => {
@@ -25,11 +24,6 @@ export const FnbSolution: React.FC = () => {
         subtitle="Dari cafe estetik sampe resto bintang lima, sistem kami udah buktiin bisa handle rush hour tanpa pusing."
       />
       <FnbCtaAtom content={content.cta} />
-      <ProductShowcase 
-        category="ANDROID"
-        title="GADGET"
-        subtitle="Tablet POS kenceng buat waiter lo biar gak ada lagi salah catat pesanan pelanggan."
-      />
     </section>
   );
 };

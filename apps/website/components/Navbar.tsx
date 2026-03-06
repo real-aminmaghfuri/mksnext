@@ -39,6 +39,7 @@ export const Navbar: React.FC = () => {
                 language={logic.language}
                 toggleTheme={logic.toggleTheme}
                 toggleLang={logic.toggleLang}
+                text={logic.text}
              />
           </div>
 
