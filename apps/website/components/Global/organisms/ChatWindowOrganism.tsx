@@ -33,7 +33,7 @@ export const ChatWindowOrganism: React.FC<ChatWindowOrganismProps> = ({
 }) => {
   return (
     <div className={`
-      fixed bottom-40 right-6 md:bottom-24 md:right-8 z-50 w-[320px] md:w-[380px] bg-white dark:bg-zinc-950 
+      fixed bottom-40 right-6 md:bottom-24 md:right-8 landscape:right-[100px] landscape:bottom-20 z-50 w-[320px] md:w-[380px] bg-white dark:bg-zinc-950 
       border border-zinc-200 dark:border-zinc-800 rounded-3xl shadow-2xl overflow-hidden
       transition-all duration-300 origin-bottom-right
       ${isOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-90 translate-y-4 pointer-events-none'}
