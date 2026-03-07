@@ -1,6 +1,6 @@
 
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { QnaItem } from 'shared';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
@@ -10,6 +10,27 @@ interface LegalAccordionProps {
 
 export const LegalAccordionAtom: React.FC<LegalAccordionProps> = ({ items }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash.startsWith('#faq-')) {
+        const index = parseInt(hash.split('-')[1]);
+        if (!isNaN(index) && index < items.length) {
+          setOpenIndex(index);
+          // Scroll to the item
+          const element = document.getElementById(`faq-${index}`);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }
+      }
+    };
+
+    handleHashChange();
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, [items.length]);
 
   const toggle = (idx: number) => {
     setOpenIndex(openIndex === idx ? null : idx);
@@ -22,7 +43,8 @@ export const LegalAccordionAtom: React.FC<LegalAccordionProps> = ({ items }) => 
           return (
             <div 
                 key={idx} 
-                className={`bg-white dark:bg-zinc-900/50 border transition-all duration-300 rounded-2xl overflow-hidden
+                id={`faq-${idx}`}
+                className={`bg-white dark:bg-zinc-900/50 border transition-all duration-300 rounded-2xl overflow-hidden scroll-mt-32
                     ${isOpen 
                         ? 'border-brand-500/30 shadow-lg shadow-brand-500/5' 
                         : 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700'

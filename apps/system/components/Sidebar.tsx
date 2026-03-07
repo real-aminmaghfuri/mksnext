@@ -47,6 +47,7 @@ export const Sidebar: React.FC<{ collapsed?: boolean }> = ({ collapsed = false }
             <Link
               key={idx}
               href={item.path}
+              aria-label={item.label}
               className={`w-full flex items-center p-3 rounded-xl transition-all duration-300 group
                 ${isActive 
                   ? 'bg-zinc-900 dark:bg-white text-white dark:text-black shadow-lg' 
@@ -69,6 +70,7 @@ export const Sidebar: React.FC<{ collapsed?: boolean }> = ({ collapsed = false }
       <div className="p-4 border-t border-zinc-100 dark:border-zinc-900">
         <a 
           href="/" 
+          aria-label="Exit System"
           className="flex items-center p-3 rounded-xl text-red-600 hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors font-bold text-sm"
         >
           <LogOut size={18} />

@@ -25,14 +25,14 @@ export const HeroHeadingAtom: React.FC<HeroHeadingProps> = ({ brandName, title, 
         Semantically a paragraph, but visually the "Title".
         This prevents keyword dilution in the H1.
       */}
-      <p className="text-5xl lg:text-7xl font-extrabold tracking-tight leading-tight text-zinc-900 dark:text-white drop-shadow-sm mb-8">
+      <p className="text-fluid-display font-extrabold tracking-tight leading-tight text-zinc-900 dark:text-white drop-shadow-sm mb-8">
         <span className="block mb-2 bg-clip-text text-transparent bg-gradient-to-r from-brand-600 to-red-600 dark:from-brand-500 dark:to-red-500">
           {brandName}
         </span>
         {title}
       </p>
 
-      <p className="text-lg lg:text-xl text-zinc-700 dark:text-zinc-400 max-w-2xl mx-auto font-medium leading-relaxed">
+      <p className="text-fluid-body text-zinc-700 dark:text-zinc-400 max-w-2xl mx-auto font-medium leading-relaxed">
         {subtitle}
       </p>
     </div>

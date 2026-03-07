@@ -14,7 +14,7 @@ export const NavContainerAtom: React.FC<NavContainerAtomProps> = ({ children }) 
       fixed z-[100] bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md border-zinc-200 dark:border-zinc-800 transition-all duration-300 shadow-2xl
       
       /* PORTRAIT STYLES (Mobile Default) */
-      bottom-0 left-0 w-full h-[72px] border-t
+      bottom-0 left-0 w-full h-[72px] border-t pb-safe
       
       /* BREAKPOINT: Hide strictly on XL (1280px+) */
       xl:hidden xl:landscape:hidden

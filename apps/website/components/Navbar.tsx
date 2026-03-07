@@ -21,7 +21,7 @@ export const Navbar: React.FC = () => {
             - Landscape Mobile/Tablet: pr-28 (112px) to clear 80px sidebar.
             - Desktop (XL+): Reset to standard px-12. Sidebar is hidden here.
         */}
-        <div className="w-full h-20 flex items-center justify-between px-6 landscape:pr-28 xl:px-12 xl:landscape:pr-12 transition-all">
+        <div className="w-full h-20 flex items-center justify-between px-6 landscape:pr-[max(100px,12vw)] xl:px-12 xl:landscape:pr-12 transition-all">
           
           {/* Particle: Brand Logo */}
           <LogoAtom />

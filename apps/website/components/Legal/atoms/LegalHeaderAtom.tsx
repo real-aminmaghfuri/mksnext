@@ -32,11 +32,11 @@ export const LegalHeaderAtom: React.FC<LegalHeaderProps> = ({ title, sub, type }
              <span>OFFICIAL PROTOCOL</span>
           </div>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-zinc-900 dark:text-white uppercase tracking-tighter mb-6 leading-[0.9]">
+          <h1 className="text-fluid-display font-black text-zinc-900 dark:text-white uppercase tracking-tighter mb-6 leading-[0.9]">
             {title}
           </h1>
           
-          <p className="text-lg lg:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed font-medium">
+          <p className="text-fluid-body text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed font-medium">
             {sub}
           </p>
        </div>

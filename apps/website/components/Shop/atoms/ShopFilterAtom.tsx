@@ -28,7 +28,7 @@ export const ShopFilterAtom: React.FC<ShopFilterProps> = ({ activeCategory, onFi
             <button
               key={btn.id}
               onClick={() => onFilterChange(btn.id)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-wide transition-all duration-300
+              className={`flex items-center gap-2 px-5 py-3.5 rounded-xl text-xs font-black uppercase tracking-wide transition-all duration-300
                 ${isActive 
                   ? 'bg-brand-600 text-white shadow-lg shadow-brand-500/25 scale-105' 
                   : 'bg-transparent text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-200'

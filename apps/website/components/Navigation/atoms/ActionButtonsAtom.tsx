@@ -16,15 +16,17 @@ export const ActionButtonsAtom: React.FC<ActionProps> = ({ isDark, toggleTheme, 
       {/* Theme Toggle: Always Visible */}
       <button 
         onClick={toggleTheme}
-        className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors text-zinc-600 dark:text-zinc-400"
+        aria-label={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+        className="w-11 h-11 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors text-zinc-600 dark:text-zinc-400"
       >
-        {isDark ? <Sun size={18} /> : <Moon size={18} />}
+        {isDark ? <Sun size={20} /> : <Moon size={20} />}
       </button>
       
       {/* Language Toggle: Always Visible */}
       <button 
         onClick={toggleLang}
-        className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors text-zinc-900 dark:text-white font-black text-[10px] md:text-xs border border-zinc-200 dark:border-zinc-700"
+        aria-label="Switch Language"
+        className="w-11 h-11 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors text-zinc-900 dark:text-white font-black text-xs border border-zinc-200 dark:border-zinc-700"
       >
         {language}
       </button>

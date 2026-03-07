@@ -31,6 +31,16 @@ const config: Config = {
           dark: '#0f0f10',
           panel: '#18181b',
         }
+      },
+      fontSize: {
+        'fluid-display': ['clamp(2.5rem, 8vw, 5rem)', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+        'fluid-h1': ['clamp(2rem, 6vw, 3.5rem)', { lineHeight: '1.2', letterSpacing: '-0.01em' }],
+        'fluid-h2': ['clamp(1.5rem, 4vw, 2.5rem)', { lineHeight: '1.3' }],
+        'fluid-body': ['clamp(1rem, 1.5vw, 1.125rem)', { lineHeight: '1.6' }],
+      },
+      spacing: {
+        'fluid-gap': 'clamp(1rem, 3vw, 2.5rem)',
+        'fluid-padding': 'clamp(1.5rem, 5vw, 4rem)',
       }
     }
   },

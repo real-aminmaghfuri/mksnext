@@ -10,7 +10,7 @@ export const LogoAtom: React.FC = () => {
   const text = DICTIONARY[language];
 
   return (
-    <Link href="/" className="flex items-center gap-3 cursor-pointer group shrink-0">
+    <Link href="/" aria-label="Mesin Kasir Solo Home" className="flex items-center gap-3 cursor-pointer group shrink-0">
       <div className="group-hover:scale-110 transition-transform duration-300 drop-shadow-lg shadow-brand-500/50">
          <Logo className="w-10 h-10" />
       </div>

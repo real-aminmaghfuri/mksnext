@@ -39,14 +39,14 @@ export const NavItemMolecule: React.FC<NavItemMoleculeProps> = ({
 
   if (hasDropdown) {
     return (
-      <button onClick={onClick} className={commonClasses}>
+      <button onClick={onClick} aria-label={`Open ${label} menu`} className={commonClasses}>
         {content}
       </button>
     );
   }
 
   return (
-    <Link href={path} className={commonClasses}>
+    <Link href={path} aria-label={label} className={commonClasses}>
       {content}
     </Link>
   );

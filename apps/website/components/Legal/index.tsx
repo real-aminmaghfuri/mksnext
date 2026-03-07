@@ -9,6 +9,7 @@ import { LegalHeaderAtom } from './atoms/LegalHeaderAtom';
 import { LegalContentAtom } from './atoms/LegalContentAtom';
 import { LegalAccordionAtom } from './atoms/LegalAccordionAtom';
 import { LegalSidebarAtom } from './atoms/LegalSidebarAtom';
+import { LegalMobileNavAtom } from './atoms/LegalMobileNavAtom';
 
 interface LegalProps {
   type: LegalPageType;
@@ -25,6 +26,9 @@ export const Legal: React.FC<LegalProps> = ({ type }) => {
         sub={content.sub}
         type={type}
       />
+
+      {/* Mobile Navigation - Sticky below header */}
+      <LegalMobileNavAtom data={navGroups} />
 
       <div className="container mx-auto px-6 relative z-10 -mt-10">
          

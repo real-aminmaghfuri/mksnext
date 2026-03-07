@@ -18,7 +18,7 @@ interface StatsGridProps {
 
 export const StatsGridAtom: React.FC<StatsGridProps> = ({ stats }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
       {stats.map((stat, idx) => {
         const Icon = stat.icon;
         return (

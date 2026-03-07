@@ -17,7 +17,7 @@ export const Hero: React.FC = () => {
       {/* Particle: Background & Atmosphere */}
       <HeroBackgroundAtom />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-10 relative z-10 w-full">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 landscape:pr-[max(100px,12vw)] relative z-10 w-full">
         <div className="flex flex-col items-center justify-center">
           <div className="text-center space-y-8 max-w-4xl mx-auto">
             
