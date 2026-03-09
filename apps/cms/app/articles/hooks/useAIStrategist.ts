@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
-import { Repository, AIKeywordResearch, AIGenerationConfig } from 'data';
+import { AIKeywordResearch, AIGenerationConfig } from 'data';
+import { researchKeywordsAction, generateArticleAction } from '../actions/ai';
 
 export const useAIStrategist = () => {
   const [topic, setTopic] = useState('');
@@ -30,9 +31,9 @@ export const useAIStrategist = () => {
     setIsResearching(true);
     setError(null);
     try {
-      console.log("Calling Repository.researchKeywords...");
-      const results = await Repository.researchKeywords(topic);
-      console.log("Research results received:", results);
+      console.log("Calling researchKeywordsAction (Server Action)...");
+      const results = await researchKeywordsAction(topic);
+      console.log("Research results received from server:", results);
       if (results.length === 0) {
         setError("No results found. Try a different topic or check your API keys.");
       }
@@ -56,11 +57,14 @@ export const useAIStrategist = () => {
 
   const handleGenerate = async () => {
     setIsGenerating(true);
+    setError(null);
     try {
-      const content = await Repository.generateArticle(config);
+      console.log("Calling generateArticleAction (Server Action)...");
+      const content = await generateArticleAction(config);
       setGeneratedContent(content);
-    } catch (error) {
-      console.error("Generation failed", error);
+    } catch (err: any) {
+      console.error("Generation failed in hook:", err);
+      setError(err.message || "Generation failed. Please check your connection or API keys.");
     } finally {
       setIsGenerating(false);
     }

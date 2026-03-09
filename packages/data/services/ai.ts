@@ -12,15 +12,6 @@ Goal: Dominate the Indonesian market with brutal SEO content.
 export class AIService {
   private static keyIndex = 0;
   private static readonly API_KEYS = [
-    // Try NEXT_PUBLIC_ (Next.js client-side standard)
-    process.env.NEXT_PUBLIC_GEMINI_API_KEY,
-    process.env.NEXT_PUBLIC_GEMINI_API_KEY_1,
-    process.env.NEXT_PUBLIC_GEMINI_API_KEY_2,
-    process.env.NEXT_PUBLIC_GEMINI_API_KEY_3,
-    process.env.NEXT_PUBLIC_GEMINI_API_KEY_4,
-    process.env.NEXT_PUBLIC_GEMINI_API_KEY_5,
-    process.env.NEXT_PUBLIC_GEMINI_API_KEY_6,
-    // Try process.env (platform injected)
     process.env.GEMINI_API_KEY,
     process.env.GEMINI_API_KEY_1,
     process.env.GEMINI_API_KEY_2,
@@ -28,24 +19,13 @@ export class AIService {
     process.env.GEMINI_API_KEY_4,
     process.env.GEMINI_API_KEY_5,
     process.env.GEMINI_API_KEY_6,
-    // Try import.meta.env (Vite standard)
-    (import.meta as any).env?.VITE_GEMINI_API_KEY,
-    (import.meta as any).env?.VITE_GEMINI_API_KEY_1,
-    (import.meta as any).env?.VITE_GEMINI_API_KEY_2,
-    (import.meta as any).env?.VITE_GEMINI_API_KEY_3,
-    (import.meta as any).env?.VITE_GEMINI_API_KEY_4,
-    (import.meta as any).env?.VITE_GEMINI_API_KEY_5,
-    (import.meta as any).env?.VITE_GEMINI_API_KEY_6,
   ].filter(Boolean) as string[];
 
   private static getAI() {
-    const apiKey = this.API_KEYS[this.keyIndex] || 
-                   process.env.NEXT_PUBLIC_GEMINI_API_KEY || 
-                   process.env.GEMINI_API_KEY || 
-                   (import.meta as any).env?.VITE_GEMINI_API_KEY || '';
+    const apiKey = this.API_KEYS[this.keyIndex] || process.env.GEMINI_API_KEY || '';
     
     if (!apiKey) {
-      console.error("CRITICAL: No Gemini API Key found! AI features will not work. Please ensure NEXT_PUBLIC_GEMINI_API_KEY is set.");
+      console.error("CRITICAL: No Gemini API Key found in server environment!");
     }
     return new GoogleGenAI({ apiKey });
   }
