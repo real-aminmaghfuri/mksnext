@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { AIKeywordResearch, AIGenerationConfig } from 'data';
-import { researchKeywordsAction, generateArticleAction } from '../actions/ai';
+import { researchKeywordsAction, generateArticleAction } from '../../actions/ai';
 
 export const useAIStrategist = () => {
   const [topic, setTopic] = useState('');
