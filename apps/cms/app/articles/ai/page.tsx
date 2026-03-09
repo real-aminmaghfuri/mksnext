@@ -2,12 +2,12 @@
 "use client";
 
 import React from 'react';
-import { Sidebar } from '../../components/Sidebar';
-import { Header } from '../../components/Header';
-import { MobileNav } from '../../components/MobileNav';
-import { useAIStrategist } from './hooks/useAIStrategist';
-import { AIStrategistOrganism } from './components/organisms/AIStrategistOrganism';
-import { AIGeneratorOrganism } from './components/organisms/AIGeneratorOrganism';
+import { Sidebar } from '../../../components/Sidebar';
+import { Header } from '../../../components/Header';
+import { MobileNav } from '../../../components/MobileNav';
+import { useAIStrategist } from '../hooks/useAIStrategist';
+import { AIStrategistOrganism } from '../components/organisms/AIStrategistOrganism';
+import { AIGeneratorOrganism } from '../components/organisms/AIGeneratorOrganism';
 import { Sparkles, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
