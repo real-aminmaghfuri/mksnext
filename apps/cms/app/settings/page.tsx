@@ -37,22 +37,35 @@ export default function CMSSettingsPage() {
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
          <Header title="SYSTEM CONFIGURATION" />
 
-        <div className="flex border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 px-6 pt-2">
-          <TabButtonAtom
-            label="Corporate Identity"
-            icon={User}
-            isActive={activeTab === 'IDENTITY'}
-            onClick={() => setActiveTab('IDENTITY')}
-          />
-          <TabButtonAtom
-            label="Web Protocols"
-            icon={Globe}
-            isActive={activeTab === 'PROTOCOLS'}
-            onClick={() => setActiveTab('PROTOCOLS')}
-          />
+        <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 px-6 pt-2">
+          <div className="flex">
+            <TabButtonAtom
+              label="Corporate Identity"
+              icon={User}
+              isActive={activeTab === 'IDENTITY'}
+              onClick={() => setActiveTab('IDENTITY')}
+            />
+            <TabButtonAtom
+              label="Web Protocols"
+              icon={Globe}
+              isActive={activeTab === 'PROTOCOLS'}
+              onClick={() => setActiveTab('PROTOCOLS')}
+            />
+          </div>
+
+          <div className="pb-2 hidden md:block">
+            <Button
+              size="sm"
+              onClick={() => handleSave(activeTab)}
+              className="bg-brand-600 hover:bg-brand-500 shadow-xl shadow-brand-500/20 font-black tracking-widest uppercase text-[10px] px-6"
+              disabled={isSaving}
+            >
+              {isSaving ? 'SYNCING...' : <><Save size={14} className="mr-2" /> UPDATE CONFIG</>}
+            </Button>
+          </div>
         </div>
 
-         <main className="flex-1 overflow-y-auto p-6 md:p-8 custom-scrollbar relative z-10 pb-24">
+         <main className="flex-1 overflow-y-auto p-6 md:p-8 custom-scrollbar relative z-10">
             
             {isLoading ? (
                 <div className="flex flex-col items-center justify-center h-64 text-zinc-500">
@@ -82,15 +95,15 @@ export default function CMSSettingsPage() {
                 />
               )}
 
-              {/* SAVE ACTION */}
-              <div className="fixed bottom-0 md:bottom-6 left-0 md:left-auto right-0 md:right-6 p-4 md:p-0 z-50">
+              {/* MOBILE SAVE ACTION */}
+              <div className="fixed bottom-0 left-0 right-0 p-4 z-50 md:hidden">
                 <Button
                   size="lg"
                   onClick={() => handleSave(activeTab)}
-                  className="w-full md:w-auto bg-brand-600 hover:bg-brand-500 shadow-2xl shadow-brand-500/40 font-black tracking-widest uppercase"
+                  className="w-full bg-brand-600 hover:bg-brand-500 shadow-2xl shadow-brand-500/40 font-black tracking-widest uppercase"
                   disabled={isSaving}
                 >
-                  {isSaving ? 'SYNCING TO CLOUD...' : <><Save size={18} className="mr-2" /> UPDATE CONFIG</>}
+                  {isSaving ? 'SYNCING...' : <><Save size={18} className="mr-2" /> UPDATE CONFIG</>}
                 </Button>
               </div>
             </div>

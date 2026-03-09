@@ -6,7 +6,8 @@ import { SettingsRepository } from './repositories/settings';
 import { IdentityRepository } from './repositories/identity';
 import { MediaRepository } from './repositories/media';
 import { POSRepository } from './repositories/pos';
-import { DashboardStats, Transaction, Product, WebProtocols, CompanyIdentity, MediaAsset } from './types';
+import { ArticlesRepository } from './repositories/articles';
+import { DashboardStats, Transaction, Product, WebProtocols, CompanyIdentity, MediaAsset, Article } from './types';
 
 export class Repository {
   
@@ -62,5 +63,22 @@ export class Repository {
 
   static saveMediaToLibrary(asset: MediaAsset): Promise<void> {
     return MediaRepository.saveMediaToLibrary(asset);
+  }
+
+  // --- ARTICLES ---
+  static getArticles(): Promise<Article[]> {
+    return ArticlesRepository.getArticles();
+  }
+
+  static getArticleBySlug(slug: string): Promise<Article | null> {
+    return ArticlesRepository.getArticleBySlug(slug);
+  }
+
+  static saveArticle(article: Article): Promise<void> {
+    return ArticlesRepository.saveArticle(article);
+  }
+
+  static deleteArticle(id: number, uuid?: string): Promise<void> {
+    return ArticlesRepository.deleteArticle(id, uuid);
   }
 }

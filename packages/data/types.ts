@@ -80,6 +80,24 @@ export interface MediaAsset {
   uploadedAt: string;
 }
 
+export interface Article {
+  id?: number;
+  uuid?: string;
+  title: string;
+  slug: string;
+  content: string; // HTML or Markdown
+  excerpt: string;
+  coverImage: string;
+  category: string;
+  tags: string[];
+  status: 'DRAFT' | 'PUBLISHED' | 'ARCHIVED';
+  authorId: string;
+  authorName: string;
+  publishedAt?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 export interface DataConfig {
   useSupabase: boolean;
   supabaseUrl?: string;

@@ -1,0 +1,12 @@
+
+> website@0.1.0 lint
+> npx next lint
+
+Invalid project directory provided, no such directory: /app/applet/apps/website/lint
+npm error Lifecycle script `lint` failed with error:
+npm error code 1
+npm error path /app/applet/apps/website
+npm error workspace website@0.1.0
+npm error location /app/applet/apps/website
+npm error command failed
+npm error command sh -c npx next lint

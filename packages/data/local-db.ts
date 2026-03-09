@@ -1,10 +1,11 @@
 
 import Dexie, { type Table } from 'dexie';
-import { Transaction, Product } from './types';
+import { Transaction, Product, Article } from './types';
 
 export class LocalDatabase extends Dexie {
   transactions!: Table<Transaction, number>;
   products!: Table<Product, number>;
+  articles!: Table<Article, number>;
 
   constructor() {
     super('MKS_Local_DB');
@@ -13,6 +14,7 @@ export class LocalDatabase extends Dexie {
     (this as any).version(1).stores({
       transactions: '++id, uuid, status, createdAt',
       products: '++id, sku, category',
+      articles: '++id, uuid, slug, category, status',
       customers: '++id, name, phone, email',
       suppliers: '++id, name, phone',
       inventory_logs: '++id, productId, type, createdAt'
@@ -41,6 +43,39 @@ export class LocalDatabase extends Dexie {
         { name: 'Laci Uang Metal', sku: 'CD-RJ11', price: 650000, stock: 0, category: 'HARDWARE' }, // Stok Kosong
         { name: 'Kopi Robusta 1kg', sku: 'COF-ROB-01', price: 120000, stock: 45, category: 'FNB_RM' },
         { name: 'Gula Pasir Premium', sku: 'ING-SUG-01', price: 15000, stock: 8, category: 'FNB_RM' }, // Stok Nipis
+      ]);
+    }
+
+    const articleCount = await this.articles.count();
+    if (articleCount === 0) {
+      await this.articles.bulkAdd([
+        {
+          title: 'Cara Memilih Mesin Kasir untuk UMKM',
+          slug: 'cara-memilih-mesin-kasir-umkm',
+          content: '<p>Memilih mesin kasir tidak boleh sembarangan...</p>',
+          excerpt: 'Tips jitu memilih mesin kasir yang tepat untuk bisnis UMKM Anda.',
+          coverImage: 'https://picsum.photos/seed/pos/800/400',
+          category: 'TIPS',
+          tags: ['UMKM', 'Mesin Kasir'],
+          status: 'PUBLISHED',
+          authorId: 'admin-1',
+          authorName: 'Amin Maghfuri',
+          publishedAt: new Date().toISOString(),
+          createdAt: new Date().toISOString()
+        },
+        {
+          title: 'Strategi Bisnis Pasca Pandemi',
+          slug: 'strategi-bisnis-pasca-pandemi',
+          content: '<p>Pandemi telah merubah lanskap bisnis...</p>',
+          excerpt: 'Bagaimana bertahan dan berkembang di era new normal.',
+          coverImage: 'https://picsum.photos/seed/business/800/400',
+          category: 'BUSINESS',
+          tags: ['Strategi', 'Pandemi'],
+          status: 'DRAFT',
+          authorId: 'admin-1',
+          authorName: 'Amin Maghfuri',
+          createdAt: new Date().toISOString()
+        }
       ]);
     }
   }

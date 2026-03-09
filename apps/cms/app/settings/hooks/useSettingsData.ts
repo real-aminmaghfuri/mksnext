@@ -6,6 +6,8 @@ export const useSettingsData = () => {
   const [isSaving, setIsSaving] = useState(false);
 
   const [webConfig, setWebConfig] = useState({
+    maintenanceMode: false,
+    visibility: 'PUBLIC' as 'PUBLIC' | 'STEALTH',
     gsc: '', ga4: '', gMerchant: '', bing: '', yandex: '', pinterest: ''
   });
 
@@ -28,6 +30,8 @@ export const useSettingsData = () => {
         ]);
         
         setWebConfig({
+          maintenanceMode: protocols.maintenanceMode ?? false,
+          visibility: protocols.visibility || 'PUBLIC',
           gsc: protocols.gsc || '',
           ga4: protocols.ga4 || '',
           gMerchant: protocols.gMerchant || '',
@@ -53,11 +57,7 @@ export const useSettingsData = () => {
     setIsSaving(true);
     try {
       if (activeTab === 'PROTOCOLS') {
-        await Repository.saveWebProtocols({
-          maintenanceMode: false, 
-          visibility: 'PUBLIC', 
-          ...webConfig
-        });
+        await Repository.saveWebProtocols(webConfig as any);
       } else {
         await Repository.saveCompanyIdentity(identity);
       }
