@@ -98,6 +98,24 @@ export interface Article {
   updatedAt?: string;
 }
 
+export interface AIKeywordResearch {
+  keyword: string;
+  volume: number;
+  difficulty: number; // 0-100
+  level: 'LOW' | 'MEDIUM';
+  suggestedTitle: string;
+  reasoning: string;
+}
+
+export interface AIGenerationConfig {
+  type: 'PILLAR' | 'CLUSTER';
+  minWords: number;
+  language: 'ID' | 'EN' | 'DUAL';
+  narrativeStyle: 'STREET_SMART' | 'PROFESSIONAL' | 'STORYTELLING' | 'TECHNICAL';
+  targetKeyword: string;
+  title: string;
+}
+
 export interface DataConfig {
   useSupabase: boolean;
   supabaseUrl?: string;

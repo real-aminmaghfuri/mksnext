@@ -57,6 +57,11 @@ export default function ArticlesPage() {
             </div>
           </div>
 
+          <Link href="/articles/ai">
+            <Button size="sm" variant="outline" className="border-brand-500/50 text-brand-600 hover:bg-brand-500 hover:text-white font-black tracking-widest uppercase text-[10px] px-6">
+              <Sparkles size={14} className="mr-2" /> AI STRATEGIST
+            </Button>
+          </Link>
           <Link href="/articles/new">
             <Button size="sm" className="bg-brand-600 hover:bg-brand-500 font-black tracking-widest uppercase text-[10px] px-6">
               <Plus size={14} className="mr-2" /> NEW ARTICLE

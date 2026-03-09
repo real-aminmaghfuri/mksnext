@@ -7,7 +7,8 @@ import { IdentityRepository } from './repositories/identity';
 import { MediaRepository } from './repositories/media';
 import { POSRepository } from './repositories/pos';
 import { ArticlesRepository } from './repositories/articles';
-import { DashboardStats, Transaction, Product, WebProtocols, CompanyIdentity, MediaAsset, Article } from './types';
+import { AIService } from './services/ai';
+import { DashboardStats, Transaction, Product, WebProtocols, CompanyIdentity, MediaAsset, Article, AIKeywordResearch, AIGenerationConfig } from './types';
 
 export class Repository {
   
@@ -80,5 +81,14 @@ export class Repository {
 
   static deleteArticle(id: number, uuid?: string): Promise<void> {
     return ArticlesRepository.deleteArticle(id, uuid);
+  }
+
+  // --- AI STRATEGIST ---
+  static researchKeywords(topic: string): Promise<AIKeywordResearch[]> {
+    return AIService.researchKeywords(topic);
+  }
+
+  static generateArticle(config: AIGenerationConfig): Promise<string> {
+    return AIService.generateArticle(config);
   }
 }
