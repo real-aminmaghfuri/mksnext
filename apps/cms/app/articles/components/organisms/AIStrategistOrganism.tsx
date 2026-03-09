@@ -52,17 +52,33 @@ export const AIStrategistOrganism: React.FC<AIStrategistOrganismProps> = ({
       </GlassCard>
 
       {recommendations.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
-          {recommendations.map((rec, idx) => (
-            <button
-              key={idx}
-              onClick={() => onSelect(rec)}
-              className={`text-left p-4 rounded-2xl border transition-all duration-300 group
-                ${selectedId === rec.suggestedTitle 
-                  ? 'border-brand-500 bg-brand-500/5 ring-1 ring-brand-500' 
-                  : 'border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-950 hover:border-brand-500/50'
-                }`}
-            >
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <h4 className="text-[10px] font-black uppercase tracking-widest text-zinc-400">
+              {selectedId ? 'Selected Recommendation' : 'Research Results'}
+            </h4>
+            {selectedId && (
+              <button 
+                onClick={() => onSelect(null as any)}
+                className="text-[10px] font-black uppercase tracking-widest text-brand-600 hover:text-brand-500 transition-colors"
+              >
+                Show All Titles
+              </button>
+            )}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            {recommendations
+              .filter(rec => !selectedId || selectedId === rec.suggestedTitle)
+              .map((rec, idx) => (
+              <button
+                key={idx}
+                onClick={() => onSelect(rec)}
+                className={`text-left p-4 rounded-2xl border transition-all duration-300 group
+                  ${selectedId === rec.suggestedTitle 
+                    ? 'border-brand-500 bg-brand-500/5 ring-1 ring-brand-500 md:col-span-2' 
+                    : 'border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-950 hover:border-brand-500/50'
+                  }`}
+              >
               <div className="flex justify-between items-start mb-2">
                 <span className={`px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-widest
                   ${rec.level === 'LOW' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}`}>

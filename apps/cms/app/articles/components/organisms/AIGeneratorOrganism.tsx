@@ -104,7 +104,7 @@ export const AIGeneratorOrganism: React.FC<AIGeneratorOrganismProps> = ({
               type="range"
               min="500"
               max="5000"
-              step="500"
+              step="100"
               value={config.minWords}
               onChange={(e) => setConfig({ ...config, minWords: parseInt(e.target.value) })}
               className="w-full accent-brand-500 h-1.5 bg-zinc-200 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer"

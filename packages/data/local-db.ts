@@ -81,4 +81,5 @@ export class LocalDatabase extends Dexie {
   }
 }
 
-export const localDB = new LocalDatabase();
+// Guard for server-side rendering
+export const localDB = typeof window !== 'undefined' ? new LocalDatabase() : null as any;
