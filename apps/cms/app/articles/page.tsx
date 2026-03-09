@@ -6,7 +6,7 @@ import { Sidebar } from '../../components/Sidebar';
 import { Header } from '../../components/Header';
 import { MobileNav } from '../../components/MobileNav';
 import { Button } from 'ui';
-import { Plus, Search, Filter } from 'lucide-react';
+import { Plus, Search, Filter, Sparkles } from 'lucide-react';
 import { useArticles } from './hooks/useArticles';
 import { ArticleListOrganism } from './components/organisms/ArticleListOrganism';
 import Link from 'next/link';
