@@ -12,6 +12,15 @@ Goal: Dominate the Indonesian market with brutal SEO content.
 export class AIService {
   private static keyIndex = 0;
   private static readonly API_KEYS = [
+    // Try NEXT_PUBLIC_ (Next.js client-side standard)
+    process.env.NEXT_PUBLIC_GEMINI_API_KEY,
+    process.env.NEXT_PUBLIC_GEMINI_API_KEY_1,
+    process.env.NEXT_PUBLIC_GEMINI_API_KEY_2,
+    process.env.NEXT_PUBLIC_GEMINI_API_KEY_3,
+    process.env.NEXT_PUBLIC_GEMINI_API_KEY_4,
+    process.env.NEXT_PUBLIC_GEMINI_API_KEY_5,
+    process.env.NEXT_PUBLIC_GEMINI_API_KEY_6,
+    // Try process.env (platform injected)
     process.env.GEMINI_API_KEY,
     process.env.GEMINI_API_KEY_1,
     process.env.GEMINI_API_KEY_2,
@@ -19,12 +28,24 @@ export class AIService {
     process.env.GEMINI_API_KEY_4,
     process.env.GEMINI_API_KEY_5,
     process.env.GEMINI_API_KEY_6,
+    // Try import.meta.env (Vite standard)
+    (import.meta as any).env?.VITE_GEMINI_API_KEY,
+    (import.meta as any).env?.VITE_GEMINI_API_KEY_1,
+    (import.meta as any).env?.VITE_GEMINI_API_KEY_2,
+    (import.meta as any).env?.VITE_GEMINI_API_KEY_3,
+    (import.meta as any).env?.VITE_GEMINI_API_KEY_4,
+    (import.meta as any).env?.VITE_GEMINI_API_KEY_5,
+    (import.meta as any).env?.VITE_GEMINI_API_KEY_6,
   ].filter(Boolean) as string[];
 
   private static getAI() {
-    const apiKey = this.API_KEYS[this.keyIndex] || process.env.GEMINI_API_KEY || '';
+    const apiKey = this.API_KEYS[this.keyIndex] || 
+                   process.env.NEXT_PUBLIC_GEMINI_API_KEY || 
+                   process.env.GEMINI_API_KEY || 
+                   (import.meta as any).env?.VITE_GEMINI_API_KEY || '';
+    
     if (!apiKey) {
-      console.warn("No Gemini API Key found in environment! Check your .env or platform settings.");
+      console.error("CRITICAL: No Gemini API Key found! AI features will not work. Please ensure NEXT_PUBLIC_GEMINI_API_KEY is set.");
     }
     return new GoogleGenAI({ apiKey });
   }
@@ -32,16 +53,13 @@ export class AIService {
   private static rotateKey() {
     if (this.API_KEYS.length > 1) {
       this.keyIndex = (this.keyIndex + 1) % this.API_KEYS.length;
-      console.log(`Rotating to API Key index: ${this.keyIndex}`);
+      console.log(`Rotating to API Key index: ${this.keyIndex} (Total keys: ${this.API_KEYS.length})`);
     }
   }
 
   private static extractJSON(text: string): any {
     try {
-      // Clean up text from potential AI chatter
       const cleanedText = text.trim();
-      
-      // Try direct parse first
       return JSON.parse(cleanedText);
     } catch (e) {
       // Try to find JSON block with regex
@@ -56,7 +74,6 @@ export class AIService {
         }
       }
       
-      // Try to find Markdown JSON block
       const mdMatch = text.match(/```json\s*([\s\S]*?)\s*```/);
       if (mdMatch) {
         try {
@@ -66,16 +83,19 @@ export class AIService {
         }
       }
       
-      throw new Error("Could not find valid JSON in AI response. Response text: " + text.substring(0, 100) + "...");
+      console.error("Raw AI Response that failed parsing:", text);
+      throw new Error("Could not find valid JSON in AI response.");
     }
   }
 
   static async researchKeywords(topic: string): Promise<AIKeywordResearch[]> {
     let attempts = 0;
-    const maxAttempts = Math.max(this.API_KEYS.length, 1);
-    let useSearch = true;
+    const maxAttempts = Math.max(this.API_KEYS.length, 2);
+    let useSearch = false; // Disable search by default to be safe
 
-    console.log(`Starting research for topic: ${topic} with ${this.API_KEYS.length} keys available.`);
+    console.log("DEBUG: API_KEYS found:", this.API_KEYS.length);
+    console.log("DEBUG: Current Key Index:", this.keyIndex);
+    console.log(`Starting research for topic: ${topic}`);
 
     while (attempts < maxAttempts) {
       try {
@@ -103,6 +123,7 @@ export class AIService {
           config.tools = [{ googleSearch: {} }];
         }
 
+        // Use gemini-3-flash-preview for faster research
         const response = await ai.models.generateContent({
           model: "gemini-3-flash-preview",
           contents: `Riset keyword populer untuk topik: "${topic}". 
@@ -123,11 +144,15 @@ export class AIService {
         console.log("Research successful, found items:", data.length);
         return data;
       } catch (e: any) {
+        const errorMsg = e.message?.toLowerCase() || "";
         console.error(`Research attempt ${attempts + 1} failed:`, e.message || e);
         
-        if (useSearch && (e.message?.toLowerCase().includes('tool') || e.message?.toLowerCase().includes('search') || e.message?.toLowerCase().includes('permission'))) {
-          console.log("Disabling search tool for next attempt...");
-          useSearch = false;
+        if (errorMsg.includes('quota') || errorMsg.includes('limit') || errorMsg.includes('429')) {
+          console.log("Quota exceeded, rotating key...");
+          this.rotateKey();
+        } else if (errorMsg.includes('not found') || errorMsg.includes('model')) {
+          console.log("Model issue? Rotating key just in case...");
+          this.rotateKey();
         } else {
           this.rotateKey();
         }
@@ -137,6 +162,8 @@ export class AIService {
           console.error("All research attempts failed.");
           throw e;
         }
+        
+        await new Promise(r => setTimeout(r, 1000));
       }
     }
     return [];

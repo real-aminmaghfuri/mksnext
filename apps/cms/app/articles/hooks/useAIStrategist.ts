@@ -19,15 +19,27 @@ export const useAIStrategist = () => {
 
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedContent, setGeneratedContent] = useState('');
+  const [error, setError] = useState<string | null>(null);
 
   const handleResearch = async () => {
-    if (!topic) return;
+    console.log("Research button clicked. Topic:", topic);
+    if (!topic) {
+      console.warn("Topic is empty, skipping research.");
+      return;
+    }
     setIsResearching(true);
+    setError(null);
     try {
+      console.log("Calling Repository.researchKeywords...");
       const results = await Repository.researchKeywords(topic);
+      console.log("Research results received:", results);
+      if (results.length === 0) {
+        setError("No results found. Try a different topic or check your API keys.");
+      }
       setRecommendations(results);
-    } catch (error) {
-      console.error("Research failed", error);
+    } catch (err: any) {
+      console.error("Research failed in hook:", err);
+      setError(err.message || "Research failed. Please check your connection or API keys.");
     } finally {
       setIsResearching(false);
     }
@@ -64,6 +76,7 @@ export const useAIStrategist = () => {
     config, setConfig,
     isGenerating,
     generatedContent,
-    handleGenerate
+    handleGenerate,
+    error
   };
 };

@@ -22,7 +22,8 @@ export default function AIStrategistPage() {
     config, setConfig,
     isGenerating,
     generatedContent,
-    handleGenerate
+    handleGenerate,
+    error
   } = useAIStrategist();
 
   return (
@@ -32,6 +33,11 @@ export default function AIStrategistPage() {
 
         <main className="flex-1 overflow-y-auto p-6 md:p-8 custom-scrollbar">
           <div className="max-w-6xl mx-auto space-y-12">
+            {error && (
+              <div className="p-4 bg-rose-500/10 border border-rose-500/20 rounded-2xl text-rose-600 text-[10px] font-black uppercase tracking-widest animate-in fade-in slide-in-from-top-4">
+                ⚠️ {error}
+              </div>
+            )}
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
                 <Link 
