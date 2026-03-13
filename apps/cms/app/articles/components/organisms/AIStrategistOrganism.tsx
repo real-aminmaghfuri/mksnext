@@ -95,6 +95,7 @@ export const AIStrategistOrganism: React.FC<AIStrategistOrganismProps> = ({
               <p className="text-[10px] text-zinc-500 italic leading-relaxed">{rec.reasoning}</p>
             </button>
           ))}
+          </div>
         </div>
       )}
     </div>

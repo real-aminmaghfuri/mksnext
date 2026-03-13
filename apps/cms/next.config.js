@@ -1,10 +1,12 @@
 
+const path = require('path');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   transpilePackages: ["ui", "shared", "data"],
   reactStrictMode: true,
   turbopack: {
-    root: '../../',
+    root: path.resolve(__dirname, '../../'),
   },
   images: {
     formats: ['image/avif', 'image/webp'],
