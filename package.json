@@ -1,29 +1,17 @@
 {
-  "name": "nextjs-app",
-  "version": "0.1.0",
+  "name": "monorepo",
   "private": true,
+  "packageManager": "npm@10.0.0",
+  "workspaces": [
+    "apps/*"
+  ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint src"
-  },
-  "dependencies": {
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "lucide-react": "latest",
-    "motion": "latest",
-    "clsx": "latest",
-    "tailwind-merge": "latest"
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run check-lint #",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "typescript": "latest",
-    "@types/node": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "postcss": "latest",
-    "tailwindcss": "latest",
-    "autoprefixer": "latest"
+    "turbo": "^2.8.17"
   }
 }
