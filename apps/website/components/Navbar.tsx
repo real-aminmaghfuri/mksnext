@@ -7,6 +7,7 @@ import { getMenuStructure } from './Navigation/data';
 import { LogoAtom } from './Navigation/atoms/LogoAtom';
 import { DesktopMenuAtom } from './Navigation/atoms/DesktopMenuAtom';
 import { ActionButtonsAtom } from './Navigation/atoms/ActionButtonsAtom';
+import { RepoSwitcher } from 'ui';
 
 export const Navbar: React.FC = () => {
   const logic = useNavbar();
@@ -23,8 +24,15 @@ export const Navbar: React.FC = () => {
         */}
         <div className="w-full h-20 flex items-center justify-between px-6 landscape:pr-[max(100px,12vw)] xl:px-12 xl:landscape:pr-12 transition-all">
           
-          {/* Particle: Brand Logo */}
-          <LogoAtom />
+          <div className="flex items-center gap-6">
+            {/* Particle: Brand Logo */}
+            <LogoAtom />
+
+            {/* Repo Switcher: Hidden on small mobile, visible on sm+ */}
+            <div className="hidden sm:block">
+              <RepoSwitcher />
+            </div>
+          </div>
 
           {/* Particle: Desktop Navigation (Hidden on Tablet/Mobile, Visible on XL+) */}
           <DesktopMenuAtom 

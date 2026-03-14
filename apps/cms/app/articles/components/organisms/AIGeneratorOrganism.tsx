@@ -1,4 +1,6 @@
 
+"use client";
+
 import React from 'react';
 import { GlassCard, Button } from 'ui';
 import { AIGenerationConfig } from 'data';

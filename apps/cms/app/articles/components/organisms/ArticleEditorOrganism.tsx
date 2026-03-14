@@ -1,4 +1,6 @@
 
+"use client";
+
 import React, { useState } from 'react';
 import { Article } from 'data';
 import { GlassCard, Button } from 'ui';
