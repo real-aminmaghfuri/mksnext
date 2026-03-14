@@ -1,6 +1,4 @@
 
-"use client";
-
 import React from 'react';
 import { GlassCard, Button } from 'ui';
 import { Sparkles, Search, TrendingUp, BarChart2 } from 'lucide-react';
@@ -12,7 +10,7 @@ interface AIStrategistOrganismProps {
   isResearching: boolean;
   recommendations: AIKeywordResearch[];
   onResearch: () => void;
-  onSelect: (rec: AIKeywordResearch | null) => void;
+  onSelect: (rec: AIKeywordResearch) => void;
   selectedId?: string;
 }
 
@@ -61,7 +59,7 @@ export const AIStrategistOrganism: React.FC<AIStrategistOrganismProps> = ({
             </h4>
             {selectedId && (
               <button 
-                onClick={() => onSelect(null)}
+                onClick={() => onSelect(null as any)}
                 className="text-[10px] font-black uppercase tracking-widest text-brand-600 hover:text-brand-500 transition-colors"
               >
                 Show All Titles

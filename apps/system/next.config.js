@@ -7,13 +7,6 @@ const nextConfig = {
   reactStrictMode: true,
   turbopack: {
     root: path.resolve(__dirname, '../../'),
-    resolveAlias: {
-      fs: './utils/empty-module.js',
-      net: './utils/empty-module.js',
-      tls: './utils/empty-module.js',
-      cluster: './utils/empty-module.js',
-      bson: './utils/empty-module.js',
-    },
   },
   images: {
     formats: ['image/avif', 'image/webp'],
@@ -34,19 +27,6 @@ const nextConfig = {
   },
   typescript: {
     ignoreBuildErrors: true,
-  },
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-        net: false,
-        tls: false,
-        cluster: false,
-        bson: false,
-      };
-    }
-    return config;
   },
   env: {
     // Primary Fallback
