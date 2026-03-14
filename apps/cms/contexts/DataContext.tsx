@@ -1,38 +1,16 @@
 
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
-
-export type RepoMode = 'AUTO' | 'LOCAL' | 'CLOUD';
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 // Simplified context for CMS
 interface DataContextType {
   user: { name: string; role: string; avatar: string };
-  repoMode: RepoMode;
-  setRepoMode: (mode: RepoMode) => void;
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
 
 export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [repoMode, setRepoModeState] = useState<RepoMode>('AUTO');
-
-  useEffect(() => {
-    const saved = localStorage.getItem('MKS_REPO_MODE') as RepoMode;
-    if (saved) setRepoModeState(saved);
-  }, []);
-
-  const setRepoMode = (mode: RepoMode) => {
-    setRepoModeState(mode);
-    if (mode === 'AUTO') {
-      localStorage.removeItem('MKS_REPO_MODE');
-    } else {
-      localStorage.setItem('MKS_REPO_MODE', mode);
-    }
-    // Refresh page to apply changes across all components and data fetches
-    window.location.reload();
-  };
-
   const user = {
     name: "CONTENT LEAD",
     role: "Editor in Chief",
@@ -40,7 +18,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   return (
-    <DataContext.Provider value={{ user, repoMode, setRepoMode }}>
+    <DataContext.Provider value={{ user }}>
       {children}
     </DataContext.Provider>
   );

@@ -35,13 +35,6 @@ export const getSupabase = () => {
 // Helper to check connection status
 // FIX: Robust check for both Server and Client environments
 export const isOnline = () => {
-  // Check for manual override in localStorage
-  if (typeof window !== 'undefined') {
-    const override = localStorage.getItem('MKS_REPO_MODE');
-    if (override === 'LOCAL') return false;
-    if (override === 'CLOUD') return !!getSupabase();
-  }
-
   const client = getSupabase(); // Trigger lazy init
   
   // If we are on the server (window is undefined), we rely on the client existence

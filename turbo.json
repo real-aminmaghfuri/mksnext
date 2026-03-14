@@ -1,16 +1,41 @@
+
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": [
+    "**/.env.*local",
+    "GEMINI_API_KEY_1",
+    "GEMINI_API_KEY_2",
+    "GEMINI_API_KEY_3",
+    "GEMINI_API_KEY_4",
+    "GEMINI_API_KEY_5",
+    "NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME",
+    "NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET",
+    "CLOUDINARY_API_KEY",
+    "CLOUDINARY_API_SECRET",
+    "NEXT_PUBLIC_SUPABASE_URL",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
+      "inputs": [
+        "app/**",
+        "components/**",
+        "lib/**",
+        "utils/**",
+        "hooks/**",
+        "contexts/**",
+        "public/**",
+        "package.json",
+        "next.config.js",
+        "tsconfig.json",
+        "tailwind.config.ts",
+        "postcss.config.js",
+        ".eslintrc.json"
+      ],
       "outputs": [".next/**", "!.next/cache/**"]
     },
-    "check-lint": {
-      "dependsOn": ["^check-lint"]
-    },
-    "lint": {
-      "dependsOn": ["^lint"]
-    },
+    "lint": {},
     "dev": {
       "cache": false,
       "persistent": true
