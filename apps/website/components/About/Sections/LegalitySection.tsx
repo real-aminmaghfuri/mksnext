@@ -2,29 +2,16 @@
 
 import React from 'react';
 import { ShieldCheck } from 'lucide-react';
-import { LegalityDetailsCard } from './LegalityDetailsCard';
+import { LegalityDetailsCard, LegalityDetailsContent } from './LegalityDetailsCard';
 import { LegalityActionCard } from './LegalityActionCard';
 
-interface LegalityData {
+interface LegalityData extends Omit<LegalityDetailsContent, 'values'> {
   title: string;
   desc: string;
-  labelEntity: string;
-  valueEntity: string;
-  labelNIB: string;
-  labelSK: string;
-  labelNPWP: string;
-  labelBank: string;
   ctaTitle: string;
   ctaDesc: string;
   ctaBtn: string;
-  footerNote: string;
-  values: {
-    nib: string;
-    sk: string;
-    npwp: string;
-    bank: string;
-    bankName: string;
-  }
+  values: LegalityDetailsContent['values'];
 }
 
 interface LegalitySectionProps {
