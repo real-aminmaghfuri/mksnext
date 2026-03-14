@@ -1,24 +1,20 @@
 {
-  "name": "mesin-kasir-solo-monorepo",
+  "name": "pt-mesin-kasir-solo---unified-platform",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+
   },
   "devDependencies": {
-    "prettier": "^3.2.5",
-    "turbo": "latest",
-    "typescript": "^5.3.3"
-  },
-  "packageManager": "npm@10.2.4",
-  "dependencies": {
-    "@google/genai": "^1.45.0",
-    "motion": "^12.35.0"
+    "@types/node": "^22.14.0",
+    
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
   }
 }
