@@ -53,12 +53,12 @@ export default function AIStrategistPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-12">
-              <div className="space-y-8">
-                <section>
-                  <h2 className="text-xs font-black uppercase tracking-[0.2em] text-zinc-400 mb-4 flex items-center gap-2">
-                    <span className="w-8 h-[1px] bg-zinc-200 dark:bg-zinc-800" /> 01. Research & Titles
-                  </h2>
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+              <div className="flex flex-col h-full">
+                <h2 className="text-xs font-black uppercase tracking-[0.2em] text-zinc-400 mb-4 flex items-center gap-2">
+                  <span className="w-8 h-[1px] bg-zinc-200 dark:bg-zinc-800" /> 01. Research & Titles
+                </h2>
+                <div className="flex-1">
                   <AIStrategistOrganism 
                     topic={topic}
                     setTopic={setTopic}
@@ -68,14 +68,14 @@ export default function AIStrategistPage() {
                     onSelect={handleSelectRecommendation}
                     selectedId={selectedRecommendation?.suggestedTitle}
                   />
-                </section>
+                </div>
               </div>
 
-              <div className="space-y-8">
-                <section>
-                  <h2 className="text-xs font-black uppercase tracking-[0.2em] text-zinc-400 mb-4 flex items-center gap-2">
-                    <span className="w-8 h-[1px] bg-zinc-200 dark:bg-zinc-800" /> 02. Configure & Generate
-                  </h2>
+              <div className="flex flex-col h-full">
+                <h2 className="text-xs font-black uppercase tracking-[0.2em] text-zinc-400 mb-4 flex items-center gap-2">
+                  <span className="w-8 h-[1px] bg-zinc-200 dark:bg-zinc-800" /> 02. Configure & Generate
+                </h2>
+                <div className="flex-1">
                   {selectedRecommendation ? (
                     <AIGeneratorOrganism 
                       config={config}
@@ -85,14 +85,30 @@ export default function AIStrategistPage() {
                       generatedContent={generatedContent}
                     />
                   ) : (
-                    <div className="flex flex-col items-center justify-center py-20 text-zinc-400 bg-white dark:bg-zinc-950 border border-dashed border-zinc-200 dark:border-zinc-800 rounded-3xl">
+                    <div className="h-full flex flex-col items-center justify-center py-20 text-zinc-400 bg-white dark:bg-zinc-950 border border-dashed border-zinc-200 dark:border-zinc-800 rounded-3xl">
                       <Sparkles size={32} className="mb-4 opacity-20" />
                       <p className="font-black uppercase tracking-widest text-[10px]">Select a title from research to begin</p>
                     </div>
                   )}
-                </section>
+                </div>
               </div>
             </div>
+
+            {generatedContent && (
+              <section className="animate-in fade-in slide-in-from-bottom-8 duration-700">
+                <h2 className="text-xs font-black uppercase tracking-[0.2em] text-zinc-400 mb-4 flex items-center gap-2">
+                  <span className="w-8 h-[1px] bg-zinc-200 dark:bg-zinc-800" /> 03. Content Preview & Editor
+                </h2>
+                <AIGeneratorOrganism 
+                  config={config}
+                  setConfig={setConfig}
+                  isGenerating={isGenerating}
+                  onGenerate={handleGenerate}
+                  generatedContent={generatedContent}
+                  onlyPreview={true}
+                />
+              </section>
+            )}
           </div>
         </main>
       </div>

@@ -1,5 +1,5 @@
 {
-  "name": "PT Mesin Kasir Solo - Unified Platform",
-  "description": "Monorepo-style platform combining a public marketing website and internal management system with comprehensive dual-language support and luxury aesthetics.",
+  "name": "Next.js App",
+  "description": "A modern Next.js application with Tailwind CSS and Motion.",
   "requestFramePermissions": []
 }

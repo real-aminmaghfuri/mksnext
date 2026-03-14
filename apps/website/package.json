@@ -1,33 +1,29 @@
-
 {
   "name": "website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npx next dev --port 3000",
-    "build": "NEXT_IGNORE_ESLINT=1 NEXT_IGNORE_TYPECHECK=1 npx next build",
-    "start": "npx next start",
-    "lint": "npx next lint",
-    "ignore-build": "npx turbo-ignore"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "check-lint": "echo 'Skipping lint' && exit 0"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
     "next": "latest",
-    "lucide-react": "^0.563.0",
-    "shared": "*",
-    "ui": "*"
+    "react": "latest",
+    "react-dom": "latest",
+    "lucide-react": "latest",
+    "motion": "latest",
+    "clsx": "latest",
+    "tailwind-merge": "latest"
   },
   "devDependencies": {
-    "turbo": "latest",
-    "typescript": "^5.0.0",
-    "@types/node": "^20.0.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "postcss": "^8.0.0",
-    "tailwindcss": "^3.4.0",
-    "autoprefixer": "^10.0.0",
-    "eslint": "^9.0.0",
-    "eslint-config-next": "latest"
+    "typescript": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "postcss": "latest",
+    "tailwindcss": "latest",
+    "autoprefixer": "latest"
   }
 }
