@@ -3,7 +3,8 @@
   "private": true,
   "packageManager": "npm@10.0.0",
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "packages/*"
   ],
   "scripts": {
     "build": "turbo run build",
@@ -13,5 +14,10 @@
   },
   "devDependencies": {
     "turbo": "^2.8.17"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.2.1",
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.8"
   }
 }
