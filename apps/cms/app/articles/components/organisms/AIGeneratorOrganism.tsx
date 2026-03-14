@@ -3,17 +3,19 @@ import React from 'react';
 import { GlassCard, Button } from 'ui';
 import { AIGenerationConfig } from 'data';
 import { Wand2, Type, Languages, FileText, MessageSquareText } from 'lucide-react';
+import { ArticlePreviewAtom } from '../atoms/ArticlePreviewAtom';
 
 interface AIGeneratorOrganismProps {
   config: AIGenerationConfig;
   setConfig: (c: AIGenerationConfig) => void;
   isGenerating: boolean;
   onGenerate: () => void;
-  generatedContent: string;
+  generatedContent: string | null;
+  onAccept?: (content: string) => void;
 }
 
 export const AIGeneratorOrganism: React.FC<AIGeneratorOrganismProps> = ({
-  config, setConfig, isGenerating, onGenerate, generatedContent
+  config, setConfig, isGenerating, onGenerate, generatedContent, onAccept
 }) => {
   const narrativeStyles = [
     { id: 'STREET_SMART', label: 'STREET SMART', desc: 'Tajam & Dramatis' },
@@ -127,15 +129,22 @@ export const AIGeneratorOrganism: React.FC<AIGeneratorOrganismProps> = ({
       </GlassCard>
 
       {generatedContent && (
-        <GlassCard variant="solid" className="p-6 animate-in zoom-in-95 duration-500">
-           <div className="flex items-center justify-between mb-4">
+        <div className="space-y-4 animate-in zoom-in-95 duration-500">
+           <div className="flex items-center justify-between px-2">
               <h4 className="text-xs font-black uppercase tracking-widest">Generated Content Preview</h4>
-              <Button size="sm" variant="outline" className="text-[10px] font-black uppercase tracking-widest">Copy to Editor</Button>
+              <Button 
+                size="sm" 
+                onClick={() => {
+                  // This will be handled by the parent to "Accept" the content
+                  if (onAccept) onAccept(generatedContent);
+                }}
+                className="bg-emerald-600 hover:bg-emerald-500 text-[10px] font-black uppercase tracking-widest"
+              >
+                Accept & Edit Article
+              </Button>
            </div>
-           <div className="prose prose-sm dark:prose-invert max-w-none h-[400px] overflow-y-auto p-4 bg-zinc-50 dark:bg-black rounded-xl border border-zinc-100 dark:border-zinc-800 custom-scrollbar">
-              <div dangerouslySetInnerHTML={{ __html: generatedContent }} />
-           </div>
-        </GlassCard>
+           <ArticlePreviewAtom content={generatedContent} title={config.title} />
+        </div>
       )}
     </div>
   );
