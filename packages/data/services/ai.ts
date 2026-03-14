@@ -22,18 +22,22 @@ export class AIService {
   ].filter(Boolean) as string[];
 
   private static getAI() {
-    const apiKey = this.API_KEYS[this.keyIndex] || process.env.GEMINI_API_KEY || '';
-    
-    if (!apiKey) {
-      console.error("CRITICAL: No Gemini API Key found in server environment!");
+    if (this.API_KEYS.length === 0) {
+      throw new Error("CRITICAL: No Gemini API Key found! Please set GEMINI_API_KEY or GEMINI_API_KEY_1-6 in your environment.");
     }
+    
+    const apiKey = this.API_KEYS[this.keyIndex];
+    const maskedKey = `${apiKey.substring(0, 4)}...${apiKey.substring(apiKey.length - 4)}`;
+    console.log(`[AIService] Using API Key index ${this.keyIndex} (${maskedKey})`);
+    
     return new GoogleGenAI({ apiKey });
   }
 
   private static rotateKey() {
     if (this.API_KEYS.length > 1) {
+      const oldIndex = this.keyIndex;
       this.keyIndex = (this.keyIndex + 1) % this.API_KEYS.length;
-      console.log(`Rotating to API Key index: ${this.keyIndex} (Total keys: ${this.API_KEYS.length})`);
+      console.warn(`[AIService] Quota or Error detected at index ${oldIndex}. Rotating to index ${this.keyIndex}.`);
     }
   }
 
@@ -151,7 +155,7 @@ export class AIService {
 
   static async generateArticle(config: AIGenerationConfig): Promise<string> {
     let attempts = 0;
-    const maxAttempts = Math.max(this.API_KEYS.length, 1);
+    const maxAttempts = Math.max(this.API_KEYS.length, 2);
 
     while (attempts < maxAttempts) {
       try {
@@ -177,7 +181,7 @@ export class AIService {
         `;
 
         const response = await ai.models.generateContent({
-          model: "gemini-3.1-pro-preview",
+          model: "gemini-3-flash-preview",
           contents: prompt,
           config: {
             systemInstruction: SYSTEM_PROMPT,
@@ -187,10 +191,24 @@ export class AIService {
 
         return response.text || '';
       } catch (e: any) {
-        console.error(`Generation attempt ${attempts + 1} failed:`, e.message);
-        this.rotateKey();
+        const errorMsg = e.message?.toLowerCase() || "";
+        console.error(`Generation attempt ${attempts + 1} failed:`, e.message || e);
+        
+        if (errorMsg.includes('quota') || errorMsg.includes('limit') || errorMsg.includes('429')) {
+          console.warn("[AIService] Quota exceeded during generation, rotating key...");
+          this.rotateKey();
+        } else {
+          this.rotateKey();
+        }
+
         attempts++;
-        if (attempts >= maxAttempts) throw e;
+        if (attempts >= maxAttempts) {
+          console.error("All generation attempts failed.");
+          throw e;
+        }
+        
+        // Wait 2 seconds before retry for generation as it's a heavier task
+        await new Promise(r => setTimeout(r, 2000));
       }
     }
     return '';

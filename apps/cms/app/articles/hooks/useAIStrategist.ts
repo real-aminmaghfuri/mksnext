@@ -46,13 +46,15 @@ export const useAIStrategist = () => {
     }
   };
 
-  const handleSelectRecommendation = (rec: AIKeywordResearch) => {
+  const handleSelectRecommendation = (rec: AIKeywordResearch | null) => {
     setSelectedRecommendation(rec);
-    setConfig(prev => ({
-      ...prev,
-      targetKeyword: rec.keyword,
-      title: rec.suggestedTitle
-    }));
+    if (rec) {
+      setConfig(prev => ({
+        ...prev,
+        targetKeyword: rec.keyword,
+        title: rec.suggestedTitle
+      }));
+    }
   };
 
   const handleGenerate = async () => {
