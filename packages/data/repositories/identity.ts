@@ -1,6 +1,6 @@
 
 import { getSupabase, isOnline } from '../remote-db';
-import { CompanyIdentity } from '../types';
+import { CompanyIdentity } from 'shared';
 import { DEFAULT_COMPANY_IDENTITY } from '../defaults';
 
 export class IdentityRepository {

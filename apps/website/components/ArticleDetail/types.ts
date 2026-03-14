@@ -13,7 +13,7 @@ export interface ArticleDetailLogic {
   comments: CommentItem[];
   
   // States
-  scrollRef: RefObject<HTMLDivElement | null>;
+  scrollRef: RefObject<HTMLDivElement>;
   scrollTop: number;
   scrollProgress: number;
   isHeroShrunk: boolean;

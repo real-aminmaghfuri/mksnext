@@ -8,7 +8,8 @@ import { MediaRepository } from './repositories/media';
 import { POSRepository } from './repositories/pos';
 import { ArticlesRepository } from './repositories/articles';
 import { AIService } from './services/ai';
-import { DashboardStats, Transaction, Product, WebProtocols, CompanyIdentity, MediaAsset, Article, AIKeywordResearch, AIGenerationConfig } from './types';
+import { CompanyIdentity } from 'shared';
+import { DashboardStats, Transaction, Product, WebProtocols, MediaAsset, Article, AIKeywordResearch, AIGenerationConfig } from './types';
 
 export class Repository {
   

@@ -73,6 +73,40 @@ export interface IndustryData {
   };
 }
 
+export interface BankAccount {
+  bankName: string;
+  accountNumber: string;
+  accountHolder: string;
+}
+
+export interface CompanyIdentity {
+  founderName: string;
+  founderRole: string;
+  founderPhoto: string;
+  founderQuoteHook: string; // New: First part of the quote
+  founderQuoteEmphasis: string; // New: Second part of the quote
+  
+  companyName: string;
+  brandName: string;
+  
+  addressLegal: string;
+  addressOps: string;
+  
+  mapLegalUrl: string; // New: Map for Legal Office
+  mapOpsUrl: string;   // New: Map for Ops Office
+  
+  operatingHours: string;
+  
+  nib: string;
+  skKemenkumham: string;
+  npwp: string;
+  
+  bankAccounts: BankAccount[];
+  
+  whatsapp: string;
+  email: string;
+}
+
 export interface SolutionItem {
   id: number;
   title: string;

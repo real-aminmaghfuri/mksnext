@@ -53,7 +53,7 @@ export function useArticleScrollSpy(toc: TOCItem[]) {
   }, [toc]);
 
   return {
-    scrollRef,
+    scrollRef: scrollRef as React.RefObject<HTMLDivElement>,
     scrollTop,
     scrollProgress,
     isHeroShrunk,

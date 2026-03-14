@@ -4,7 +4,7 @@ import {
   Quote, ShieldCheck, Plus 
 } from 'lucide-react';
 import { GlassCard, Button } from 'ui';
-import { CompanyIdentity, BankAccount } from 'data';
+import { CompanyIdentity, BankAccount } from 'shared';
 
 import { SectionHeaderAtom } from '../atoms/SectionHeaderAtom';
 import { SettingInputAtom } from '../atoms/SettingInputAtom';

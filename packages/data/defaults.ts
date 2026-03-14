@@ -1,5 +1,6 @@
 
-import { WebProtocols, CompanyIdentity } from './types';
+import { WebProtocols } from './types';
+import { CompanyIdentity } from 'shared';
 
 export const DEFAULT_WEB_PROTOCOLS: WebProtocols = {
   maintenanceMode: false,

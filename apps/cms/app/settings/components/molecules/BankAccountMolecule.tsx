@@ -1,7 +1,7 @@
 import React from 'react';
 import { Trash2 } from 'lucide-react';
 import { GlassCard } from 'ui';
-import { BankAccount } from 'data';
+import { BankAccount } from 'shared';
 import { SettingInputAtom } from '../atoms/SettingInputAtom';
 
 interface BankAccountMoleculeProps {

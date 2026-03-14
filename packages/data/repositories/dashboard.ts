@@ -14,7 +14,7 @@ export class DashboardRepository {
           .eq('status', 'COMPLETED');
 
         if (!error && txs) {
-          const revenue = txs.reduce((sum, t) => sum + t.total, 0);
+          const revenue = txs.reduce((sum: number, t: any) => sum + t.total, 0);
           return { revenue, orders: txs.length, activePos: 24 };
         }
       } catch (e) {
@@ -22,7 +22,7 @@ export class DashboardRepository {
       }
     } 
     const transactions = await localDB.transactions.toArray();
-    const revenue = transactions.filter(t => t.status === 'COMPLETED').reduce((sum, t) => sum + t.total, 0);
+    const revenue = transactions.filter((t: Transaction) => t.status === 'COMPLETED').reduce((sum: number, t: Transaction) => sum + t.total, 0);
     return { revenue, orders: transactions.length, activePos: 1 };
   }
 

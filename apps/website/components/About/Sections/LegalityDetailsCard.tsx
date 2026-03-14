@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { CheckCircle2 } from 'lucide-react';
-import { BankAccount } from 'data';
+import { BankAccount } from 'shared';
 
 // Define the shape of data required for this specific card
 export interface LegalityDetailsContent {

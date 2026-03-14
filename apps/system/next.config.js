@@ -5,16 +5,7 @@ const path = require('path');
 const nextConfig = {
   transpilePackages: ["ui", "shared", "data"],
   reactStrictMode: true,
-  turbopack: {
-    root: path.resolve(__dirname, '../../'),
-    resolveAlias: {
-      fs: './utils/empty-module.js',
-      net: './utils/empty-module.js',
-      tls: './utils/empty-module.js',
-      cluster: './utils/empty-module.js',
-      bson: './utils/empty-module.js',
-    },
-  },
+  turbopack: {},
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [

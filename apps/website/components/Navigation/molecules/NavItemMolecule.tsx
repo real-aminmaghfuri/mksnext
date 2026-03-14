@@ -31,7 +31,7 @@ export const NavItemMolecule: React.FC<NavItemMoleculeProps> = ({
       ${isActive ? 'text-brand-600 dark:text-brand-500' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'}
     `}>
       <NavIconAtom icon={icon} isActive={isActive} />
-      <NavLabelAtom label={label} />
+      <NavLabelAtom text={label} />
     </div>
   );
 

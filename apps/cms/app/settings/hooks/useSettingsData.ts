@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Repository, CompanyIdentity, BankAccount } from 'data';
+import { Repository } from 'data';
+import { CompanyIdentity, BankAccount } from 'shared';
 
 export const useSettingsData = () => {
   const [isLoading, setIsLoading] = useState(true);

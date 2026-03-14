@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { CompanyIdentity, Repository } from 'data';
+import { Repository } from 'data';
+import { CompanyIdentity } from 'shared';
 import { analyzeImageForSEO } from '../../../utils/ai-services';
 import { processImageLocally } from '../../../utils/image-processor';
 import { uploadToCloudinary } from '../../actions/upload';

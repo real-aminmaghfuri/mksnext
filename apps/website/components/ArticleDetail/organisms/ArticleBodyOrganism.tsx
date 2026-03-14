@@ -15,8 +15,8 @@ interface ArticleBodyOrganismProps {
   activeSectionId: string;
   isContentExpanded: boolean;
   toggleContent: () => void;
-  prevArticle: ArticleItem;
-  nextArticle: ArticleItem;
+  prevArticle: ArticleItem | undefined;
+  nextArticle: ArticleItem | undefined;
   comments: CommentItem[];
   isCommentsOpen: boolean;
   toggleComments: () => void;
