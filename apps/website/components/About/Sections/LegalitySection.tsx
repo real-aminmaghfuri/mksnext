@@ -5,13 +5,12 @@ import { ShieldCheck } from 'lucide-react';
 import { LegalityDetailsCard, LegalityDetailsContent } from './LegalityDetailsCard';
 import { LegalityActionCard } from './LegalityActionCard';
 
-interface LegalityData extends Omit<LegalityDetailsContent, 'values'> {
+interface LegalityData extends LegalityDetailsContent {
   title: string;
   desc: string;
   ctaTitle: string;
   ctaDesc: string;
   ctaBtn: string;
-  values: LegalityDetailsContent['values'];
 }
 
 interface LegalitySectionProps {
