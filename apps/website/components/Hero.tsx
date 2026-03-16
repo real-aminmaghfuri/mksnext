@@ -12,14 +12,14 @@ export const Hero: React.FC = () => {
   const { content } = useHero();
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 w-full">
       
       {/* Particle: Background & Atmosphere */}
       <HeroBackgroundAtom />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-10 landscape:pr-[max(100px,12vw)] relative z-10 w-full">
-        <div className="flex flex-col items-center justify-center">
-          <div className="text-center space-y-8 max-w-4xl mx-auto">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 relative z-10 w-full">
+        <div className="flex flex-col items-center justify-center w-full">
+          <div className="text-center space-y-10 w-full">
             
             {/* Particle: Status Badge */}
             <HeroBadgeAtom text={content.badgeText} />

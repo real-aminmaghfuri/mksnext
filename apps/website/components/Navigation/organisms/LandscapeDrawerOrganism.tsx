@@ -21,7 +21,7 @@ export const LandscapeDrawerOrganism: React.FC<LandscapeDrawerOrganismProps> = (
   return (
     <div 
       className={`
-        fixed z-[90] top-0 right-[80px] bottom-0 w-[400px] max-w-[calc(100vw-80px)]
+        fixed z-[90] top-0 right-[80px] bottom-0 w-[550px] max-w-[calc(100vw-100px)]
         bg-white dark:bg-zinc-950 shadow-2xl border-l border-zinc-200 dark:border-zinc-800
         transition-transform duration-300 ease-out
         hidden landscape:flex flex-row overflow-hidden

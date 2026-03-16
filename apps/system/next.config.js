@@ -3,6 +3,7 @@ const path = require('path');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  basePath: '/system',
   transpilePackages: ["ui", "shared", "data"],
   reactStrictMode: true,
   turbopack: {},

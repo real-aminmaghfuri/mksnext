@@ -10,7 +10,7 @@ interface HeroHeadingProps {
 
 export const HeroHeadingAtom: React.FC<HeroHeadingProps> = ({ brandName, title, subtitle }) => {
   return (
-    <div className="flex flex-col items-center text-center">
+    <div className="flex flex-col items-center text-center w-full">
       {/* 
         SEMANTIC H1 (THE SEO ANCHOR)
         Refined as a sharp, elegant kicker.
@@ -23,7 +23,7 @@ export const HeroHeadingAtom: React.FC<HeroHeadingProps> = ({ brandName, title, 
         VISUAL DISPLAY TEXT (MARKETING HOOK)
         Massive, sharp, and commanding.
       */}
-      <div className="text-fluid-display font-black tracking-tighter leading-[0.95] text-zinc-900 dark:text-white mb-10 animate-fade-in-up [animation-delay:100ms]">
+      <div className="text-fluid-display font-black tracking-tighter leading-[0.95] text-zinc-900 dark:text-white mb-10 animate-fade-in-up [animation-delay:100ms] w-full">
         <span className="block mb-2 bg-clip-text text-transparent bg-gradient-to-br from-brand-500 via-brand-600 to-red-700">
           {brandName}
         </span>
@@ -32,7 +32,7 @@ export const HeroHeadingAtom: React.FC<HeroHeadingProps> = ({ brandName, title, 
         </div>
       </div>
 
-      <p className="text-fluid-body text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto font-medium leading-relaxed opacity-80 animate-fade-in-up [animation-delay:200ms]">
+      <p className="text-fluid-body text-zinc-600 dark:text-zinc-400 max-w-2xl font-medium leading-relaxed opacity-80 animate-fade-in-up [animation-delay:200ms]">
         {subtitle}
       </p>
     </div>
