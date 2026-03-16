@@ -20,14 +20,14 @@ export const NavIconAtom: React.FC<NavIconAtomProps> = ({
 }) => {
   return (
     <div className={`
-      p-1.5 rounded-xl transition-all duration-300
-      ${isActive ? 'bg-brand-50 dark:bg-brand-900/20 translate-y-0' : 'translate-y-1 landscape:translate-y-0'}
+      p-2 rounded-2xl transition-all duration-500
+      ${isActive ? 'bg-brand-500/10 dark:bg-brand-500/10 scale-110' : 'scale-100'}
       ${className}
     `}>
       <Icon 
         size={size} 
-        strokeWidth={isActive ? 2.5 : 2} 
-        className={isActive ? 'animate-pulse' : ''} 
+        strokeWidth={isActive ? 3 : 2} 
+        className={isActive ? 'drop-shadow-[0_0_8px_rgba(249,115,22,0.5)]' : ''} 
       />
     </div>
   );

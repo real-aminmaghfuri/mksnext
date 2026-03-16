@@ -55,12 +55,12 @@ export const DesktopMenuAtom: React.FC<DesktopMenuAtomProps> = ({ structure, cur
           >
             <Link 
               href={menu.path} 
-              className={`flex items-center gap-1.5 text-[13px] font-bold tracking-wider uppercase transition-colors select-none py-2
+              className={`flex items-center gap-1.5 text-[11px] font-black tracking-[0.15em] uppercase transition-all duration-300 select-none py-2 px-4 rounded-xl
                 ${isActive
-                  ? 'text-brand-600 dark:text-brand-500' 
+                  ? 'text-brand-600 dark:text-brand-500 bg-brand-500/5' 
                   : isOpen 
-                    ? 'text-brand-600 dark:text-brand-500' 
-                    : 'text-zinc-600 dark:text-zinc-300 hover:text-brand-600 dark:hover:text-brand-500'
+                    ? 'text-brand-600 dark:text-brand-500 bg-zinc-100 dark:bg-zinc-800/50' 
+                    : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/50'
                 }`}
             >
               {menu.label}

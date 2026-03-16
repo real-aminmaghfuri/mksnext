@@ -18,9 +18,9 @@ export const Footer: React.FC = () => {
        - `md:block`: Visible only on Desktop/Tablet (min-width: 768px).
        - Removed `pb-24` because mobile padding is no longer needed.
     */
-    <footer className="hidden md:block bg-zinc-50 dark:bg-black border-t border-zinc-200 dark:border-zinc-800 pt-20 pb-10">
-      <div className="w-full px-6 md:px-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+    <footer className="hidden md:block bg-zinc-50 dark:bg-black border-t border-zinc-200 dark:border-zinc-800 pt-fluid-padding pb-10">
+      <div className="max-w-7xl mx-auto px-fluid-padding">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-fluid-gap mb-16">
           
           {/* Particle: Brand Identity */}
           <FooterBrandAtom description={content.description} />

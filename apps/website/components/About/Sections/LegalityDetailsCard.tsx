@@ -28,50 +28,50 @@ interface LegalityDetailsCardProps {
 
 export const LegalityDetailsCard: React.FC<LegalityDetailsCardProps> = ({ content }) => {
   return (
-    <div className="lg:col-span-8 p-6 md:p-10 space-y-6 md:space-y-0 bg-blue-50/80 dark:bg-blue-900/10 backdrop-blur-md">
+    <div className="lg:col-span-8 p-8 md:p-12 space-y-8 md:space-y-0 bg-white/50 dark:bg-luxury-panel/50 backdrop-blur-xl border border-zinc-200 dark:border-zinc-800/50 rounded-2xl shadow-2xl">
                 
         {/* Entity Row */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-black/10 dark:border-white/10 border-dashed">
-            <span className="text-zinc-800 dark:text-zinc-200 font-bold">{content.labelEntity}</span>
-            <div className="flex items-center gap-2 mt-2 md:mt-0">
-                <CheckCircle2 size={16} className="text-brand-700 dark:text-brand-500" />
-                <span className="text-zinc-900 dark:text-white font-black tracking-tight text-lg">{content.valueEntity}</span>
+        <div className="flex flex-col md:flex-row md:items-center justify-between py-6 border-b border-zinc-200 dark:border-zinc-800 border-dashed">
+            <span className="text-zinc-500 dark:text-zinc-400 font-black uppercase text-[10px] tracking-[0.2em]">{content.labelEntity}</span>
+            <div className="flex items-center gap-3 mt-3 md:mt-0">
+                <CheckCircle2 size={20} className="text-brand-600 dark:text-brand-500" />
+                <span className="text-zinc-900 dark:text-white font-black tracking-tighter text-2xl uppercase">{content.valueEntity}</span>
             </div>
         </div>
 
             {/* NIB Row */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-black/10 dark:border-white/10 border-dashed">
-            <span className="text-zinc-800 dark:text-zinc-200 font-bold">{content.labelNIB}</span>
-            <span className="text-zinc-900 dark:text-white font-mono font-black mt-2 md:mt-0">{content.values.nib}</span>
+            <div className="flex flex-col md:flex-row md:items-center justify-between py-6 border-b border-zinc-200 dark:border-zinc-800 border-dashed">
+            <span className="text-zinc-500 dark:text-zinc-400 font-black uppercase text-[10px] tracking-[0.2em]">{content.labelNIB}</span>
+            <span className="text-zinc-900 dark:text-white font-mono font-black mt-3 md:mt-0 text-lg tracking-tight">{content.values.nib}</span>
         </div>
 
         {/* SK Row */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-black/10 dark:border-white/10 border-dashed">
-            <span className="text-zinc-800 dark:text-zinc-200 font-bold">{content.labelSK}</span>
-            <span className="text-zinc-900 dark:text-white font-mono font-black mt-2 md:mt-0">{content.values.sk}</span>
+        <div className="flex flex-col md:flex-row md:items-center justify-between py-6 border-b border-zinc-200 dark:border-zinc-800 border-dashed">
+            <span className="text-zinc-500 dark:text-zinc-400 font-black uppercase text-[10px] tracking-[0.2em]">{content.labelSK}</span>
+            <span className="text-zinc-900 dark:text-white font-mono font-black mt-3 md:mt-0 text-lg tracking-tight">{content.values.sk}</span>
         </div>
 
         {/* NPWP Row */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-black/10 dark:border-white/10 border-dashed">
-            <span className="text-zinc-800 dark:text-zinc-200 font-bold">{content.labelNPWP}</span>
-            <span className="text-zinc-900 dark:text-white font-mono font-black mt-2 md:mt-0">{content.values.npwp}</span>
+        <div className="flex flex-col md:flex-row md:items-center justify-between py-6 border-b border-zinc-200 dark:border-zinc-800 border-dashed">
+            <span className="text-zinc-500 dark:text-zinc-400 font-black uppercase text-[10px] tracking-[0.2em]">{content.labelNPWP}</span>
+            <span className="text-zinc-900 dark:text-white font-mono font-black mt-3 md:mt-0 text-lg tracking-tight">{content.values.npwp}</span>
         </div>
 
         {/* Bank Row - Multi Account */}
-        <div className="flex flex-col md:flex-row md:items-start justify-between py-4">
-            <span className="text-zinc-800 dark:text-zinc-200 font-bold mb-2 md:mb-0">{content.labelBank}</span>
-            <div className="text-right space-y-4">
+        <div className="flex flex-col md:flex-row md:items-start justify-between py-6">
+            <span className="text-zinc-500 dark:text-zinc-400 font-black uppercase text-[10px] tracking-[0.2em] mb-4 md:mb-0">{content.labelBank}</span>
+            <div className="text-right space-y-6">
                 {content.values.bankAccounts.map((acc, idx) => (
-                    <div key={idx}>
-                        <p className="text-zinc-900 dark:text-white font-mono font-black text-lg">{acc.accountNumber}</p>
-                        <p className="text-zinc-900 dark:text-zinc-300 font-bold uppercase text-[10px]">{acc.bankName} - {acc.accountHolder}</p>
+                    <div key={idx} className="group/bank">
+                        <p className="text-zinc-900 dark:text-white font-mono font-black text-2xl tracking-tighter group-hover/bank:text-brand-600 transition-colors">{acc.accountNumber}</p>
+                        <p className="text-zinc-500 dark:text-zinc-400 font-black uppercase text-[10px] tracking-widest mt-1">{acc.bankName} <span className="text-brand-600">/</span> {acc.accountHolder}</p>
                     </div>
                 ))}
             </div>
         </div>
 
-        <div className="pt-4">
-                <p className="text-xs text-zinc-600 dark:text-zinc-400 italic font-medium">{content.footerNote}</p>
+        <div className="pt-8 border-t border-zinc-200 dark:border-zinc-800">
+                <p className="text-[10px] text-zinc-500 dark:text-zinc-500 italic font-black uppercase tracking-widest leading-relaxed">{content.footerNote}</p>
         </div>
     </div>
   );

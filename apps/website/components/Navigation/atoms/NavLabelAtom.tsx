@@ -17,8 +17,8 @@ export const NavLabelAtom: React.FC<NavLabelAtomProps> = ({
   const styles = {
     title: "text-lg font-black tracking-tight text-zinc-900 dark:text-white",
     subtitle: "text-xs font-medium text-zinc-500 dark:text-zinc-400",
-    meta: "text-[8px] font-black tracking-[0.2em] text-zinc-400 dark:text-zinc-500 uppercase",
-    default: "text-[9px] font-bold text-center leading-none px-0.5 truncate w-full mt-1"
+    meta: "text-[8px] font-black tracking-[0.3em] text-zinc-400 dark:text-zinc-500 uppercase",
+    default: "text-[8px] font-black text-center leading-none px-0.5 truncate w-full mt-1.5 uppercase tracking-tighter"
   };
 
   return (
