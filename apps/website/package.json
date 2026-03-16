@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "ignore-build": "exit 0",
+    "ignore-build": "exit 1",
     "check-lint": "echo 'Skipping lint' && exit 0"
   },
   "dependencies": {
