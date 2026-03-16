@@ -4,6 +4,16 @@ const path = require('path');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   basePath: '/cms',
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/cms',
+        basePath: false,
+        permanent: false,
+      },
+    ];
+  },
   transpilePackages: ["ui", "shared", "data"],
   reactStrictMode: true,
   turbopack: {
