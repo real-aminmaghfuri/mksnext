@@ -22,7 +22,7 @@ export const FabGroupOrganism: React.FC<FabGroupOrganismProps> = ({
   labels
 }) => {
   return (
-    <div className="fixed bottom-24 right-6 md:bottom-8 md:right-8 landscape:right-[100px] landscape:bottom-6 z-40 flex items-end gap-3">
+    <div className="fixed bottom-32 right-6 md:bottom-8 md:right-8 landscape:right-[100px] landscape:bottom-6 z-40 flex items-end gap-3">
       <ScrollToTopMolecule 
         isVisible={showTop} 
         onClick={onScrollToTop} 
