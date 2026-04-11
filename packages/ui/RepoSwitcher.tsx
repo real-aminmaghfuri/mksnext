@@ -19,26 +19,47 @@ interface RepoItem {
 export const RepoSwitcher: React.FC = () => {
   const [isExpanded, setIsExpanded] = React.useState(false);
   
+  const getRepoUrl = (name: string) => {
+    const isProd = typeof window !== 'undefined' && !window.location.hostname.includes('localhost');
+    
+    if (isProd) {
+      switch(name) {
+        case 'website': return 'https://mkswebsite.vercel.app/';
+        case 'cms': return 'https://mks-cms.vercel.app/';
+        case 'system': return 'https://mksapp.vercel.app/';
+        default: return '/';
+      }
+    }
+    
+    // Local development fallback
+    switch(name) {
+      case 'website': return 'http://localhost:3000';
+      case 'cms': return 'http://localhost:3001';
+      case 'system': return 'http://localhost:3002';
+      default: return '/';
+    }
+  };
+
   const repos: RepoItem[] = [
     {
       name: 'website',
       label: 'Website',
       icon: <Globe className="w-4 h-4" />,
-      url: '/',
+      url: getRepoUrl('website'),
       color: 'bg-blue-500',
     },
     {
       name: 'cms',
       label: 'CMS',
       icon: <Settings className="w-4 h-4" />,
-      url: '/cms',
+      url: getRepoUrl('cms'),
       color: 'bg-orange-500',
     },
     {
       name: 'system',
       label: 'System',
       icon: <Layout className="w-4 h-4" />,
-      url: '/system',
+      url: getRepoUrl('system'),
       color: 'bg-emerald-500',
     },
   ];

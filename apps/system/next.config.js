@@ -3,17 +3,6 @@ const path = require('path');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: '/system',
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/system',
-        basePath: false,
-        permanent: false,
-      },
-    ];
-  },
   transpilePackages: ["ui", "shared", "data"],
   reactStrictMode: true,
   turbopack: {},
