@@ -43,11 +43,11 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ name, role, phot
               {role}
             </div>
             
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-zinc-900 dark:text-white mb-2 tracking-[-0.04em] uppercase leading-[0.85]">
+            <h2 className="text-fluid-h1 font-black text-zinc-900 dark:text-white mb-2 tracking-tighter leading-none uppercase">
               {name}
             </h2>
             
-            <p className="text-lg md:text-2xl text-zinc-500 dark:text-zinc-500 font-black italic tracking-tighter uppercase opacity-60">
+            <p className="text-base md:text-xl text-zinc-500 dark:text-zinc-400 font-bold italic opacity-70">
               The Architect of Chaos & Cuan
             </p>
           </div>
@@ -56,19 +56,19 @@ export const FounderSection: React.FC<FounderSectionProps> = ({ name, role, phot
             <Quote className="absolute -top-6 -left-6 w-24 h-24 text-brand-500/5 rotate-12 z-0" />
             
             <div className="relative z-10">
-              <h3 className="text-2xl md:text-4xl font-black text-brand-600 dark:text-brand-500 mb-8 italic tracking-[-0.03em] leading-tight">
+              <h3 className="text-xl md:text-2xl font-bold text-brand-600 dark:text-brand-500 mb-6 italic tracking-tight">
                 "{quote.heading}"
               </h3>
               
-              <div className="space-y-10">
+              <div className="space-y-8">
                 {quote.bodyPrefix && (
-                  <p className="text-lg md:text-2xl text-zinc-700 dark:text-zinc-300 leading-snug font-bold tracking-tight">
+                  <p className="text-base md:text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium tracking-tight">
                     {quote.bodyPrefix}
                   </p>
                 )}
                 
-                <div className="p-8 md:px-12 md:py-10 rounded-2xl bg-orange-500/10 border-l-[8px] border-brand-600 shadow-xl backdrop-blur-md">
-                  <p className="text-xl md:text-3xl font-black text-zinc-900 dark:text-white italic tracking-tight leading-[1.1]">
+                <div className="p-6 md:px-10 md:py-8 rounded-2xl bg-orange-500/15 border-l-[6px] border-brand-600 shadow-sm backdrop-blur-md">
+                  <p className="text-lg md:text-xl font-black text-zinc-900 dark:text-white italic tracking-tight leading-snug">
                     {quote.emphasis}
                   </p>
                 </div>

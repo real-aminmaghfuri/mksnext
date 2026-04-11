@@ -19,12 +19,12 @@ export const AboutHeader: React.FC<AboutHeaderProps> = ({ heading, tagline }) =>
             <span>PROFILE & LEGITIMACY</span>
         </div>
 
-        <h1 className="text-5xl lg:text-8xl font-black text-zinc-900 dark:text-white mb-8 tracking-[-0.05em] uppercase leading-[0.8] animate-fade-in-up">
+        <h1 className="text-fluid-display font-black text-zinc-900 dark:text-white mb-8 tracking-tighter uppercase leading-[0.9] animate-fade-in-up">
           {heading.split(' ').map((word, i) => (
-            <span key={i} className={i % 2 !== 0 ? "text-brand-600 drop-shadow-[0_0_30px_rgba(234,88,12,0.2)]" : ""}>{word} </span>
+            <span key={i} className={i % 2 !== 0 ? "text-brand-600" : ""}>{word} </span>
           ))}
         </h1>
-        <p className="text-xl lg:text-2xl text-zinc-600 dark:text-zinc-400 font-bold max-w-3xl mx-auto leading-tight tracking-tight opacity-90 animate-fade-in-up [animation-delay:100ms]">
+        <p className="text-fluid-body text-zinc-600 dark:text-zinc-400 font-medium max-w-3xl mx-auto leading-relaxed opacity-80 animate-fade-in-up [animation-delay:100ms]">
           {tagline}
         </p>
       </div>

@@ -17,11 +17,11 @@ interface TimelineSectionProps {
 export const TimelineSection: React.FC<TimelineSectionProps> = ({ items }) => {
   return (
     <div className="max-w-5xl mx-auto">
-      <div className="flex items-center gap-6 mb-24">
-        <h3 className="text-5xl md:text-8xl font-black text-zinc-900 dark:text-white uppercase tracking-[-0.06em] leading-[0.8]">
-          War Log <span className="text-brand-600 drop-shadow-[0_0_20px_rgba(234,88,12,0.3)]">&</span> Chronicle
+      <div className="flex items-center gap-6 mb-20">
+        <h3 className="text-3xl md:text-5xl font-black text-zinc-900 dark:text-white uppercase tracking-tighter leading-none">
+          War Log <span className="text-brand-600">&</span> Chronicle
         </h3>
-        <div className="flex-1 h-[2px] bg-gradient-to-r from-brand-600/50 via-zinc-200 dark:via-zinc-800 to-transparent" />
+        <div className="flex-1 h-[1px] bg-gradient-to-r from-brand-600/50 via-zinc-200 dark:via-zinc-800 to-transparent" />
       </div>
 
       <div className="relative">
@@ -38,10 +38,10 @@ export const TimelineSection: React.FC<TimelineSectionProps> = ({ items }) => {
                   <span className="inline-block px-4 py-1.5 rounded-xl bg-brand-500/5 dark:bg-brand-500/10 text-[10px] font-black text-brand-600 dark:text-brand-500 uppercase tracking-[0.3em] border border-brand-500/20">
                     {item.year}
                   </span>
-                  <h4 className="text-3xl md:text-6xl font-black text-zinc-900 dark:text-white tracking-[-0.04em] leading-[0.9]">
+                  <h4 className="text-2xl md:text-4xl font-black text-zinc-900 dark:text-white tracking-tighter leading-tight">
                     {item.title}
                   </h4>
-                  <p className="text-zinc-600 dark:text-zinc-400 leading-tight text-xl md:text-3xl max-w-3xl font-bold tracking-tight opacity-90">
+                  <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-base md:text-xl max-w-3xl font-medium opacity-80">
                     {item.desc}
                   </p>
                 </div>
