@@ -16,7 +16,7 @@ export const DrawerHeaderMolecule: React.FC<DrawerHeaderMoleculeProps> = ({
   className = ""
 }) => {
   return (
-    <div className={`flex justify-between items-center mb-6 ${className}`}>
+    <div className={`flex justify-between items-center mb-4 ${className}`}>
       <h3 className="text-2xl font-black uppercase text-zinc-900 dark:text-white tracking-tight">
         {title}
       </h3>

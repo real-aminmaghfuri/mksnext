@@ -29,7 +29,7 @@ export const PortraitDrawerOrganism: React.FC<PortraitDrawerOrganismProps> = ({
     >
       <DrawerHandleAtom />
       
-      <div className="p-6 pt-2 overflow-y-auto pb-10 max-h-[80vh]">
+      <div className="p-6 pt-2 overflow-y-auto pb-24 max-h-[80vh]">
         <DrawerHeaderMolecule title={menuItem.label} onClose={onClose} />
         
         <div className="grid grid-cols-4 gap-2">
