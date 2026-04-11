@@ -23,27 +23,27 @@ export const TurningPointSection: React.FC<TurningPointSectionProps> = ({ conten
       <div className="flex flex-col gap-6 md:gap-8">
         
         {/* Title Block with Red Bar */}
-        <div className="flex items-center gap-4 md:gap-8 mb-4">
-            <div className="w-2 h-12 md:h-16 bg-gradient-to-b from-red-600 to-brand-700 shadow-[0_0_20px_rgba(220,38,38,0.4)]" />
-            <h2 className="text-4xl md:text-7xl font-black text-zinc-900 dark:text-white tracking-tighter leading-none uppercase">
+        <div className="flex items-center gap-4 md:gap-8 mb-6">
+            <div className="w-2.5 h-16 md:h-24 bg-gradient-to-b from-red-600 to-brand-700 shadow-[0_0_30px_rgba(220,38,38,0.5)]" />
+            <h2 className="text-5xl md:text-8xl font-black text-zinc-900 dark:text-white tracking-[-0.06em] uppercase leading-[0.75]">
                 {content.title}
             </h2>
         </div>
 
         {/* Content Block */}
-        <div className="space-y-10 pl-8 md:pl-12 border-l-[1px] border-zinc-200 dark:border-zinc-800/50">
-            <p className="text-xl md:text-3xl leading-relaxed text-zinc-600 dark:text-zinc-400 font-medium opacity-90">
+        <div className="space-y-12 pl-10 md:pl-16 border-l-[2px] border-zinc-200 dark:border-zinc-800/50">
+            <p className="text-2xl md:text-4xl leading-[1.1] text-zinc-600 dark:text-zinc-400 font-bold tracking-tight opacity-90">
                 {content.p1}
-                <span className="font-black text-zinc-900 dark:text-white block mt-4 md:inline md:mt-0 underline decoration-brand-500/30 underline-offset-8">{content.p1Bold}</span>
+                <span className="font-black text-zinc-900 dark:text-white block mt-6 underline decoration-brand-500/40 underline-offset-[12px] decoration-4">{content.p1Bold}</span>
             </p>
 
-            <p className="text-xl md:text-3xl leading-relaxed text-zinc-600 dark:text-zinc-400 font-medium opacity-90">
+            <p className="text-2xl md:text-4xl leading-[1.1] text-zinc-600 dark:text-zinc-400 font-bold tracking-tight opacity-90">
                 {content.p2Pre}
                 <span className="font-black text-zinc-900 dark:text-white">{content.p2Bold}</span>
                 {content.p2Mid}
-                <span className="italic text-brand-600 dark:text-brand-500 font-black">{content.p2Italic1}</span>
+                <span className="italic text-brand-600 dark:text-brand-500 font-black drop-shadow-sm">{content.p2Italic1}</span>
                 {content.p2Mid2}
-                <span className="italic text-brand-600 dark:text-brand-500 font-black">{content.p2Italic2}</span>
+                <span className="italic text-brand-600 dark:text-brand-500 font-black drop-shadow-sm">{content.p2Italic2}</span>
             </p>
         </div>
 

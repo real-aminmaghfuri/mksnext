@@ -32,29 +32,29 @@ export const LegalityDetailsCard: React.FC<LegalityDetailsCardProps> = ({ conten
                 
         {/* Entity Row */}
         <div className="flex flex-col md:flex-row md:items-center justify-between py-6 border-b border-zinc-200 dark:border-zinc-800 border-dashed">
-            <span className="text-zinc-500 dark:text-zinc-400 font-black uppercase text-[10px] tracking-[0.2em]">{content.labelEntity}</span>
+            <span className="text-zinc-500 dark:text-zinc-500 font-black uppercase text-[10px] tracking-[0.3em]">{content.labelEntity}</span>
             <div className="flex items-center gap-3 mt-3 md:mt-0">
-                <CheckCircle2 size={20} className="text-brand-600 dark:text-brand-500" />
-                <span className="text-zinc-900 dark:text-white font-black tracking-tighter text-2xl uppercase">{content.valueEntity}</span>
+                <CheckCircle2 size={24} strokeWidth={3} className="text-brand-600 dark:text-brand-500" />
+                <span className="text-zinc-900 dark:text-white font-black tracking-[-0.04em] text-3xl uppercase leading-none">{content.valueEntity}</span>
             </div>
         </div>
 
             {/* NIB Row */}
             <div className="flex flex-col md:flex-row md:items-center justify-between py-6 border-b border-zinc-200 dark:border-zinc-800 border-dashed">
-            <span className="text-zinc-500 dark:text-zinc-400 font-black uppercase text-[10px] tracking-[0.2em]">{content.labelNIB}</span>
-            <span className="text-zinc-900 dark:text-white font-mono font-black mt-3 md:mt-0 text-lg tracking-tight">{content.values.nib}</span>
+            <span className="text-zinc-500 dark:text-zinc-500 font-black uppercase text-[10px] tracking-[0.3em]">{content.labelNIB}</span>
+            <span className="text-zinc-900 dark:text-white font-mono font-black mt-3 md:mt-0 text-xl tracking-tight">{content.values.nib}</span>
         </div>
 
         {/* SK Row */}
         <div className="flex flex-col md:flex-row md:items-center justify-between py-6 border-b border-zinc-200 dark:border-zinc-800 border-dashed">
-            <span className="text-zinc-500 dark:text-zinc-400 font-black uppercase text-[10px] tracking-[0.2em]">{content.labelSK}</span>
-            <span className="text-zinc-900 dark:text-white font-mono font-black mt-3 md:mt-0 text-lg tracking-tight">{content.values.sk}</span>
+            <span className="text-zinc-500 dark:text-zinc-500 font-black uppercase text-[10px] tracking-[0.3em]">{content.labelSK}</span>
+            <span className="text-zinc-900 dark:text-white font-mono font-black mt-3 md:mt-0 text-xl tracking-tight">{content.values.sk}</span>
         </div>
 
         {/* NPWP Row */}
         <div className="flex flex-col md:flex-row md:items-center justify-between py-6 border-b border-zinc-200 dark:border-zinc-800 border-dashed">
-            <span className="text-zinc-500 dark:text-zinc-400 font-black uppercase text-[10px] tracking-[0.2em]">{content.labelNPWP}</span>
-            <span className="text-zinc-900 dark:text-white font-mono font-black mt-3 md:mt-0 text-lg tracking-tight">{content.values.npwp}</span>
+            <span className="text-zinc-500 dark:text-zinc-500 font-black uppercase text-[10px] tracking-[0.3em]">{content.labelNPWP}</span>
+            <span className="text-zinc-900 dark:text-white font-mono font-black mt-3 md:mt-0 text-xl tracking-tight">{content.values.npwp}</span>
         </div>
 
         {/* Bank Row - Multi Account */}
