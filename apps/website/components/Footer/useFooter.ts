@@ -1,14 +1,33 @@
 
 "use client";
 
+import { useState, useEffect } from 'react';
 import { useConfig } from 'ui';
-import { DICTIONARY } from 'shared';
+import { DICTIONARY, CompanyIdentity } from 'shared';
 import { MapPin, Phone, Mail } from 'lucide-react';
 import { FooterContent } from './types';
+import { Repository } from 'data';
 
 export const useFooter = (): FooterContent => {
   const { language } = useConfig();
   const text = DICTIONARY[language];
+  const [identity, setIdentity] = useState<CompanyIdentity | null>(null);
+
+  useEffect(() => {
+    let mounted = true;
+    const fetchIdentity = async () => {
+      try {
+        const data = await Repository.getCompanyIdentity();
+        if (mounted) {
+          setIdentity(data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch footer identity:", error);
+      }
+    };
+    fetchIdentity();
+    return () => { mounted = false; };
+  }, []);
 
   return {
     description: text.footerDesc,
@@ -21,9 +40,9 @@ export const useFooter = (): FooterContent => {
     ],
     col2Title: text.footerCol2,
     contactItems: [
-      { icon: MapPin, text: "Jl. Slamet Riyadi No. X, Surakarta, Jawa Tengah, Indonesia" },
-      { icon: Phone, text: "+62 881-6566-935" },
-      { icon: Mail, text: "owner.kasirsolo@gmail.com" },
+      { icon: MapPin, text: identity?.addressOps || "Gumiring 04/04, Sidomulyo, Banjarejo, Blora, Jawa Tengah 58253" },
+      { icon: Phone, text: identity?.whatsapp || "+62 881-6566-935" },
+      { icon: Mail, text: identity?.email || "owner.kasirsolo@gmail.com" },
     ],
     copyrightBrand: text.footerCopyBrand,
     copyrightMsg: text.footerCopyMsg,
