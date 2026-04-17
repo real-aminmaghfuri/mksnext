@@ -11,7 +11,7 @@ export function getArticleMetadata(article: ArticleItem | undefined): Metadata {
     };
   }
 
-  const ogImage = article.image; 
+  const ogImage = article.coverImage; 
 
   return {
     title: `${article.title} | ${SITE_CONFIG.shortName} Intel`,
@@ -24,8 +24,8 @@ export function getArticleMetadata(article: ArticleItem | undefined): Metadata {
       images: [{ url: ogImage, width: 1200, height: 630, alt: article.title }],
       locale: 'id_ID',
       type: 'article',
-      authors: [article.author],
-      publishedTime: new Date(article.date).toISOString(),
+      authors: [article.authorName],
+      publishedTime: new Date(article.publishedAt || article.createdAt || '').toISOString(),
     },
     twitter: {
       card: 'summary_large_image',
