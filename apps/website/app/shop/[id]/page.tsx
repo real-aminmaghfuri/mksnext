@@ -12,7 +12,7 @@ type Props = {
 // 1. Static Params for SSG
 export async function generateStaticParams() {
   return MOCK_PRODUCTS.map((product) => ({
-    id: product.id.toString(),
+    id: (product.id as number).toString(),
   }));
 }
 
@@ -22,7 +22,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const { id } = await params;
-  const product = MOCK_PRODUCTS.find((p) => p.id.toString() === id);
+  const product = MOCK_PRODUCTS.find((p) => p.id?.toString() === id);
 
   if (!product) {
     return { title: 'Produk Tidak Ditemukan' };
@@ -40,7 +40,7 @@ export async function generateMetadata(
 // 3. Server Component
 export default async function ProductDetailPage({ params }: Props) {
   const { id } = await params;
-  const product = MOCK_PRODUCTS.find((p) => p.id.toString() === id);
+  const product = MOCK_PRODUCTS.find((p) => p.id?.toString() === id);
 
   if (!product) {
     notFound();
