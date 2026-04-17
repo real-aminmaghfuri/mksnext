@@ -25,26 +25,32 @@ export const useSettingsData = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const [protocols, idData] = await Promise.all([
+        const [protocolsRes, idRes] = await Promise.all([
           Repository.getWebProtocols(),
           Repository.getCompanyIdentity()
         ]);
         
-        setWebConfig({
-          maintenanceMode: protocols.maintenanceMode ?? false,
-          visibility: protocols.visibility || 'PUBLIC',
-          gsc: protocols.gsc || '',
-          ga4: protocols.ga4 || '',
-          gMerchant: protocols.gMerchant || '',
-          bing: protocols.bing || '',
-          yandex: protocols.yandex || '',
-          pinterest: protocols.pinterest || ''
-        });
+        if (protocolsRes.success && protocolsRes.data) {
+          const protocols = protocolsRes.data;
+          setWebConfig({
+            maintenanceMode: protocols.maintenanceMode ?? false,
+            visibility: protocols.visibility || 'PUBLIC',
+            gsc: protocols.gsc || '',
+            ga4: protocols.ga4 || '',
+            gMerchant: protocols.gMerchant || '',
+            bing: protocols.bing || '',
+            yandex: protocols.yandex || '',
+            pinterest: protocols.pinterest || ''
+          });
+        }
 
-        setIdentity({
-          ...idData,
-          bankAccounts: idData.bankAccounts || [] 
-        });
+        if (idRes.success && idRes.data) {
+          const idData = idRes.data;
+          setIdentity({
+            ...idData,
+            bankAccounts: idData.bankAccounts || [] 
+          });
+        }
       } catch (e) {
         console.error("Failed to load settings", e);
       } finally {

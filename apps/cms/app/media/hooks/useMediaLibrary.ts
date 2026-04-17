@@ -8,8 +8,12 @@ export const useMediaLibrary = () => {
   const loadMedia = async () => {
     setIsLoadingList(true);
     try {
-      const data = await Repository.getMediaLibrary();
-      setMediaList(data);
+      const response = await Repository.getMediaLibrary();
+      if (response.success && response.data) {
+        setMediaList(response.data);
+      } else {
+        console.error("Failed to load media", response.error);
+      }
     } catch (e) {
       console.error("Failed to load media", e);
     } finally {

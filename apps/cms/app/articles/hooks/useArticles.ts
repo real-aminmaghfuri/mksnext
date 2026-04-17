@@ -11,8 +11,12 @@ export const useArticles = () => {
   const fetchArticles = async () => {
     setIsLoading(true);
     try {
-      const data = await Repository.getArticles();
-      setArticles(data);
+      const response = await Repository.getArticles();
+      if (response.success && response.data) {
+        setArticles(response.data);
+      } else {
+        console.error("Failed to fetch articles", response.error);
+      }
     } catch (error) {
       console.error("Failed to fetch articles", error);
     } finally {

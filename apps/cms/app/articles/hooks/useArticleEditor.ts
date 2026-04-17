@@ -28,10 +28,11 @@ export const useArticleEditor = ({ slug }: UseArticleEditorProps) => {
     if (slug) {
       const fetchArticle = async () => {
         try {
-          const data = await Repository.getArticleBySlug(slug);
-          if (data) {
-            setArticle(data);
+          const response = await Repository.getArticleBySlug(slug);
+          if (response.success && response.data) {
+            setArticle(response.data);
           } else {
+            console.error("Failed to fetch article", response.error);
             router.push('/articles');
           }
         } catch (error) {
