@@ -2,12 +2,12 @@
 "use client";
 
 import React from 'react';
-import { useSales } from '../../features/sales/hooks/useSales';
+import { useSales } from '../../hooks/useSales';
 import { ProductGrid } from './atoms/ProductGrid';
 import { Cart } from './atoms/Cart';
 import { CheckoutModal } from './atoms/CheckoutModal';
-import { DashboardHeaderAtom } from '../Dashboard/atoms/DashboardHeaderAtom';
-import { MobileNav } from '../MobileNav';
+import { DashboardHeaderAtom } from '../../../../components/Dashboard/atoms/DashboardHeaderAtom';
+import { MobileNav } from '../../../../components/MobileNav';
 
 export const POS: React.FC = () => {
   const { 

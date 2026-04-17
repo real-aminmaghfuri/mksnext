@@ -2,7 +2,7 @@
 "use client";
 
 import React from 'react';
-import { POS } from '../../components/POS';
+import { POS } from '../../features/sales';
 import { DataProvider } from '../../contexts/DataContext';
 
 export default function POSPage() {

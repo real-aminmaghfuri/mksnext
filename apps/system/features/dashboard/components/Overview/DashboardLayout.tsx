@@ -2,13 +2,13 @@
 "use client";
 
 import React from 'react';
-import { Sidebar } from './components/Sidebar';
-import { MobileNav } from './components/MobileNav';
-import { useDashboard } from './hooks/useDashboard';
-import { DashboardHeaderAtom } from './components/Dashboard/atoms/DashboardHeaderAtom';
-import { StatsGridAtom } from './components/Dashboard/atoms/StatsGridAtom';
-import { RevenueChartAtom } from './components/Dashboard/atoms/RevenueChartAtom';
-import { TransactionFeedAtom } from './components/Dashboard/atoms/TransactionFeedAtom';
+import { Sidebar } from '../../../../components/Sidebar';
+import { MobileNav } from '../../../../components/MobileNav';
+import { useDashboard } from '../../hooks/useDashboard';
+import { DashboardHeaderAtom } from './atoms/DashboardHeaderAtom';
+import { StatsGridAtom } from './atoms/StatsGridAtom';
+import { RevenueChartAtom } from './atoms/RevenueChartAtom';
+import { TransactionFeedAtom } from './atoms/TransactionFeedAtom';
 
 export const DashboardLayout: React.FC = () => {
   // The Brain: All logic is encapsulated here
