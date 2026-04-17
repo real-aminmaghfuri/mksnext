@@ -29,7 +29,7 @@ export const ArticleRightSidebarAtom: React.FC<RightSidebarProps> = ({ relatedAr
                       {/* Thumbnail - Increased to w-20 h-14 (80x56px) for better visibility */}
                       <div className="w-20 h-14 rounded-md bg-zinc-100 dark:bg-zinc-800 overflow-hidden shrink-0 relative border border-zinc-200 dark:border-zinc-800 group-hover:border-brand-500/50 transition-colors">
                           <Image 
-                            src={article.image} 
+                            src={article.coverImage} 
                             alt={article.title} 
                             fill
                             sizes="80px"

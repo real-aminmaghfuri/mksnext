@@ -2,7 +2,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { Contact } from '../../components/Contact';
-import { Repository } from 'data';
+import { Repository, DEFAULT_COMPANY_IDENTITY } from 'data';
 
 export const metadata: Metadata = {
   title: 'Hubungi Markas MKS | PT Mesin Kasir Solo',
@@ -11,7 +11,8 @@ export const metadata: Metadata = {
 
 export default async function ContactPage() {
   // Fetch from Supabase
-  const identity = await Repository.getCompanyIdentity();
+  const response = await Repository.getCompanyIdentity();
+  const identity = response.success && response.data ? response.data : DEFAULT_COMPANY_IDENTITY;
 
   return (
     <div className="pt-0">

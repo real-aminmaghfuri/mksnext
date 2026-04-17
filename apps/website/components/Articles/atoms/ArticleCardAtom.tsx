@@ -17,7 +17,7 @@ export const ArticleCardAtom: React.FC<ArticleCardProps> = ({ article }) => {
         {/* Image Container with precise aspect ratio to prevent CLS */}
         <div className="relative aspect-[4/3] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
             <Image 
-                src={article.image} 
+                src={article.coverImage} 
                 alt={article.title} 
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -31,7 +31,7 @@ export const ArticleCardAtom: React.FC<ArticleCardProps> = ({ article }) => {
         {/* Content */}
         <div className="p-6 flex flex-col flex-1">
             <div className="flex items-center gap-2 text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-3">
-                <Calendar size={12} className="text-brand-500" /> {article.date}
+                <Calendar size={12} className="text-brand-500" /> {article.publishedAt || article.createdAt}
             </div>
             
             <h3 className="text-lg font-black text-zinc-900 dark:text-white mb-3 leading-tight group-hover:text-brand-600 dark:group-hover:text-brand-500 transition-colors line-clamp-2">

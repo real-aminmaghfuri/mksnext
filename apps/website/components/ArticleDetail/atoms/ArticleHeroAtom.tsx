@@ -39,7 +39,7 @@ export const ArticleHeroAtom: React.FC<ArticleHeroProps> = ({ article, scrollTop
             style={{ opacity: isCompact ? 0 : 0.6 }}
         >
            <Image 
-             src={article.image} 
+             src={article.coverImage} 
              alt={article.title} 
              fill
              priority
@@ -84,11 +84,11 @@ export const ArticleHeroAtom: React.FC<ArticleHeroProps> = ({ article, scrollTop
               <div className="flex flex-wrap items-center gap-6 text-xs md:text-sm font-bold text-zinc-400 uppercase tracking-wider">
                   <div className="flex items-center gap-2">
                       <User size={16} className="text-brand-500" />
-                      <span>{article.author}</span>
+                      <span>{article.authorName}</span>
                   </div>
                   <div className="flex items-center gap-2">
                       <Calendar size={16} className="text-brand-500" />
-                      <span>{article.date}</span>
+                      <span>{article.publishedAt || article.createdAt}</span>
                   </div>
                   <div className="flex items-center gap-2">
                       <Clock size={16} className="text-brand-500" />

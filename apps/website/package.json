@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "ignore-build": "exit 1",
-    "check-lint": "echo 'Skipping lint' && exit 0"
+    "check-lint": "tsc --noEmit"
   },
   "dependencies": {
     "next": "latest",

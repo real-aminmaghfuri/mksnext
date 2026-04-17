@@ -17,9 +17,9 @@ export const useFooter = (): FooterContent => {
     let mounted = true;
     const fetchIdentity = async () => {
       try {
-        const data = await Repository.getCompanyIdentity();
-        if (mounted) {
-          setIdentity(data);
+        const response = await Repository.getCompanyIdentity();
+        if (mounted && response.success && response.data) {
+          setIdentity(response.data);
         }
       } catch (error) {
         console.error("Failed to fetch footer identity:", error);

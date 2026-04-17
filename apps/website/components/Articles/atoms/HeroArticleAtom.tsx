@@ -15,7 +15,7 @@ export const HeroArticleAtom: React.FC<HeroArticleProps> = ({ article }) => {
         <div className="relative w-full h-[500px] md:h-[600px] rounded-3xl overflow-hidden mb-16 group cursor-pointer shadow-2xl bg-zinc-900">
         {/* Background Image - Optimized for LCP */}
         <Image 
-            src={article.image} 
+            src={article.coverImage} 
             alt={article.title}
             fill
             priority={true}
@@ -40,11 +40,11 @@ export const HeroArticleAtom: React.FC<HeroArticleProps> = ({ article }) => {
             <div className="flex flex-wrap items-center gap-6 text-sm font-bold text-zinc-400 uppercase tracking-wider">
                 <div className="flex items-center gap-2">
                     <User size={16} className="text-brand-500" />
-                    <span>{article.author}</span>
+                    <span>{article.authorName}</span>
                 </div>
                 <div className="flex items-center gap-2">
                     <Calendar size={16} className="text-brand-500" />
-                    <span>{article.date}</span>
+                    <span>{article.publishedAt || article.createdAt}</span>
                 </div>
                 <div className="flex items-center gap-2">
                     <Clock size={16} className="text-brand-500" />

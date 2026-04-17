@@ -26,7 +26,7 @@ export const ArticleRelatedAtom: React.FC<RelatedProps> = ({ prev, next }) => {
          {/* Thumbnail */}
          <div className="relative w-20 h-20 md:w-28 md:h-28 shrink-0 rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-lg group-hover:border-brand-500 transition-colors duration-300 bg-zinc-100 dark:bg-zinc-800">
             <Image 
-                src={item.image} 
+                src={item.coverImage} 
                 alt={item.title}
                 fill
                 sizes="120px"

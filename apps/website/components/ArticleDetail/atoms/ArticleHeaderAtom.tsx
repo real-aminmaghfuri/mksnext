@@ -37,11 +37,11 @@ export const ArticleHeaderAtom: React.FC<ArticleHeaderProps> = ({ article, backT
         <div className="flex flex-wrap items-center gap-6 text-sm font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider border-y border-zinc-200 dark:border-zinc-800 py-4">
             <div className="flex items-center gap-2">
                 <User size={16} className="text-brand-500" />
-                <span className="text-zinc-900 dark:text-white">{article.author}</span>
+                <span className="text-zinc-900 dark:text-white">{article.authorName}</span>
             </div>
             <div className="flex items-center gap-2">
                 <Calendar size={16} />
-                <span>{article.date}</span>
+                <span>{article.publishedAt || article.createdAt}</span>
             </div>
             <div className="flex items-center gap-2">
                 <Clock size={16} />
@@ -53,7 +53,7 @@ export const ArticleHeaderAtom: React.FC<ArticleHeaderProps> = ({ article, backT
       {/* Hero Image */}
       <div className="w-full aspect-video rounded-3xl overflow-hidden shadow-2xl bg-zinc-100 dark:bg-zinc-800 relative">
          <Image 
-            src={article.image} 
+            src={article.coverImage} 
             alt={article.title} 
             fill
             priority

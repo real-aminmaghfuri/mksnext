@@ -24,7 +24,7 @@ export const useArticleDetail = (
   
   // 1. Logic Extraction
   const scrollSpy = useArticleScrollSpy(toc);
-  const navigation = useArticleNavigation(article.id);
+  const navigation = useArticleNavigation(article.id as number);
   const actions = useArticleActions();
 
   // 2. Derived Data

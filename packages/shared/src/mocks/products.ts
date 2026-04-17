@@ -1,7 +1,7 @@
 
 import { ProductItem } from '../types';
 
-export const MOCK_PRODUCTS: ProductItem[] = [
+export const MOCK_PRODUCTS: ProductItem[] = ([
   {
     id: 1,
     name: "MKS Fighter V1",
@@ -66,7 +66,7 @@ export const MOCK_PRODUCTS: ProductItem[] = [
         "https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?auto=format&fit=crop&q=80&w=800"
     ],
     desc: "Tablet khusus POS. Baterai badak 8000mAh. Layar IPS jernih. Sudah include stand metal.",
-    review: "Bukan tablet cina murahan yang dipake sebulan jebol. Ini Industrial Grade. Baterai 8000mAh kuat seharian tanpa colok charger. Stand metalnya kokoh, gak goyang pas ditutul-tutul pelanggan.",
+    review: "Bukan tablet cina murahan yang dipake sebulan jebol. Ini Industrial Grade. Baterai 8000mAh kuat seharian tanpa colok charger. Stand metalnya kokoh, gak goyang pas ditutul-tul pelanggan.",
     specs: ["Screen: 10.1 FHD IPS", "CPU: Octa Core 2.0GHz", "RAM 4GB / Storage 64GB", "Battery: 8000mAh", "4G LTE Support"],
     inBox: ["Tablet Unit", "Metal Stand", "Charger Fast Charging", "Sim Ejector"],
     weight: "1.2 Kg",
@@ -107,4 +107,8 @@ export const MOCK_PRODUCTS: ProductItem[] = [
     dimensions: "41 x 42 x 10 cm",
     category: 'PERIPHERALS'
   }
-];
+] as any[]).map(product => ({
+  ...product,
+  sku: `MKS-SKU-${product.id}`,
+  stock: 10,
+})) as ProductItem[];

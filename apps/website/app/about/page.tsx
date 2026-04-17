@@ -2,7 +2,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { About } from '../../components/About/index';
-import { Repository } from 'data';
+import { Repository, DEFAULT_COMPANY_IDENTITY } from 'data';
 
 export const metadata: Metadata = {
   title: 'Kisah Berdarah di Balik MKS | PT Mesin Kasir Solo',
@@ -17,7 +17,8 @@ export const revalidate = 0;
 export default async function AboutPage() {
   // Fetch Identity Data (Single Source of Truth)
   // Karena 'force-dynamic', ini akan selalu ambil data fresh dari Supabase/Dexie
-  const identity = await Repository.getCompanyIdentity();
+  const response = await Repository.getCompanyIdentity();
+  const identity = response.success && response.data ? response.data : DEFAULT_COMPANY_IDENTITY;
 
   return (
     <div className="pt-20">

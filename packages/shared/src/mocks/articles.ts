@@ -9,5 +9,11 @@ export { ARTICLE_CATEGORIES, AUTHORS } from './articles/constants';
 // --- MAIN MOCK EXPORT ---
 export const MOCK_ARTICLES: ArticleItem[] = DATA_SOURCE.map(item => ({
   ...item,
+  authorName: item.author,
+  coverImage: item.image,
+  publishedAt: item.date,
+  authorId: 'SYSTEM',
+  tags: [],
+  status: 'PUBLISHED',
   content: getArticleContent(item.id)
 }));
