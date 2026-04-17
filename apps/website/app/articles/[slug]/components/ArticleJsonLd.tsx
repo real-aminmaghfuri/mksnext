@@ -12,11 +12,11 @@ export const ArticleJsonLd: React.FC<ArticleJsonLdProps> = ({ article }) => {
     '@type': 'BlogPosting',
     headline: article.title,
     description: article.excerpt,
-    image: article.image,
-    datePublished: new Date(article.date).toISOString(),
+    image: article.coverImage,
+    datePublished: new Date(article.publishedAt || article.createdAt || '').toISOString(),
     author: {
       '@type': 'Person',
-      name: article.author,
+      name: article.authorName,
       url: absoluteUrl('/about')
     },
     publisher: {
