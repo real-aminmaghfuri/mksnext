@@ -8,6 +8,7 @@ import { Cart } from './atoms/Cart';
 import { CheckoutModal } from './atoms/CheckoutModal';
 import { DashboardHeaderAtom } from '../../../../components/Dashboard/atoms/DashboardHeaderAtom';
 import { MobileNav } from '../../../../components/MobileNav';
+import { Sidebar } from '../../../../components/Sidebar';
 
 export const POS: React.FC = () => {
   const { 
@@ -65,6 +66,8 @@ export const POS: React.FC = () => {
 
         <MobileNav />
       </div>
+
+      <Sidebar />
 
       <CheckoutModal 
         isOpen={isCheckoutOpen} 

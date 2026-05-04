@@ -9,7 +9,6 @@ import { Image as ImageIcon, Upload, Search, Trash2 } from 'lucide-react';
 export default function MediaPage() {
   return (
     <div className="flex h-screen bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white overflow-hidden text-sm">
-      <Sidebar />
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
          <header className="h-16 flex items-center justify-between px-6 border-b border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-black/50 backdrop-blur-md sticky top-0 z-20">
             <h2 className="text-xl font-black tracking-tight uppercase leading-none">Media Intelligence</h2>
@@ -43,6 +42,7 @@ export default function MediaPage() {
             </div>
          </main>
       </div>
+      <Sidebar />
       <MobileNav />
     </div>
   );
