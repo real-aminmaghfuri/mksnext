@@ -37,13 +37,13 @@ export const DashboardLayout: React.FC = () => {
           user={user}
         />
 
-        {/* Scrollable Dashboard Content - Compact Padding */}
-        <main className="flex-1 overflow-y-auto p-4 md:p-6 pb-24 md:pb-6 custom-scrollbar relative z-10">
+        {/* Scrollable Dashboard Content - High Density Padding */}
+        <main className="flex-1 overflow-y-auto p-3 md:p-4 pb-20 md:pb-4 custom-scrollbar relative z-10">
           
           {/* Statistics Grid Atom */}
           <StatsGridAtom stats={statItems} />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {/* Analytics Chart Placeholder Atom */}
             <RevenueChartAtom />
 

@@ -43,7 +43,7 @@ export default function MediaPage() {
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
          <Header title="MEDIA INTELLIGENCE" />
 
-         <main className="flex-1 overflow-y-auto p-6 md:p-8 custom-scrollbar relative z-10 pb-24">
+         <main className="flex-1 overflow-y-auto p-4 custom-scrollbar relative z-10 pb-20">
             
             {/* ORGANISM: UPLOAD & AI ANALYSIS ZONE */}
             <UploadSectionOrganism 

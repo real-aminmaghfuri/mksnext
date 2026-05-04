@@ -3,7 +3,6 @@
 import React from 'react';
 import { RefreshCw } from 'lucide-react';
 import Image from 'next/image';
-import { RepoSwitcher } from 'ui';
 
 interface DashboardHeaderProps {
   title: string;
@@ -28,9 +27,6 @@ export const DashboardHeaderAtom: React.FC<DashboardHeaderProps> = ({ title, isL
               {isLoading ? 'Syncing...' : 'System Online'}
             </p>
           </div>
-        </div>
-        <div className="hidden lg:block">
-          <RepoSwitcher />
         </div>
       </div>
       

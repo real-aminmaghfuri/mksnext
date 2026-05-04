@@ -17,7 +17,7 @@ export const Inventory: React.FC = () => {
   } = useInventory();
 
   return (
-    <div className="p-6 pb-24">
+    <div className="p-3 pb-20">
        <InventoryHeaderAtom 
           title="LOGISTIK & STOK"
           searchPlaceholder="Cari nama barang atau SKU..."

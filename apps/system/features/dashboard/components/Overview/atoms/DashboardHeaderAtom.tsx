@@ -3,7 +3,6 @@
 import React from 'react';
 import { RefreshCw } from 'lucide-react';
 import Image from 'next/image';
-import { RepoSwitcher } from 'ui';
 
 interface DashboardHeaderProps {
   title: string;
@@ -18,7 +17,7 @@ interface DashboardHeaderProps {
 
 export const DashboardHeaderAtom: React.FC<DashboardHeaderProps> = ({ title, isLoading, onRefresh, user }) => {
   return (
-    <header className="h-16 flex items-center justify-between px-4 md:px-6 border-b border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-black/50 backdrop-blur-md z-20 sticky top-0">
+    <header className="h-14 flex items-center justify-between px-4 border-b border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-black/50 backdrop-blur-md z-20 sticky top-0">
       <div className="flex items-center gap-4">
         <div>
           <h2 className="text-fluid-h2 font-black tracking-tight uppercase">{title}</h2>
@@ -28,9 +27,6 @@ export const DashboardHeaderAtom: React.FC<DashboardHeaderProps> = ({ title, isL
               {isLoading ? 'Syncing...' : 'System Online'}
             </p>
           </div>
-        </div>
-        <div className="hidden lg:block">
-          <RepoSwitcher />
         </div>
       </div>
       

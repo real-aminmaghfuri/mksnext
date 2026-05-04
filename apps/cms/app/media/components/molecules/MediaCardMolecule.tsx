@@ -32,15 +32,15 @@ export const MediaCardMolecule: React.FC<MediaCardMoleculeProps> = ({
         </div>
       </div>
       
-      <div className="p-4">
-        <div className="flex items-center justify-between mb-2">
-          <p className="text-xs font-bold text-zinc-900 dark:text-white truncate max-w-[150px]" title={item.filename}>
+      <div className="p-2.5">
+        <div className="flex items-center justify-between mb-1">
+          <p className="text-[11px] font-bold text-zinc-900 dark:text-white truncate max-w-[120px]" title={item.filename}>
             {item.filename}
           </p>
         </div>
-        <p className="text-[10px] text-zinc-500 line-clamp-1 mb-3">{item.caption}</p>
+        <p className="text-[9px] text-zinc-500 line-clamp-1 mb-2">{item.caption}</p>
         
-        <div className="flex gap-2">
+        <div className="flex gap-1.5">
           <ActionButtonAtom 
             label="COPY" 
             icon={Copy} 

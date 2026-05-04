@@ -3,7 +3,7 @@
 import React from 'react';
 import { useConfig } from 'ui';
 import { DICTIONARY } from 'shared';
-import { LayoutDashboard, Package, Settings, LogOut, ShoppingCart } from 'lucide-react';
+import { LayoutDashboard, Package, Settings, LogOut, ShoppingCart, FileText } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -14,9 +14,10 @@ export const MobileNav: React.FC = () => {
 
   const menuItems = [
     { icon: LayoutDashboard, label: 'Dash', path: '/' },
-    { icon: ShoppingCart, label: 'POS', path: '/pos' },
-    { icon: Package, label: 'Stok', path: '/inventory' },
-    { icon: Settings, label: 'Set', path: '/settings' },
+    { icon: ShoppingCart, label: 'KASIR', path: '/pos' },
+    { icon: FileText, label: 'CMS', path: '/articles' },
+    { icon: Package, label: 'STOK', path: '/inventory' },
+    { icon: Settings, label: 'SET', path: '/settings' },
   ];
 
   return (
@@ -42,16 +43,6 @@ export const MobileNav: React.FC = () => {
             </Link>
           );
         })}
-         <a
-            href="/"
-            aria-label="Logout"
-            className="flex flex-col items-center justify-center h-full space-y-1 text-red-600 dark:text-red-500 active:scale-95 transition-transform"
-          >
-             <div className="p-1">
-                <LogOut size={22} strokeWidth={2} />
-            </div>
-            <span className="text-[10px] font-bold tracking-tight">Logout</span>
-          </a>
       </div>
     </nav>
   );

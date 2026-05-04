@@ -30,12 +30,12 @@ export const InventoryTableAtom: React.FC<InventoryTableProps> = ({ products, is
        <table className="w-full text-left border-collapse">
           <thead>
              <tr className="border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950/50">
-                <th className="p-4 text-[10px] font-black uppercase tracking-widest text-zinc-500 w-16">ID</th>
-                <th className="p-4 text-[10px] font-black uppercase tracking-widest text-zinc-500">Item Name</th>
-                <th className="p-4 text-[10px] font-black uppercase tracking-widest text-zinc-500">SKU</th>
-                <th className="p-4 text-[10px] font-black uppercase tracking-widest text-zinc-500 text-right">Price</th>
-                <th className="p-4 text-[10px] font-black uppercase tracking-widest text-zinc-500 text-center">Stock</th>
-                <th className="p-4 text-[10px] font-black uppercase tracking-widest text-zinc-500 text-right">Actions</th>
+                <th className="px-3 py-2 text-[9px] font-black uppercase tracking-widest text-zinc-500 w-12">ID</th>
+                <th className="px-3 py-2 text-[9px] font-black uppercase tracking-widest text-zinc-500">Item Name</th>
+                <th className="px-3 py-2 text-[9px] font-black uppercase tracking-widest text-zinc-500">SKU</th>
+                <th className="px-3 py-2 text-[9px] font-black uppercase tracking-widest text-zinc-500 text-right">Price</th>
+                <th className="px-3 py-2 text-[9px] font-black uppercase tracking-widest text-zinc-500 text-center">Stock</th>
+                <th className="px-3 py-2 text-[9px] font-black uppercase tracking-widest text-zinc-500 text-right">Actions</th>
              </tr>
           </thead>
           <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800">
@@ -44,8 +44,8 @@ export const InventoryTableAtom: React.FC<InventoryTableProps> = ({ products, is
                 const isOutOfStock = product.stock === 0;
 
                 return (
-                   <tr key={product.id} className="group hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors">
-                      <td className="p-4 text-xs font-mono text-zinc-400">#{product.id}</td>
+                   <tr key={product.id} className="group hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors border-b border-zinc-100 dark:border-zinc-800/50 last:border-0">
+                      <td className="px-3 py-2 text-[10px] font-mono text-zinc-400">#{product.id}</td>
                       <td className="p-4">
                          <div className="font-bold text-sm text-zinc-900 dark:text-white">{product.name}</div>
                          <div className="text-[10px] text-zinc-500 uppercase font-bold tracking-wider">{product.category}</div>

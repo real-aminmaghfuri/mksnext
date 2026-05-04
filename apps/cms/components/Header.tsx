@@ -3,7 +3,6 @@
 import React from 'react';
 import { useData } from '../contexts/DataContext';
 import Image from 'next/image';
-import { RepoSwitcher } from 'ui';
 
 export const Header: React.FC<{ title: string }> = ({ title }) => {
   const { user } = useData();
@@ -11,9 +10,6 @@ export const Header: React.FC<{ title: string }> = ({ title }) => {
     <header className="h-16 flex items-center justify-between px-6 border-b border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-black/50 backdrop-blur-md sticky top-0 z-20">
       <div className="flex items-center gap-6">
         <h2 className="text-xl font-black tracking-tight uppercase">{title}</h2>
-        <div className="hidden lg:block">
-          <RepoSwitcher />
-        </div>
       </div>
       <div className="flex items-center gap-3">
          <div className="text-right hidden sm:block">
