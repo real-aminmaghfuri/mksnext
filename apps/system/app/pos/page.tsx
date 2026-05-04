@@ -7,8 +7,6 @@ import { DataProvider } from '../../contexts/DataContext';
 
 export default function POSPage() {
   return (
-    <DataProvider>
-      <POS />
-    </DataProvider>
+    <POS />
   );
 }

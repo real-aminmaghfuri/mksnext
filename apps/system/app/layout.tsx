@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { ConfigProvider } from "ui";
 import { DataProvider } from "../contexts/DataContext";
+import { Sidebar } from "../components/Sidebar";
+import { MobileNav } from "../components/MobileNav";
 import "./globals.css";
 
 const font = Plus_Jakarta_Sans({ subsets: ["latin"] });
@@ -28,10 +30,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={`${font.className} bg-zinc-100 dark:bg-black text-zinc-900 dark:text-white`}>
+      <body className={`${font.className} bg-zinc-50 dark:bg-black text-zinc-900 dark:text-white antialiased`}>
         <ConfigProvider>
           <DataProvider>
-            {children}
+            <div className="flex h-screen overflow-hidden">
+              <main className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
+                {children}
+              </main>
+              <Sidebar />
+              <MobileNav />
+            </div>
           </DataProvider>
         </ConfigProvider>
       </body>
