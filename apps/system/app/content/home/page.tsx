@@ -44,30 +44,148 @@ export default function HomeContentPage() {
 
   return (
     <div className="flex h-full overflow-hidden bg-zinc-50 dark:bg-black">
-      {/* Main Content Area */}
-      <div className="flex-1 overflow-y-auto px-10 py-0 scroll-smooth custom-scrollbar">
-        <div className="w-full space-y-24 pb-24">
-          
-          {/* Header - Sticky */}
-          <div className="sticky top-0 z-30 pt-12 pb-8 bg-zinc-50/80 dark:bg-black/80 backdrop-blur-md flex justify-between items-center border-b border-zinc-200 dark:border-zinc-800 mb-12 px-10">
+      {/* Right Navigation Sidebar (Moved to Left for better flow with 30/70 editor) */}
+      <div className="w-72 border-r border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-6 hidden xl:block overflow-y-auto">
+        <div className="space-y-8">
             <div>
-              <h1 className="text-4xl font-bold tracking-tighter text-zinc-900 dark:text-white mb-2 uppercase">
-                Editor <span className="text-brand-500">Beranda</span>
-              </h1>
-              <p className="text-zinc-500 dark:text-zinc-400 font-medium text-sm">
-                Kelola seluruh konten narasi dan copywriting di halaman utama website.
-              </p>
+                <p className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.2em] mb-4 ml-2">Navigasi Seksi</p>
+                <div className="space-y-1">
+                    {SECTIONS.map((section) => {
+                        const Icon = section.icon;
+                        const isActive = activeSection === section.id;
+                        return (
+                            <button
+                                key={section.id}
+                                onClick={() => scrollToSection(section.id)}
+                                className={`w-full flex items-center p-3 rounded-xl transition-all duration-300 group cursor-pointer
+                                    ${isActive 
+                                        ? 'bg-zinc-900 dark:bg-white text-white dark:text-black shadow-lg shadow-zinc-500/20' 
+                                        : 'text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-white'
+                                    }`}
+                            >
+                                <ChevronRight size={14} className={`mr-2 transition-transform duration-300 ${isActive ? 'rotate-0 opacity-100' : '-rotate-90 opacity-40'}`} />
+                                <Icon size={18} strokeWidth={isActive ? 2.5 : 2} />
+                                <div className="ml-3 flex-1 flex justify-between items-center text-left">
+                                    <span className="font-bold text-sm tracking-tight">{section.label}</span>
+                                    {isActive && <div className="w-1.5 h-1.5 rounded-full bg-brand-500" />}
+                                </div>
+                            </button>
+                        );
+                    })}
+                </div>
             </div>
-            <div className="flex gap-4">
-              <Button variant="outline" className="gap-2 h-12 px-6 text-xs font-bold uppercase tracking-widest cursor-pointer">
-                <Eye size={16} /> Preview
-              </Button>
-              <Button className="gap-2 h-12 px-6 text-xs font-bold uppercase tracking-widest cursor-pointer shadow-xl shadow-brand-500/20" onClick={handleSave} disabled={isSaving}>
-                {isSaving ? <CheckCircle2 size={16} className="animate-bounce" /> : <Save size={16} />} 
-                {isSaving ? 'Tersimpan' : 'Simpan Perubahan'}
-              </Button>
+
+            <div className="p-6 rounded-2xl bg-brand-500/5 border border-brand-500/10 space-y-4">
+                <div className="flex items-center gap-2 text-brand-500">
+                    <MousePointer2 size={16} />
+                    <span className="text-[10px] font-black uppercase tracking-widest">Tips Editor</span>
+                </div>
+                <p className="text-xs text-brand-900/60 dark:text-brand-100/60 leading-relaxed font-medium">
+                    Gunakan aksen warna pada judul agar lebih menarik dan profesional.
+                </p>
             </div>
-          </div>
+        </div>
+      </div>
+
+      {/* Main Container: 30/70 Grid */}
+      <div className="flex-1 flex overflow-hidden">
+        
+        {/* Column 1: SEO Score & Info (30%) */}
+        <div className="w-[30%] border-r border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/20 overflow-y-auto hidden lg:block custom-scrollbar">
+           <div className="p-8 space-y-8">
+              <div className="pt-4">
+                <h3 className="text-xs font-black text-zinc-400 uppercase tracking-[0.2em] mb-6">Analisis SEO Halaman</h3>
+                <GlassCard className="p-6 space-y-6 border-brand-500/20">
+                   <div className="flex flex-col items-center justify-center py-4 bg-brand-500/5 rounded-2xl border border-brand-500/10">
+                      <span className="text-4xl font-black text-brand-500">85</span>
+                      <span className="text-[10px] font-bold text-brand-500/60 uppercase tracking-widest mt-1">SEO Score</span>
+                   </div>
+                   
+                   <div className="space-y-4">
+                      <div className="space-y-2">
+                        <div className="flex justify-between text-[10px] font-bold uppercase tracking-wider text-zinc-500">
+                          <span>Keterbacaan</span>
+                          <span className="text-emerald-500 uppercase">Bagus</span>
+                        </div>
+                        <div className="h-1.5 w-full bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden">
+                          <div className="h-full w-[90%] bg-emerald-500 rounded-full" />
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <div className="flex justify-between text-[10px] font-bold uppercase tracking-wider text-zinc-500">
+                          <span>Densitas Kata Kunci</span>
+                          <span className="text-brand-500 uppercase">Optimal</span>
+                        </div>
+                        <div className="h-1.5 w-full bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden">
+                          <div className="h-full w-[75%] bg-brand-500 rounded-full" />
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <div className="flex justify-between text-[10px] font-bold uppercase tracking-wider text-zinc-500">
+                          <span>Struktur Heading</span>
+                          <span className="text-yellow-500 uppercase">Perlu Cek</span>
+                        </div>
+                        <div className="h-1.5 w-full bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden">
+                          <div className="h-full w-[60%] bg-yellow-500 rounded-full" />
+                        </div>
+                      </div>
+                   </div>
+
+                   <ul className="space-y-3 pt-4 border-t border-zinc-100 dark:border-zinc-800">
+                      <li className="flex gap-2 text-xs text-zinc-500">
+                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-1" />
+                        Judul mengandung kata kunci utama "Mesin Kasir Solo".
+                      </li>
+                      <li className="flex gap-2 text-xs text-zinc-500">
+                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-1" />
+                        Deskripsi meta sudah optimal untuk tingkat klik.
+                      </li>
+                      <li className="flex gap-2 text-xs text-zinc-500 text-yellow-500">
+                        <div className="w-1.5 h-1.5 rounded-full bg-yellow-500 shrink-0 mt-1" />
+                        Tambahkan lebih banyak teks pada Hero Section.
+                      </li>
+                   </ul>
+                </GlassCard>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-zinc-900 border border-zinc-800 space-y-4">
+                 <div className="flex items-center gap-2 text-white">
+                    <Info size={16} className="text-brand-500" />
+                    <span className="text-[10px] font-black tracking-widest uppercase">Info Live</span>
+                 </div>
+                 <p className="text-xs text-zinc-400 leading-relaxed">
+                   Perubahan yang Anda simpan akan langsung memperbarui konten di website publik dalam hitungan detik.
+                 </p>
+              </div>
+           </div>
+        </div>
+
+        {/* Column 2: Content Editor (70%) */}
+        <div className="flex-1 overflow-y-auto px-8 py-0 scroll-smooth custom-scrollbar bg-white dark:bg-black/40">
+          <div className="max-w-4xl mx-auto space-y-16 pb-32">
+            
+            {/* Header - Sticky */}
+            <div className="sticky top-0 z-30 pt-10 pb-6 bg-white/80 dark:bg-black/80 backdrop-blur-md flex justify-between items-center border-b border-zinc-100 dark:border-zinc-800 mb-8">
+              <div>
+                <h1 className="text-3xl font-black tracking-tighter text-zinc-900 dark:text-white mb-1 uppercase">
+                  Editor <span className="text-brand-500">Beranda</span>
+                </h1>
+                <p className="text-zinc-500 dark:text-zinc-400 font-bold text-[10px] uppercase tracking-wider">
+                  Konten Halaman Utama
+                </p>
+              </div>
+              <div className="flex gap-3">
+                <Button variant="outline" className="gap-2 h-10 px-5 text-[10px] font-black uppercase tracking-widest cursor-pointer border-zinc-200 dark:border-zinc-800">
+                  <Eye size={14} /> Preview
+                </Button>
+                <Button className="gap-2 h-10 px-5 text-[10px] font-black uppercase tracking-widest cursor-pointer shadow-lg shadow-brand-500/20" onClick={handleSave} disabled={isSaving}>
+                  {isSaving ? <CheckCircle2 size={14} className="animate-bounce" /> : <Save size={14} />} 
+                  {isSaving ? 'Tersimpan' : 'Simpan'}
+                </Button>
+              </div>
+            </div>
 
           {/* Section: Hero */}
           <section id="hero" className="space-y-8 pt-12 px-10">
@@ -208,7 +326,7 @@ export default function HomeContentPage() {
                     <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">Section Title (HTML supported)</label>
                     <textarea 
                         rows={2}
-                        defaultValue="Dibangun untuk <span class='text-brand-500'>Skalabilitas</span> Tanpa Batas."
+                        defaultValue="Dibangun untuk Skalabilitas Tanpa Batas."
                         className="w-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm font-medium tracking-tight focus:ring-2 focus:ring-brand-500 outline-none transition-all"
                     />
                 </div>
@@ -216,7 +334,7 @@ export default function HomeContentPage() {
           </section>
 
           {/* Section: Portfolio Preview */}
-          <section id="portfolio" className="space-y-8 pt-12 px-10">
+          <section id="portfolio" className="space-y-8 pt-12">
             <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500">
                     <Layout size={20} />
@@ -237,7 +355,7 @@ export default function HomeContentPage() {
                     <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">Section Title</label>
                     <textarea 
                         rows={2}
-                        defaultValue="Transformasi bisnis yang telah kami <span class='text-brand-500'>wujudkan.</span>"
+                        defaultValue="Transformasi bisnis yang telah kami wujudkan."
                         className="w-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm font-medium tracking-tight focus:ring-2 focus:ring-brand-500 outline-none transition-all"
                     />
                 </div>
@@ -260,7 +378,7 @@ export default function HomeContentPage() {
           </section>
 
           {/* Section: Articles Preview */}
-          <section id="articles" className="space-y-8 pt-12 px-10 pb-24">
+          <section id="articles" className="space-y-8 pt-12 pb-24">
             <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-500">
                     <Newspaper size={20} />
@@ -281,7 +399,7 @@ export default function HomeContentPage() {
                     <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">Section Title</label>
                     <textarea 
                         rows={2}
-                        defaultValue="Edukasi terbaru dari <span class='text-brand-500'>SIBOS AI.</span>"
+                        defaultValue="Edukasi terbaru dari SIBOS AI."
                         className="w-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm font-medium tracking-tight focus:ring-2 focus:ring-brand-500 outline-none transition-all"
                     />
                 </div>
@@ -310,47 +428,6 @@ export default function HomeContentPage() {
                 </div>
             </GlassCard>
           </section>
-
-        </div>
-      </div>
-
-      {/* Right Navigation Sidebar */}
-      <div className="w-80 border-r border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-zinc-950/50 backdrop-blur-xl p-8 hidden xl:block">
-        <div className="sticky top-8 space-y-8">
-            <div>
-                <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.2em] mb-6">Navigasi Seksi</p>
-                <div className="space-y-3">
-                    {SECTIONS.map((section) => {
-                        const Icon = section.icon;
-                        const isActive = activeSection === section.id;
-                        return (
-                            <button
-                                key={section.id}
-                                onClick={() => scrollToSection(section.id)}
-                                className={`w-full flex items-center gap-4 p-4 rounded-xl transition-all duration-300 group cursor-pointer
-                                    ${isActive 
-                                        ? 'bg-zinc-900 dark:bg-white text-white dark:text-black shadow-lg shadow-zinc-500/20' 
-                                        : 'text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-white'
-                                    }`}
-                            >
-                                <Icon size={20} />
-                                <span className="font-bold text-base tracking-tight">{section.label}</span>
-                                <ChevronRight size={16} className={`ml-auto opacity-0 group-hover:opacity-100 transition-all ${isActive ? 'opacity-100' : ''}`} />
-                            </button>
-                        );
-                    })}
-                </div>
-            </div>
-
-            <div className="p-8 rounded-2xl bg-brand-500/5 border border-brand-500/10 space-y-6">
-                <div className="flex items-center gap-3 text-brand-500">
-                    <MousePointer2 size={18} />
-                    <span className="text-xs font-bold uppercase tracking-widest">Tips Editor</span>
-                </div>
-                <p className="text-sm text-brand-900/60 dark:text-brand-100/60 leading-relaxed font-medium">
-                    Gunakan tag HTML seperti <code className="bg-brand-500/10 px-2 rounded font-mono">&lt;span class="text-brand-500"&gt;</code> untuk memberi aksen warna pada judul tertentu agar lebih menarik.
-                </p>
-            </div>
 
         </div>
       </div>
