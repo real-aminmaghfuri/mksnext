@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { ConfigProvider } from "ui";
+import { DataProvider } from "../contexts/DataContext";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SIBOS System | PT Mesin Kasir Solo",
-  description: "Advanced Management System by PT Mesin Kasir Solo",
+  title: "SIBOS Editor",
+  description: "Management platform for PT Mesin Kasir Solo",
 };
 
 export default function RootLayout({
@@ -13,8 +15,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id">
-      <body className="antialiased bg-[#050505] text-white">
-        {children}
+      <body className="antialiased">
+        <ConfigProvider>
+          <DataProvider>
+            {children}
+          </DataProvider>
+        </ConfigProvider>
       </body>
     </html>
   );

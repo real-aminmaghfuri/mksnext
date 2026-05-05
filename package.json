@@ -1,11 +1,6 @@
 {
   "name": "mesin-kasir-solo",
   "private": true,
-  "packageManager": "npm@10.9.7",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
@@ -19,5 +14,10 @@
   },
   "engines": {
     "node": ">=18"
-  }
+  },
+  "packageManager": "npm@10.9.7",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }

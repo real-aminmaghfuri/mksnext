@@ -6,7 +6,8 @@
     "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "check-lint": "tsc --noEmit"
   },
   "dependencies": {
     "next": "14.2.3",
@@ -17,7 +18,11 @@
     "clsx": "^2.1.1",
     "tailwind-merge": "^2.3.0",
     "dexie": "^4.0.7",
-    "dexie-react-hooks": "^1.1.7"
+    "dexie-react-hooks": "^1.1.7",
+    "shared": "*",
+    "ui": "*",
+    "data": "*",
+    "types": "*"
   },
   "devDependencies": {
     "typescript": "^5",
