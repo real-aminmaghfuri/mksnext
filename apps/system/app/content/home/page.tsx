@@ -57,18 +57,16 @@ export default function HomeContentPage() {
                             <button
                                 key={section.id}
                                 onClick={() => scrollToSection(section.id)}
-                                className={`w-full flex items-center p-3 rounded-xl transition-all duration-300 group cursor-pointer
+                                className={`w-full flex items-center px-3 py-2.5 rounded-lg transition-all duration-200 group cursor-pointer
                                     ${isActive 
-                                        ? 'bg-zinc-900 dark:bg-white text-white dark:text-black shadow-lg shadow-zinc-500/20' 
-                                        : 'text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-white'
+                                        ? 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-white' 
+                                        : 'text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-300'
                                     }`}
                             >
-                                <ChevronRight size={14} className={`mr-2 transition-transform duration-300 ${isActive ? 'rotate-0 opacity-100' : '-rotate-90 opacity-40'}`} />
-                                <Icon size={18} strokeWidth={isActive ? 2.5 : 2} />
-                                <div className="ml-3 flex-1 flex justify-between items-center text-left">
-                                    <span className="font-bold text-sm tracking-tight">{section.label}</span>
-                                    {isActive && <div className="w-1.5 h-1.5 rounded-full bg-brand-500" />}
-                                </div>
+                                <ChevronRight size={12} className={`mr-2 transition-transform duration-300 ${isActive ? 'rotate-0 opacity-100 text-brand-500' : '-rotate-90 opacity-20'}`} />
+                                <Icon size={16} strokeWidth={isActive ? 2.5 : 1.5} className="mr-3" />
+                                <span className={`font-bold text-xs tracking-tight ${isActive ? 'text-zinc-900 dark:text-white' : ''}`}>{section.label}</span>
+                                {isActive && <div className="ml-auto w-1 h-1 rounded-full bg-brand-500" />}
                             </button>
                         );
                     })}
@@ -176,13 +174,13 @@ export default function HomeContentPage() {
                   Konten Halaman Utama
                 </p>
               </div>
-              <div className="flex gap-3">
-                <Button variant="outline" className="gap-2 h-10 px-5 text-[10px] font-black uppercase tracking-widest cursor-pointer border-zinc-200 dark:border-zinc-800">
+              <div className="flex gap-2">
+                <Button variant="ghost" className="gap-2 h-9 px-4 text-[10px] font-bold uppercase tracking-widest cursor-pointer text-zinc-500 hover:text-zinc-900 dark:hover:text-white">
                   <Eye size={14} /> Preview
                 </Button>
-                <Button className="gap-2 h-10 px-5 text-[10px] font-black uppercase tracking-widest cursor-pointer shadow-lg shadow-brand-500/20" onClick={handleSave} disabled={isSaving}>
-                  {isSaving ? <CheckCircle2 size={14} className="animate-bounce" /> : <Save size={14} />} 
-                  {isSaving ? 'Tersimpan' : 'Simpan'}
+                <Button className="gap-2 h-9 px-4 text-[10px] font-black uppercase tracking-widest cursor-pointer bg-zinc-900 dark:bg-white text-white dark:text-black hover:opacity-90 transition-all rounded-lg" onClick={handleSave} disabled={isSaving}>
+                  {isSaving ? <CheckCircle2 size={14} className="animate-spin" /> : <Save size={14} />} 
+                  {isSaving ? 'Menyimpan...' : 'Simpan Perubahan'}
                 </Button>
               </div>
             </div>
@@ -268,7 +266,7 @@ export default function HomeContentPage() {
           </section>
 
           {/* Section: Solutions */}
-          <section id="solutions" className="space-y-8 pt-12 px-10">
+          <section id="solutions" className="space-y-8 pt-12">
             <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-500">
                     <Briefcase size={20} />
@@ -305,7 +303,7 @@ export default function HomeContentPage() {
           </section>
 
           {/* Section: Tech (Bento) */}
-          <section id="tech" className="space-y-8 pt-12 px-10">
+          <section id="tech" className="space-y-8 pt-12">
             <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-yellow-500/10 flex items-center justify-center text-yellow-500">
                     <Zap size={20} />
@@ -323,7 +321,7 @@ export default function HomeContentPage() {
                     />
                 </div>
                 <div className="space-y-3">
-                    <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">Section Title (HTML supported)</label>
+                    <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">Section Title</label>
                     <textarea 
                         rows={2}
                         defaultValue="Dibangun untuk Skalabilitas Tanpa Batas."
@@ -429,6 +427,7 @@ export default function HomeContentPage() {
             </GlassCard>
           </section>
 
+          </div>
         </div>
       </div>
     </div>
