@@ -103,7 +103,7 @@ export default function HomeContentPage() {
                     <textarea 
                         rows={2}
                         defaultValue="PT MESIN KASIR SOLO. Bisnis Lo Medan Perang, Bos. Jangan Bawa Mainan."
-                        className="w-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-base font-semibold tracking-tight focus:ring-2 focus:ring-brand-500 outline-none transition-all"
+                        className="w-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm font-medium tracking-tight focus:ring-2 focus:ring-brand-500 outline-none transition-all"
                     />
                 </div>
 
@@ -148,7 +148,6 @@ export default function HomeContentPage() {
                 </div>
             </GlassCard>
           </section>
-          </section>
 
           {/* Section: Solutions */}
           <section id="solutions" className="space-y-8 pt-12 px-10">
@@ -173,7 +172,7 @@ export default function HomeContentPage() {
                     <input 
                         type="text" 
                         defaultValue="Amunisi Tempur Kita"
-                        className="w-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-xl font-bold tracking-tight focus:ring-2 focus:ring-brand-500 outline-none transition-all"
+                        className="w-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm font-medium tracking-tight focus:ring-2 focus:ring-brand-500 outline-none transition-all"
                     />
                 </div>
                 <div className="space-y-3">
@@ -210,7 +209,7 @@ export default function HomeContentPage() {
                     <textarea 
                         rows={2}
                         defaultValue="Dibangun untuk <span class='text-brand-500'>Skalabilitas</span> Tanpa Batas."
-                        className="w-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-xl font-bold tracking-tight focus:ring-2 focus:ring-brand-500 outline-none transition-all"
+                        className="w-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm font-medium tracking-tight focus:ring-2 focus:ring-brand-500 outline-none transition-all"
                     />
                 </div>
             </GlassCard>
@@ -239,7 +238,7 @@ export default function HomeContentPage() {
                     <textarea 
                         rows={2}
                         defaultValue="Transformasi bisnis yang telah kami <span class='text-brand-500'>wujudkan.</span>"
-                        className="w-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-xl font-bold tracking-tight focus:ring-2 focus:ring-brand-500 outline-none transition-all"
+                        className="w-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm font-medium tracking-tight focus:ring-2 focus:ring-brand-500 outline-none transition-all"
                     />
                 </div>
                 <div className="space-y-3">
@@ -283,7 +282,7 @@ export default function HomeContentPage() {
                     <textarea 
                         rows={2}
                         defaultValue="Edukasi terbaru dari <span class='text-brand-500'>SIBOS AI.</span>"
-                        className="w-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-xl font-bold tracking-tight focus:ring-2 focus:ring-brand-500 outline-none transition-all"
+                        className="w-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl px-4 py-3 text-sm font-medium tracking-tight focus:ring-2 focus:ring-brand-500 outline-none transition-all"
                     />
                 </div>
                 <div className="space-y-3">
@@ -319,7 +318,7 @@ export default function HomeContentPage() {
       <div className="w-80 border-r border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-zinc-950/50 backdrop-blur-xl p-8 hidden xl:block">
         <div className="sticky top-8 space-y-8">
             <div>
-                <p className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.2em] mb-6">Navigasi Seksi</p>
+                <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.2em] mb-6">Navigasi Seksi</p>
                 <div className="space-y-3">
                     {SECTIONS.map((section) => {
                         const Icon = section.icon;
@@ -346,9 +345,9 @@ export default function HomeContentPage() {
             <div className="p-8 rounded-2xl bg-brand-500/5 border border-brand-500/10 space-y-6">
                 <div className="flex items-center gap-3 text-brand-500">
                     <MousePointer2 size={18} />
-                    <span className="text-xs font-black uppercase tracking-widest">Tips Editor</span>
+                    <span className="text-xs font-bold uppercase tracking-widest">Tips Editor</span>
                 </div>
-                <p className="text-sm text-brand-900/60 dark:text-brand-100/60 leading-relaxed font-bold">
+                <p className="text-sm text-brand-900/60 dark:text-brand-100/60 leading-relaxed font-medium">
                     Gunakan tag HTML seperti <code className="bg-brand-500/10 px-2 rounded font-mono">&lt;span class="text-brand-500"&gt;</code> untuk memberi aksen warna pada judul tertentu agar lebih menarik.
                 </p>
             </div>
