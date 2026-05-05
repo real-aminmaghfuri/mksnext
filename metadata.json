@@ -1,9 +1,5 @@
 {
   "name": "PT Mesin Kasir Solo",
   "description": "Smart Integrated Back Office System (SIBOS) ERP & Management Platform",
-  "requestFramePermissions": [
-    "camera",
-    "microphone",
-    "geolocation"
-  ]
+  "requestFramePermissions": []
 }
