@@ -1,26 +1,23 @@
 {
-  "name": "monorepo",
+  "name": "mesin-kasir-solo",
   "private": true,
-  "packageManager": "npm@10.0.0",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run check-lint #",
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "check-lint": "turbo run check-lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "turbo": "^2.8.17"
+    "turbo": "^2.0.0",
+    "prettier": "^3.0.0"
   },
   "engines": {
-    "node": ">=20.11.0"
+    "node": ">=18"
   },
-  "dependencies": {
-    "@tailwindcss/postcss": "^4.2.1",
-    "autoprefixer": "^10.4.27",
-    "postcss": "^8.5.8"
-  }
+  "packageManager": "npm@10.9.7",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }
