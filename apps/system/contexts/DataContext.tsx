@@ -1,54 +1,43 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { Repository, DashboardStats, Transaction } from 'data';
 
 interface DataContextType {
-  stats: DashboardStats;
-  recentTransactions: Transaction[];
+  siteData: any;
+  saveData: (newData: any) => Promise<void>;
   isLoading: boolean;
-  refresh: () => Promise<void>;
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
 
-export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [stats, setStats] = useState<DashboardStats>({ revenue: 0, orders: 0, activePos: 0 });
-  const [recentTransactions, setRecentTransactions] = useState<Transaction[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const fetchData = async () => {
-    setIsLoading(true);
-    try {
-      // Ensure this runs only on client
-      if (typeof window !== 'undefined') {
-        await Repository.init(); 
-        const newStats = await Repository.getStats();
-        const txs = await Repository.getRecentTransactions();
-        
-        setStats(newStats);
-        setRecentTransactions(txs);
-      }
-    } catch (e) {
-      console.error("Data Load Failed:", e);
-    } finally {
-      setIsLoading(false);
+export function DataProvider({ children }: { children: ReactNode }) {
+  const [siteData, setSiteData] = useState({
+    hero: {
+      headline: "Solusi Mesin Kasir Modern",
+      ctaLabel: "Konsultasi Gratis"
     }
+  });
+  const [isLoading, setIsLoading] = useState(false);
+
+  const saveData = async (newData: any) => {
+    setIsLoading(true);
+    // Mock save delay
+    await new Promise(r => setTimeout(r, 1000));
+    setSiteData(newData);
+    setIsLoading(false);
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   return (
-    <DataContext.Provider value={{ stats, recentTransactions, isLoading, refresh: fetchData }}>
+    <DataContext.Provider value={{ siteData, saveData, isLoading }}>
       {children}
     </DataContext.Provider>
   );
-};
+}
 
-export const useData = () => {
+export function useData() {
   const context = useContext(DataContext);
-  if (!context) throw new Error("useData must be used within DataProvider");
+  if (context === undefined) {
+    throw new Error('useData must be used within a DataProvider');
+  }
   return context;
-};
+}

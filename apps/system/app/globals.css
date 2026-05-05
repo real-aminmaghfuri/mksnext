@@ -3,18 +3,49 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 0, 0, 0;
-  --background-end-rgb: 0, 0, 0;
+  --orange-accent: #f97316;
+  --red-accent: #dc2626;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: #050505;
+  background-color: #050505;
+  color: #ffffff;
+  font-family: inherit;
+}
+
+/* Custom shadow & border style sesuai request lo */
+.border-accent {
+  border: 1px solid rgba(249, 115, 22, 0.2);
+}
+
+.shadow-accent {
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.1);
+}
+
+.bg-gradient-accent {
+  background: linear-gradient(135deg, var(--orange-accent), var(--red-accent));
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* Scrollbar biar keren */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f97316;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ea580c;
 }

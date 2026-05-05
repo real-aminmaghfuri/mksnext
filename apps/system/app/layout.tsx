@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SIBOS Editor",
-  description: "Management platform for PT Mesin Kasir Solo",
+  title: "SIBOS System | PT Mesin Kasir Solo",
+  description: "Advanced Management System by PT Mesin Kasir Solo",
 };
 
 export default function RootLayout({
@@ -13,7 +13,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased bg-[#050505] text-white">
+        {children}
+      </body>
     </html>
   );
 }
