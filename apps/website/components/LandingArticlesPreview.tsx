@@ -4,7 +4,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Sparkles, Calendar, ChevronRight } from 'lucide-react';
+import { Sparkles, Calendar, ChevronRight, ArrowRight } from 'lucide-react';
 import { MOCK_ARTICLES, DICTIONARY } from 'shared';
 import { useConfig } from 'ui';
 
@@ -17,13 +17,24 @@ export const LandingArticlesPreview: React.FC = () => {
     <section className="py-24 bg-white dark:bg-luxury-dark transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-6">
         
-        <div className="mb-16">
-          <h2 className="text-xs font-black tracking-[0.3em] uppercase text-brand-500 mb-4 flex items-center gap-2">
-            <Sparkles size={14} /> NEWS & INSIGHTS
-          </h2>
-          <p className="text-4xl md:text-5xl font-black text-zinc-900 dark:text-white tracking-tighter">
-            Edukasi terbaru dari <span className="text-brand-500">SIBOS AI.</span>
-          </p>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="max-w-2xl">
+            <h2 className="text-xs font-black tracking-[0.3em] uppercase text-brand-500 mb-4 flex items-center gap-2">
+              <Sparkles size={14} /> NEWS & INSIGHTS
+            </h2>
+            <p className="text-4xl md:text-5xl font-black text-zinc-900 dark:text-white tracking-tighter leading-none">
+              Edukasi terbaru dari <span className="text-brand-500">SIBOS AI.</span>
+            </p>
+          </div>
+          <Link 
+            href="/articles" 
+            className="group flex items-center gap-3 text-xs font-black uppercase tracking-widest text-zinc-500 hover:text-brand-500 transition-colors"
+          >
+            LIHAT SEMUA ARTIKEL 
+            <div className="w-10 h-10 rounded-full border border-zinc-200 dark:border-zinc-800 flex items-center justify-center group-hover:border-brand-500 group-hover:bg-brand-500 group-hover:text-white transition-all">
+              <ArrowRight size={16} />
+            </div>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
