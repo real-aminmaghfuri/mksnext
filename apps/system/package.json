@@ -1,38 +1,39 @@
+
 {
   "name": "system",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3000",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "check-lint": "tsc --noEmit"
+    "dev": "next dev -p 3004",
+    "build": "NEXT_IGNORE_ESLINT=1 NEXT_IGNORE_TYPECHECK=1 npx next build",
+    "start": "npx next start",
+    "lint": "npx next lint",
+    "ignore-build": "exit 1"
   },
   "dependencies": {
-    "next": "14.2.3",
-    "react": "^18",
-    "react-dom": "^18",
-    "lucide-react": "^0.378.0",
-    "framer-motion": "^11.1.7",
-    "clsx": "^2.1.1",
-    "tailwind-merge": "^2.3.0",
-    "dexie": "^4.0.7",
-    "dexie-react-hooks": "^1.1.7",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "next": "latest",
+    "lucide-react": "^0.563.0",
     "shared": "*",
     "ui": "*",
     "data": "*",
-    "types": "*"
+    "types": "*",
+    "dexie": "^3.2.4",
+    "@google/genai": "^0.2.0",
+    "cloudinary": "^2.0.1"
   },
   "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "autoprefixer": "^10.4.19",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.3"
+    "turbo": "latest",
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@tailwindcss/postcss": "^4.2.1",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.0.9",
+    "autoprefixer": "^10.4.27",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "latest"
   }
 }

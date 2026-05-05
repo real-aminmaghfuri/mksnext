@@ -1,9 +1,5 @@
 {
-  "name": "PT Mesin Kasir Solo",
-  "description": "Smart Integrated Back Office System (SIBOS) ERP & Management Platform",
-  "requestFramePermissions": [
-    "camera",
-    "microphone",
-    "geolocation"
-  ]
+  "name": "PT MESIN KASIR SOLO - SIBOS ERP",
+  "description": "Smart Integrated Back Office System (SIBOS) - Monorepo Management for PT Mesin Kasir Solo inclusive of Website, POS, Inventory, and Mitra Partnership System.",
+  "requestFramePermissions": []
 }
