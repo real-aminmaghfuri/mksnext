@@ -16,7 +16,7 @@ export const Sidebar: React.FC<{ collapsed?: boolean }> = ({ collapsed = false }
   
   const toggleMenu = (key: string) => {
     setOpenMenus(prev => 
-      prev.includes(key) ? prev.filter(k => k !== key) : [...prev, key]
+      prev.includes(key) ? [] : [key]
     );
   };
 
@@ -68,13 +68,18 @@ export const Sidebar: React.FC<{ collapsed?: boolean }> = ({ collapsed = false }
               <div key={idx} className="space-y-1">
                 <button
                   onClick={() => item.id && toggleMenu(item.id)}
-                  className={`w-full flex items-center p-3 rounded-xl transition-all duration-300 group text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-white`}
+                  className={`w-full flex items-center p-3 rounded-xl transition-all duration-300 group text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-white cursor-pointer`}
                 >
+                  {!collapsed && (
+                    <ChevronDown 
+                      size={14} 
+                      className={`mr-2 transition-transform duration-300 ${isOpen ? 'rotate-0' : '-rotate-90'}`} 
+                    />
+                  )}
                   <Icon size={18} strokeWidth={2} />
                   {!collapsed && (
                     <div className="ml-3 flex-1 flex justify-between items-center">
-                      <span className="font-bold text-sm">{item.label}</span>
-                      <ChevronDown size={14} className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+                      <span className="font-bold text-sm tracking-tight">{item.label}</span>
                     </div>
                   )}
                 </button>
@@ -107,7 +112,7 @@ export const Sidebar: React.FC<{ collapsed?: boolean }> = ({ collapsed = false }
               key={idx}
               href={item.path}
               aria-label={item.label}
-              className={`w-full flex items-center p-3 rounded-xl transition-all duration-300 group
+              className={`w-full flex items-center p-3 rounded-xl transition-all duration-300 group cursor-pointer
                 ${isActive 
                   ? 'bg-zinc-900 dark:bg-white text-white dark:text-black shadow-lg' 
                   : 'text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-white'
