@@ -37,6 +37,20 @@ export const Hero: React.FC = () => {
               secondaryText={content.ctaSecondary}
             />
 
+            {/* Social Proof: Trusted By */}
+            <div className="pt-16 animate-fade-in-up [animation-delay:600ms]">
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 mb-8">
+                TRUSTED BY INDUSTRY LEADERS
+              </p>
+              <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 opacity-40 grayscale group-hover:grayscale-0 transition-all duration-500">
+                {['MKS', 'GTI', 'ERP', 'BOS', 'CRM'].map((brand) => (
+                  <div key={brand} className="text-xl font-black tracking-tighter text-zinc-400 dark:text-zinc-600">
+                    {brand} <span className="text-brand-500">SYSTEM</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
