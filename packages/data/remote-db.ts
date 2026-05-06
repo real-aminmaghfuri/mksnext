@@ -85,21 +85,22 @@ export function handleFirestoreError(error: unknown, operationType: OperationTyp
 
 // Helper to check connection status
 export const isOnline = () => {
-  // Check for explicit override
+  // Check for explicit override in Browser
   if (typeof window !== 'undefined') {
     const override = localStorage.getItem('MKS_REPO_MODE');
     if (override === 'LOCAL') return false;
+    return navigator.onLine;
   }
   
-  // Build time check
-  // In many CI/Build environments, we want to fallback to local/defaults if network is flaky
-  const isBuildTime = process.env.NEXT_PHASE === 'phase-production-build' || process.env.NODE_ENV === 'production' && typeof window === 'undefined';
+  /**
+   * On Server Side (Prerendering / SSG)
+   * We default to OFFLINE during build to prevent hang/error.
+   * If strictly needed for dynamic server routes, logic can be added here.
+   */
+  const isBuildPhase = process.env.NEXT_PHASE === 'phase-production-build' || process.env.NODE_ENV === 'production';
   
-  if (typeof window === 'undefined') {
-    // On server, we assume online unless we're in a known restricted build phase
-    // or if we want to be safe and only fetch if explicitly needed
-    return !isBuildTime; 
-  }
+  if (isBuildPhase) return false;
   
-  return typeof navigator !== 'undefined' && navigator.onLine;
+  // Default server behavior: online (for system/CMS functions)
+  return true;
 };

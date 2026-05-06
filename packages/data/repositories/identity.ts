@@ -23,10 +23,13 @@ export class IdentityRepository {
       return { success: true, data: DEFAULT_COMPANY_IDENTITY };
     } catch (e: any) {
       // If it fails during build or because of connectivity, log it but don't crash
+      const isServer = typeof window === 'undefined';
+      const isNetworkError = e?.code === 'unavailable' || e?.message?.includes('offline') || e?.message?.includes('unavailable');
+
       console.warn("[IdentityRepo] Fetch Fail (Falling back to default):", e?.message || e);
       
-      // If we are strictly on server/build and it's a connectivity error, don't throw
-      if (typeof window === 'undefined' && (e?.code === 'unavailable' || e?.message?.includes('offline'))) {
+      // If we are on server/build or it's a network error, return default gracefully
+      if (isServer || isNetworkError) {
         return { success: true, data: DEFAULT_COMPANY_IDENTITY };
       }
       

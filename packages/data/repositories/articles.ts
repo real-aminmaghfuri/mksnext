@@ -20,8 +20,11 @@ export class ArticlesRepository {
     } catch (error: any) {
       console.warn("[ArticlesRepo] Fetch Fail:", error?.message || error);
       
-      // Graceful fallback for build
-      if (typeof window === 'undefined') {
+      const isServer = typeof window === 'undefined';
+      const isNetworkError = error?.code === 'unavailable' || error?.message?.includes('offline');
+
+      // Graceful fallback for build and network issues
+      if (isServer || isNetworkError) {
         return { success: true, data: [] };
       }
       
