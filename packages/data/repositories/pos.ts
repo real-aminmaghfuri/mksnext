@@ -1,13 +1,16 @@
 
 import { localDB } from '../local-db';
-import { getSupabase, isOnline } from '../remote-db';
+import { db, isOnline, handleFirestoreError, OperationType } from '../remote-db';
 import { Transaction, RepoResponse } from '../types';
+import { collection, addDoc } from 'firebase/firestore';
 
 /**
  * POSRepository (Core Data Package)
  * STRICT RULE: Returns standard RepoResponse<T>
  */
 export class POSRepository {
+  private static collectionPath = 'transactions';
+
   /** Save transaction with offline-first and background-sync attempt */
   static async saveTransaction(transaction: Transaction): Promise<RepoResponse<void>> {
     try {
@@ -20,19 +23,19 @@ export class POSRepository {
       
       await localDB.transactions.add(txnRecord);
 
-      // 2. Sync to Supabase if Online
-      const supabase = getSupabase();
-      if (isOnline() && supabase) {
-        const { error } = await supabase.from('transactions').insert({
-          total: txnRecord.total,
-          status: txnRecord.status,
-          payment_method: txnRecord.paymentMethod,
-          created_at: txnRecord.createdAt
-        });
-        
-        // We log sync error but succeed the operation because it's saved locally
-        if (error) {
-          console.warn("[POSRepo] Supabase Sync Deferred:", error.message);
+      // 2. Sync to Firestore if Online
+      if (isOnline()) {
+        try {
+          await addDoc(collection(db, this.collectionPath), {
+            uuid: txnRecord.uuid,
+            total: txnRecord.total,
+            status: txnRecord.status,
+            paymentMethod: txnRecord.paymentMethod,
+            createdAt: txnRecord.createdAt.toISOString()
+          });
+        } catch (syncError) {
+          console.warn("[POSRepo] Firestore Sync Deferred:", syncError);
+          handleFirestoreError(syncError, OperationType.WRITE, this.collectionPath);
         }
       }
 

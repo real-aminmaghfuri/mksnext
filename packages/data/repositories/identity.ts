@@ -1,33 +1,44 @@
 
-import { getSupabase, isOnline } from '../remote-db';
+import { db, isOnline, handleFirestoreError, OperationType } from '../remote-db';
 import { CompanyIdentity, RepoResponse } from '../types';
 import { DEFAULT_COMPANY_IDENTITY } from '../defaults';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 export class IdentityRepository {
+  private static collectionPath = 'settings';
+  private static docId = 'company_identity';
+
   static async getCompanyIdentity(): Promise<RepoResponse<CompanyIdentity>> {
     try {
-      const supabase = getSupabase();
-      if (isOnline() && supabase) {
-        const { data, error } = await supabase.from('settings').select('value').eq('key', 'company_identity').single();
-        if (data?.value) {
-          return { success: true, data: { ...DEFAULT_COMPANY_IDENTITY, ...data.value } };
+      if (isOnline()) {
+        const docRef = doc(db, this.collectionPath, this.docId);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          if (data?.value) {
+            return { success: true, data: { ...DEFAULT_COMPANY_IDENTITY, ...data.value } };
+          }
         }
       }
       return { success: true, data: DEFAULT_COMPANY_IDENTITY };
     } catch (e) {
       console.error("Failed to fetch identity", e);
+      handleFirestoreError(e, OperationType.GET, `${this.collectionPath}/${this.docId}`);
       return { success: false, error: "IDENTITY_FETCH_ERROR" };
     }
   }
 
   static async saveCompanyIdentity(identity: CompanyIdentity): Promise<RepoResponse<void>> {
     try {
-      const supabase = getSupabase();
-      if (!supabase) throw new Error("Supabase Client not initialized.");
-      const { error } = await supabase.from('settings').upsert({ key: 'company_identity', value: identity }, { onConflict: 'key' });
-      if (error) throw new Error(error.message);
+      if (isOnline()) {
+        const docRef = doc(db, this.collectionPath, this.docId);
+        await setDoc(docRef, { key: this.docId, value: identity });
+      } else {
+        throw new Error("Cannot save identity while offline.");
+      }
       return { success: true };
     } catch (error) {
+      handleFirestoreError(error, OperationType.WRITE, `${this.collectionPath}/${this.docId}`);
       return { success: false, error: error instanceof Error ? error.message : "IDENTITY_SAVE_ERROR" };
     }
   }

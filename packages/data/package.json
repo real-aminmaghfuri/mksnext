@@ -5,7 +5,7 @@
   "types": "./index.ts",
   "dependencies": {
     "dexie": "^3.2.4",
-    "@supabase/supabase-js": "^2.39.3",
+    "firebase": "^10.0.0",
     "@google/genai": "^0.2.0",
     "types": "*",
     "typescript": "^5.0.0"

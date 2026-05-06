@@ -1,0 +1,80 @@
+{
+  "entities": {
+    "Setting": {
+      "title": "Setting",
+      "description": "Global settings key-value pair",
+      "type": "object",
+      "properties": {
+        "key": { "type": "string" },
+        "value": { "type": "object" }
+      },
+      "required": ["key", "value"]
+    },
+    "Article": {
+      "title": "Article",
+      "description": "CMS Article/Blog Post",
+      "type": "object",
+      "properties": {
+        "uuid": { "type": "string" },
+        "title": { "type": "string" },
+        "slug": { "type": "string" },
+        "content": { "type": "string" },
+        "excerpt": { "type": "string" },
+        "coverImage": { "type": "string" },
+        "category": { "type": "string" },
+        "tags": { "type": "array" },
+        "status": { "type": "string", "enum": ["DRAFT", "PUBLISHED", "ARCHIVED"] },
+        "authorId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "publishedAt": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["uuid", "title", "slug", "status"]
+    },
+    "Transaction": {
+      "title": "Transaction",
+      "description": "Sales Transaction",
+      "type": "object",
+      "properties": {
+        "uuid": { "type": "string" },
+        "total": { "type": "number" },
+        "status": { "type": "string", "enum": ["COMPLETED", "PENDING", "CANCELLED"] },
+        "paymentMethod": { "type": "string", "enum": ["CASH", "QRIS", "DEBIT"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uuid", "total", "status", "paymentMethod"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Inventory Product",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "sku": { "type": "string" },
+        "price": { "type": "number" },
+        "stock": { "type": "number" },
+        "category": { "type": "string" }
+      },
+      "required": ["name", "sku", "price", "stock"]
+    }
+  },
+  "firestore": {
+    "settings": {
+      "schema": "Setting",
+      "description": "Global application settings"
+    },
+    "articles": {
+      "schema": "Article",
+      "description": "CMS Blog articles"
+    },
+    "transactions": {
+      "schema": "Transaction",
+      "description": "Sales order records"
+    },
+    "products": {
+      "schema": "Product",
+      "description": "Inventory products"
+    }
+  }
+}

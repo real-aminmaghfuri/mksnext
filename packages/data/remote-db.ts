@@ -1,54 +1,95 @@
 
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { initializeApp, getApp, getApps } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { getFirestore, doc, getDocFromServer } from 'firebase/firestore';
+import firebaseConfig from '../../firebase-applet-config.json';
 
-let supabase: SupabaseClient | null = null;
+// Initialize Firebase
+const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
+export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
+export const auth = getAuth(app);
 
-// Lazy Initialization Helper
-// This ensures process.env is fully populated before we try to read keys
-export const getSupabase = () => {
-  if (supabase) return supabase;
-
-  // Initialize automatically using Environment Variables
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
-  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
-
-  if (supabaseUrl && supabaseKey) {
-    try {
-      supabase = createClient(supabaseUrl, supabaseKey);
-      if (typeof window !== 'undefined') {
-          console.log("🔥 [MKS DATABASE] Supabase Client Initialized (Client).");
-      } else {
-          console.log("🔥 [MKS DATABASE] Supabase Client Initialized (Server).");
-      }
-    } catch (e) {
-      console.error("❌ [MKS DATABASE] Failed to initialize Supabase:", e);
+/** 
+ * CRITICAL: Test Connection to Firestore
+ * As per instructions to ensure the client configuration is correct.
+ */
+async function testConnection() {
+  try {
+    await getDocFromServer(doc(db, 'test', 'connection'));
+  } catch (error) {
+    if(error instanceof Error && error.message.includes('the client is offline')) {
+      console.error("Please check your Firebase configuration.");
     }
-  } else {
-      // Only warn if we are trying to use it and it fails
-      if (typeof window !== 'undefined') {
-          console.warn("⚠️ [MKS DATABASE] Supabase Keys missing. Running in Offline/Mock Mode.");
-      }
   }
-  return supabase;
-};
+}
+if (typeof window !== 'undefined') {
+  testConnection();
+}
 
-// Helper to check connection status
-// FIX: Robust check for both Server and Client environments
+/**
+ * OperationType enum for error handling
+ */
+export enum OperationType {
+  CREATE = 'create',
+  UPDATE = 'update',
+  DELETE = 'delete',
+  LIST = 'list',
+  GET = 'get',
+  WRITE = 'write',
+}
+
+/**
+ * FirestoreErrorInfo interface for robust error reporting
+ */
+export interface FirestoreErrorInfo {
+  error: string;
+  operationType: OperationType;
+  path: string | null;
+  authInfo: {
+    userId?: string | null;
+    email?: string | null;
+    emailVerified?: boolean | null;
+    isAnonymous?: boolean | null;
+    tenantId?: string | null;
+    providerInfo?: {
+      providerId?: string | null;
+      email?: string | null;
+    }[];
+  }
+}
+
+/**
+ * Standard Firestore Error Handler
+ */
+export function handleFirestoreError(error: unknown, operationType: OperationType, path: string | null) {
+  const errInfo: FirestoreErrorInfo = {
+    error: error instanceof Error ? error.message : String(error),
+    authInfo: {
+      userId: auth.currentUser?.uid,
+      email: auth.currentUser?.email,
+      emailVerified: auth.currentUser?.emailVerified,
+      isAnonymous: auth.currentUser?.isAnonymous,
+      tenantId: auth.currentUser?.tenantId,
+      providerInfo: auth.currentUser?.providerData?.map(provider => ({
+        providerId: provider.providerId,
+        email: provider.email,
+      })) || []
+    },
+    operationType,
+    path
+  }
+  const serializedError = JSON.stringify(errInfo);
+  console.error('Firestore Error: ', serializedError);
+  throw new Error(serializedError);
+}
+
+// Helper to check connection status (Legacy compatible)
 export const isOnline = () => {
-  // Check for manual override in localStorage
   if (typeof window !== 'undefined') {
     const override = localStorage.getItem('MKS_REPO_MODE');
     if (override === 'LOCAL') return false;
-    if (override === 'CLOUD') return !!getSupabase();
-  }
-
-  const client = getSupabase(); // Trigger lazy init
-  
-  // If we are on the server (window is undefined), we rely on the client existence
-  if (typeof window === 'undefined') {
-    return !!client;
   }
   
-  // If we are on the client, we check the browser's online status AND client existence
-  return typeof navigator !== 'undefined' && navigator.onLine && !!client;
+  if (typeof window === 'undefined') return true; // Server side assume online availability
+  return typeof navigator !== 'undefined' && navigator.onLine;
 };
