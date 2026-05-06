@@ -21,18 +21,23 @@ export const GlassCard: React.FC<GlassCardProps> = ({
   // Default: Slightly translucent but with strong borders
   // Solid: Fully opaque for maximum readability in System mode
   const variants = {
-    default: "bg-white/80 dark:bg-luxury-panel/80 backdrop-blur-xl border border-zinc-200 dark:border-zinc-800/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)]",
-    solid: "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm"
+    // Default: Slightly translucent but with VERY strong borders and luxury shadows
+    default: "bg-white/80 dark:bg-luxury-panel/90 backdrop-blur-2xl border-2 border-zinc-200/50 dark:border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.3)]",
+    // Solid: Fully opaque for high-density System mode
+    solid: "bg-white dark:bg-zinc-950 border-2 border-zinc-300 dark:border-zinc-800 shadow-xl"
   };
 
   const hover = hoverEffect 
-    ? "hover:shadow-[0_20px_50px_rgba(249,115,22,0.1)] dark:hover:shadow-[0_20px_50px_rgba(249,115,22,0.05)] hover:border-brand-500/40 dark:hover:border-brand-500/40 hover:-translate-y-1.5 group" 
+    ? "hover:shadow-[0_20px_80px_rgba(249,115,22,0.15)] dark:hover:shadow-[0_30px_100px_rgba(249,115,22,0.08)] hover:border-brand-500/60 dark:hover:border-brand-500/30 hover:-translate-y-2 group" 
     : "";
 
   return (
     <div className={`${base} ${variants[variant]} ${hover} ${className}`} {...props}>
-      {/* Top accent line for luxury feel, clearly defined */}
-      <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-brand-500 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      {/* Permanent Accent Line (Bottom or Top) - Orange-Red Gradient as requested */}
+      <div className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-brand-500 via-orange-600 to-red-600 opacity-30 dark:opacity-20 translate-y-[1px]" />
+      
+      {/* Top reveal accent on hover */}
+      <div className="absolute top-0 left-0 w-full h-[4px] bg-gradient-to-r from-brand-500 via-brand-600 to-red-600 opacity-0 group-hover:opacity-100 transition-all duration-700 blur-[1px]" />
       {children}
     </div>
   );

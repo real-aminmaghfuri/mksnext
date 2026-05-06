@@ -21,8 +21,15 @@ export class IdentityRepository {
         }
       }
       return { success: true, data: DEFAULT_COMPANY_IDENTITY };
-    } catch (e) {
-      console.error("Failed to fetch identity", e);
+    } catch (e: any) {
+      // If it fails during build or because of connectivity, log it but don't crash
+      console.warn("[IdentityRepo] Fetch Fail (Falling back to default):", e?.message || e);
+      
+      // If we are strictly on server/build and it's a connectivity error, don't throw
+      if (typeof window === 'undefined' && (e?.code === 'unavailable' || e?.message?.includes('offline'))) {
+        return { success: true, data: DEFAULT_COMPANY_IDENTITY };
+      }
+      
       handleFirestoreError(e, OperationType.GET, `${this.collectionPath}/${this.docId}`);
       return { success: false, error: "IDENTITY_FETCH_ERROR" };
     }

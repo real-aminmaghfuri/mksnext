@@ -15,10 +15,16 @@ export class ArticlesRepository {
         const data = snapshot.docs.map(d => ({ id: d.id as any, uuid: d.id, ...d.data() } as Article));
         return { success: true, data };
       }
-      const localData = await localDB.articles.reverse().toArray();
+      const localData = typeof window !== 'undefined' ? await localDB.articles.reverse().toArray() : [];
       return { success: true, data: localData };
-    } catch (error) {
-      console.error("[ArticlesRepo] Fetch Fail:", error);
+    } catch (error: any) {
+      console.warn("[ArticlesRepo] Fetch Fail:", error?.message || error);
+      
+      // Graceful fallback for build
+      if (typeof window === 'undefined') {
+        return { success: true, data: [] };
+      }
+      
       handleFirestoreError(error, OperationType.LIST, this.collectionPath);
       return { success: false, error: "ARTICLES_FETCH_ERROR" };
     }

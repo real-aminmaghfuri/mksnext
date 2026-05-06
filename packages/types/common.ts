@@ -38,9 +38,3 @@ export interface WebProtocols {
   yandex: string;
   pinterest: string;
 }
-
-export interface DataConfig {
-  useSupabase: boolean;
-  supabaseUrl?: string;
-  supabaseKey?: string;
-}
