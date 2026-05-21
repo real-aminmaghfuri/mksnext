@@ -8,7 +8,10 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
+    "dev": "turbo run dev --filter={website}",
+    "dev:website": "turbo run dev --filter={website}",
+    "dev:system": "turbo run dev --filter={system}",
+    "dev:mitra": "turbo run dev --filter={mitra}",
     "lint": "turbo run check-lint #",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
